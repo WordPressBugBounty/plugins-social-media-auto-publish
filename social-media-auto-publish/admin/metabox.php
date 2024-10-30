@@ -15,7 +15,6 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 	{
 		$postid=intval($_GET['post']);
 		
-		
 		$get_post_meta=get_post_meta($postid,"xyz_smap",true);
 		if($get_post_meta==1){
 			$GLOBALS['edit_flag']=1;
@@ -23,7 +22,7 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 			
 		global $wpdb;
 		$table='posts';
-		$accountCount = $wpdb->query($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.$table.' WHERE id=%d and post_status!=%s LIMIT %d,%d',array($postid,'draft',0,1) )) ;
+		$accountCount = $wpdb->query($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.$table.' WHERE id=%d and post_status NOT IN (%s, %s) LIMIT %d,%d',array($postid,'draft','future',0,1) )) ;
 		if($accountCount>0){
 			$GLOBALS['edit_flag']=1;
 			}
@@ -81,16 +80,18 @@ function xyz_smap_addpostmetatags()
 
 /****************** Code to reload metabox content in Gutenberg editor ******************/
 jQuery(document).ready(function($) {
-    const appuntiStatusChange = ( function(){
-        const isSavingMetaBoxes = wp.data.select( 'core/edit-post' ).isSavingMetaBoxes;
-        var wasSaving = false;
-        return {
-            refreshMetabox: function(){
-                var isSaving = isSavingMetaBoxes();
-                if ( wasSaving && ! isSaving ) {
-                
-                    //console.log("Post changed and saved.");                   
-                    var xyz_smap_default_selection_edit="<?php echo esc_html(get_option('xyz_smap_default_selection_edit'));?>";
+	if (typeof wp !== 'undefined' && wp.blocks && wp.data && wp.data.select) {
+		wp.data.subscribe(() => { 
+
+		const notices = wp.data.select( 'core/notices' ).getNotices(); 
+		const publishSuccessNotice = notices.find( notice => notice.content === 'Post published.' || notice.content === 'Post updated.');
+		const editorSelect = wp.data.select('core/editor');
+            if (editorSelect && typeof editorSelect.getCurrentPost === 'function') {
+		const currentPostStatus = wp.data.select('core/editor').getCurrentPost().status;
+		
+		if (publishSuccessNotice && currentPostStatus === 'publish') 
+			{
+				var xyz_smap_default_selection_edit="<?php echo esc_html(get_option('xyz_smap_default_selection_edit'));?>";
                     var xyz_smap_lnshare_to_profile ='<?php echo get_option('xyz_smap_lnshare_to_profile');?>';
                     
                     //Facebook
@@ -248,13 +249,11 @@ jQuery(document).ready(function($) {
                     	jQuery('#xyz_smap_lnpost_permission_yes').removeClass('xyz_smap_toggle_off');
                     	jQuery('#xyz_smap_lnpost_permission_yes').addClass('xyz_smap_toggle_on');
                     }
-                }
-                wasSaving = isSaving;
-            },
-        }
-    })();
-    
-    wp.data.subscribe( appuntiStatusChange.refreshMetabox );
+
+			}
+			}
+		});
+	}
 });
 /*************************************************************************************/
 
@@ -525,7 +524,10 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		$postid=intval($_GET['post']);
 	$post_permission=get_option('xyz_smap_post_permission');
 	$get_post_meta_future_data='';
-	if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+
+	$get_post_meta=get_post_meta($postid,"xyz_smap",true);
+
+	if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 		$get_post_meta_future_data=get_post_meta($postid,"xyz_smap_fb_future_to_publish",true);
 	if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_fb_permission']))
 	{
@@ -1038,7 +1040,7 @@ function load_create_action()
 		var xyz_smap_default_selection_create="<?php echo esc_html(get_option('xyz_smap_default_selection_create'));?>";
 		if(xyz_smap_default_selection_create=="")
 			xyz_smap_default_selection_create=0;
-		if(xyz_smap_default_selection_create==1)
+		if(xyz_smap_default_selection_create==1 ||xyz_smap_default_selection_create==2)
 			return;
 		//FB 
 	jQuery('#xyz_smap_post_permission_0').attr('checked',true);

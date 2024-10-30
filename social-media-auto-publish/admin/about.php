@@ -103,16 +103,7 @@ if( !defined('ABSPATH') ){ exit();}
 	</tr>
 	
 	<tr>
-		<td> <?php _e('Publish to facebook groups','social-media-auto-publish'); ?> </td>
-		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
-		</td>
-		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
-		</td>
-		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
-		</td>
-	</tr>
 	
-	<tr>
 		<td> <?php _e('Publish to twitter profile','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
@@ -222,6 +213,15 @@ if( !defined('ABSPATH') ){ exit();}
 	
 	<tr>
 		<td> <?php _e('Hash Tags support for Facebook, Twitter, Linkedin, Instagram, Tumblr and Pinterest','social-media-auto-publish'); ?> </td>
+		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+	</tr>
+	<tr>
+		<td> <?php _e('Option to use post categories as hash tags','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">

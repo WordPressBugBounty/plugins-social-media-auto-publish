@@ -22,6 +22,11 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 	if(!isset($GLOBALS['smap_dup_publish']))
 		$GLOBALS['smap_dup_publish']=array();
 	$postid =$post->ID;
+	$post_published_date_time=$post_modified_date_time=time();
+	if ($post) {
+		$post_published_date_time = strtotime(get_the_date('Y-m-d H:i:s', $postid));
+		$post_modified_date_time = strtotime(get_the_modified_date('Y-m-d H:i:s', $postid));
+	}
 	$get_post_meta=get_post_meta($postid,"xyz_smap",true);                           //	prevent duplicate publishing
 	$post_permissin=get_option('xyz_smap_post_permission');
 	$post_twitter_permission=get_option('xyz_smap_twpost_permission');
@@ -92,7 +97,22 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 			if($new_status == 'publish')
 			{
 				if ($get_post_meta == 1 ) {
+					if(get_option('xyz_smap_default_selection_edit')==0)
 					return;
+				}
+				else //prevent backend publish
+				{
+					//post meta not 1, edited post
+					if (($post_modified_date_time != $post_published_date_time) && $old_status=='publish' ) 
+					{//already plublished ,auto publish on edit is disabled
+						if ((get_option('xyz_smap_default_selection_edit') == 0))
+							return;
+					}
+					//post meta not 1, new post ,auto publish on create is disabled
+					else{
+					if ((get_option('xyz_smap_default_selection_create') == 0))
+						return;
+					}
 				}
 			}
 			else return;
@@ -125,67 +145,70 @@ function xyz_link_publish($post_ID) {
 	$_POST_CPY=$_POST;
 	$_POST=stripslashes_deep($_POST);
 	$get_post_meta_future_data_fb=get_post_meta($post_ID,"xyz_smap_fb_future_to_publish",true);
+	$get_post_meta=get_post_meta($postid,"xyz_smap",true); 
 	$post_twitter_image_permission=$post_tumblr_media_permission=$posting_method=$ln_posting_method=$xyz_smap_ln_shareprivate=0;
 	$message=$messagetopost=$lmessagetopost=$igmessagetopost=$tbmessagetopost='';
 	$post_permissin=get_option('xyz_smap_post_permission');
-	if(isset($_POST['xyz_smap_post_permission']))
-		$post_permissin=intval($_POST['xyz_smap_post_permission']);
-	elseif(!empty($get_post_meta_future_data_fb) && get_option('xyz_smap_default_selection_edit')==2 )///select values from post meta
+
+	if(!empty($get_post_meta_future_data_fb) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
 	{
 		$post_permissin=$get_post_meta_future_data_fb['post_fb_permission'];
 		$posting_method=$get_post_meta_future_data_fb['xyz_fb_po_method'];
 		$message=$get_post_meta_future_data_fb['xyz_fb_message'];
 	}
+	if(isset($_POST['xyz_smap_post_permission']))
+		$post_permissin=intval($_POST['xyz_smap_post_permission']);
 
 	$post_twitter_permission=get_option('xyz_smap_twpost_permission');
 	$get_post_meta_future_data_tw=get_post_meta($post_ID,"xyz_smap_tw_future_to_publish",true);
-	if(isset($_POST['xyz_smap_twpost_permission']))
-		$post_twitter_permission=intval($_POST['xyz_smap_twpost_permission']);
-	elseif(!empty($get_post_meta_future_data_tw) && get_option('xyz_smap_default_selection_edit')==2 )///select values from post meta
+
+	if(!empty($get_post_meta_future_data_tw) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
 	{
 		$post_twitter_permission=$get_post_meta_future_data_tw['post_tw_permission'];
 		$post_twitter_image_permission=$get_post_meta_future_data_tw['xyz_tw_img_permissn'];
 		$messagetopost=$get_post_meta_future_data_tw['xyz_tw_message'];
 	}
+	if(isset($_POST['xyz_smap_twpost_permission']))
+	$post_twitter_permission=intval($_POST['xyz_smap_twpost_permission']);
 
 	$post_tb_permission=get_option('xyz_smap_tbpost_permission');
 	$get_post_meta_future_data_tb=get_post_meta($post_ID,"xyz_smap_tb_future_to_publish",true);
+	if(!empty($get_post_meta_future_data_tb) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
+	{
+		$post_tb_permission=$get_post_meta_future_data_tb['post_tb_permission'];
+		$post_tumblr_media_permission=$get_post_meta_future_data_tb['xyz_smap_tbpost_media_permission'];
+		$tbmessagetopost=$get_post_meta_future_data_tb['xyz_smap_tbmessage'];
+	}
 	if(isset($_POST['xyz_smap_tbpost_permission']))
-	    $post_tb_permission=intval($_POST['xyz_smap_tbpost_permission']);
-	    elseif(!empty($get_post_meta_future_data_tb) && get_option('xyz_smap_default_selection_edit')==2 )///select values from post meta
-	    {
-	        $post_tb_permission=$get_post_meta_future_data_tb['post_tb_permission'];
-	        $post_tumblr_media_permission=$get_post_meta_future_data_tb['xyz_smap_tbpost_media_permission'];
-	        $tbmessagetopost=$get_post_meta_future_data_tb['xyz_smap_tbmessage'];
-	    }
+	$post_tb_permission=intval($_POST['xyz_smap_tbpost_permission']);
+
 	$igpost_permission=get_option('xyz_smap_igpost_permission');
 	$get_post_meta_future_data_ig=get_post_meta($post_ID,"xyz_smap_ig_future_to_publish",true);
-	if(isset($_POST['xyz_smap_igpost_permission']))
-	    $igpost_permission=intval($_POST['xyz_smap_igpost_permission']);
-	elseif(!empty($get_post_meta_future_data_ig) && get_option('xyz_smap_default_selection_edit')==2 )///select values from post meta
+	if(!empty($get_post_meta_future_data_ig) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
 	{
 		$igpost_permission=$get_post_meta_future_data_ig['post_ig_permission'];
 // 		$ig_posting_method=$get_post_meta_future_data_ig['xyz_smap_igpost_method'];
 		$igmessagetopost=$get_post_meta_future_data_ig['xyz_smap_igmessage'];
 	}
+	if(isset($_POST['xyz_smap_igpost_permission']))
+	$igpost_permission=intval($_POST['xyz_smap_igpost_permission']);
 
 	$lnpost_permission=get_option('xyz_smap_lnpost_permission');
 	$get_post_meta_future_data_ln=get_post_meta($post_ID,"xyz_smap_ln_future_to_publish",true);
-	if(isset($_POST['xyz_smap_lnpost_permission']))
-		$lnpost_permission=intval($_POST['xyz_smap_lnpost_permission']);
-	elseif(!empty($get_post_meta_future_data_ln) && get_option('xyz_smap_default_selection_edit')==2 )///select values from post meta
+	if(!empty($get_post_meta_future_data_ln) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
 	{
 		$lnpost_permission=$get_post_meta_future_data_ln['post_ln_permission'];
 		$xyz_smap_ln_shareprivate=$get_post_meta_future_data_ln['xyz_smap_ln_shareprivate'];
 		$ln_posting_method=$get_post_meta_future_data_ln['xyz_smap_lnpost_method'];
 		$lmessagetopost=$get_post_meta_future_data_ln['xyz_smap_lnmessage'];
 	}
+	if(isset($_POST['xyz_smap_lnpost_permission']))
+	$lnpost_permission=intval($_POST['xyz_smap_lnpost_permission']);
 
 	if (($post_permissin != 1)&&($post_twitter_permission != 1)&&($lnpost_permission != 1)&&($igpost_permission != 1)&&($post_tb_permission != 1)) {
 		$_POST=$_POST_CPY;
 		return ;
-
-	} else if(( (isset($_POST['_inline_edit'])) || (isset($_REQUEST['bulk_edit'])) ) && (get_option('xyz_smap_default_selection_edit') == 0) ) {
+	}elseif(((isset($_POST['_inline_edit'])) || (isset($_REQUEST['bulk_edit'])) ) && (get_option('xyz_smap_default_selection_edit') == 0 && $get_post_meta==1) ) {
 
 		$_POST=$_POST_CPY;
 		return;
@@ -328,16 +351,12 @@ function xyz_link_publish($post_ID) {
 					if(in_array($catg_ids, $carr1))
 						$retflag=0;
 				}
-
-
 				if($retflag==1)
 				{$_POST=$_POST_CPY;return;}
 			}
 		}
-
 		else
 		{
-
 			$xyz_smap_include_customposttypes=get_option('xyz_smap_include_customposttypes');
 			if($xyz_smap_include_customposttypes!='')
 			{
@@ -352,9 +371,7 @@ function xyz_link_publish($post_ID) {
 			{
 				$_POST=$_POST_CPY;return;
 			}
-
 		}
-
 		$get_post_meta=get_post_meta($post_ID,"xyz_smap",true);
 		if($get_post_meta!=1)
 			add_post_meta($post_ID, "xyz_smap", "1");
@@ -365,9 +382,6 @@ function xyz_link_publish($post_ID) {
 			remove_all_filters('post_link');
 		}
 		$link = get_permalink($postpp->ID);
-
-
-
 		$xyz_smap_apply_filters=get_option('xyz_smap_std_apply_filters');
 		$ar2=explode(",",$xyz_smap_apply_filters);
 		$con_flag=$exc_flag=$tit_flag=0;
@@ -428,7 +442,6 @@ function xyz_link_publish($post_ID) {
 
 		$description=strip_tags($description);
 		$description=strip_shortcodes($description);
-
 	 	$description=str_replace("&nbsp;","",$description);
 
 		$excerpt=str_replace("&nbsp;","",$excerpt);
@@ -454,15 +467,12 @@ function xyz_link_publish($post_ID) {
 			}
 			foreach ($xyz_smap_pages_ids1 as $key=>$value)
 			{
-
-
 				if ($xyz_smap_app_sel_mode==0){
 					$value1=explode("-",$value);
 					$acces_token=$value1[1];$page_id=$value1[0];
 				}
 				else
 					$page_id=$value;
-
 				if ($xyz_smap_app_sel_mode==0)
 					require_once( dirname( __FILE__ ) . '/../api/facebook.php');
 				if($xyz_smap_clear_fb_cache==1 && $xyz_smap_app_sel_mode== 0 && ($posting_method==2 || $posting_method==1))
@@ -508,10 +518,8 @@ function xyz_link_publish($post_ID) {
 				}
 				else if($posting_method==4 || $posting_method==5) //text message with image 4 - app album, 5-timeline
 				{
-
 					if(!empty($attachmenturl))
 					{
-
 						if($xyz_smap_app_sel_mode==0)
 						{
 							try{
@@ -538,17 +546,13 @@ function xyz_link_publish($post_ID) {
 																					$album_fount=1;$timeline_album = $album; break;										}
 									}
 								if (isset($timeline_album) && isset($timeline_album['id'])) $page_id = $timeline_album['id'];
-							if($album_fount==0)
-
+								if($album_fount==0)
 										$fb_publish_status[$page_id."/albums"]='<span style=\"color:red\">Invalid album name<span><br>';
-							}
+								}
 							else{
-
-
 								foreach ($result['data'] as $album)
 									if (isset($album['name']) && $album['name'] == $app_name) {
 										$album_fount=1;$app_album = $album;break;
-
 							}
 								if (isset($app_album) && isset($app_album['id'])) $page_id = $app_album['id'];
 							if($album_fount==0)
@@ -558,12 +562,11 @@ function xyz_link_publish($post_ID) {
 						else{
 							$error_net=1;
 							$fb_publish_status[].="<span style=\"color:red\">  ".$page_id."/".$disp_type."/Check network connection <br/>";
-					}
+							}
 							}							
 						$disp_type="photos";
 						$attachment = array('message' => $message5,
 								'url' => $attachmenturl
-
 						);
 					}
 					else
@@ -572,12 +575,9 @@ function xyz_link_publish($post_ID) {
 
 						);
 					}
-
 				}
-
 				if($posting_method==1 || $posting_method==2)
 				{
-
 					update_post_meta($post_ID, "xyz_smap_insert_og", "1");
 				}
 				try{
@@ -608,9 +608,7 @@ function xyz_link_publish($post_ID) {
 								$fb_publish_status[].="<span style=\"color:red\">  ".$page_id."/".$disp_type."/".$result_smap_solns->msg."</span><br/><span style=\"color:#21759B\">No. of api calls used: ".$fb_api_count_returned."</span><br/>";
 								elseif ($result_smap_solns->status==1)
 								{
-
 								if (isset($result_smap_solns->postid) && !empty($result_smap_solns->postid)){
-
 									$fb_postid =$result_smap_solns->postid;
 									if (strpos($fb_postid, '_') !== false) {
 										$fb_post_id_explode=explode('_', $fb_postid);
@@ -668,7 +666,6 @@ function xyz_link_publish($post_ID) {
 							{
 								$fb_publish_status[]="<span style=\"color:red\">  ".$page_id."/".$disp_type."/".$e->getMessage()."</span><br/>";
 							}
-
 			}
 
 			if(!empty($fb_publish_status))
@@ -754,7 +751,7 @@ function xyz_link_publish($post_ID) {
 	            $message5=str_replace('{USER_DISPLAY_NAME}', $display_name, $message5);
 	            $message5=str_replace("&nbsp;","",$message5);
 	            //$attachmenturl='https://img.photographyblog.com/reviews/samsung_galaxy_note_20_ultra/photos/samsung_galaxy_note_20_ultra_02.jpg';
-
+				$message5=xyz_smap_string_limit($caption, 2200);
 	            if(!empty($attachmenturl))
 	            {
                 if($xyz_smap_ig_app_sel_mode==1)
@@ -833,7 +830,7 @@ function xyz_link_publish($post_ID) {
                                     if(isset($params->permalink))
                                         $insta_post_link = $params->permalink;
                                 }
-                                $ig_publish_status_insert.="<span style=\"color:green\">Image : Success".$xyz_ig_publish_result->id."</span><br/><span style=\"color:#21759B\">No. of api calls used: ".$ig_api_count."</span><br/><span style=\"color:#21759B;text-decoration:underline;\"><a  href=".$insta_post_link.">View Post</a></span><br/>";
+                                $ig_publish_status_insert.="<span style=\"color:green\">Image : Success".$xyz_ig_publish_result->id."</span><br/><span style=\"color:#21759B\">No. of api calls used: ".$ig_api_count."</span><br/><span style=\"color:#21759B;text-decoration:underline;\"><a  target=\"_blank\" href=".$insta_post_link.">View Post</a></span><br/>";
                             }
                        }
                     }
@@ -1333,7 +1330,7 @@ function xyz_link_publish($post_ID) {
 		                    $createPost = $client->createPost($blog_name, $data);
 		                    if (isset($createPost->id)){
 		                        $posturl = 'https://'.$tbid.'.tumblr.com/post/'.$createPost->id.'/';
-		                        $post_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a  href=".$posturl.">View Post</a></span>";
+		                        $post_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\"  href=".$posturl.">View Post</a></span>";
 		                    }
 		                    $tb_publish_status['status_msg'].="<span style=\"color:green\">Success.</span>".$post_id_string;
 		                }
@@ -1373,7 +1370,7 @@ function xyz_link_publish($post_ID) {
 			$contentln=array();
 			$image_upload_err='';
 			$description_li=xyz_smap_string_limit($description, 100);
-// 			$caption_li=xyz_smap_string_limit($caption, 200);
+
 			$name_li=xyz_smap_string_limit($name, 200);
 
 			$message1=str_replace('{POST_TITLE}', $name, $lmessagetopost);
@@ -1584,13 +1581,13 @@ function xyz_link_publish($post_ID) {
 						if(strcasecmp($splited_array[0],'x-restli-id')==0){//If success it contains response header x-restli-id that contains the Post ID
 								$post_id_response=trim($splited_array[1]);
 								break;
-				}
+						}
 					 else if(stripos($value,"code")>0 && stripos($value,"status")>0)// If error then a response message will be retured
-				{
+						{
 							$error_message_array=json_decode($value);
 							$error_message=$error_message_array->message;
 							break;
-				}
+						}
 
 					}
 					if(empty($error_message) && empty($post_id_response))
@@ -1626,7 +1623,7 @@ function xyz_link_publish($post_ID) {
 				if (isset($post_id_response) && !empty($post_id_response)){
 					$linkedin_post="www.linkedin.com/feed/update/".$post_id_response;
 					// $linkedin_post="https://www.linkedin.com/feed/update/urn:li:share:".$image_param;
-					$post_link='<br/><span style="color:#21759B;text-decoration:underline;"><a  href="https://'.$linkedin_post.'">View Post</a></span>';
+					$post_link='<br/><span style="color:#21759B;text-decoration:underline;"><a  target=\"_blank\"  href="https://'.$linkedin_post.'">View Post</a></span>';
 					$ln_publish_status["new"].="<span style=\"color:green\">profile:Success.</span>".$post_link;
 				}
 				else if(isset($error_message) && !empty($error_message))
@@ -1697,13 +1694,13 @@ function xyz_link_publish($post_ID) {
 											$contentln['content']=array('article'=>array('source'=>$link,'title'=>$name_li,'description'=>$description_li));
 										}
 										update_post_meta($post_ID, "xyz_smap_insert_og", "1");
-									}
+							}
 
 							if ($ln_posting_method==3)//Text with Image
 							{
 								$image_upload_flag=0;
-						if(!empty($attachmenturl))
-						{
+							if(!empty($attachmenturl))
+							{
 							if($xyz_smap_ln_api_permission==2)
 							{
 										$required_api_count_ln=1;
@@ -1764,13 +1761,13 @@ function xyz_link_publish($post_ID) {
 									if(strcasecmp($splited_array[0],'x-restli-id')==0){//If success it contains response header x-restli-id that contains the Post ID
 											$post_id_response=trim($splited_array[1]);
 											break;
-							}
-								 else if(stripos($value,"code")>0 && stripos($value,"status")>0)// If error then a response message will be retured
-							{
-										$error_message_array=json_decode($value);
-										$error_message=$error_message_array->message;
-										break;
-							}
+									}
+										else if(stripos($value,"code")>0 && stripos($value,"status")>0)// If error then a response message will be retured
+									{
+												$error_message_array=json_decode($value);
+												$error_message=$error_message_array->message;
+												break;
+									}
 
 								}
 								if(empty($error_message) && empty($post_id_response))
@@ -1805,7 +1802,7 @@ function xyz_link_publish($post_ID) {
 							if (isset($post_id_response) && !empty($post_id_response)){
 								$linkedin_post="www.linkedin.com/feed/update/".$post_id_response;
 								// $linkedin_post="https://www.linkedin.com/feed/update/urn:li:share:".$image_param;
-								$post_link='<br/><span style="color:#21759B;text-decoration:underline;"><a  href="https://'.$linkedin_post.'">View Post</a></span>';
+								$post_link='<br/><span style="color:#21759B;text-decoration:underline;"><a target=\"_blank\" href="https://'.$linkedin_post.'">View Post</a></span>';
 								$ln_publish_status_comp["new"].="<br/><span style=\"color:green\">company/".$xyz_smap_ln_company_id." :Success.</span>".$post_link;
 							}
 							else if(isset($error_message) && !empty($error_message))

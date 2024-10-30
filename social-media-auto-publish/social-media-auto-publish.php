@@ -3,7 +3,7 @@
  Plugin Name: Social Media Auto Publish
 Plugin URI: https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/
 Description:   Publish posts automatically from your blog to social media networks like Facebook, Twitter,  Instagram, LinkedIn and Tumblr. The plugin supports filtering posts by post-types and categories.
-Version: 3.3
+Version: 3.3.1
 Requires PHP: 7.4
 Author: xyzscripts.com
 Author URI: https://xyzscripts.com/
@@ -40,9 +40,9 @@ error_reporting(0);
 define('XYZ_SMAP_PLUGIN_FILE',__FILE__);
 
 if (!defined('XYZ_SMAP_FB_API_VERSION'))
-	define('XYZ_SMAP_FB_API_VERSION','v19.0');
+	define('XYZ_SMAP_FB_API_VERSION','v20.0');
 if (!defined('XYZ_SMAP_IG_API_VERSION'))
-  define('XYZ_SMAP_IG_API_VERSION','v19.0');
+  define('XYZ_SMAP_IG_API_VERSION','v20.0');
 	    
 if (!defined('XYZ_SMAP_SOLUTION_AUTH_URL'))
 define('XYZ_SMAP_SOLUTION_AUTH_URL','https://authorize.smapsolutions.com/');

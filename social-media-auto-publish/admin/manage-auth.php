@@ -90,7 +90,9 @@ margin-left: 1px;
 jQuery(document).ready(function() {
 	document.getElementById("xyz_smap_default_fbauth_tab").click();	
 	jQuery('#auth_entries_div').show();
-	jQuery("#show_all").attr('checked', true);
+	jQuery("#show_same_domain").attr('checked', true);
+	jQuery('#smap_manage_auth_table tr:has(td.diff_domain)').hide();
+	jQuery('#smap_manage_auth_table tr:has(td.same_domain)').show();
 
 	jQuery("#show_all").click(function(){
 		jQuery('#smap_manage_auth_table tr:has(td.diff_domain)').show();
@@ -154,7 +156,9 @@ jQuery(document).ready(function() {
 				});
 /////////////////////////////////LinkedIn Ajax//////////////////////////////////////////////
 	jQuery('#ln_auth_entries_div').show();
-	jQuery("#ln_show_all").attr('checked', true);
+	jQuery("#ln_show_same_domain").attr('checked', true);
+	jQuery('#ln_smap_manage_auth_table tr:has(td.ln_diff_domain)').hide();
+	jQuery('#ln_smap_manage_auth_table tr:has(td.ln_same_domain)').show();
 
 	jQuery("#ln_show_all").click(function(){
 		jQuery('#ln_smap_manage_auth_table tr:has(td.ln_diff_domain)').show();
@@ -218,7 +222,9 @@ jQuery(document).ready(function() {
 
 /////////////////////////////////Twitter Ajax//////////////////////////////////////////////
 	jQuery('#tw_auth_entries_div').show();
-	jQuery("#tw_show_all").attr('checked', true);
+	jQuery("#tw_show_same_domain").attr('checked', true);
+	jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').hide();
+	jQuery('#tw_smap_manage_auth_table tr:has(td.tw_same_domain)').show();
 
 	jQuery("#tw_show_all").click(function(){
 		jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').show();
@@ -283,7 +289,9 @@ jQuery(document).ready(function() {
 			
 /////////////////////////////////Instagram Ajax//////////////////////////////////////////////
 	jQuery('#ig_auth_entries_div').show();
-	jQuery("#ig_show_all").attr('checked', true);
+	jQuery("#ig_show_same_domain").attr('checked', true);
+	jQuery('#ig_smap_manage_auth_table tr:has(td.ig_diff_domain)').hide();
+	jQuery('#ig_smap_manage_auth_table tr:has(td.ig_same_domain)').show();
 
 	jQuery("#ig_show_all").click(function(){
 		jQuery('#ig_smap_manage_auth_table tr:has(td.ig_diff_domain)').show();

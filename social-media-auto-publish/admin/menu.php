@@ -90,23 +90,29 @@ add_action('wp_head', 'xyz_smap_insert_og_twitter_card');
 function xyz_smap_insert_og_twitter_card(){
 
  	global $post;
+	 $xyz_smap_free_enforce_twitter_cards=get_option('xyz_smap_free_enforce_twitter_cards');
+	 $xyz_smap_free_enforce_og_tags=get_option('xyz_smap_free_enforce_og_tags');
  	if (empty($post))
  		$post=get_post();
- 		if (!empty($post)){
+ 		if (!empty($post) && ($xyz_smap_free_enforce_og_tags==1 || $xyz_smap_free_enforce_twitter_cards==1))
+	{
 	$postid= $post->ID;
 	$excerpt='';$attachmenturl='';$name='';
-	if(isset($postid ) && $postid>0)
+	if(isset($postid ) && $postid>0 && isset($_SERVER["HTTP_USER_AGENT"]))
 	{
 	    $get_post_meta_insert_og=0;
 	    $get_post_meta_insert_twitter_card=0;
 		$xyz_smap_apply_filters=get_option('xyz_smap_std_apply_filters');
 		$get_post_meta_future_tw_data=get_post_meta($postid,"xyz_smap_tw_future_to_publish",true);
 		$get_post_meta_future_fb_data=get_post_meta($postid,"xyz_smap_fb_future_to_publish",true);
-		$get_post_meta_future_ln_data=get_post_meta($postid,"xyz_smap_ln_future_to_publish",true);//echo "<pre>";print_r($get_post_meta_future_ln_data);die;
-		$xyz_smap_free_enforce_twitter_cards=get_option('xyz_smap_free_enforce_twitter_cards');//echo $xyz_smap_free_enforce_twitter_cards;die;
-		$xyz_smap_free_enforce_og_tags=get_option('xyz_smap_free_enforce_og_tags');//echo $xyz_smap_free_enforce_og_tags;die;
+		$get_post_meta_future_ln_data=get_post_meta($postid,"xyz_smap_ln_future_to_publish",true);
+		
 		$get_post_meta_insert_og=get_post_meta($postid,"xyz_smap_insert_og",true); 
 		$get_post_meta_insert_twitter_card=get_post_meta($postid,"xyz_smap_insert_twitter_card",true);
+
+		if(strpos($_SERVER["HTTP_USER_AGENT"], "Twitterbot") === false  &&  strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") === false && strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") === false && strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") === false )
+        return;
+
 		if ((!empty($get_post_meta_future_fb_data) && ( $xyz_smap_free_enforce_og_tags==1 ))|| (!empty($get_post_meta_future_ln_data) && ( $xyz_smap_free_enforce_og_tags==1 )) 
 		    || (!empty($get_post_meta_future_tw_data) && ( $xyz_smap_free_enforce_twitter_cards==1 )))
 		{
@@ -145,7 +151,7 @@ function xyz_smap_insert_og_twitter_card(){
 					$name=strip_tags($name);
 					$name=strip_shortcodes($name);
 			$attachmenturl=xyz_smap_getimage($postid, $post->post_content);
-			if ((($get_post_meta_insert_og==1) && (strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") !== false || strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") !== false 
+			if ((($get_post_meta_insert_og==1) && isset($_SERVER["HTTP_USER_AGENT"]) && (strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") !== false || strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") !== false
 			    || strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") !== false))) 
 			{
 			if(!empty( $name ))
@@ -155,8 +161,8 @@ function xyz_smap_insert_og_twitter_card(){
 			if(!empty($attachmenturl))
 				echo '<meta property="og:image" content="'.$attachmenturl.'" />';
 				update_post_meta($postid, "xyz_smap_insert_og", "0");
-		}
-			if (($get_post_meta_insert_twitter_card==1) && strpos($_SERVER["HTTP_USER_AGENT"], "Twitterbot") !== false && ($xyz_smap_free_enforce_twitter_cards==1))
+			}
+			if (($get_post_meta_insert_twitter_card==1) && isset($_SERVER["HTTP_USER_AGENT"]) && strpos($_SERVER["HTTP_USER_AGENT"], "Twitterbot") !== false && ($xyz_smap_free_enforce_twitter_cards==1))
 			{
 			    echo '<meta name="twitter:card" content="summary_large_image" />';
 			    if(!empty( $name ))
@@ -165,7 +171,7 @@ function xyz_smap_insert_og_twitter_card(){
 			            echo '<meta name="twitter:description" content="'.$excerpt.'" />';
 			                if(!empty($attachmenturl))
 			                    echo '<meta name="twitter:image" content="'.$attachmenturl.'" />';
-	}
+			}
 }
 	}
 }
