@@ -4,7 +4,7 @@ Donate link: https://xyzscripts.com/donate/
 Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies
 Requires at least: 3.0
 Tested up to: 6.6.2
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 License: GPLv2 or later
 
 Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr and LinkedIn.
@@ -143,6 +143,9 @@ SSL peer verification may not be functioning in your server. Please turn off SSL
 8. Auto publish logs.
 
 == Changelog ==
+
+= Social Media Auto Publish 3.3.2 =
+* Fixed reported compatibility issue
 
 = Social Media Auto Publish 3.3.1 =
 * New settings value "Use metabox settings" added for "Auto publish on creating posts/pages/custom post types" to handle draft and scheduled posts
