@@ -145,7 +145,7 @@ function xyz_link_publish($post_ID) {
 	$_POST_CPY=$_POST;
 	$_POST=stripslashes_deep($_POST);
 	$get_post_meta_future_data_fb=get_post_meta($post_ID,"xyz_smap_fb_future_to_publish",true);
-	$get_post_meta=get_post_meta($postid,"xyz_smap",true); 
+	$get_post_meta=get_post_meta($post_ID,"xyz_smap",true); 
 	$post_twitter_image_permission=$post_tumblr_media_permission=$posting_method=$ln_posting_method=$xyz_smap_ln_shareprivate=0;
 	$message=$messagetopost=$lmessagetopost=$igmessagetopost=$tbmessagetopost='';
 	$post_permissin=get_option('xyz_smap_post_permission');
