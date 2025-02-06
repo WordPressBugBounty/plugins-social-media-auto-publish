@@ -124,6 +124,14 @@ function smap_free_destroy()
 	delete_option('xyz_smap_igmessage');
 	delete_option('xyz_smap_ig_pages_ids');
 	delete_option('xyz_smap_ln_signin_method');
+	delete_option('xyz_smap_tgapplication_name');
+	delete_option('xyz_smap_bot_token');
+	delete_option('xyz_smap_bot_username');
+	delete_option('xyz_smap_tggroup_id');
+	delete_option('xyz_smap_tgchannel_id');
+	delete_option('xyz_smap_tgpost_permission');
+	delete_option('xyz_smap_tgmessage');
+	delete_option('xyz_smap_tgpost_method');
 }
 
 register_uninstall_hook(XYZ_SMAP_PLUGIN_FILE,'smap_free_network_destroy');

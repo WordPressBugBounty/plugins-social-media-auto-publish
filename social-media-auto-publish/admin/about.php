@@ -6,7 +6,7 @@ if( !defined('ABSPATH') ){ exit();}
 <div style="width: 99%">
 <p style="text-align: justify">
 <?php $wp_smap="Social Media Auto Publish";
-      $smap_pub_msg=sprintf( __('%s automatically publishes posts from your blog to your Facebook, Twitter , Instagram and LinkedIn pages. It allows you to filter posts based on post-types and categories. %s is developed and maintained by','social-media-auto-publish'),$wp_smap,$wp_smap);
+      $smap_pub_msg=sprintf( __('%s automatically publishes posts from your blog to your Facebook, Twitter , Telegram, Instagram and LinkedIn pages. It allows you to filter posts based on post-types and categories. %s is developed and maintained by','social-media-auto-publish'),$wp_smap,$wp_smap);
  echo $smap_pub_msg; ?> <a href="http://xyzscripts.com">XYZScripts</a>.</p>
 
  
@@ -33,7 +33,7 @@ if( !defined('ABSPATH') ){ exit();}
 	</tr>
 	<!-- Supported Media  -->
 	<tr>
-		<td rowspan="6"><h4> <?php _e('Supported Media','social-media-auto-publish'); ?> </h4></td>
+		<td rowspan="7"><h4> <?php _e('Supported Media','social-media-auto-publish'); ?> </h4></td>
 		<td> <?php _e('Facebook','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
@@ -88,11 +88,19 @@ if( !defined('ABSPATH') ){ exit();}
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 	</tr>
-
+	<tr>
+		<td> <?php _e('Telegram','social-media-auto-publish'); ?> </td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+	</tr>
 	
 		<!-- Posting Options  -->
 	<tr>
-		<td rowspan="16"><h4> <?php _e('Posting Options','social-media-auto-publish'); ?> </h4></td>
+		<td rowspan="17"><h4> <?php _e('Posting Options','social-media-auto-publish'); ?> </h4></td>
 		<td> <?php _e('Publish to facebook pages','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
@@ -160,6 +168,15 @@ if( !defined('ABSPATH') ){ exit();}
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 	</tr>
+	<tr>
+		<td> <?php _e('Publish to telegram channels and groups','social-media-auto-publish'); ?> </td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
+		</td>
+	</tr>
 	
 	<tr>
 		<td> <?php _e('Option to add twitter image description for visually impaired people','social-media-auto-publish'); ?> </td>
@@ -212,7 +229,7 @@ if( !defined('ABSPATH') ){ exit();}
 	</tr>
 	
 	<tr>
-		<td> <?php _e('Hash Tags support for Facebook, Twitter, Linkedin, Instagram, Tumblr and Pinterest','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Hash Tags support for Facebook, Twitter, Linkedin, Instagram, Tumblr, Pinterest and Telegram','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
@@ -283,7 +300,7 @@ if( !defined('ABSPATH') ){ exit();}
 	</tr>
 	
 	<tr>
-		<td> <?php _e('Publish multiple images to facebook, tumblr, linkedin and twitter along with post content','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Publish multiple images to facebook, tumblr, linkedin, twitter and telegram along with post content','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
@@ -306,7 +323,7 @@ if( !defined('ABSPATH') ){ exit();}
 	
 	<tr>
 	<td rowspan="4"><h4> <?php _e('Video/Audio Options','social-media-auto-publish'); ?> </h4></td>
-		<td> <?php _e('Publish video to facebook, tumblr,Linkedin, Instagram and twitter along with post content','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Publish video to facebook, tumblr,Linkedin, Instagram, twitter and telegram along with post content','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">
@@ -325,7 +342,7 @@ if( !defined('ABSPATH') ){ exit();}
 		</td>
 	</tr>
 	<tr>
-		<td> <?php _e('Publish audio to tumblr along with post content','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Publish audio to tumblr and telegram along with post content','social-media-auto-publish'); ?> </td>
 		<td><img src="<?php echo plugins_url("images/cross.png",XYZ_SMAP_PLUGIN_FILE);?>">
 		</td>
 		<td><img src="<?php echo plugins_url("images/tick.png",XYZ_SMAP_PLUGIN_FILE);?>">

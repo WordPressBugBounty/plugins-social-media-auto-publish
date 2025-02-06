@@ -31,8 +31,9 @@ if( !defined('ABSPATH') ){ exit();}
 				$post_ln_logsmain = get_option('xyz_smap_lnap_post_logs' );
 				$post_ig_logsmain = get_option('xyz_smap_igap_post_logs' );
 				$post_tmb_logsmain = get_option('xyz_smap_tbap_post_logs' );
+				$post_tg_logsmain = get_option('xyz_smap_tgap_post_logs' );
 				$post_fb_logsmain_array = array();$post_tmb_logsmain_array = array();
-				$post_tw_logsmain_array = array();$post_ln_logsmain_array = array();$post_ig_logsmain_array = array();
+				$post_tw_logsmain_array = array();$post_ln_logsmain_array = array();$post_ig_logsmain_array = array();$post_tg_logsmain_array = array();
                                 if(is_array($post_fb_logsmain))
                                 {
 				foreach ($post_fb_logsmain as $logkey1 => $logval1)
@@ -72,8 +73,15 @@ if( !defined('ABSPATH') ){ exit();}
                          
                      }
                  }
+				 if(is_array($post_tg_logsmain))
+                 {
 				
-                 if((is_array($post_fb_logsmain_array))||(is_array($post_tw_logsmain_array))||(is_array($post_ln_logsmain_array))||(is_array($post_ig_logsmain_array))||(is_array($post_tmb_logsmain_array)))
+                 	foreach ($post_tg_logsmain as $logkey3 => $logval3)
+                 	{
+                 		$post_tg_logsmain_array[]=$logval3;
+                 	}
+                 }
+                 if((is_array($post_fb_logsmain_array))||(is_array($post_tw_logsmain_array))||(is_array($post_ln_logsmain_array))||(is_array($post_ig_logsmain_array))||(is_array($post_tmb_logsmain_array))||(is_array($post_tg_logsmain_array)))
 				{
 					for($i=9;$i>=0;$i--)
 					{
@@ -320,10 +328,61 @@ if( !defined('ABSPATH') ){ exit();}
 								</tr>
 								<?php  
 							}}
+							if(!empty($post_tg_logsmain_array) && array_key_exists($i,$post_tg_logsmain_array)){
+								if($post_tg_logsmain_array[$i]!='')
+								{
+									$post_tg_logs=$post_tg_logsmain_array[$i];
+									$postid=$post_tg_logs['postid'];
+									$acc_type=$post_tg_logs['acc_type'];
+									$publishtime=$post_tg_logs['publishtime'];
+									if($publishtime!="")
+										$publishtime=xyz_smap_local_date_time('Y/m/d g:i:s A',$publishtime);
+										$status=$post_tg_logs['status'];
+										
+										?>
+								<tr>
+									<td>&nbsp;</td>
+									 <td  style="vertical-align: middle !important;">
+								     <?php echo esc_html($postid);	?>
+								     </td>
+									<td  style="vertical-align: middle !important;">
+									<?php echo get_the_title($postid);	?>
+									</td>
+									
+									<td  style="vertical-align: middle !important;">
+									<?php echo esc_html($acc_type);?>
+									</td>
+									
+									<td style="vertical-align: middle !important;">
+									<?php echo esc_html($publishtime);?>
+									</td>
+									
+									<td class='xyz_smap_td_custom' style="vertical-align: middle !important;">
+									<?php
+									
+									
+									if($status=="1")
+									echo "<span style=\"color:green\">Success</span>";
+									else if($status=="0")
+									echo '';
+									else
+									{
+									$arrval=unserialize($status);
+									print_r($arrval);
+									/*foreach ($arrval as $a=>$b)
+									echo "<span style=\"color:red\">".$a." : ".$b."</span><br>";*/
+									
 						}
 						
+									?>
+									</td>
+								</tr>
+								<?php  
+							}}
                                      }
-                                     if($post_fb_logsmain=="" && $post_tw_logsmain=="" && $post_ln_logsmain=="" && $post_ig_logsmain=="" && $post_tmb_logsmain==""){?>
+						
+                                     }
+                                     if($post_fb_logsmain=="" && $post_tw_logsmain=="" && $post_ln_logsmain=="" && $post_ig_logsmain=="" && $post_tmb_logsmain=="" && $post_tg_logsmain==""){?>
 						<tr><td colspan="5" style="padding: 5px;"> <?php _e('No logs Found','social-media-auto-publish');?> </td></tr>
 					<?php }?>
 				

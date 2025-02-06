@@ -31,7 +31,7 @@ display:none !important;
 }
 </style>
 <div class="system_notice_area_style1" id="system_notice_area">
-<?php _e('Thanks again for using the plugin. We will never show the message again.','social-media-auto-publish');?> 
+<?php _e('Thanks again for using the plugin. We will never show the message again.','social-media-auto-publish');?>
  &nbsp;&nbsp;&nbsp;<span
 		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>
 </div>
@@ -64,11 +64,11 @@ if(isset($_POST['fb']))
 		wp_nonce_ays( 'xyz_smap_fb_settings_form_nonce' );
 		exit();
 	}
-	
+
 	$ss=array();$appid='';$appsecret='';
 	if(isset($_POST['smap_pages_list']))
 	$ss=$_POST['smap_pages_list'];
-	
+
 	$smap_pages_list_ids="";
 
 
@@ -128,7 +128,7 @@ if(isset($_POST['fb']))
 		{
 			update_option('xyz_smap_af',1);
 			update_option('xyz_smap_fb_token','');
-		}	
+		}
 		else if ($xyz_smap_app_sel_mode_old != $xyz_smap_app_sel_mode)
 		{
 			update_option('xyz_smap_af',1);
@@ -152,7 +152,7 @@ if(isset($_POST['fb']))
 		}
 		update_option('xyz_smap_post_permission',$posting_permission);
 		update_option('xyz_smap_app_sel_mode',$xyz_smap_app_sel_mode);
-		
+
 		update_option('xyz_smap_po_method',$posting_method);
 		update_option('xyz_smap_message',$messagetopost);
 		update_option('xyz_smap_clear_fb_cache', $xyz_smap_clear_fb_cache);
@@ -259,14 +259,14 @@ if(isset($_POST['twit']))
 		wp_nonce_ays( 'xyz_smap_tw_settings_form_nonce' );
 		exit();
 	}
-	
+
 	$tappid=$tappsecret=$twid=$taccess_token=$taccess_token_secret='';
-	
+
 	$xyz_smap_tw_app_sel_mode=get_option('xyz_smap_tw_app_sel_mode');
 	if(isset($_POST['xyz_smap_tw_app_sel_mode']))
 	$xyz_smap_tw_app_sel_mode=intval($_POST['xyz_smap_tw_app_sel_mode']);
 	if ($xyz_smap_tw_app_sel_mode==0){
-	
+
 	$tappid=sanitize_text_field($_POST['xyz_smap_twconsumer_id']);
 	$tappsecret=sanitize_text_field($_POST['xyz_smap_twconsumer_secret']);
 	$twid=sanitize_text_field($_POST['xyz_smap_tw_id']);
@@ -331,7 +331,7 @@ if(isset($_POST['twit']))
 		update_option('xyz_smap_twpost_permission',$tposting_permission);
 		update_option('xyz_smap_twpost_image_permission',$tposting_image_permission);
 		update_option('xyz_smap_twtr_char_limit', $xyz_smap_twtr_char_limit);
-		
+
 	}
 }
 
@@ -354,9 +354,9 @@ if(isset($_POST['linkdn']))
 	$xyz_smap_ln_api_permissionold = get_option('xyz_smap_ln_api_permission');
 	$lnappikey=sanitize_text_field($_POST['xyz_smap_lnapikey']);
 	$lnapisecret=sanitize_text_field($_POST['xyz_smap_lnapisecret']);
-	
+
 	$lmessagetopost=trim($_POST['xyz_smap_lnmessage']);
-	
+
 	$lnposting_permission=intval($_POST['xyz_smap_lnpost_permission']);
 	$xyz_smap_lnshare_to_profile=get_option('xyz_smap_lnshare_to_profile');
 	if (isset($_POST['xyz_smap_lnshare_to_profile']))
@@ -379,7 +379,7 @@ if(isset($_POST['linkdn']))
 					$xyz_smap_ln_share_post_company_ids_and_names=explode('-',$xyz_smap_ln_share_post_company[$i] );
 					$xyz_smap_ln_company_ids.=$xyz_smap_ln_share_post_company_ids_and_names[0].',';
 				}
-				
+
 			}
 			$xyz_smap_ln_company_ids=rtrim($xyz_smap_ln_company_ids,',');
 		}
@@ -422,7 +422,7 @@ if(isset($_POST['linkdn']))
 		update_option('xyz_smap_ln_company_ids', $xyz_smap_ln_company_ids);
 		update_option('xyz_smap_lnshare_to_profile', $xyz_smap_lnshare_to_profile);
 		update_option('xyz_smap_ln_api_permission', $xyz_smap_ln_api_permission);
-	}	
+	}
 }
 $tbms1="";
 $tbms2="";
@@ -495,7 +495,132 @@ if(isset($_POST['tmblr']))
         update_option('xyz_smap_tbpost_media_permission',$xyz_smap_tbmedia_permission);
     }
 }
-if((isset($_POST['twit']) && $terf==0) || (isset($_POST['fb']) && $erf==0) || (isset($_POST['linkdn']) && $lerf==0) || (isset($_POST['ig']) && $ierf==0) || (isset($_POST['tmblr']) && $tberf==0))
+
+
+
+$tgms0=$tgms1=$tgms2=$tgms3=$tgms4=$tgms5="";
+$tgerf=0;
+if(isset($_POST['tele']))
+{
+    if (! isset( $_REQUEST['_wpnonce'] )|| ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'xyz_smap_tg_settings_form_nonce' ))
+    {
+        wp_nonce_ays( 'xyz_smap_tg_settings_form_nonce' );
+        exit();
+    }
+    $xyz_smap_bot_username=$xyz_smap_tgchannel_ids=$xyz_smap_tggroup_ids=$xyz_smap_tggroup_id=$xyz_smap_tgchannel_id=$xyz_smap_tgmessage=$channel_fetch_error='';
+	$xyz_smap_tg_af=0;
+	require_once( dirname( __FILE__ ) . '/../api/telegram.php' );
+
+	$posting_permission=intval($_POST['xyz_smap_tgpost_permission']);
+	$xyz_smap_tgpost_method=$_POST['xyz_smap_tgpost_method'];
+	$xyz_smap_tgapplication_name=sanitize_text_field($_POST['xyz_smap_tgapplication_name']);
+	$xyz_smap_bot_token=sanitize_text_field($_POST['xyz_smap_bot_token']);
+	$xyz_smap_bot_token_old=get_option('xyz_smap_bot_token');
+	if($xyz_smap_tgapplication_name=="" && $posting_permission==1)
+	{
+		$tgms0=__('Please fill telegram application name.','social-media-auto-publish');
+		$tgerf=1;
+	}
+	elseif($xyz_smap_bot_token=="" && $posting_permission==1)
+	{
+		$tgms1=__('Please fill Telegram Bot token.','social-media-auto-publish');
+		$tgerf=1;
+	}
+	else
+	{
+		if($xyz_smap_bot_token_old!=$xyz_smap_bot_token){
+			$xyz_smap_tg_af=1;
+		}
+		if($posting_permission==1){
+		$xyz_smap_verify_bot_token=xyz_smap_tg_verify_bot_token($xyz_smap_bot_token);
+		if(!isset($xyz_smap_verify_bot_token['error'])){
+			$xyz_smap_bot_username=$xyz_smap_verify_bot_token;
+			if(get_option('xyz_smap_bot_username')!=''){
+				$xyz_smap_tggroup_ids=sanitize_text_field($_POST['xyz_smap_tggroup_id']);
+				$xyz_smap_tgchannel_ids=sanitize_text_field($_POST['xyz_smap_tgchannel_id']);
+					if($xyz_smap_tg_af){
+						$xyz_smap_tggroup_ids=$xyz_smap_tgchannel_ids='';
+					}
+					if(empty($xyz_smap_tgchannel_ids) && empty($xyz_smap_tggroup_ids)&& $xyz_smap_tg_af!=1){
+					$tgerf=1;
+					$tgms3=__('Please fill Channel ID or Group ID','social-media-auto-publish');
+				}
+					else if($xyz_smap_tg_af!=1){
+					if(!empty($xyz_smap_tgchannel_ids)){
+						$channel_ids=array();
+						$channel_id_name=explode(',',$xyz_smap_tgchannel_ids);
+						foreach($channel_id_name as $key => $value){
+							$pos = strpos($value, ':');
+						if ($pos !== false) {
+							$channel_ids[] = substr($value, 0, $pos);
+						}
+						else{
+							$channel_ids[]=$value;}
+						}
+						$type='channel';
+						$channels_id_name=xyz_smap_tg_get_channel_group_name($xyz_smap_bot_token,$channel_ids,$type);
+						if(isset($channels_id_name['success']) && !empty($channels_id_name['success'])){
+							$xyz_smap_tgchannel_id = serialize($channels_id_name['success']);
+						}
+						if(isset($channels_id_name['error'])){
+							$channel_error = rtrim($channels_id_name['error'], ',');
+							$channel_fetch_error='Invalid id(s):'.$channel_error;
+						}
+					}					
+					if(!empty($xyz_smap_tggroup_ids)){
+						$group_ids=array();
+						$group_id_name=explode(',',$xyz_smap_tggroup_ids);
+						foreach($group_id_name as $key => $value){
+							$pos = strpos($value, ':');
+						if ($pos !== false) {
+							$group_ids[] = substr($value, 0, $pos);
+						}
+						else{
+							$group_ids[]=$value;}
+						}
+						$type='supergroup';
+						$groups_id_name=xyz_smap_tg_get_channel_group_name($xyz_smap_bot_token,$group_ids,$type);
+						if(isset($groups_id_name['success']) && !empty($groups_id_name['success'])){
+							$xyz_smap_tggroup_id = serialize($groups_id_name['success']);
+						}
+						if(isset($groups_id_name['error'])){
+							$group_error = rtrim($groups_id_name['error'], ',');
+							$group_fetch_error='Invalid id(s):'.$group_error;
+						}
+					}
+					if (empty($channels_id_name['success']) &&
+						empty($groups_id_name['success']))
+					{
+						$tgerf=1;
+						$tgms4=__('There must be atleast one valid channel ID or Group ID.','social-media-auto-publish');
+						
+					}
+						
+				}
+			}
+		}
+		elseif(isset($xyz_smap_verify_bot_token['error'])){
+			$tgerf=1;
+			$tgms5=$xyz_smap_verify_bot_token['error'];
+		}
+		}
+		$xyz_smap_tgmessage=sanitize_text_field($_POST['xyz_smap_tgmessage']);
+		if($tgerf==0){
+			update_option('xyz_smap_tgapplication_name',$xyz_smap_tgapplication_name);
+			update_option('xyz_smap_bot_token',$xyz_smap_bot_token);
+			update_option('xyz_smap_bot_username',$xyz_smap_bot_username);
+			// if($xyz_smap_tggroup_id!='')
+				update_option('xyz_smap_tggroup_id',$xyz_smap_tggroup_id);
+			// if($xyz_smap_tgchannel_id!='')
+				update_option('xyz_smap_tgchannel_id',$xyz_smap_tgchannel_id);
+			update_option('xyz_smap_tgpost_permission',$posting_permission);
+			update_option('xyz_smap_tgmessage',$xyz_smap_tgmessage);
+			update_option('xyz_smap_tgpost_method',$xyz_smap_tgpost_method);
+		}
+    }
+}
+
+if((isset($_POST['twit']) && $terf==0) || (isset($_POST['fb']) && $erf==0) || (isset($_POST['linkdn']) && $lerf==0) || (isset($_POST['ig']) && $ierf==0) || (isset($_POST['tmblr']) && $tberf==0) || (isset($_POST['tele']) && $tgerf==0))
 {
 	?>
 
@@ -511,7 +636,7 @@ if(isset($_GET['msg']) && $_GET['msg']==1)
 	<?php _e('Unable to authorize the linkedin application. Please check the details.','social-media-auto-publish'); ?>  &nbsp;&nbsp;&nbsp;<span
 		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
-	<?php 
+	<?php
 }
 if(isset($_GET['msg']) && $_GET['msg']==2)
 {
@@ -520,8 +645,8 @@ if(isset($_GET['msg']) && $_GET['msg']==2)
 <?php _e('The state does not match. You may be a victim of CSRF.','social-media-auto-publish'); ?>  &nbsp;&nbsp;&nbsp;<span
 		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?></span>
 </div>
-	
-<?php 
+
+<?php
 }
 if(isset($_GET['msg']) && $_GET['msg']==3) //response['body'] not set
 {
@@ -538,7 +663,7 @@ if(isset($_GET['msg']) && $_GET['msg']==3) //response['body'] not set
 <?php _e('Account has been authenticated successfully.','social-media-auto-publish'); ?> &nbsp;&nbsp;&nbsp;<span
 id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
-<?php 	
+<?php
 }
 if(isset($_GET['msg']) && $_GET['msg']==5)
 {
@@ -546,10 +671,10 @@ if(isset($_GET['msg']) && $_GET['msg']==5)
 <div class="system_notice_area_style1" id="system_notice_area">
 	<?php $smap_xyzscripts_name="xyzscripts";
 	      $smap_xyz_success_msg=sprintf(__('Successfully connected to %s member area','social-media-auto-publish'),$smap_xyzscripts_name);
-	 echo $smap_xyz_success_msg; ?>. &nbsp;&nbsp;&nbsp;<span	
+	 echo $smap_xyz_success_msg; ?>. &nbsp;&nbsp;&nbsp;<span
 		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
-	<?php 
+	<?php
 }
 if(isset($_GET['msg']) && ($_GET['msg']==6|| $_GET['msg']==7))
 {
@@ -558,9 +683,9 @@ if(isset($_GET['msg']) && ($_GET['msg']==6|| $_GET['msg']==7))
 <?php _e('Selected pages saved successfully.','social-media-auto-publish'); ?> &nbsp;&nbsp;&nbsp;<span
 id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
-<?php 	
+<?php
 }
-if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (isset($_POST['linkdn']) && $lerf==1) || (isset($_POST['ig']) && $ierf==1) || (isset($_POST['tmblr']) && $tberf==1))
+if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (isset($_POST['linkdn']) && $lerf==1) || (isset($_POST['ig']) && $ierf==1) || (isset($_POST['tmblr']) && $tberf==1) || (isset($_POST['tele']) && $tgerf==1))
 {
 
 	?>
@@ -586,6 +711,10 @@ if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (is
 	{
 	    echo esc_html($igms0);echo esc_html($igms1);echo esc_html($igms2);echo esc_html($igms3);
 	}
+	else if(isset($_POST['tele']))
+	{
+	    echo esc_html($tgms0);echo esc_html($tgms1);echo esc_html($tgms2);echo esc_html($tgms3);echo esc_html($tgms4);echo esc_html($tgms5);
+	}
 	?>
 	&nbsp;&nbsp;&nbsp;<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
@@ -603,7 +732,7 @@ function dethide_smap(id)
 /*function drpdisplay()
 {
 	var shmethod= document.getElementById('xyz_smap_ln_sharingmethod').value;
-	if(shmethod==1)	
+	if(shmethod==1)
 	{
 		document.getElementById('shareprivate').style.display="none";
 	}
@@ -621,6 +750,7 @@ function dethide_smap(id)
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_linkedin_settings')" id="xyz_smap_default_lntab_settings"> <?php _e('LinkedIn Settings','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_instagram_settings')" id="xyz_smap_default_igtab_settings"> <?php _e('instagram Settings','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_tumblr_settings')" id="xyz_smap_default_tmtab_settings"> <?php _e('Tumblr Settings','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_telegram_settings')" id="xyz_smap_default_tgtab_settings"> <?php _e('Telegram Settings','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_basic_settings')" id="xyz_smap_basic_tab_settings"> <?php _e('General Settings','social-media-auto-publish'); ?> </button>
 </div>
 <div id="xyz_smap_facebook_settings" class="xyz_smap_tabcontent">
@@ -653,7 +783,7 @@ function dethide_smap(id)
 	<?php wp_nonce_field( 'xyz_smap_fb_auth_form_nonce' );?>
 	<input type="submit" class="submit_smap_new" name="fb_auth"
 	value="<?php _e('Reauthorize','social-media-auto-publish'); ?>" title="Reauthorize the account" /><br><br>
-	
+
 	</form>
 	<?php }
 		}
@@ -697,18 +827,18 @@ function dethide_smap(id)
 	{
 		?>
 
-	<span style="color: green;"> <?php _e('Application is authorized, go posting.','social-media-auto-publish'); ?> 
+	<span style="color: green;"> <?php _e('Application is authorized, go posting.','social-media-auto-publish'); ?>
 	</span><br>
 
-	<?php 	
+	<?php
 	}
 	?>
 
-	
+
 	<table class="widefat" style="width: 99%;background-color: #FFFBCC" id= "xyz_smap_app_creation_note">
 	<tr>
 	<td id="bottomBorderNone" style="border: 1px solid #FCC328;">
-	
+
 	<div>
 
 
@@ -718,25 +848,24 @@ function dethide_smap(id)
 		<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?></span>
 		<br> <?php $smap_fbpath2="Apps > Facebook Login > Settings"; $smap_fbnavigate2=sprintf(__('And then navigate to <b>%s</b>. Set the Valid OAuth redirect URIs as','social-media-auto-publish'),$smap_fbpath2); echo $smap_fbnavigate2; ?>:<br>
 		<span style="color: red;"><?php echo admin_url('admin.php?page=social-media-auto-publish-settings&auth=1'); ?></span>
-		<br> <?php _e('For detailed step by step instructions','social-media-auto-publish'); ?> <b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-facebook-application/" target="_blank"> <?php _e('Click here','social-media-auto-publish'); ?> </a></b>.
+		<br> <?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-facebook-application/" target="_blank">',
+    '</a></b>'
+);
+?>
 	</div>
 
 	</td>
 	</tr>
 	</table>
-	
+
 	<form method="post">
 	<?php wp_nonce_field( 'xyz_smap_fb_settings_form_nonce' );?>
-		<input type="hidden" value="config">
-
-
-
-
-
-			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish');?> </div> 
+			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish');?> </div>
 			<table class="widefat xyz_smap_widefat_table" style="width: 99%">
 			<tr valign="top">
-					<td> <?php _e('Enable auto publish post to my facebook account','social-media-auto-publish');?> 
+					<td> <?php _e('Enable auto publish post to my facebook account','social-media-auto-publish');?>
 					</td>
 					<td  class="switch-field">
 						<label id="xyz_smap_post_permission_yes"><input type="radio" name="xyz_smap_post_permission" value="1" <?php  if(get_option('xyz_smap_post_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish');?> </label>
@@ -753,13 +882,13 @@ function dethide_smap(id)
 					</td>
 				</tr>
 				<tr valign="top">
-			<td width="50%"> <?php _e('Application Selection','social-media-auto-publish');?> 
+			<td width="50%"> <?php _e('Application Selection','social-media-auto-publish');?>
 			</td>
 				<td>
 				<input type="radio" name="xyz_smap_app_sel_mode" id="xyz_smap_app_sel_mode_reviewd" value="0" <?php if($xyz_smap_app_sel_mode==0) echo 'checked';?>>
 				<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App','social-media-auto-publish');?> ( <?php _e('requires app submission and Facebook review','social-media-auto-publish');?>-<a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-facebook-application/" style="color: #a7a7a7;text-decoration: underline; " target="_blank" > <?php _e('Help','social-media-auto-publish');?> </a>)</span>
 				<br>
-				<div class="xyz_smap_facebook_settings" style="display: none;" onmouseover="detdisplay_smap('xyz_smap_app_review')" onmouseout="dethide_smap('xyz_smap_app_review')"><span style="padding-left: 25px;color: #0073aa;"> <?php _e('App approval service available for 50 USD','social-media-auto-publish');?> 
+				<div class="xyz_smap_facebook_settings" style="display: none;" onmouseover="detdisplay_smap('xyz_smap_app_review')" onmouseout="dethide_smap('xyz_smap_app_review')"><span style="padding-left: 25px;color: #0073aa;"> <?php _e('App approval service available for 50 USD','social-media-auto-publish');?>
 				</span><br/>
 				<div id="xyz_smap_app_review" class="smap_informationdiv" style="display: none;width: 400px;">
 				<b> <?php _e('Expected time frame','social-media-auto-publish');?>:</b><br/> <?php _e('30 days','social-media-auto-publish');?> <br/>
@@ -778,7 +907,7 @@ function dethide_smap(id)
 				<a target="_blank" href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-use-the-alternate-solution-for-publishing-posts-to-facebook/" style="padding-left: 30px;"> <?php $smap_how_app=sprintf(__('How to use %s application','social-media-auto-publish'),$smap_site); echo $smap_how_app; ?>?</a>
 				</td>
 			</tr>
-						<?php 
+						<?php
 			if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && $xyz_smap_app_sel_mode==1)
 			{  ?>
 			<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
@@ -803,7 +932,7 @@ function dethide_smap(id)
 
 				<tr valign="top" class="xyz_smap_facebook_settings">
 					<td> <?php _e('Application secret','social-media-auto-publish'); $apsecret=get_option('xyz_smap_application_secret');?><span class="mandatory">*</span>
-						
+
 					</td>
 					<td><input id="xyz_smap_application_secret"
 						name="xyz_smap_application_secret" type="text"
@@ -811,21 +940,21 @@ function dethide_smap(id)
 					</td>
 				</tr>
 				<tr valign="top">
-					<td> <?php _e('Posting method','social-media-auto-publish'); ?> 
+					<td> <?php _e('Posting method','social-media-auto-publish'); ?>
 					<br/><span style="color: #0073aa;">[ <?php _e('Create app album(with <b> Application name </b>) in the Facebook pages,<br/> if you are using the posting method <b> Upload image to app album','social-media-auto-publish'); ?> </b>]</span>
 					</td>
 					<td>
 					<select id="xyz_smap_po_method" name="xyz_smap_po_method">
 							<option value="3"
 				<?php  if(get_option('xyz_smap_po_method')==3) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
-				
+
 				<optgroup label="<?php _e('Text message with attached link','social-media-auto-publish'); ?>">
 					<option value="4"
 					<?php  if(get_option('xyz_smap_po_method')==4) echo 'selected';?>> <?php _e('Upload image to app album','social-media-auto-publish'); ?> </option>
 					<option value="5"
 					<?php  if(get_option('xyz_smap_po_method')==5) echo 'selected';?>> <?php _e('Upload image to timeline album','social-media-auto-publish'); ?> </option>
 				</optgroup>
-				
+
 				<optgroup label="<?php _e('Text message with attached link','social-media-auto-publish'); ?>">
 					<option value="1"
 					<?php  if(get_option('xyz_smap_po_method')==1) echo 'selected';?>> <?php _e('Attach your blog post','social-media-auto-publish'); ?> </option>
@@ -863,11 +992,11 @@ function dethide_smap(id)
 		<option value ="8">{POST_PUBLISH_DATE}   </option>
 		<option value ="9">{USER_DISPLAY_NAME}   </option>
 		</select> </td></tr><tr><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_message"  name="xyz_smap_message" style="height:80px !important;" ><?php 
+		<textarea id="xyz_smap_message"  name="xyz_smap_message" style="height:80px !important;" ><?php
 								echo esc_textarea(get_option('xyz_smap_message'));?></textarea>
 	</td></tr>
-	
-	
+
+
 	<tr valign="top">
 					<td> <?php _e('Clear facebook cache before publishing to facebook','social-media-auto-publish'); ?>
 					</td>
@@ -876,13 +1005,13 @@ function dethide_smap(id)
 						<label id="xyz_smap_clear_fb_cache_no"><input type="radio" name="xyz_smap_clear_fb_cache" value="0" <?php  if(get_option('xyz_smap_clear_fb_cache')==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 					</td>
 				</tr>
-	
 
-				<?php 
+
+				<?php
 
 				$xyz_acces_token=get_option('xyz_smap_fb_token');
 				if($xyz_acces_token!="" && $xyz_smap_app_sel_mode==0 ){
-				
+
 					$offset=0;$limit=100;$data=array();
 					//$fbid=get_option('xyz_smap_fb_id');
 					do
@@ -893,7 +1022,7 @@ function dethide_smap(id)
 						{
 							$result1=$pp['body'];
 							$pagearray1 = json_decode($result1);
-							if(isset($pagearray1->error)){							    
+							if(isset($pagearray1->error)){
 							    $fb_err=$pagearray1->error;
 							    $fb_err_message=$fb_err->message;
 							}
@@ -907,17 +1036,17 @@ function dethide_smap(id)
 								// 							break;
 								// 					}while(array_key_exists("next", $pagearray1->paging));
 					}while(isset($pagearray1->paging->next));
-				
-				
+
+
 					$count=0;
 					if (!empty($data))
 					$count=count($data);
-						
+
 					$smap_pages_ids1=get_option('xyz_smap_pages_ids');
 					$smap_pages_ids0=array();
 					if($smap_pages_ids1!="")
 						$smap_pages_ids0=explode(",",$smap_pages_ids1);
-				
+
 						$smap_pages_ids=array();
 						if (!empty($smap_pages_ids0)){
 						for($i=0;$i<count($smap_pages_ids0);$i++)
@@ -927,24 +1056,24 @@ function dethide_smap(id)
 								else
 									$smap_pages_ids[$i]=$smap_pages_ids0[$i];
 						}}
-				
+
 						//$data[$i]->id."-".$data[$i]->access_token
 						?>
-				
+
 			<tr valign="top"><td>
 					<?php _e('Select facebook pages for auto publish','social-media-auto-publish'); ?>
 					<span class="mandatory">*</span>
 				</td>
 				<td>
-				
+
 				<div class="scroll_checkbox">
-				<?php 
+				<?php
 				if($count!=0){
 				?>
 				<input type="checkbox" id="select_all_pages" > <?php _e('Select All','social-media-auto-publish'); ?>
 				<br>
-			
-				<?php 
+
+				<?php
 				for($i=0;$i<$count;$i++)
 				{
 			          $pgid=$data[$i]->id;
@@ -959,7 +1088,7 @@ function dethide_smap(id)
 			<!--  	<input type="hidden" value="<?php //echo $page_name;?>" name="hidden_page_name" >-->
 				</div>
 				</td></tr>
-			<?php 
+			<?php
 			}
 			elseif ($xyz_smap_app_sel_mode==1 && $af==0)// &&pagelist frm smap solutions is not empty )
 			{
@@ -1041,7 +1170,7 @@ function dethide_smap(id)
 	 		$xyz_smap_licence_key='';
 	 		$request_hash=md5($xyzscripts_user_id.$xyzscripts_hash_val);
 	 		$auth_secret_key=md5('smapsolutions'.$domain_name.$xyz_smap_accountId.$xyz_smap_smapsoln_userid_ig.$xyzscripts_user_id.$request_hash.$xyz_smap_licence_key.'smap');
-// 	 		if(empty($xyz_smap_smapsoln_userid_ig))
+ // 	 		if(empty($xyz_smap_smapsoln_userid_ig))
             if($igaf==1)
 			{
 				?>
@@ -1072,7 +1201,7 @@ function dethide_smap(id)
             	?>
             <span style="color: green;"> <?php _e('Application is authorized, go posting.','social-media-auto-publish'); ?>
 			</span><br>
-            <?php 	
+            <?php
             }
             ?>
             <table class="widefat" style="width: 99%;background-color: #FFFBCC" id= "xyz_smap_ig_app_creation_note">
@@ -1080,20 +1209,24 @@ function dethide_smap(id)
             <td id="bottomBorderNone" style="border: 1px solid #FCC328;">
             <div>
             	<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Instagram application before filling the following details.','social-media-auto-publish'); ?>
-            	<b><a href="https://developers.facebook.com/apps" target="_blank"> <?php _e('Click here </a></b>to create new Instagram application.','social-media-auto-publish'); ?> 
-            	<br> <?php $smap_igpath1="Apps >Add Product > Instagram Login >Quickstart >Web > Site URL"; $smap_ignavigate1=sprintf(__('In the application page in instagram, navigate to <b>%s</b>. Set the site url as','social-media-auto-publish'),$smap_igpath1); echo $smap_ignavigate1; ?>: 
+            	<b><a href="https://developers.facebook.com/apps" target="_blank"> <?php _e('Click here </a></b>to create new Instagram application.','social-media-auto-publish'); ?>
+            	<br> <?php $smap_igpath1="Apps >Add Product > Instagram Login >Quickstart >Web > Site URL"; $smap_ignavigate1=sprintf(__('In the application page in instagram, navigate to <b>%s</b>. Set the site url as','social-media-auto-publish'),$smap_igpath1); echo $smap_ignavigate1; ?>:
             	<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?></span>
             	<br> <?php $smap_igpath2="Apps > Instagram Login > Settings"; $smap_ignavigate2=sprintf(__('And then navigate to <b>%s</b>. Set the Valid OAuth redirect URIs as','social-media-auto-publish'),$smap_igpath2); echo $smap_ignavigate2; ?>:<br>
             	<span style="color: red;"> <?php echo admin_url('admin.php?page=social-media-auto-publish-settings&auth=1'); ?> </span>
-           	 <br/> <?php _e('For detailed step by step instructions','social-media-auto-publish'); ?> <b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-instagram-application/" target="_blank"> <?php _e('Click here','social-media-auto-publish'); ?></a></b>.
+           	 <br/> <?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-instagram-application/" target="_blank">',
+    '</a></b>'
+);
+?>
         	</div>
         	</td>
         	</tr>
         	</table>
 			<form method="post">
 			<?php wp_nonce_field( 'xyz_smap_ig_settings_form_nonce' );?>
-			<input type="hidden" value="config">
-			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div> 
+			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
 			<table class="widefat xyz_smap_widefat_table" style="width: 99%">
 			<tr valign="top">
 					<td> <?php _e('Enable auto publish post to my instagram account','social-media-auto-publish'); ?>
@@ -1109,7 +1242,7 @@ function dethide_smap(id)
 					</td>
 					<td><input id="xyz_smap_igapplication_name"
 						name="xyz_smap_igapplication_name" type="text"
-						value="<?php if($ms0=="") {echo esc_html(get_option('xyz_smap_igapplication_name'));}?>" />
+						value="<?php if($igms0=="") {echo esc_html(get_option('xyz_smap_igapplication_name'));}?>" />
 					</td>
 			</tr>
 			<tr valign="top">
@@ -1138,7 +1271,7 @@ function dethide_smap(id)
 				<a target="_blank" href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-use-the-alternate-solution-for-publishing-posts-to-instagram/" style="padding-left: 30px;"> <?php echo $smap_how_app; ?>?</a>
 				</td>
 			</tr>
-						<?php 
+						<?php
  			if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && $xyz_smap_ig_app_sel_mode==1)
 			{  ?>
 			<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
@@ -1203,10 +1336,10 @@ function dethide_smap(id)
                         	<option value ="8">{POST_PUBLISH_DATE}   </option>
                         	<option value ="9">{USER_DISPLAY_NAME}   </option>
                         	</select> </td></tr><tr><td>&nbsp;</td><td>
-                        	<textarea id="xyz_smap_igmessage"  name="xyz_smap_igmessage" style="height:80px !important;" ><?php 
+                        	<textarea id="xyz_smap_igmessage"  name="xyz_smap_igmessage" style="height:80px !important;" ><?php
                         							echo esc_textarea(get_option('xyz_smap_igmessage'));?></textarea>
 						</td></tr>
-				<?php 
+				<?php
 				$xyz_ig_acces_token=get_option('xyz_smap_ig_token');
 				if($xyz_ig_acces_token!="" && $xyz_smap_ig_app_sel_mode==0){
 				    $offset=0;$limit=100;
@@ -1241,20 +1374,20 @@ function dethide_smap(id)
 				            $count=count($data);
 				?>
 				<tr valign="top"><td>
-					<?php _e('Select instagram pages for auto publish','social-media-auto-publish'); ?>  
-					<span class="mandatory">*</span>  
+					<?php _e('Select instagram pages for auto publish','social-media-auto-publish'); ?>
+					<span class="mandatory">*</span>
 				</td>
 				<td>
 				<div class="scroll_checkbox">
-				<input type="checkbox" id="select_all_pages_ig" > <?php _e('Select All','social-media-auto-publish'); ?> 
+				<input type="checkbox" id="select_all_pages_ig" > <?php _e('Select All','social-media-auto-publish'); ?>
 				<br>
-				<?php 
+				<?php
                 $ig_acc_name=array();
                 for($i=0;$i<$count;$i++)
                 {
                     $business_acc_id=0;$business_acc_name='';
                     $result=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/".($data[$i]->id)."?fields=instagram_business_account{id,username}&access_token=".$xyz_ig_acces_token,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
-                   
+
                     if($result['body']!=NULL)
                     {
                         $business_acc='';
@@ -1273,13 +1406,13 @@ function dethide_smap(id)
                     {
         				?>
         				<input type="checkbox" class="selpages" name="smap_ig_pages_list[]"  value="<?php  echo $fpage_id."-".$page_acc_tok."-".$business_acc_id;?>" <?php if(in_array($business_acc_id, $smap_ig_ids))  echo "checked" ?>><?php echo $business_acc_name.' - '.$data[$i]->name; ?>
-        				<br><?php 
+        				<br><?php
                      }
-                  }       
+                  }
 				?>
 				</div>
 				</td></tr>
-				<?php 
+				<?php
 			     }
 			     elseif ($xyz_smap_ig_app_sel_mode==1 && get_option('xyz_smap_smapsoln_userid_ig')!=0)// &&pagelist frm smap solutions is not empty )
     			{
@@ -1353,7 +1486,7 @@ function dethide_smap(id)
 	 						value="<?php _e('Authorize','social-media-auto-publish'); ?>" onclick="javascript:return smap_popup_tw_auth('<?php echo urlencode($domain_name);?>','<?php echo $xyz_smap_smapsoln_userid_tw;?>','<?php echo $xyzscripts_user_id;?>','<?php echo $xyzscripts_hash_val;?>','<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>');void(0);"/><br><br>
 	 				</form></span>
  				<?php }
-    			else 
+    			else
     			{
     				?>
     			<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
@@ -1370,20 +1503,23 @@ function dethide_smap(id)
             <tr>
             <td id="bottomBorderNone" style="border: 1px solid #FCC328;">
             	<div>
-            		<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Twitter application before filling in following fields.','social-media-auto-publish'); ?>  	
-            		<br><b><a href="https://developer.twitter.com/en/apps/create" target="_blank"> <?php _e('Click here </a></b>to create new application. Specify the website for the application as','social-media-auto-publish'); ?>:	<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?> </span> 
+            		<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Twitter application before filling in following fields.','social-media-auto-publish'); ?>
+            		<br><b><a href="https://developer.twitter.com/en/apps/create" target="_blank"> <?php _e('Click here </a></b>to create new application. Specify the website for the application as','social-media-auto-publish'); ?>:	<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?> </span>
             		 <br> <?php $smap_twpath1="Settings > Application Type > Access"; $smap_twpath2="Read and Write"; $smap_twnavigate1=sprintf(__('In the twitter application, navigate to <b>%s</b>. Select <b>%s</b> option.','social-media-auto-publish'),$smap_twpath1,$smap_twpath2);echo $smap_twnavigate1; ?>
             		 <br> <?php $smap_twpath1="Details > Your access token"; $smap_twnavigate1=sprintf(__('After updating access, navigate to <b>%s</b> in the application and click <b>Create my access token </b> button.','social-media-auto-publish'),$smap_twpath1); echo $smap_twnavigate1; ?>
-            		<br> <?php _e('For detailed step by step instructions','social-media-auto-publish'); ?> <b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-twitter-application/" target="_blank"> <?php _e('Click here','social-media-auto-publish'); ?> </a></b>.
+            		<br> <?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-twitter-application/" target="_blank">',
+    '</a></b>'
+);
+?>
             	</div>
             </td>
             </tr>
             </table>
 			<form method="post">
 			<?php wp_nonce_field( 'xyz_smap_tw_settings_form_nonce' );?>
-			<input type="hidden" value="config">
-
-			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div> 
+			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
 			<table class="widefat xyz_smap_widefat_table" style="width: 99%">
 			<tr valign="top">
 				<td> <?php _e('Enable auto publish posts to my twitter account','social-media-auto-publish'); ?>	</td>
@@ -1421,7 +1557,7 @@ function dethide_smap(id)
 	<?php }?>
 				</td>
 			</tr>
-						<?php 
+						<?php
 			if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && $xyz_smap_tw_app_sel_mode==1)
 			{  ?>
 			<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
@@ -1512,7 +1648,7 @@ function dethide_smap(id)
     								echo esc_textarea(get_option('xyz_smap_twmessage'));}?></textarea>
 	</td></tr>
 	<tr valign="top">
-		<td> <?php _e('Attach image to twitter post','social-media-auto-publish'); ?> 
+		<td> <?php _e('Attach image to twitter post','social-media-auto-publish'); ?>
 		</td>
 		<td  class="switch-field">
 			<label id="xyz_smap_twpost_image_permission_yes"><input type="radio" name="xyz_smap_twpost_image_permission" value="1" <?php  if(get_option('xyz_smap_twpost_image_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
@@ -1529,7 +1665,7 @@ function dethide_smap(id)
 	<td>
 	<input id="xyz_smap_twtr_char_limit"  name="xyz_smap_twtr_char_limit" type="text" value="<?php echo get_option('xyz_smap_twtr_char_limit');?>" style="width: 200px">
 	</td></tr>
-				
+
     		<tr>
     	<td   id="bottomBorderNone"></td>
     			<td   id="bottomBorderNone"><div style="height: 50px;">
@@ -1549,7 +1685,7 @@ function dethide_smap(id)
 	</form>
 </div>
 	<div id="xyz_smap_linkedin_settings" class="xyz_smap_tabcontent">
-	
+
 
 <?php
 $lnappikey=get_option('xyz_smap_lnapikey');
@@ -1564,8 +1700,8 @@ if ( get_option('xyz_smap_ln_api_permission')!=2){
 	if($lnaf==1 && $lnappikey!="" && $lnapisecret!="" )
 
 		{ ?>
-	
-	<span style="color:red; "> <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span><br>	
+
+	<span style="color:red; "> <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span><br>
             <form method="post" >
 			<?php wp_nonce_field( 'xyz_smap_ln_auth_form_nonce' );?>
 			<input type="submit" class="submit_smap_new" name="lnauth" value="<?php _e('Authorize','social-media-auto-publish'); ?>" />
@@ -1573,9 +1709,9 @@ if ( get_option('xyz_smap_ln_api_permission')!=2){
 			</form>
 			<?php  }
 			if($lnaf==0 && $lnappikey!="" && $lnapisecret!="" )
-			
+
 		{?>
-			
+
 			<form method="post" >
 			<?php wp_nonce_field( 'xyz_smap_ln_auth_form_nonce' );?>
 			<input type="submit" class="submit_smap_new" name="lnauth" value="<?php _e('Reauthorize','social-media-auto-publish'); ?>" title="Reauthorize the account" />
@@ -1618,19 +1754,24 @@ else{
 	 				</form>
 	 				<?php }
 }?>
-			
+
 	<table class="widefat" style="width: 99%;background-color: #FFFBCC" id="xyz_linkedin_settings_note" >
 	<tr>
 	<td id="bottomBorderNone" style="border: 1px solid #FCC328;">
 	<div>
 
-		<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Linkedin application before filling the following details.','social-media-auto-publish'); ?> 
-		<b><a href="https://www.linkedin.com/secure/developer?newapp" target="_blank"> <?php _e('Click here </a></b> to create new Linkedin application.','social-media-auto-publish'); ?>  
-		<br> <?php _e('Specify the website url for the application as','social-media-auto-publish'); ?>: 
+		<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Linkedin application before filling the following details.','social-media-auto-publish'); ?>
+		<b><a href="https://www.linkedin.com/secure/developer?newapp" target="_blank"> <?php _e('Click here </a></b> to create new Linkedin application.','social-media-auto-publish'); ?>
+		<br> <?php _e('Specify the website url for the application as','social-media-auto-publish'); ?>:
 		<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?></span>
-		<br> <?php _e('Specify the authorized redirect url as','social-media-auto-publish'); ?>:  
+		<br> <?php _e('Specify the authorized redirect url as','social-media-auto-publish'); ?>:
 		<span style="color: red;"><?php echo  admin_url().'admin.php'; ?></span>
-<br> <?php _e('For detailed step by step instructions','social-media-auto-publish'); ?>  <b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-linkedin-application/" target="_blank"> <?php _e('Click here','social-media-auto-publish'); ?> </a></b>.
+<br> <?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-linkedin-application/" target="_blank">',
+    '</a></b>'
+);
+?>
 	</div>
 
 	</td>
@@ -1639,10 +1780,10 @@ else{
 
 	<form method="post" >
 		<?php wp_nonce_field( 'xyz_smap_ln_settings_form_nonce' );?>
-	<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div> 
-	
+	<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
+
 	<table class="widefat xyz_smap_widefat_table"  style="width: 99%;">
-		
+
 	<tr valign="top"><td> <?php _e('Enable auto publish posts to my linkedin account','social-media-auto-publish'); ?> </td>
 		<td width="50%" class="switch-field">
 			<label id="xyz_smap_lnpost_permission_yes"><input type="radio" name="xyz_smap_lnpost_permission" value="1" <?php  if(get_option('xyz_smap_lnpost_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
@@ -1665,7 +1806,7 @@ else{
 	<span style="color: #ff5e00;padding-left: 27px;font-size: small;"><b> <?php _e('30 DAYS FREE TRIAL AVAILABLE','social-media-auto-publish'); ?>*</b></span>
 	<br/>
 	<?php }?>
-	
+
 	</td></tr>
 	<?php if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && get_option('xyz_smap_ln_api_permission')==2)
 	{  ?>
@@ -1696,19 +1837,19 @@ else{
 	<tr valign="top" class="xyz_linkedin_settings">
 	<td width="50%"> <?php _e('Client ID','social-media-auto-publish'); ?>
 	<span class="mandatory">*</span>
-	 </td>					
+	 </td>
 	<td>
 		<input id="xyz_smap_lnapikey" name="xyz_smap_lnapikey" type="text" value="<?php if($lms1=="") {echo esc_html(get_option('xyz_smap_lnapikey'));}?>"/>
 		<a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-linkedin-application/" target="_blank"> <?php _e('How can I create a Linkedin Application','social-media-auto-publish'); ?>?</a>
 	</td></tr>
-	
+
 
 	<tr valign="top" class="xyz_linkedin_settings"><td> <?php _e('Client Secret','social-media-auto-publish'); ?>
 	<span class="mandatory">*</span> </td>
 	<td>
 		<input id="xyz_smap_lnapisecret" name="xyz_smap_lnapisecret" type="text" value="<?php if($lms2=="") { echo esc_html(get_option('xyz_smap_lnapisecret')); }?>" />
 	</td></tr>
-	
+
 	<tr valign="top">
 					<td> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_ln')" onmouseout="dethide_smap('xyz_ln')" style="width:13px;height:auto;">
@@ -1739,7 +1880,7 @@ else{
 		</select> </td></tr><tr><td>&nbsp;</td><td>
 		<textarea id="xyz_smap_lnmessage"  name="xyz_smap_lnmessage" style="height:80px !important;" ><?php echo esc_textarea(get_option('xyz_smap_lnmessage'));?></textarea>
 	</td></tr>
-	
+
 	<tr valign="top">
 		<td> <?php _e('Posting method','social-media-auto-publish'); ?>
 		</td>
@@ -1768,12 +1909,12 @@ else{
 			?>
 		<label id="xyz_smap_lnshare_to_profile_smap_yes" class="xyz_smap_toggle_on"><input type="radio" name="xyz_smap_lnshare_to_profile_smap" value="1" checked/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_lnshare_to_profile_smap_no" class="xyz_smap_toggle_off"><input type="radio" name="xyz_smap_lnshare_to_profile_smap" value="0" disabled/> <?php _e('No','social-media-auto-publish'); ?> </label>
-			<?php 
+			<?php
 		}?>
 		  <span style="width: 10px;color: #ce5c19;font-size: 20px;">*</span>
 		</td>
-	</tr> 
-			<?php 
+	</tr>
+			<?php
 	}else{?>
 	<!-- ///////////////////////////////// -->
 	<tr valign="top">
@@ -1784,7 +1925,7 @@ else{
 	</td>
 	</tr>
 	<?php }?>
-	
+
 	<tr valign="top" id="shareprivate">
 <!-- 	<input type="hidden" name="xyz_smap_ln_sharingmethod" id="xyz_smap_ln_sharingmethod" value="0"> -->
 	<td> <?php _e('Share post content with','social-media-auto-publish'); ?> </td>
@@ -1796,7 +1937,7 @@ else{
 		<?php if(get_option('xyz_smap_lnaf')==0 && get_option('xyz_smap_ln_api_permission')==1){?>
 		<tr valign="top" id="share_post_company"><td> <?php _e('Select pages for auto publish','social-media-auto-publish'); ?> </td>
 		<td>
-			<?php 
+			<?php
 			$ln_acc_tok_arr='';
 			$xyz_smap_application_lnarray=get_option('xyz_smap_application_lnarray');
 			if ($xyz_smap_application_lnarray!='')
@@ -1807,19 +1948,19 @@ else{
 			$xyz_smap_ln_company_idArray=explode(',',$xyz_smap_ln_company_ids);
 			?><div class="scroll_checkbox" style="width:220px !important;" >
 				<?php if(isset($ln_acc_tok_arr->access_token))
-				{		
+				{
 				$ln_err_flag=0;
 				$url="https://api.linkedin.com/v2/organizationalEntityAcls?q=roleAssignee&role=ADMINISTRATOR&projection=(elements*(*,roleAssignee~(localizedFirstName,%20localizedLastName),%20organizationalTarget~(localizedName)))&oauth2_access_token=".$ln_acc_tok_arr->access_token;
 				$ar=wp_remote_get($url);
 				if (is_object( $ar ) &&  is_a( $ar, 'wp_Error' ))
-				    _e('Failed to fetch company details.','social-media-auto-publish'); 
+				    _e('Failed to fetch company details.','social-media-auto-publish');
 				elseif (is_array($ar))
 				{
 					$ar=json_decode($ar['body'],true);
 							if (isset($ar['elements'])){
 					$ar=$ar['elements'];
 					foreach ($ar as $ark)
-					{ 
+					{
 						if (strpos($ark['organizationalTarget'], 'urn:li:organizationBrand') !== false)
 							$comp_id=str_replace('urn:li:organizationBrand:', '',$ark['organizationalTarget']);
 						else
@@ -1850,7 +1991,7 @@ else{
 						   {?>
 							 <input type="checkbox" name="xyz_smap_ln_share_post_company[]"  value="<?php echo $xyz_ln_company_id."-".$xyz_ln_company_name; ?>" <?php /*if(in_array($xyz_ln_company_id, $xyz_smap_ln_company_idArray))*/ echo "checked" ?> disabled><?php echo $xyz_ln_company_name; ?><br/>
 	   				       <?php 	$ln_company_name[$xyz_ln_company_id]=$xyz_ln_company_name;
-						   } 
+						   }
 	   				 	$ln_company_name1=base64_encode(serialize($ln_company_name));
 					?>
 	                 </div>
@@ -1858,8 +1999,8 @@ else{
 	             </div>
 	                   <input type="hidden" value="<?php echo $ln_company_name1;?>" name="hidden_company_name" >
 				</td>
-			</tr> 
-			<?php 
+			</tr>
+			<?php
 		}
  }?>
 		<tr>
@@ -1884,7 +2025,7 @@ else{
 </div>
 
 
-	<?php 
+	<?php
 
 	if(isset($_POST['bsettngs']))
 	{
@@ -1909,7 +2050,7 @@ else{
 		}
 
 		$xyz_customtypes="";
-		
+
         if(isset($_POST['post_types']))
 		$xyz_customtypes=$_POST['post_types'];
         $xyz_smap_peer_verification=intval($_POST['xyz_smap_peer_verification']);
@@ -1921,11 +2062,11 @@ else{
         //$xyz_smap_future_to_publish=$_POST['xyz_smap_future_to_publish'];
 //         $xyz_smap_utf_decode_enable=intval($_POST['xyz_smap_utf_decode_enable']);
 		$smap_customtype_ids="";
-		
+
 		$xyz_smap_applyfilters="";
 		if(isset($_POST['xyz_smap_applyfilters']))
 			$xyz_smap_applyfilters=$_POST['xyz_smap_applyfilters'];
-		
+
 		if($xyz_customtypes!="")
 		{
 			for($i=0;$i<count($xyz_customtypes);$i++)
@@ -1943,11 +2084,11 @@ else{
 			{
 			$xyz_smap_applyfilters_val.=$xyz_smap_applyfilters[$i].",";
 		}
-		
+
 		}
 		$xyz_smap_applyfilters_val=rtrim($xyz_smap_applyfilters_val,',');
-		
-		
+
+
 		update_option('xyz_smap_include_pages',$xyz_smap_include_pages);
 		update_option('xyz_smap_include_posts',$xyz_smap_include_posts);
 		if($xyz_smap_include_posts==0)
@@ -1992,18 +2133,23 @@ else{
 		<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?></span>
 		<br> <?php _e('Specify the default callback URL as','social-media-auto-publish'); ?> :
 		<span style="color: red;"><?php echo  admin_url().'admin.php'; ?></span>
-		<br> <?php $smap_create_tbmapp="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-tumblr-application/"; $smap_tmbinst_link=sprintf(__('For detailed step by step instructions <b><a href="%s" target="_blank"> Click here','social-media-auto-publish'),$smap_create_tbmapp); echo $smap_tmbinst_link; ?> </a></b>.
+		<br> 
+		<?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-tumblr-application/" target="_blank">',
+    '</a></b>'
+);
+?>
 	</div>
 </td>
 </tr>
 </table>
 <form method="post">
 	<?php wp_nonce_field( 'xyz_smap_tb_settings_form_nonce' );?>
-		<input type="hidden" value="config">
-			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div> 
+			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
 			<table class="widefat xyz_smap_widefat_table" style="width: 99%">
 				<tr valign="top">
-					<td> <?php _e('Enable auto publish posts to my tumblr account','social-media-auto-publish'); ?> 
+					<td> <?php _e('Enable auto publish posts to my tumblr account','social-media-auto-publish'); ?>
 					</td>
 					<td  class="switch-field">
 					<label id="xyz_smap_tbpost_permission_yes" class="xyz_smap_toggle_on"><input type="radio" name="xyz_smap_tbpost_permission" value="1" <?php  if(get_option('xyz_smap_tbpost_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
@@ -2028,8 +2174,8 @@ else{
 					</td>
 				</tr>
 				<tr valign="top">
-					    <td> <?php _e('Tumblr username','social-media-auto-publish'); ?> 
-					    <span class="mandatory">*</span> 
+					    <td> <?php _e('Tumblr username','social-media-auto-publish'); ?>
+					    <span class="mandatory">*</span>
 					</td>
 					<td><input id="xyz_smap_tb_id"
 						name="xyz_smap_tb_id" type="text"
@@ -2037,16 +2183,16 @@ else{
 					</td>
 				</tr>
 				<tr valign="top">
-					<td> <?php _e('Access token','social-media-auto-publish'); ?> 
+					<td> <?php _e('Access token','social-media-auto-publish'); ?>
 					<span class="mandatory">*</span>
 					</td>
-					<td><input id="xyz_smap_current_tbappln_token" 
+					<td><input id="xyz_smap_current_tbappln_token"
 						name="xyz_smap_current_tbappln_token" type="text"
 						value="<?php if($tbms4=="") {echo esc_html(get_option('xyz_smap_current_tbappln_token'));}?>" />
 					</td>
 				</tr>
 				<tr valign="top">
-					<td> <?php _e('Access token secret','social-media-auto-publish'); ?> 
+					<td> <?php _e('Access token secret','social-media-auto-publish'); ?>
 					<span class="mandatory">*</span>
 					</td>
 					<td><input id="xyz_smap_tbaccestok_secret"
@@ -2054,9 +2200,9 @@ else{
 						value="<?php if($tbms5=="") {echo esc_html(get_option('xyz_smap_tbaccestok_secret'));}?>" />
 					</td>
 				</tr>
-				<?php $xyz_smap_tbmedia_permission=get_option('xyz_smap_tbpost_media_permission');  ?>	
+				<?php $xyz_smap_tbmedia_permission=get_option('xyz_smap_tbpost_media_permission');  ?>
 				<tr valign="top">
-					<td> <?php _e('Attachment to be posted to Tumblr','social-media-auto-publish'); ?> 
+					<td> <?php _e('Attachment to be posted to Tumblr','social-media-auto-publish'); ?>
 					</td>
 					<td><select id="xyz_smap_tbmedia_permission"
 						name="xyz_smap_tbmedia_permission">
@@ -2080,7 +2226,7 @@ else{
 							{POST_ID} - <?php _e('Insert the ID of your post.','social-media-auto-publish'); ?><br/>
 							{POST_PUBLISH_DATE} - <?php _e('Insert the publish date of your post.','social-media-auto-publish'); ?><br/>
 							{USER_DISPLAY_NAME} - <?php _e('Insert the display name of the author.','social-media-auto-publish'); ?>
-							<br/><b> <?php _e('Note : </b>Message can not be posted to tumblr while attaching image.','social-media-auto-publish'); ?> 
+							<br/><b> <?php _e('Note : </b>Message can not be posted to tumblr while attaching image.','social-media-auto-publish'); ?>
 						</div></td>
 	<td>
 	<select name="xyz_smap_tb_info" id="xyz_smap_tb_info" onchange="xyz_smap_tb_info_insert(this)">
@@ -2103,13 +2249,180 @@ else{
 					<td   id="bottomBorderNone"><div style="height: 50px;">
 							<input type="submit" class="submit_smap_new"
 								style=" margin-top: 10px; "
-								name="tmblr" value="<?php _e('save','facebook-auto-publish'); ?> 
+								name="tmblr" value="<?php _e('save','facebook-auto-publish'); ?>
 " /></div>
 					</td>
 				</tr>
 			</table>
-	</form>	
-</div>	
+	</form>
+</div>
+
+<!--///////tel sett///////////-->
+<div id="xyz_smap_telegram_settings" class="xyz_smap_tabcontent">
+			<table class="widefat" style="width: 99%;background-color: #FFFBCC">
+            <tr>
+            <td id="bottomBorderNone" style="border: 1px solid #FCC328;">
+            <div>
+			<?php
+echo '<b>' . __('Note:', 'social-media-auto-publish') . '</b> ' . 
+     __('You have to generate Telegram Bot token, group id, channel id before filling the following details.', 'social-media-auto-publish')?>
+	 <?php printf(
+    __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+    '<b><a href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-generate-a-telegram-bot-token-and-retrieve-group-id-or-channel-id/" target="_blank">',
+    '</a></b>'
+);
+?>	
+        	</div>
+        	</td>
+        	</tr>
+        	</table>
+			<form method="post">
+			<?php wp_nonce_field( 'xyz_smap_tg_settings_form_nonce' );?>
+			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
+			<table class="widefat xyz_smap_widefat_table" style="width: 99%">
+			<tr valign="top">
+				<td> <?php _e('Enable auto publish post to my telegram account','social-media-auto-publish'); ?>
+				</td>
+				<td  class="switch-field">
+					<label id="xyz_smap_tgpost_permission_yes"><input type="radio" name="xyz_smap_tgpost_permission" value="1" <?php  if(get_option('xyz_smap_tgpost_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
+					<label id="xyz_smap_tgpost_permission_no"><input type="radio" name="xyz_smap_tgpost_permission" value="0" <?php  if(get_option('xyz_smap_tgpost_permission')==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td width="50%"> <?php _e('Application name','social-media-auto-publish'); ?><span class="mandatory">*</span>
+				<br/><span style="color: #0073aa;">[ <?php _e('This is for tracking purpose','social-media-auto-publish'); ?>]</span>
+				</td>
+				<td><input id="xyz_smap_tgapplication_name"
+					name="xyz_smap_tgapplication_name" type="text"
+					value="<?php if($tgms0=="") {echo esc_html(get_option('xyz_smap_tgapplication_name'));}?>" />
+				</td>
+			</tr>
+			<tr valign="top" class="xyz_smap_telegram_settings">
+					<td width="50%"> <?php _e('Bot token','social-media-auto-publish'); ?>
+					<span class="mandatory">*</span>
+				</td>
+				<td><input id="xyz_smap_bot_token"
+					name="xyz_smap_bot_token" type="text"
+					value="<?php if($tgms1=="") {echo esc_html(get_option('xyz_smap_bot_token'));}?>" />
+				</td>
+			</tr>
+
+			<tr valign="top" class="xyz_smap_telegram_settings">
+				<td width="50%"> <?php _e('Bot Username','social-media-auto-publish'); ?>
+				<br><span style="color: #0073aa; display: inline-block; width: 70%;">
+			<?php _e('[Auto-filled after you submit the form with a valid Bot Token. No need to enter it.]', 'social-media-auto-publish'); ?>
+		</span>
+				</td>
+				<td><input id="xyz_smap_bot_username"
+					name="xyz_smap_bot_username" type="text"
+					value="<?php if($tgms1=="") {echo esc_html(get_option('xyz_smap_bot_username'));}?>" readonly />
+					</td>
+			</tr>
+			<?php
+			if(get_option('xyz_smap_bot_username')!=''){
+			$xyz_smap_tgchannel_id=get_option('xyz_smap_tgchannel_id');
+						$xyz_smap_tggroup_id=get_option('xyz_smap_tggroup_id');
+						$channel_ids_string='';
+			if(!empty($xyz_smap_tgchannel_id)){
+				$xyz_smap_tgchannel_id=unserialize($xyz_smap_tgchannel_id);
+				foreach($xyz_smap_tgchannel_id as $channel_id => $channel_name){
+					$channel_ids_string.=$channel_id.':'.$channel_name.',';
+				}
+				$channel_ids_string = rtrim($channel_ids_string, ',');
+			}
+			$group_ids_string='';
+			if(!empty($xyz_smap_tggroup_id)){
+				$xyz_smap_tggroup_id=unserialize($xyz_smap_tggroup_id);
+				foreach($xyz_smap_tggroup_id as $group_id => $group_name){
+					$group_ids_string.=$group_id.':'.$group_name.',';
+				}
+				$group_ids_string = rtrim($group_ids_string, ',');
+			}
+			?>
+			<tr valign="top" class="xyz_smap_telegram_settings">
+			<td width="50%"> <?php _e('Channel IDs(Chat ID) for auto publish','social-media-auto-publish'); ?>
+					<br><span style="color: #0073aa; display: inline-block; width: 70%;">
+			<?php _e('[Prefix each ID with a "-" symbol and separate them with commas e.g., -123456789, -987654321]', 'social-media-auto-publish'); ?>
+		</span>
+				
+				</td>
+				<td>
+				<textarea id="xyz_smap_tgchannel_id"  name="xyz_smap_tgchannel_id" style="height:80px;" ><?php echo $channel_ids_string;?></textarea>
+				</td>
+			</tr>
+				<?php if(isset($channel_fetch_error) && $channel_fetch_error!=''){?>
+				<tr><td></td><td><span style="color: red;"><?php echo "Error: ".$channel_fetch_error;?></span></td></tr>
+	<?php } ?>
+				<tr valign="top" class="xyz_smap_telegram_settings">
+					<td width="50%"> <?php _e('Group IDs(Chat ID) for auto publish','social-media-auto-publish'); ?>
+					<br><span style="color: #0073aa; display: inline-block; width: 70%;">
+			<?php _e('[Prefix each ID with a "-" symbol and separate them with commas e.g., -123456789, -987654321]', 'social-media-auto-publish'); ?>
+		</span>
+					
+					</td>
+					<td>
+					<textarea id="xyz_smap_tggroup_id"  name="xyz_smap_tggroup_id" style="height:80px;" ><?php echo $group_ids_string;?></textarea>
+						</td>
+				</tr>
+				<?php if(isset($group_fetch_error) && $group_fetch_error!=''){?>
+<tr><td></td><td><span style="color: red;"><?php echo "Error: ".$group_fetch_error;?></span></td></tr>
+	<?php }
+
+ }?>
+
+				<tr valign="top">
+					<td> <?php _e('Posting method','social-media-auto-publish'); ?>
+					</td>
+					<td>
+		<select id="xyz_smap_tgpost_method" name="xyz_smap_tgpost_method">
+				<option value="1"
+	<?php  if(get_option('xyz_smap_tgpost_method')==1) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
+				<option value="2"
+	<?php  if(get_option('xyz_smap_tgpost_method')==2) echo 'selected';?>> <?php _e('Text message with Image ','social-media-auto-publish'); ?> </option>
+		</select>
+		</td>
+				</tr>
+				<tr valign="top">
+					<td> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
+						onmouseover="detdisplay_smap('xyz_tg')" onmouseout="dethide_smap('xyz_tg')" style="width:13px;height:auto;">
+						<div id="xyz_tg" class="smap_informationdiv" style="display: none;">
+							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
+							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
+							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
+							{POST_CONTENT} - <?php _e('Insert the description of your post.','social-media-auto-publish'); ?><br/>
+							{BLOG_TITLE} - <?php _e('Insert the name of your blog.','social-media-auto-publish'); ?><br/>
+							{USER_NICENAME} - <?php _e('Insert the nicename of the author.','social-media-auto-publish'); ?><br/>
+							{POST_ID} - <?php _e('Insert the ID of your post.','social-media-auto-publish'); ?><br/>
+							{POST_PUBLISH_DATE} - <?php _e('Insert the publish date of your post.','social-media-auto-publish'); ?><br/>
+							{USER_DISPLAY_NAME} - <?php _e('Insert the display name of the author.','social-media-auto-publish'); ?>
+						</div></td>
+                        <td>
+                        <select name="xyz_smap_tg_info" id="xyz_smap_tg_info" onchange="xyz_smap_tg_info_insert(this)">
+                        	<option value ="0" selected="selected"> --<?php _e('Select','social-media-auto-publish'); ?>-- </option>
+                        	<option value ="1">{POST_TITLE}  </option>
+                        	<option value ="2">{PERMALINK} </option>
+                        	<option value ="3">{POST_EXCERPT}  </option>
+                        	<option value ="4">{POST_CONTENT}   </option>
+                        	<option value ="5">{BLOG_TITLE}   </option>
+                        	<option value ="6">{USER_NICENAME}   </option>
+                        	<option value ="7">{POST_ID}   </option>
+                        	<option value ="8">{POST_PUBLISH_DATE}   </option>
+                        	<option value ="9">{USER_DISPLAY_NAME}   </option>
+                        	</select> </td></tr><tr><td>&nbsp;</td><td>
+                        	<textarea id="xyz_smap_tgmessage"  name="xyz_smap_tgmessage" style="height:80px !important;" ><?php
+                        							echo esc_textarea(get_option('xyz_smap_tgmessage'));?></textarea>
+						</td></tr>
+				<tr><td   id="bottomBorderNone"></td>
+					<td  id="bottomBorderNone"><div style="height: 50px;">
+							<input type="submit" class="submit_smap_new"
+								style=" margin-top: 10px; "
+								name="tele" value="<?php _e('Save','social-media-auto-publish'); ?>" /></div>
+					</td>
+				</tr>
+			</table>
+	</form>
+</div>
+
 <div id="xyz_smap_basic_settings" class="xyz_smap_tabcontent">
 		<form method="post">
 	<?php wp_nonce_field( 'xyz_smap_basic_settings_form_nonce' );?>
@@ -2117,7 +2430,7 @@ else{
 <tr><td><h2> <?php _e('Basic Settings','social-media-auto-publish'); ?> </h2></td></tr>
 
 				<tr valign="top">
-					<td  colspan="1"> <?php _e('Publish wordpress `posts` to social media','social-media-auto-publish'); ?> 
+					<td  colspan="1"> <?php _e('Publish wordpress `posts` to social media','social-media-auto-publish'); ?>
 					</td>
 					<td  class="switch-field">
 						<label id="xyz_smap_include_posts_yes"><input type="radio" name="xyz_smap_include_posts" value="1" <?php  if($xyz_smap_include_posts==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
@@ -2132,8 +2445,8 @@ else{
 						<label id="xyz_smap_include_pages_no"><input type="radio" name="xyz_smap_include_pages" value="0" <?php  if($xyz_smap_include_pages==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 					</td>
 				</tr>
-			
-					<?php 
+
+					<?php
 					$xyz_smap_hide_custompost_settings='';
 					$args=array(
 							'public'   => true,
@@ -2172,7 +2485,7 @@ else{
 						<td> <?php _e('Enforce og tags for Facebook and LinkedIn','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>" onmouseover="detdisplay_smap('xyz_smap_free_enforce_og')" onmouseout="dethide_smap('xyz_smap_free_enforce_og')" style="width:13px;height:auto;">
 						<div id="xyz_smap_free_enforce_og" class=smap_informationdiv style="display: none;width: 400px;">
 						 <?php _e('If you enable, Open Graph tags will be generated while posting to Facebook and LinkedIn. <br/>
-						 When sharing links to Facebook and LinkedIn, <b> Facebook/LinkedIn Crawler </b> uses internal heuristics to set the preview image for your content when using the posting method <b> Share a link to your blog post </b> or <b> Attach your blog post </b> in Facebook and also when sharing to LinkedIn.','social-media-auto-publish'); ?> 
+						 When sharing links to Facebook and LinkedIn, <b> Facebook/LinkedIn Crawler </b> uses internal heuristics to set the preview image for your content when using the posting method <b> Share a link to your blog post </b> or <b> Attach your blog post </b> in Facebook and also when sharing to LinkedIn.','social-media-auto-publish'); ?>
 						<br/> <?php _e('If Open Graph tags are present, most major content sharing platform'."'".'s crawler will not have to rely on it'."'".'s own analysis to determine what content will be shared, which improves the likelihood that the information that is shared is exactly what you intended.','social-media-auto-publish'); ?>
 						</div>
 						</td>
@@ -2180,7 +2493,7 @@ else{
 							<label id="xyz_smap_free_enforce_og_tags_yes" class="xyz_smap_toggle_off"><input type="radio" name="xyz_smap_free_enforce_og_tags" value="1" <?php  if($xyz_smap_free_enforce_og_tags==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 							<label id="xyz_smap_free_enforce_og_tags_no" class="xyz_smap_toggle_on"><input type="radio" name="xyz_smap_free_enforce_og_tags" value="0" <?php  if($xyz_smap_free_enforce_og_tags==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 					    </td>
-					</tr> 
+					</tr>
 					<tr valign="top">
 	    <td> <?php _e('Add twitter cards while posting to twitter','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 							onmouseover="detdisplay_smap('xyz_smap_free_enforce_card')" onmouseout="dethide_smap('xyz_smap_free_enforce_card')" style="width:13px;height:auto;">
@@ -2194,17 +2507,17 @@ else{
 
 	<tr valign="top" id="selPostCat">
 
-					<td  colspan="1"> <?php _e('Select post categories for auto publish','social-media-auto-publish'); ?> 
+					<td  colspan="1"> <?php _e('Select post categories for auto publish','social-media-auto-publish'); ?>
 					</td>
 					<td class="switch-field">
-	                <input type="hidden" value="<?php echo esc_html($xyz_smap_include_categories);?>" name="xyz_smap_sel_cat" 
-			id="xyz_smap_sel_cat"> 
+	                <input type="hidden" value="<?php echo esc_html($xyz_smap_include_categories);?>" name="xyz_smap_sel_cat"
+			id="xyz_smap_sel_cat">
 					<label id="xyz_smap_include_categories_no">
 					<input type="radio"	name="xyz_smap_cat_all" id="xyz_smap_cat_all" value="All" onchange="rd_cat_chn(1,-1)" <?php if($xyz_smap_include_categories=="All") echo "checked"?>> <?php _e('All','social-media-auto-publish'); ?> <font style="padding-left: 10px;"></font></label>
 					<label id="xyz_smap_include_categories_yes">
 					<input type="radio"	name="xyz_smap_cat_all" id="xyz_smap_cat_all" value=""	onchange="rd_cat_chn(1,1)" <?php if($xyz_smap_include_categories!="All") echo "checked"?>> <?php _e('Specific','social-media-auto-publish'); ?> </label>
 					<br /> <br /> <div class="scroll_checkbox"  id="cat_dropdown_span">
-					<?php 
+					<?php
 
 						$args = array(
 								'show_option_all'    => '',
@@ -2238,49 +2551,48 @@ else{
 							<br/><?php }
 					}
 						else
-						     _e('NIL','social-media-auto-publish'); 
+						     _e('NIL','social-media-auto-publish');
 
 						?><br /> <br /> </div>
 					</td>
 				</tr>
+				<tr valign="top">
 
-					<tr valign="top">
-
-					<td scope="row" colspan="1" width="50%"> <?php _e('Auto publish on creating posts/pages/custom post types','social-media-auto-publish'); ?> 
+					<td scope="row" colspan="1" width="50%"> <?php _e('Auto publish on creating posts/pages/custom post types','social-media-auto-publish'); ?>
 					</td>
 					<td>
-					<input type="radio" name="xyz_smap_default_selection_create" value="1" <?php  if($xyz_smap_default_selection_create==1) echo 'checked';?>/> <?php _e('Enabled','social-media-auto-publish'); ?> 
+					<input type="radio" name="xyz_smap_default_selection_create" value="1" <?php  if($xyz_smap_default_selection_create==1) echo 'checked';?>/> <?php _e('Enabled','social-media-auto-publish'); ?>
 					<br/><input type="radio" name="xyz_smap_default_selection_create" value="0" <?php  if($xyz_smap_default_selection_create==0) echo 'checked';?>/> <?php _e('Disabled','social-media-auto-publish'); ?> 
-					<br/><input type="radio" name="xyz_smap_default_selection_create" value="2" <?php  if($xyz_smap_default_selection_create==2) echo 'checked';?>/> <?php _e('Use metabox settings','social-media-auto-publish'); ?> 
+					<br/><input type="radio" name="xyz_smap_default_selection_create" value="2" <?php  if($xyz_smap_default_selection_create==2) echo 'checked';?>/> <?php _e('Use metabox settings','social-media-auto-publish'); ?>
 					</td>
 					</tr>
 					<tr valign="top">
-					
-					<td scope="row" colspan="1" width="50%"> <?php _e('Auto publish on editing posts/pages/custom post types','social-media-auto-publish'); ?> 
+
+					<td scope="row" colspan="1" width="50%"> <?php _e('Auto publish on editing posts/pages/custom post types','social-media-auto-publish'); ?>
 					</td>
 					<td>
-					<input type="radio" name="xyz_smap_default_selection_edit" value="1" <?php  if($xyz_smap_default_selection_edit==1) echo 'checked';?>/> <?php _e('Enabled','social-media-auto-publish'); ?> 
-					<br/><input type="radio" name="xyz_smap_default_selection_edit" value="0" <?php  if($xyz_smap_default_selection_edit==0) echo 'checked';?>/> <?php _e('Disabled','social-media-auto-publish'); ?> 
-					<br/><input type="radio" name="xyz_smap_default_selection_edit" value="2" <?php  if($xyz_smap_default_selection_edit==2) echo 'checked';?>/> <?php _e('Use metabox settings','social-media-auto-publish'); ?> 
+					<input type="radio" name="xyz_smap_default_selection_edit" value="1" <?php  if($xyz_smap_default_selection_edit==1) echo 'checked';?>/> <?php _e('Enabled','social-media-auto-publish'); ?>
+					<br/><input type="radio" name="xyz_smap_default_selection_edit" value="0" <?php  if($xyz_smap_default_selection_edit==0) echo 'checked';?>/> <?php _e('Disabled','social-media-auto-publish'); ?>
+					<br/><input type="radio" name="xyz_smap_default_selection_edit" value="2" <?php  if($xyz_smap_default_selection_edit==2) echo 'checked';?>/> <?php _e('Use metabox settings','social-media-auto-publish'); ?>
 					</td>
 					</tr>
 					<tr valign="top">
-					
+
 					<td scope="row" colspan="1" width="50%"> <?php _e('Enable SSL peer verification in remote requests','social-media-auto-publish'); ?> </td>
 					<td  class="switch-field">
 						<label id="xyz_smap_peer_verification_yes"><input type="radio" name="xyz_smap_peer_verification" value="1" <?php  if($xyz_smap_peer_verification==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 						<label id="xyz_smap_peer_verification_no"><input type="radio" name="xyz_smap_peer_verification" value="0" <?php  if($xyz_smap_peer_verification==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 					</td>
 					</tr>
-					
+
 				<tr valign="top">
 					<td scope="row" colspan="1"> <?php _e('Apply filters during publishing','social-media-auto-publish'); ?> </td>
 					<td>
-					<?php 
+					<?php
 					$ar2=explode(",",$xyz_smap_apply_filters);
 					for ($i=0;$i<3;$i++ ) {
 						$filVal=$i+1;
-						
+
 						if($filVal==1)
 							$filName='the_content';
 						else if($filVal==2)
@@ -2288,7 +2600,7 @@ else{
 						else if($filVal==3)
 							$filName='the_title';
 						else $filName='';
-						
+
 						echo '<input type="checkbox" name="xyz_smap_applyfilters[]"  value="'.$filVal.'" ';
 						if(in_array($filVal, $ar2))
 						{
@@ -2296,16 +2608,16 @@ else{
 						}
 						else
 							echo '/>';
-					
+
 						echo '<label>'.$filName.'</label><br/>';
-					
+
 					}
 					?>
 					</td>
 				</tr>
 
 <!--  <tr valign="top">
-		
+
 					<td  colspan="1" width="50%">Enable utf-8 decoding before publishing
 					</td>
 					<td  class="switch-field">
@@ -2316,17 +2628,17 @@ else{
 <tr><td><h2> <?php _e('Other Settings','social-media-auto-publish'); ?> </h2></td></tr>
 				<tr valign="top">
 
-					<td  colspan="1"> <?php _e('Enable credit link to author','social-media-auto-publish'); ?> 
+					<td  colspan="1"> <?php _e('Enable credit link to author','social-media-auto-publish'); ?>
 					</td>
 					<td  class="switch-field">
 						<label id="xyz_credit_link_yes"><input type="radio" name="xyz_credit_link" value="smap" <?php  if($xyz_credit_link=='smap') echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 						<label id="xyz_credit_link_no"><input type="radio" name="xyz_credit_link" value="<?php echo $xyz_credit_link!='smap'?$xyz_credit_link:0;?>" <?php  if($xyz_credit_link!='smap') echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 					</td>
 				</tr>
-				
+
 				<tr valign="top">
 
-					<td  colspan="1"> <?php _e('Enable premium version ads','social-media-auto-publish'); ?> 
+					<td  colspan="1"> <?php _e('Enable premium version ads','social-media-auto-publish'); ?>
 					</td>
 					<td  class="switch-field">
 						<label id="xyz_smap_premium_version_ads_yes"><input type="radio" name="xyz_smap_premium_version_ads" value="1" <?php  if($xyz_smap_premium_version_ads==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
@@ -2342,10 +2654,10 @@ else{
 			</table>
 		</form>
 		</div>
-</div>		
+</div>
 <?php if (is_array($xyz_smap_include_categories))
 $xyz_smap_include_categories1=implode(',', $xyz_smap_include_categories);
-else 
+else
 	$xyz_smap_include_categories1=$xyz_smap_include_categories;
 	?>
 	<script type="text/javascript">
@@ -2359,45 +2671,48 @@ jQuery(document).ready(function() {
 				  window.location.href = base;
 		});
 
-	<?php 
+	<?php
 			if(isset($_POST['bsettngs']))
 			{?>
-			document.getElementById("xyz_smap_basic_tab_settings").click();	
-			// Get the element with id="xyz_smap_default_tab_settings" and click on it 
+			document.getElementById("xyz_smap_basic_tab_settings").click();
+			// Get the element with id="xyz_smap_default_tab_settings" and click on it
 			<?php }
-			else if(isset($_POST['twit']) || (isset($_GET['msg']) && $_GET['msg']==8)){?> 
+			else if(isset($_POST['twit']) || (isset($_GET['msg']) && $_GET['msg']==8)){?>
 			document.getElementById("xyz_smap_default_twtab_settings").click();
-				
+
 			<?php }
 			else if(isset($_POST['tmblr'])){?>
 			document.getElementById("xyz_smap_default_tmtab_settings").click();
 			<?php }
 			else if(isset($_POST['linkdn']) ||  isset($_GET['err'])){?>
 			document.getElementById("xyz_smap_default_lntab_settings").click();
-				
+
 			<?php }
 			else if(isset($_POST['ig']) || (isset($_GET['msg']) && $_GET['msg']==9)){?>
 			document.getElementById("xyz_smap_default_igtab_settings").click();
-				
+
 			<?php }
-			
-			
+			else if(isset($_POST['tele'])){?>
+				document.getElementById("xyz_smap_default_tgtab_settings").click();
+
+				<?php }
+
 			else{
 				if (isset($_POST['fb'])){?>
 				document.getElementById("xyz_smap_default_fbtab_settings").click();
-				
+
 				<?php }
 				else if( isset($_GET['msg'])&& ($_GET['msg']==4 ||$_GET['msg']==7)){
 					?>
 					document.getElementById("xyz_smap_default_lntab_settings").click();
-					<?php 
+					<?php
 				}
 				else{?>
 					document.getElementById("xyz_smap_default_fbtab_settings").click();
-					<?php 
+					<?php
 				}
 			}?>
-	
+
 	  if(catval=="All")
 		  jQuery("#cat_dropdown_span").hide();
 	  else
@@ -2409,11 +2724,11 @@ jQuery(document).ready(function() {
 		  jQuery('#selPostCat').show();
 
   jQuery("#select_all_pages").click(function(){
-		
+
 		jQuery(".selpages").prop("checked",jQuery("#select_all_pages").prop("checked"));
 	});
 	jQuery("#select_all_pages_ig").click(function(){
-		
+
 		jQuery(".selpages").prop("checked",jQuery("#select_all_pages_ig").prop("checked"));
 	});
    var xyz_credit_link=jQuery("input[name='xyz_credit_link']:checked").val();
@@ -2422,22 +2737,22 @@ jQuery(document).ready(function() {
    else
 	   xyz_credit_link=0;
    XyzSmapToggleRadio(xyz_credit_link,'xyz_credit_link');
-   
+
    var xyz_smap_cat_all=jQuery("input[name='xyz_smap_cat_all']:checked").val();
-   if (xyz_smap_cat_all == 'All') 
+   if (xyz_smap_cat_all == 'All')
 	   xyz_smap_cat_all=0;
-   else 
+   else
 	   xyz_smap_cat_all=1;
-   XyzSmapToggleRadio(xyz_smap_cat_all,'xyz_smap_include_categories'); 
-  
+   XyzSmapToggleRadio(xyz_smap_cat_all,'xyz_smap_include_categories');
+
 
    var smap_toggle_element_ids=['xyz_smap_post_permission','xyz_smap_include_categories','xyz_smap_default_selection_edit','xyz_smap_default_selection_create','xyz_smap_peer_verification',
 		'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate', 'xyz_smap_tbpost_permission',
-		 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
+		 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
 
    jQuery.each(smap_toggle_element_ids, function( index, value ) {
 		   checkedval= jQuery("input[name='"+value+"']:checked").val();
-		   XyzSmapToggleRadio(checkedval,value); 
+		   XyzSmapToggleRadio(checkedval,value);
 		   if(value=='xyz_smap_lnshare_to_profile')
 				xyz_smap_show_visibility(checkedval);
    	});
@@ -2454,8 +2769,8 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 	   	jQuery('#xyz_smap_app_creation_note').show();
 	   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 	   		}
-	   		
-	   		
+
+
 	   		var xyz_smap_ig_app_sel_mode=jQuery("input[name='xyz_smap_ig_app_sel_mode']:checked").val();
 	   if(xyz_smap_ig_app_sel_mode !=0){
 		    jQuery('#xyz_smap_ig_app_creation_note').hide();
@@ -2463,15 +2778,15 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
 			}
 		   else{
-			jQuery('#xyz_smap_ig_app_creation_note').show(); 
+			jQuery('#xyz_smap_ig_app_creation_note').show();
 		   	jQuery('.xyz_smap_instagram_settings').show();
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
-	    
-	   		
-	   		
-	   		
-	
+
+
+
+
+
 	   var xyz_smap_tw_app_sel_mode=jQuery("input[name='xyz_smap_tw_app_sel_mode']:checked").val();
 	   if(xyz_smap_tw_app_sel_mode !=0){
 		    jQuery('#xyz_smap_tw_app_creation_note').hide();
@@ -2479,11 +2794,11 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
 			}
 		   else{
-			jQuery('#xyz_smap_tw_app_creation_note').show(); 
+			jQuery('#xyz_smap_tw_app_creation_note').show();
 		   	jQuery('.xyz_smap_twitter_settings').show();
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
-	     		
+
    jQuery("input[name='xyz_smap_app_sel_mode']").click(function(){
 	   var xyz_smap_app_sel_mode=jQuery("input[name='xyz_smap_app_sel_mode']:checked").val();
 	   if(xyz_smap_app_sel_mode !=0){
@@ -2492,7 +2807,7 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
 			}
 		   else{
-			jQuery('#xyz_smap_app_creation_note').show(); 
+			jQuery('#xyz_smap_app_creation_note').show();
 		   	jQuery('.xyz_smap_facebook_settings').show();
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
@@ -2505,7 +2820,7 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
 			}
 		   else{
-			jQuery('#xyz_smap_ig_app_creation_note').show(); 
+			jQuery('#xyz_smap_ig_app_creation_note').show();
 		   	jQuery('.xyz_smap_instagram_settings').show();
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
@@ -2518,7 +2833,7 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
 			}
 		   else{
-			jQuery('#xyz_smap_tw_app_creation_note').show(); 
+			jQuery('#xyz_smap_tw_app_creation_note').show();
 		   	jQuery('.xyz_smap_twitter_settings').show();
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
@@ -2546,8 +2861,8 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
    window.addEventListener('message', function(e) {
 	   xyz_smap_ProcessChildMessage(e.data);
 	} , false);
-	}); 
-	
+	});
+
 function setcat(obj)
 {
 var sel_str="";
@@ -2558,9 +2873,9 @@ sel_str+=obj.options[k].value+",";
 }
 
 
-var l = sel_str.length; 
-var lastChar = sel_str.substring(l-1, l); 
-if (lastChar == ",") { 
+var l = sel_str.length;
+var lastChar = sel_str.substring(l-1, l);
+if (lastChar == ",") {
 	sel_str = sel_str.substring(0, l-1);
 }
 
@@ -2581,7 +2896,7 @@ function rd_cat_chn(val,act)
 }
 
 function xyz_smap_fb_info_insert(inf){
-	
+
     var e = document.getElementById("xyz_smap_fb_info");
     var ins_opt = e.options[e.selectedIndex].text;
     if(ins_opt=="0")
@@ -2593,7 +2908,7 @@ function xyz_smap_fb_info_insert(inf){
 
 }
 function xyz_smap_tw_info_insert(inf){
-	
+
     var e = document.getElementById("xyz_smap_tw_info");
     var ins_opt = e.options[e.selectedIndex].text;
     if(ins_opt=="0")
@@ -2616,7 +2931,7 @@ function xyz_smap_tw_info_insert(inf){
 
 }
 function xyz_smap_ln_info_insert(inf){
-	
+
     var e = document.getElementById("xyz_smap_ln_info");
     var ins_opt = e.options[e.selectedIndex].text;
     if(ins_opt=="0")
@@ -2628,7 +2943,7 @@ function xyz_smap_ln_info_insert(inf){
 
 }
 function xyz_smap_ig_info_insert(inf){
-		
+
 	    var e = document.getElementById("xyz_smap_ig_info");
 	    var ins_opt = e.options[e.selectedIndex].text;
 	    if(ins_opt=="0")
@@ -2637,6 +2952,18 @@ function xyz_smap_ig_info_insert(inf){
 	    jQuery("textarea#xyz_smap_igmessage").val(str);
 	    jQuery('#xyz_smap_ig_info :eq(0)').prop('selected', true);
 	    jQuery("textarea#xyz_smap_igmessage").focus();
+
+	}
+function xyz_smap_tg_info_insert(inf){
+
+	    var e = document.getElementById("xyz_smap_tg_info");
+	    var ins_opt = e.options[e.selectedIndex].text;
+	    if(ins_opt=="0")
+	    	ins_opt="";
+	    var str=jQuery("textarea#xyz_smap_tgmessage").val()+ins_opt;
+	    jQuery("textarea#xyz_smap_tgmessage").val(str);
+	    jQuery('#xyz_smap_tg_info :eq(0)').prop('selected', true);
+	    jQuery("textarea#xyz_smap_tgmessage").focus();
 
 	}
 
@@ -2656,7 +2983,7 @@ function xyz_smap_show_visibility(val)
 }
 var smap_toggle_element_ids=['xyz_smap_post_permission','xyz_smap_include_categories','xyz_smap_default_selection_edit','xyz_smap_default_selection_create','xyz_smap_peer_verification',
 	'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate','xyz_smap_tbpost_permission',
-	 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
+	 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
 
 jQuery.each(smap_toggle_element_ids, function( index, value ) {
 	jQuery("#"+value+"_no").click(function(){
@@ -2679,8 +3006,8 @@ function smap_popup_fb_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	if(xyzscripts_user_id==''|| xyzscripts_hash_val==''){
 		if(jQuery('#system_notice_area').length==0)
 			jQuery('body').append('<div class="system_notice_area_style0" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html3); 
-	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');			
+			jQuery("#system_notice_area").html(xyz_script_smap_var.html3);
+	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
 			jQuery("#system_notice_area").show();
 			jQuery('#system_notice_area_dismiss').click(function() {
 				jQuery('#system_notice_area').animate({
@@ -2704,8 +3031,8 @@ function smap_popup_ig_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	if(xyzscripts_user_id==''|| xyzscripts_hash_val==''){
 		if(jQuery('#system_notice_area').length==0)
 			jQuery('body').append('<div class="system_notice_area_style0" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html3); 
-	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');						
+			jQuery("#system_notice_area").html(xyz_script_smap_var.html3);
+	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
 			jQuery("#system_notice_area").show();
 			jQuery('#system_notice_area_dismiss').click(function() {
 				jQuery('#system_notice_area').animate({
@@ -2722,8 +3049,8 @@ function smap_popup_ig_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	var smap_solution_url='<?php echo XYZ_SMAP_SOLUTION_AUTH_URL;?>';
 	childWindow = window.open(smap_solution_url+"authorize-instagram/instagram.php?smap_id="+xyz_smap_smapsoln_userid+"&account_id="+account_id+
 			"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source=smap&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
-	return false;	
-	
+	return false;
+
 	}
 }
 
@@ -2732,8 +3059,8 @@ function smap_popup_ln_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	if(xyzscripts_user_id==''|| xyzscripts_hash_val==''){
 		if(jQuery('#system_notice_area').length==0)
 			jQuery('body').append('<div class="system_notice_area_style0" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html3); 
-	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');			
+			jQuery("#system_notice_area").html(xyz_script_smap_var.html3);
+	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
 			jQuery("#system_notice_area").show();
 			jQuery('#system_notice_area_dismiss').click(function() {
 				jQuery('#system_notice_area').animate({
@@ -2757,8 +3084,8 @@ function smap_popup_tw_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	if(xyzscripts_user_id==''|| xyzscripts_hash_val==''){
 		if(jQuery('#system_notice_area').length==0)
 			jQuery('body').append('<div class="system_notice_area_style0" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html3); 
-	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');			
+			jQuery("#system_notice_area").html(xyz_script_smap_var.html3);
+	    		jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
 			jQuery("#system_notice_area").show();
 			jQuery('#system_notice_area_dismiss').click(function() {
 				jQuery('#system_notice_area').animate({
@@ -2783,7 +3110,7 @@ function smap_popup_connect_to_xyzscripts()
 	var childWindow = null;
 	var smap_xyzscripts_url='<?php echo "https://smap.xyzscripts.com/index.php?page=index/register";?>';
 	childWindow = window.open(smap_xyzscripts_url, "Connect to xyzscripts", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
-	return false;	
+	return false;
 }
 function xyz_smap_ProcessChildMessage(message) {
 	var messageType = message.slice(0,5);
@@ -2806,8 +3133,8 @@ function xyz_smap_ProcessChildMessage(message) {
 	{
 		var xyz_userid=obj1.userid;var xyz_user_hash=obj1.content;
 		var xyz_smap_xyzscripts_accinfo_nonce= '<?php echo wp_create_nonce('xyz_smap_xyzscripts_accinfo_nonce');?>';
-		var dataString = { 
-				action: 'xyz_smap_xyzscripts_accinfo_auto_update', 
+		var dataString = {
+				action: 'xyz_smap_xyzscripts_accinfo_auto_update',
 				xyz_userid: xyz_userid ,
 				xyz_user_hash: xyz_user_hash,
 				dataType: 'json',
@@ -2848,15 +3175,15 @@ function xyz_smap_ProcessChildMessage(message) {
     	jQuery("#re_auth_message").show();
     	var xyz_smap_selected_pages_nonce= '<?php echo wp_create_nonce('xyz_smap_selected_pages_nonce');?>';
     	var pages_obj = JSON.stringify(obj);
-    	var dataString = { 
-    			action: 'xyz_smap_selected_pages_auto_update', 
+    	var dataString = {
+    			action: 'xyz_smap_selected_pages_auto_update',
     			pages: pages_obj ,
     			smap_secretkey: secretkey,
     			xyz_fb_numericid: xyz_smap_fb_numericid,
     			smapsoln_userid:smapsoln_userid,
     			dataType: 'json',
     			_wpnonce: xyz_smap_selected_pages_nonce
-    		};			
+    		};
     		jQuery("#re_auth_message").hide();
     		jQuery("#auth_message").hide();
     		jQuery("#ajax-save").show();
@@ -2864,16 +3191,16 @@ function xyz_smap_ProcessChildMessage(message) {
     		 if(response==1)
     		       	alert(xyz_script_smap_var.alert3);
     		else{
-    		  var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg - 
+    		  var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
     		 window.location.href = base_url+'&msg=6';
 	}
 		});
 	}
-	
+
 	else if((obj1.xyz_tw_username) && (obj1.xyz_tw_user_id)){
 	//page updation after smapsolutions twitter authorization
 			var secretkey=obj1.xyz_secretkey;
-			
+
 			var smapsoln_userid=obj1.xyz_smapsoln_userid;
 			var xyz_tw_user_id=obj1.xyz_tw_user_id;
 			var account_id=obj1.xyz_account_id;
@@ -2883,7 +3210,7 @@ function xyz_smap_ProcessChildMessage(message) {
 			var xyz_smap_tw_account_details_nonce= '<?php echo wp_create_nonce('xyz_smap_tw_account_details_nonce');?>';
 			var dataString = {
 				action: 'xyz_smap_tw_account_details_auto_update',
-				
+
 				smap_secretkey: secretkey,
 				xyz_smap_xyzscripts_user_id: xyz_smap_xyzscripts_user_id,
 				smapsoln_userid:smapsoln_userid,
@@ -2900,8 +3227,8 @@ function xyz_smap_ProcessChildMessage(message) {
 				       	alert(xyz_script_smap_var.alert3);
 				else
 				{
-				 var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg - 
-		 window.location.href = base_url+'&msg=8';	
+				 var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
+		 window.location.href = base_url+'&msg=8';
 				}
 			});
 	}
@@ -2924,15 +3251,15 @@ function xyz_smap_ProcessChildMessage(message) {
     	jQuery("#re_auth_message").show();
     	var xyz_smap_selected_pages_nonce= '<?php echo wp_create_nonce('xyz_smap_selected_ig_pages_nonce');?>';
     	var pages_obj = JSON.stringify(obj);
-    	var dataString = { 
-    			action: 'xyz_smap_selected_ig_pages_auto_update', 
+    	var dataString = {
+    			action: 'xyz_smap_selected_ig_pages_auto_update',
     			page_ig: pages_obj,
     			smap_secretkey: secretkey,
     			xyz_ig_numericid: xyz_smap_ig_numericid,
     			smapsoln_userid: smapsoln_userid,
     			dataType: 'json',
     			_wpnonce: xyz_smap_selected_pages_nonce
-    	};	
+    	};
 		jQuery("#re_auth_message").hide();
 		jQuery("#auth_message").hide();
 		jQuery("#ajax-save").show();
@@ -2942,14 +3269,14 @@ function xyz_smap_ProcessChildMessage(message) {
     		       	alert(xyz_script_smap_var.alert3);
     		else
     		{
-				 var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg - 
-		 window.location.href = base_url+'&msg=9';	
+				 var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
+		 window.location.href = base_url+'&msg=9';
 					}
 		});
 	}
-	
-	
-	
+
+
+
 	else if((obj1.xyz_ln_user_id) && (obj1.ln_pages))
 	{
 	var obj=obj1.ln_pages;
@@ -2972,7 +3299,7 @@ function xyz_smap_ProcessChildMessage(message) {
 	jQuery("#auth_message").hide();
 	jQuery("#re_auth_message").show();
 // 	var pages_obj = JSON.stringify(obj);
-	var dataString = { 
+	var dataString = {
 			action: 'xyz_smap_ln_selected_pages_auto_update',
 			pages: pages_obj ,
 			smap_secretkey: secretkey,
@@ -2982,7 +3309,7 @@ function xyz_smap_ProcessChildMessage(message) {
 			xyz_smap_xyzscripts_hash_val:xyz_smap_xyzscripts_hash_val,
 			dataType: 'json',
 			_wpnonce: xyz_smap_ln_selected_pages_nonce
-		};			
+		};
 		jQuery("#re_auth_message").hide();
 		jQuery("#auth_message").hide();
 		jQuery("#ajax-save").show();
@@ -2990,13 +3317,13 @@ function xyz_smap_ProcessChildMessage(message) {
 		 if(response==1)
 		       	alert(xyz_script_smap_var.alert3);
 		else{
-		  var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg - 
+		  var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
 		window.location.href = base_url+'&msg=7';
     }
 		});
 
     }
-	
-	
+
+
 }
 </script>

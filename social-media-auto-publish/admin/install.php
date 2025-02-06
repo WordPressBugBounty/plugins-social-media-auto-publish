@@ -114,6 +114,7 @@ function smap_install_free()
 	add_option('xyz_smap_lnap_post_logs', '');
 	add_option('xyz_smap_twap_post_logs', '');
 	add_option('xyz_smap_igap_post_logs', '');
+	add_option('xyz_smap_tgap_post_logs', '');
 	add_option('xyz_smap_premium_version_ads', '1');
 	add_option('xyz_smap_default_selection_edit', '0');
 	add_option('xyz_smap_default_selection_create', '1');
@@ -155,6 +156,14 @@ function smap_install_free()
 	add_option('xyz_smap_igpost_permission','1');
 	add_option('xyz_smap_igmessage','{POST_TITLE} - {PERMALINK}');
 	add_option('xyz_smap_ig_pages_ids','');
+	add_option('xyz_smap_tgapplication_name','');
+	add_option('xyz_smap_bot_token','');
+	add_option('xyz_smap_bot_username','');
+	add_option('xyz_smap_tggroup_id','');
+	add_option('xyz_smap_tgchannel_id','');
+	add_option('xyz_smap_tgpost_permission','1');
+	add_option('xyz_smap_tgmessage','{POST_TITLE} - {PERMALINK}');
+	add_option('xyz_smap_tgpost_method',1);
 	add_option('xyz_smap_free_enforce_og_tags',1);
 	add_option('xyz_smap_clear_fb_cache',0);
 	add_option('xyz_smap_ln_signin_method',$linkedin_siwl);

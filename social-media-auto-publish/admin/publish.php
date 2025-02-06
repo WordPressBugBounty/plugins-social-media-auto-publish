@@ -32,6 +32,7 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 	$post_twitter_permission=get_option('xyz_smap_twpost_permission');
 	$lnpost_permission=get_option('xyz_smap_lnpost_permission');
 	$igpost_permission=get_option('xyz_smap_igpost_permission');
+	$tgpost_permission=get_option('xyz_smap_tgpost_permission');
 
 	if(isset($_POST['xyz_smap_post_permission']))
 	{
@@ -89,10 +90,20 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 	        update_post_meta($postid, "xyz_smap_ig_future_to_publish", $futToPubDataIgArray);
 	    }
 	}
-	if(!(isset($_POST['xyz_smap_post_permission']) || isset($_POST['xyz_smap_twpost_permission']) || isset($_POST['xyz_smap_lnpost_permission']) || isset($_POST['xyz_smap_igpost_permission']) || isset($_POST['xyz_smap_tbpost_permission'])))
+	if(isset($_POST['xyz_smap_tgpost_permission']))
 	{
-
-	    if($post_permissin == 1 || $post_twitter_permission == 1 || $lnpost_permission == 1 || $igpost_permission ==1 || $$post_tb_permission==1) {
+	    $tgpost_permission=intval($_POST['xyz_smap_tgpost_permission']);
+	    if ( (isset($_POST['xyz_smap_tgpost_permission']) && isset($_POST['xyz_smap_tgpost_method'])) )
+	    {
+	        $futToPubDataTgArray=array('post_tg_permission'	=>	$_POST['xyz_smap_tgpost_permission'],
+	            'xyz_smap_tgpost_method'	=>	$_POST['xyz_smap_tgpost_method'],
+	            'xyz_tg_message'	=>	$_POST['xyz_smap_tgmessage']);
+	        update_post_meta($postid, "xyz_smap_tg_future_to_publish", $futToPubDataTgArray);
+	    }
+	}
+	if(!(isset($_POST['xyz_smap_post_permission']) || isset($_POST['xyz_smap_twpost_permission']) || isset($_POST['xyz_smap_lnpost_permission']) || isset($_POST['xyz_smap_igpost_permission']) || isset($_POST['xyz_smap_tbpost_permission']) || isset($_POST['xyz_smap_tgpost_permission'])))
+	{
+	    if($post_permissin == 1 || $post_twitter_permission == 1 || $lnpost_permission == 1 || $igpost_permission ==1 || $$post_tb_permission==1 || $tgpost_permission ==1) {
 
 			if($new_status == 'publish')
 			{
@@ -118,7 +129,7 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 			else return;
 		}
 	}
-	if($post_permissin == 1 || $post_twitter_permission == 1 || $lnpost_permission == 1 || $igpost_permission==1 || $post_tb_permission==1)
+	if($post_permissin == 1 || $post_twitter_permission == 1 || $lnpost_permission == 1 || $igpost_permission==1 || $post_tb_permission==1 || $tgpost_permission ==1)
 	{
 		if($new_status == 'publish')
 		{
@@ -133,21 +144,14 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 
 }
 
-/*$xyz_smap_include_customposttypes=get_option('xyz_smap_include_customposttypes');
-$carr=explode(',', $xyz_smap_include_customposttypes);
-foreach ($carr  as $cstyps ) {
-	add_action('publish_'.$cstyps, 'xyz_link_publish');
-
-}*/
-
 function xyz_link_publish($post_ID) {
 
 	$_POST_CPY=$_POST;
 	$_POST=stripslashes_deep($_POST);
 	$get_post_meta_future_data_fb=get_post_meta($post_ID,"xyz_smap_fb_future_to_publish",true);
 	$get_post_meta=get_post_meta($post_ID,"xyz_smap",true); 
-	$post_twitter_image_permission=$post_tumblr_media_permission=$posting_method=$ln_posting_method=$xyz_smap_ln_shareprivate=0;
-	$message=$messagetopost=$lmessagetopost=$igmessagetopost=$tbmessagetopost='';
+	$post_twitter_image_permission=$post_tumblr_media_permission=$posting_method=$ln_posting_method=$xyz_smap_ln_shareprivate=$tg_posting_method=0;
+	$message=$messagetopost=$lmessagetopost=$igmessagetopost=$tbmessagetopost=$tgmessagetopost='';
 	$post_permissin=get_option('xyz_smap_post_permission');
 
 	if(!empty($get_post_meta_future_data_fb) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
@@ -205,7 +209,18 @@ function xyz_link_publish($post_ID) {
 	if(isset($_POST['xyz_smap_lnpost_permission']))
 	$lnpost_permission=intval($_POST['xyz_smap_lnpost_permission']);
 
-	if (($post_permissin != 1)&&($post_twitter_permission != 1)&&($lnpost_permission != 1)&&($igpost_permission != 1)&&($post_tb_permission != 1)) {
+	$tgpost_permission=get_option('xyz_smap_tgpost_permission');
+	
+	$get_post_meta_future_data_tg=get_post_meta($post_ID,"xyz_smap_tg_future_to_publish",true);
+	if(!empty($get_post_meta_future_data_tg) && ((get_option('xyz_smap_default_selection_edit')==2 && $get_post_meta==1) || (get_option('xyz_smap_default_selection_create')==2 && $get_post_meta!=1 )))///select values from post meta
+	{
+		$tgpost_permission=$get_post_meta_future_data_tg['post_tg_permission'];
+		$tg_posting_method=$get_post_meta_future_data_tg['xyz_smap_tgpost_method'];
+		$tgmessagetopost=$get_post_meta_future_data_tg['xyz_tg_message'];
+	}
+	if(isset($_POST['xyz_smap_tgpost_permission']))
+	$tgpost_permission=intval($_POST['xyz_smap_tgpost_permission']);
+	if (($post_permissin != 1)&&($post_twitter_permission != 1)&&($lnpost_permission != 1)&&($igpost_permission != 1)&&($post_tb_permission != 1)&&($tgpost_permission != 1)) {
 		$_POST=$_POST_CPY;
 		return ;
 	}elseif(((isset($_POST['_inline_edit'])) || (isset($_REQUEST['bulk_edit'])) ) && (get_option('xyz_smap_default_selection_edit') == 0 && $get_post_meta==1) ) {
@@ -307,6 +322,22 @@ function xyz_link_publish($post_ID) {
 //   $xyz_smap_ln_sharingmethod=intval($_POST['xyz_smap_ln_sharingmethod']);
 
     $lnaf=get_option('xyz_smap_lnaf');
+/////////////////tg///////////
+$xyz_smap_tgapplication_name=get_option('xyz_smap_tgapplication_name');
+$xyz_smap_bot_token=get_option('xyz_smap_bot_token');
+$xyz_smap_bot_username=get_option('xyz_smap_bot_username');
+$tguseracces_token=get_option('xyz_smap_tg_token');
+if ($tgmessagetopost=='')
+	$tgmessagetopost=get_option('xyz_smap_tgmessage');
+if ($tg_posting_method==0)
+	$tg_posting_method=get_option('xyz_smap_tgpost_method');
+if(isset($_POST['xyz_smap_tgpost_method']))
+	$tg_posting_method=$_POST['xyz_smap_tgpost_method'];
+if(isset($_POST['xyz_smap_tgmessage']))
+	$tgmessagetopost=$_POST['xyz_smap_tgmessage'];
+
+///////////////////////////////
+
 
 	$postpp= get_post($post_ID);global $wpdb;
 	$reg_exUrl = "/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -322,6 +353,7 @@ function xyz_link_publish($post_ID) {
 		$fb_publish_status=array();
 		$ln_publish_status=array();
 		$tw_publish_status=array();
+		$tg_publish_status=array();
 		if ($posttype=="page")
 		{
 
@@ -751,7 +783,7 @@ function xyz_link_publish($post_ID) {
 	            $message5=str_replace('{USER_DISPLAY_NAME}', $display_name, $message5);
 	            $message5=str_replace("&nbsp;","",$message5);
 	            //$attachmenturl='https://img.photographyblog.com/reviews/samsung_galaxy_note_20_ultra/photos/samsung_galaxy_note_20_ultra_02.jpg';
-				$message5=xyz_smap_string_limit($caption, 2200);
+				$message5=xyz_smap_string_limit($message5, 2200);
 	            if(!empty($attachmenturl))
 	            {
                 if($xyz_smap_ig_app_sel_mode==1)
@@ -1363,7 +1395,6 @@ function xyz_link_publish($post_ID) {
 		            array_push($update_opt_array,$post_tb_options);
 		            update_option('xyz_smap_tbap_post_logs', $update_opt_array);
 		}
-
 		if((($lnappikey!="" && $lnapisecret!="" && get_option('xyz_smap_ln_api_permission')!=2)|| get_option('xyz_smap_ln_api_permission')==2 ) && $lnpost_permission==1 && $lnaf==0 && (get_option('xyz_smap_ln_company_ids')!=''|| get_option('xyz_smap_lnshare_to_profile')==1))
 		{
 			$ln_api_count=0;$api_exceed_err_ln=0;$remaining_api_count_ln=0;
@@ -1622,7 +1653,6 @@ function xyz_link_publish($post_ID) {
 
 				if (isset($post_id_response) && !empty($post_id_response)){
 					$linkedin_post="www.linkedin.com/feed/update/".$post_id_response;
-					// $linkedin_post="https://www.linkedin.com/feed/update/urn:li:share:".$image_param;
 					$post_link='<br/><span style="color:#21759B;text-decoration:underline;"><a  target=\"_blank\"  href="https://'.$linkedin_post.'">View Post</a></span>';
 					$ln_publish_status["new"].="<span style=\"color:green\">profile:Success.</span>".$post_link;
 				}
@@ -1816,7 +1846,6 @@ function xyz_link_publish($post_ID) {
 					{
 						$ln_publish_status_comp["new"].="<br/><span style=\"color:red\">company/".$xyz_smap_ln_company_id.":".$e->getMessage().".</span><br/>";
 					}
-					//}
 				}
 			}
 			///////////////////////////////////////////////////////////////////////////////////////
@@ -1874,6 +1903,154 @@ function xyz_link_publish($post_ID) {
 		array_push($smap_ln_update_opt_array,$post_ln_options);
 		update_option('xyz_smap_lnap_post_logs', $smap_ln_update_opt_array);
 
+		}
+
+	if($xyz_smap_bot_token!="" && $xyz_smap_bot_username!="" && $tgpost_permission==1){
+		require_once( dirname( __FILE__ ) .'/../api/telegram.php' );
+		$tg_publish_status_insert=$xyz_media_param=$media_type='';$image_spec=0;
+		$message1=str_replace('{POST_TITLE}', $name, $tgmessagetopost);
+		$message2=str_replace('{BLOG_TITLE}', $caption,$message1);
+		$message3=str_replace('{PERMALINK}', ' '.$link.' ', $message2);
+		$message4=str_replace('{POST_EXCERPT}', $excerpt, $message3);
+		$message5=str_replace('{POST_CONTENT}', $description, $message4);
+		$message5=str_replace('{USER_NICENAME}', $user_nicename, $message5);
+		$message5=str_replace('{POST_ID}', $post_ID, $message5);
+		$publish_time=get_the_time(get_option('date_format'),$post_ID );
+		$message5=str_replace('{POST_PUBLISH_DATE}', $publish_time, $message5);
+		$message5=str_replace('{USER_DISPLAY_NAME}', $display_name, $message5);
+		$message5=str_replace("&nbsp;","",$message5);
+		
+	    if($tg_posting_method==1)
+			$message5=xyz_smap_string_limit($message5, 4096);
+		else
+			$message5=xyz_smap_string_limit($message5, 1024);
+			if(!empty($attachmenturl))
+			{
+			$img = wp_remote_get($attachmenturl,array('sslverify'=> (get_option('xyz_smap_premium_peer_verification')=='1') ? true : false));
+
+			if(is_array($img) && ! is_wp_error( $img ) )
+			{
+				if (isset($img['body']) && trim($img['body'])!='')
+				{
+					if (($img['headers']['content-length']) && trim($img['headers']['content-length'])!='')
+					{
+						$img_size=$img['headers']['content-length']/(1024*1024);
+						if( $img_size <= 10 )                               
+							$image_spec=1;                                
+						else
+							$tg_publish_status_insert.="<span style=\"color:red\">Image size is greater than 10MB</span>";
+					}
+				}
+			}
+		}
+		$xyz_smap_tgchannel_id=stripslashes(get_option('xyz_smap_tgchannel_id'));
+		$xyz_smap_tggroup_id=stripslashes(get_option('xyz_smap_tggroup_id'));
+	
+		if(!empty($xyz_smap_tggroup_id))
+			$xyz_smap_tggroup_id = unserialize($xyz_smap_tggroup_id);
+		if(!empty($xyz_smap_tgchannel_id))
+			$xyz_smap_tgchannel_id = unserialize($xyz_smap_tgchannel_id);
+
+		// Ensure both are arrays, or initialize them as empty arrays
+		$xyz_smap_tggroup_id = is_array($xyz_smap_tggroup_id) ? $xyz_smap_tggroup_id : [];
+		$xyz_smap_tgchannel_id = is_array(value: $xyz_smap_tgchannel_id) ? $xyz_smap_tgchannel_id : [];
+		
+		//merge array with key value pairs
+		$xyz_smap_tgchannel_group_id = $xyz_smap_tggroup_id + $xyz_smap_tgchannel_id; 
+		foreach($xyz_smap_tgchannel_group_id as $channel_id => $channel_name){
+
+		if($tg_posting_method==1)//Simple text
+		{ 
+			if($message5==''){
+				$message5=$name;
+			}
+			$media_type='text';          
+			$xyz_media_param = array(
+				'body' => array(
+					'chat_id' => $channel_id,
+					'text' => $message5, 
+				),
+			);                 
+		}  
+		if($tg_posting_method==2) 
+		{					
+			if($image_spec!=0)
+			{
+				$media_type='photo';
+				if($attachmenturl!='')
+				{                                                        
+						$xyz_media_param = array(
+						'body' => array(
+							'chat_id' => $channel_id,
+							'photo' => $attachmenturl, // URL of the audio file
+						'caption' => $message5
+						),
+					);                                         
+				}
+			} 
+			else
+			{
+				if($message5==''){
+					$message5=$name;
+				}
+				$media_type='text';          
+				$xyz_media_param = array(
+					'body' => array(
+						'chat_id' => $channel_id,
+						'text' => $message5, 
+					),
+				);  			
+			}              
+		} 
+				$xyz_tg_media_result='';                         
+                $xyz_tg_media_result=xyz_smap_make_tg_post($xyz_smap_bot_token,
+                $media_type,$xyz_media_param);
+                if(isset($xyz_tg_media_result['error']) && $xyz_tg_media_result['error']!='')//wp_error
+                {
+                    $err_msg=$xyz_tg_media_result['error'];
+                    $tg_publish_status_insert.="<span style=\"color:red\">".$channel_id."/".$media_type." : Failed.".$err_msg."</span>"; 
+                }
+                else
+                {
+                    $xyz_tg_media_result=json_decode($xyz_tg_media_result['body']); 
+					if($xyz_tg_media_result!=NULL){      
+						if(isset($xyz_tg_media_result) && $xyz_tg_media_result->ok!=true){
+							$err_msg=$xyz_tg_media_result->description;                
+                    $tg_publish_status_insert.="<span style=\"color:red\">".$channel_id."/".$media_type." : Failed.".$err_msg."</span>"; 
+                }
+				else
+				{
+								$tg_publish_status_insert.="<span style=\"color:green\">".$channel_id."/".$media_type." : Success.</span>"; 
+				}
+			}
+				}
+			}
+			if(!empty($tg_publish_status_insert))
+		    	$tg_publish_status_insert=serialize($tg_publish_status_insert);
+
+		        $time=time();
+		        $post_tg_options=array(
+		            'postid'	=>	$post_ID,
+		            'acc_type'	=>	"Telegram",
+		            'publishtime'	=>	$time,
+		            'status'	=>	$tg_publish_status_insert
+		        );
+
+		        $smap_tg_update_opt_array=array();
+		        $smap_tg_arr_retrive=(get_option('xyz_smap_tgap_post_logs'));
+		        $smap_tg_update_opt_array[0]=isset($smap_tg_arr_retrive[0]) ? $smap_tg_arr_retrive[0] : '';
+		        $smap_tg_update_opt_array[1]=isset($smap_tg_arr_retrive[1]) ? $smap_tg_arr_retrive[1] : '';
+		        $smap_tg_update_opt_array[2]=isset($smap_tg_arr_retrive[2]) ? $smap_tg_arr_retrive[2] : '';
+		        $smap_tg_update_opt_array[3]=isset($smap_tg_arr_retrive[3]) ? $smap_tg_arr_retrive[3] : '';
+		        $smap_tg_update_opt_array[4]=isset($smap_tg_arr_retrive[4]) ? $smap_tg_arr_retrive[4] : '';
+		        $smap_tg_update_opt_array[5]=isset($smap_tg_arr_retrive[5]) ? $smap_tg_arr_retrive[5] : '';
+		        $smap_tg_update_opt_array[6]=isset($smap_tg_arr_retrive[6]) ? $smap_tg_arr_retrive[6] : '';
+		        $smap_tg_update_opt_array[7]=isset($smap_tg_arr_retrive[7]) ? $smap_tg_arr_retrive[7] : '';
+		        $smap_tg_update_opt_array[8]=isset($smap_tg_arr_retrive[8]) ? $smap_tg_arr_retrive[8] : '';
+		        $smap_tg_update_opt_array[9]=isset($smap_tg_arr_retrive[9]) ? $smap_tg_arr_retrive[9] : '';
+		        array_shift($smap_tg_update_opt_array);
+		        array_push($smap_tg_update_opt_array,$post_tg_options);
+		        update_option('xyz_smap_tgap_post_logs', $smap_tg_update_opt_array);
 		}
 	}
 
