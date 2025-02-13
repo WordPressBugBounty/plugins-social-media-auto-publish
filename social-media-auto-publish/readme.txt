@@ -4,7 +4,7 @@ Donate link: https://xyzscripts.com/donate/
 Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies, publish to telegram
 Requires at least: 3.0
 Tested up to: 6.7.1
-Stable tag: 3.4
+Stable tag: 3.4.1
 License: GPLv2 or later
 
 Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn and Telegram.
@@ -147,6 +147,9 @@ SSL peer verification may not be functioning in your server. Please turn off SSL
 9. Auto publish logs.
 
 == Changelog ==
+
+= Social Media Auto Publish 3.4.1 =
+* Fixed a critical issue that caused errors in certain cases when connecting to Telegram
 
 = Social Media Auto Publish 3.4 =
 * Added support for telegram publishing

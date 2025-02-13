@@ -6,7 +6,7 @@ if( !defined('ABSPATH') ){ exit();}
 <div style="width: 99%">
 <p style="text-align: justify">
 <?php $wp_smap="Social Media Auto Publish";
-      $smap_pub_msg=sprintf( __('%s automatically publishes posts from your blog to your Facebook, Twitter , Telegram, Instagram and LinkedIn pages. It allows you to filter posts based on post-types and categories. %s is developed and maintained by','social-media-auto-publish'),$wp_smap,$wp_smap);
+      $smap_pub_msg=sprintf( __('%s automatically publishes posts from your blog to your Facebook, Twitter, Tumblr, Telegram, Instagram and LinkedIn pages. It allows you to filter posts based on post-types and categories. %s is developed and maintained by','social-media-auto-publish'),$wp_smap,$wp_smap);
  echo $smap_pub_msg; ?> <a href="http://xyzscripts.com">XYZScripts</a>.</p>
 
  
@@ -586,7 +586,7 @@ if( !defined('ABSPATH') ){ exit();}
 	<tr>
 		<td rowspan="3"><h4> <?php _e('Other','social-media-auto-publish'); ?> </h4></td>
 		<td><?php $smap_smapsolution="SMAPSOLUTIONS"; 
-		          $smap_package_msg=sprintf(__('%s API package for 1 year, worth 40 USD(1 fb account @ 10 api calls per hour, 1 linkedin account @ 25 api per day,1 twitter account @ 10 api calls per hour,1 instagram account @ 25 api per day)','social-media-auto-publish'),$smap_smapsolution);
+		          $smap_package_msg=sprintf(__('%s API package for 1 year, worth 30 USD(1 fb account @ 10 api calls per hour, 1 linkedin account @ 25 api per day,1 instagram account @ 25 api per day)','social-media-auto-publish'),$smap_smapsolution);
 		     echo $smap_package_msg; ?></td>
 		<td> <?php _e('1 month free subscription','social-media-auto-publish'); ?> </td>
 		<td colspan='2'> <?php _e('1 year free subscription','social-media-auto-publish'); ?> </td>
@@ -594,8 +594,8 @@ if( !defined('ABSPATH') ){ exit();}
 	<tr>
 		<td> <?php _e('Price','social-media-auto-publish'); ?> </td>
 		<td> <?php _e('FREE','social-media-auto-publish'); ?> </td>
-		<td> <?php _e('Starts from 39 USD','social-media-auto-publish'); ?> </td>
-		<td> <?php _e('Starts from 69 USD','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Starts from 29 USD','social-media-auto-publish'); ?> </td>
+		<td> <?php _e('Starts from 59 USD','social-media-auto-publish'); ?> </td>
 	</tr>
 	<tr>
 		<td> <?php _e('Purchase','social-media-auto-publish'); ?> </td>

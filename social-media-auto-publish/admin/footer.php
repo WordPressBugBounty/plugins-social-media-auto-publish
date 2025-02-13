@@ -10,7 +10,7 @@ if(get_option('xyz_smap_premium_version_ads')==1){?>
 		<a target="_blank" href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/features"> 
 		<?php $smap_plugin="XYZ WP SMAP Premium";
 		      $smap_plugin_msg=sprintf(__('Fully Featured %s Plugin','social-media-auto-publish'),$smap_plugin); 
-	     echo $smap_plugin_msg; ?> </a> - <?php _e('Just 39 USD','social-media-auto-publish'); ?>
+	     echo $smap_plugin_msg; ?> </a> - <?php _e('Just 29 USD','social-media-auto-publish'); ?>
 		</h2>
 	</div>
 	<div class="xyz-smap-buy-now">

@@ -1953,7 +1953,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 
 		// Ensure both are arrays, or initialize them as empty arrays
 		$xyz_smap_tggroup_id = is_array($xyz_smap_tggroup_id) ? $xyz_smap_tggroup_id : [];
-		$xyz_smap_tgchannel_id = is_array(value: $xyz_smap_tgchannel_id) ? $xyz_smap_tgchannel_id : [];
+		$xyz_smap_tgchannel_id = is_array($xyz_smap_tgchannel_id) ? $xyz_smap_tgchannel_id : [];
 		
 		//merge array with key value pairs
 		$xyz_smap_tgchannel_group_id = $xyz_smap_tggroup_id + $xyz_smap_tgchannel_id; 
