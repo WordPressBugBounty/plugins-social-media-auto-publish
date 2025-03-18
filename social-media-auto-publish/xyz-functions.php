@@ -52,7 +52,8 @@ if(!function_exists('xyz_smap_links')){
 			$links[] = '<a href="https://xyzscripts.com/support/" class="xyz_support" title="Support"></a>';
 			$links[] = '<a href="http://twitter.com/xyzscripts" class="xyz_twitt" title="Follow us on twitter"></a>';
 			$links[] = '<a href="https://www.facebook.com/xyzscripts" class="xyz_fbook" title="Facebook"></a>';
-			$links[] = '<a href="http://www.linkedin.com/company/xyzscripts" class="xyz_linkdin" title="Follow us on linkedIn"></a>';
+			$links[] = '<a href="http://www.linkedin.com/company/xyzscripts" class="xyz_linkedin" title="Follow us on linkedIn"></a>';
+			$links[] = '<a href="https://www.instagram.com/xyz_scripts/" class="xyz_insta" title="Follow us on Instagram"></a>';
 		}
 		return $links;
 	}

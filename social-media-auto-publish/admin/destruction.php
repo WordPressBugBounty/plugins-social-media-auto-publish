@@ -31,11 +31,9 @@ function smap_free_destroy()
 	delete_option('xyz_smap_application_name');
 	delete_option('xyz_smap_application_id');
 	delete_option('xyz_smap_application_secret');
-	//delete_option('xyz_smap_fb_id');
 	delete_option('xyz_smap_message');
 	delete_option('xyz_smap_po_method');
 	delete_option('xyz_smap_post_permission');
-	delete_option('xyz_smap_current_appln_token');
 	delete_option('xyz_smap_af');
 	delete_option('xyz_smap_ig_af');
 	delete_option('xyz_smap_pages_ids');
@@ -66,9 +64,7 @@ function smap_free_destroy()
 	delete_option('xyz_smap_ln_sharingmethod');//removed in 2.2.2
 	delete_option('xyz_smap_lnapikey');
 	delete_option('xyz_smap_lnapisecret');
-// 	delete_option('xyz_smap_lnoauth_verifier');
-// 	delete_option('xyz_smap_lnoauth_token');
-// 	delete_option('xyz_smap_lnoauth_secret');
+
 	delete_option('xyz_smap_lnpost_permission');
 	delete_option('xyz_smap_lnaf');
 	delete_option('xyz_smap_lnmessage');
@@ -88,7 +84,6 @@ function smap_free_destroy()
 	delete_option('xyz_smap_premium_version_ads');
 	delete_option('xyz_smap_default_selection_edit');
 	delete_option('xyz_smap_default_selection_create');
-// 	delete_option('xyz_smap_utf_decode_enable');
 	delete_option('xyz_smap_dnt_shw_notice');
 	delete_option('smap_installed_date');
 	delete_option('xyz_smap_credit_dismiss');
@@ -132,6 +127,16 @@ function smap_free_destroy()
 	delete_option('xyz_smap_tgpost_permission');
 	delete_option('xyz_smap_tgmessage');
 	delete_option('xyz_smap_tgpost_method');
+	delete_option('xyz_smap_th_app_id');
+	delete_option('xyz_smap_th_app_secret');
+	delete_option('xyz_smap_thmessage');
+	delete_option('xyz_smap_thpost_method');
+	delete_option('xyz_smap_thpost_permission');
+	delete_option('xyz_smap_thaf');
+	delete_option('xyz_smap_th_user_id');
+	delete_option('xyz_smap_th_username');
+	delete_option('xyz_smap_th_access_token');
+	delete_option('xyz_smap_thap_post_logs');
 }
 
 register_uninstall_hook(XYZ_SMAP_PLUGIN_FILE,'smap_free_network_destroy');

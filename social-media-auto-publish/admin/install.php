@@ -51,11 +51,9 @@ function smap_install_free()
 	add_option('xyz_smap_application_name','');
 	add_option('xyz_smap_application_id','');
 	add_option('xyz_smap_application_secret', '');
-	//add_option('xyz_smap_fb_id', '');
 	add_option('xyz_smap_message', 'New post added at {BLOG_TITLE} - {POST_TITLE}');
  	add_option('xyz_smap_po_method', '2');
 	add_option('xyz_smap_post_permission', '1');
-	add_option('xyz_smap_current_appln_token', '');
 	add_option('xyz_smap_af', '1'); //authorization flag
 	add_option('xyz_smap_ig_af', '1');
 	add_option('xyz_smap_ig_token', '');
@@ -115,6 +113,7 @@ function smap_install_free()
 	add_option('xyz_smap_twap_post_logs', '');
 	add_option('xyz_smap_igap_post_logs', '');
 	add_option('xyz_smap_tgap_post_logs', '');
+	add_option('xyz_smap_thap_post_logs', '');
 	add_option('xyz_smap_premium_version_ads', '1');
 	add_option('xyz_smap_default_selection_edit', '0');
 	add_option('xyz_smap_default_selection_create', '1');
@@ -164,6 +163,15 @@ function smap_install_free()
 	add_option('xyz_smap_tgpost_permission','1');
 	add_option('xyz_smap_tgmessage','{POST_TITLE} - {PERMALINK}');
 	add_option('xyz_smap_tgpost_method',1);
+	add_option('xyz_smap_th_app_id','');
+	add_option('xyz_smap_th_app_secret', '');
+	add_option('xyz_smap_thmessage', '{POST_TITLE} - {PERMALINK}');
+ 	add_option('xyz_smap_thpost_method', '2');
+	add_option('xyz_smap_thpost_permission', '1');
+	add_option('xyz_smap_thaf', '1'); //authorization flag
+	add_option('xyz_smap_th_user_id','');
+	add_option('xyz_smap_th_username','');
+	add_option('xyz_smap_th_access_token','');
 	add_option('xyz_smap_free_enforce_og_tags',1);
 	add_option('xyz_smap_clear_fb_cache',0);
 	add_option('xyz_smap_ln_signin_method',$linkedin_siwl);

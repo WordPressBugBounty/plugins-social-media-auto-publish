@@ -55,6 +55,23 @@ display:none !important;
 
 <?php
 }
+if(!$_POST && isset($_GET['th_auth_err']) && $_GET['th_auth_err'] != '')
+{
+	?>
+<style type='text/css'>
+#smap_notice_td
+{
+	display:none !important;
+}
+</style>
+<div class="system_notice_area_style0" id="system_notice_area">
+<?php echo esc_html($_GET['th_auth_err']);?>
+ &nbsp;&nbsp;&nbsp;<span
+		id="system_notice_area_dismiss" class="xyz_smap_hide_ln_authErr"> <?php _e('Dismiss','social-media-auto-publish');?> </span>
+</div>
+
+<?php
+}
 
 $erf=0;
 if(isset($_POST['fb']))
@@ -619,8 +636,82 @@ if(isset($_POST['tele']))
 		}
     }
 }
+$thms1="";
+$thms2="";
+$thms3="";
+$thms4="";
 
-if((isset($_POST['twit']) && $terf==0) || (isset($_POST['fb']) && $erf==0) || (isset($_POST['linkdn']) && $lerf==0) || (isset($_POST['ig']) && $ierf==0) || (isset($_POST['tmblr']) && $tberf==0) || (isset($_POST['tele']) && $tgerf==0))
+$tredirecturl=admin_url('admin.php?page=social-media-auto-publish-settings&authtwit=1');
+
+
+$therf=0;
+if(isset($_POST['threads']))
+{
+	if (! isset( $_REQUEST['_wpnonce'] )|| ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'xyz_smap_th_settings_form_nonce' ))
+	{
+		wp_nonce_ays( 'xyz_smap_th_settings_form_nonce' );
+		exit();
+	}
+
+	$thappid=$thappsecret=$th_userid=$th_username=$th_access_token='';
+	$thappid_old=get_option('xyz_smap_th_app_id');
+	$thappsecret_old=get_option('xyz_smap_th_app_secret');
+	$thappid=sanitize_text_field($_POST['xyz_smap_th_app_id']);
+	$thappsecret=sanitize_text_field($_POST['xyz_smap_th_app_secret']);
+	$th_userid= get_option('xyz_smap_th_user_id');
+	$th_username=get_option('xyz_smap_th_username');
+	$thposting_permission=intval($_POST['xyz_smap_thpost_permission']);
+	$thposting_method=intval($_POST['xyz_smap_thpost_method']);
+	$thmessagetopost=$_POST['xyz_smap_thmessage'];
+	$thaf=get_option('xyz_smap_thaf');
+	$th_access_token=get_option('xyz_smap_th_access_token');
+
+	if($thappid=="" && $thposting_permission==1)
+	{
+		$therf=1;
+		$thms1=__('Please fill application ID.','social-media-auto-publish');
+	}
+	elseif($thappsecret=="" && $thposting_permission==1 )
+	{
+	    $thms2=__('Please fill application secret.','social-media-auto-publish');
+		$therf=1;
+	}
+	elseif(($th_access_token==""|| $th_userid=="" )&& $thaf==0 && $thposting_permission==1 )
+	{
+	    $thms3=__('Please authorize your account.','social-media-auto-publish');
+		$therf=1;
+	}
+	elseif($thmessagetopost=="" && $thposting_permission==1)
+	{
+	    $thms4=__('Please fill message format for posting.','social-media-auto-publish');
+		$therf=1;
+	}
+	else
+	{
+		$therf=0;
+		if($thmessagetopost=="")
+		{
+			$thmessagetopost="{POST_TITLE} {PERMALINK}";
+		}
+		if(($thappid!=$thappid_old || $thappsecret!=$thappsecret_old) )
+		{
+			update_option('xyz_smap_thaf',1);
+			update_option('xyz_smap_th_access_token','');
+		}
+
+		update_option('xyz_smap_th_app_id',$thappid);
+		update_option('xyz_smap_th_app_secret',$thappsecret);
+		//update_option('xyz_smap_th_user_id',$th_userid);
+	
+		update_option('xyz_smap_thmessage',$thmessagetopost);
+		update_option('xyz_smap_thpost_permission',$thposting_permission);
+		update_option('xyz_smap_thpost_method',$thposting_method);
+		//update_option('xyz_smap_th_username', $xyz_smap_th_username);
+
+	}
+}
+
+if((isset($_POST['twit']) && $terf==0) || (isset($_POST['fb']) && $erf==0) || (isset($_POST['linkdn']) && $lerf==0) || (isset($_POST['ig']) && $ierf==0) || (isset($_POST['threads']) && $therf==0) ||(isset($_POST['tmblr']) && $tberf==0) || (isset($_POST['tele']) && $tgerf==0))
 {
 	?>
 
@@ -657,7 +748,9 @@ if(isset($_GET['msg']) && $_GET['msg']==3) //response['body'] not set
 		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 </div>
 <?php
-}if((isset($_GET['msg']) && $_GET['msg'] == 4 ) || (isset($_GET['msg']) && $_GET['msg'] == 8 )){
+}
+if((isset($_GET['msg']) && $_GET['msg'] == 4 ) || (isset($_GET['msg']) && $_GET['msg'] == 8 )|| (isset($_GET['msg']) && $_GET['msg'] == 10 ))
+{
 ?>
 <div class="system_notice_area_style1" id="system_notice_area">
 <?php _e('Account has been authenticated successfully.','social-media-auto-publish'); ?> &nbsp;&nbsp;&nbsp;<span
@@ -685,7 +778,7 @@ id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish')
 </div>
 <?php
 }
-if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (isset($_POST['linkdn']) && $lerf==1) || (isset($_POST['ig']) && $ierf==1) || (isset($_POST['tmblr']) && $tberf==1) || (isset($_POST['tele']) && $tgerf==1))
+if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (isset($_POST['linkdn']) && $lerf==1) || (isset($_POST['ig']) && $ierf==1) || (isset($_POST['tmblr']) && $tberf==1) ||(isset($_POST['threads']) && $therf==1) ||  (isset($_POST['tele']) && $tgerf==1))
 {
 
 	?>
@@ -714,6 +807,10 @@ if((isset($_POST['twit']) && $terf==1)|| (isset($_POST['fb']) && $erf==1) || (is
 	else if(isset($_POST['tele']))
 	{
 	    echo esc_html($tgms0);echo esc_html($tgms1);echo esc_html($tgms2);echo esc_html($tgms3);echo esc_html($tgms4);echo esc_html($tgms5);
+	}
+	else if(isset($_POST['threads']))
+	{
+		echo esc_html($thms1);echo esc_html($thms2);echo esc_html($thms3);echo esc_html($thms4);echo esc_html($thms5);
 	}
 	?>
 	&nbsp;&nbsp;&nbsp;<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
@@ -745,12 +842,13 @@ function dethide_smap(id)
 
 <div style="width: 100%">
 <div class="xyz_smap_tab">
-  <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_facebook_settings')" id="xyz_smap_default_fbtab_settings"> <?php _e('Facebook Settings','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_twitter_settings')" id="xyz_smap_default_twtab_settings"> <?php _e('Twitter Settings','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_linkedin_settings')" id="xyz_smap_default_lntab_settings"> <?php _e('LinkedIn Settings','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_instagram_settings')" id="xyz_smap_default_igtab_settings"> <?php _e('instagram Settings','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_tumblr_settings')" id="xyz_smap_default_tmtab_settings"> <?php _e('Tumblr Settings','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_telegram_settings')" id="xyz_smap_default_tgtab_settings"> <?php _e('Telegram Settings','social-media-auto-publish'); ?> </button>
+  <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_facebook_settings')" id="xyz_smap_default_fbtab_settings"> <?php _e('Facebook','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_twitter_settings')" id="xyz_smap_default_twtab_settings"> <?php _e('Twitter','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_linkedin_settings')" id="xyz_smap_default_lntab_settings"> <?php _e('LinkedIn','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_instagram_settings')" id="xyz_smap_default_igtab_settings"> <?php _e('instagram','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_tumblr_settings')" id="xyz_smap_default_tmtab_settings"> <?php _e('Tumblr','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_telegram_settings')" id="xyz_smap_default_tgtab_settings"> <?php _e('Telegram','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_threads_settings')" id="xyz_smap_default_thtab_settings"> <?php _e('Threads','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_basic_settings')" id="xyz_smap_basic_tab_settings"> <?php _e('General Settings','social-media-auto-publish'); ?> </button>
 </div>
 <div id="xyz_smap_facebook_settings" class="xyz_smap_tabcontent">
@@ -758,7 +856,6 @@ function dethide_smap(id)
 	$af=get_option('xyz_smap_af');
 	$appid=get_option('xyz_smap_application_id');
 	$appsecret=get_option('xyz_smap_application_secret');
-	//$fbid=get_option('xyz_smap_fb_id');
 	$posting_method=get_option('xyz_smap_po_method');
 	$posting_message=get_option('xyz_smap_message');
 	$xyz_smap_app_sel_mode=get_option('xyz_smap_app_sel_mode');
@@ -2024,6 +2121,154 @@ else{
 </form>
 </div>
 
+<div id="xyz_smap_threads_settings" class="xyz_smap_tabcontent">
+
+<?php
+$xyz_smap_th_app_id=get_option('xyz_smap_th_app_id');
+$xyz_smap_th_app_secret=get_option('xyz_smap_th_app_secret');
+$thmessagetopost=get_option('xyz_smap_thmessage');
+
+$thaf=get_option('xyz_smap_thaf');
+
+	if($thaf==1 && $xyz_smap_th_app_id!="" && $xyz_smap_th_app_secret!="" )
+		{ ?>
+
+	<span style="color:red; "> <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span><br>
+            <form method="post" >
+			<?php wp_nonce_field( 'xyz_smap_th_auth_form_nonce' );?>
+			<input type="submit" class="submit_smap_new" name="th_auth" value="<?php _e('Authorize','social-media-auto-publish'); ?>" />
+			<br><br>
+			</form>
+			<?php  }
+			if($thaf==0 && $xyz_smap_th_app_id!="" && $xyz_smap_th_app_secret!="" )
+			{?>
+			<form method="post" >
+			<?php wp_nonce_field( 'xyz_smap_th_auth_form_nonce' );?>
+			<input type="submit" class="submit_smap_new" name="th_auth" value="<?php _e('Reauthorize','social-media-auto-publish'); ?>" title="Reauthorize the account" />
+			<br><br>
+			</form>
+			<?php }?>
+
+	<table class="widefat" style="width: 99%;background-color: #FFFBCC" id="xyz_threads_settings_note" >
+	<tr>
+	<td id="bottomBorderNone" style="border: 1px solid #FCC328;">
+	<div>
+
+	<b> <?php _e('Note','social-media-auto-publish'); ?>:</b> <?php _e('You have to create a Facebook application with Access the Threads API as Use case before filling the following details.','social-media-auto-publish'); ?>
+	<b><a href="https://developers.facebook.com/apps" target="_blank"> <?php _e('Click here </a></b>to create new Facebook application.','social-media-auto-publish'); ?>
+	
+	<br> <?php $smap_th_navigate=sprintf(__('In the application page in facebook, navigate to Use cases > Access the Threads API > Customize > Settings. Set Redirect Callback URLs as ','social-media-auto-publish')); echo $smap_th_navigate; ?>:<br>
+	<span style="color: red;"><?php echo admin_url('admin.php?page=social-media-auto-publish-settings&auth=1'); ?></span>
+	<br> <?php printf(
+	__('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
+	'<b><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-threads-application/" target="_blank">',
+	'</a></b>'
+	);
+	?>
+	</div>
+
+	</td>
+	</tr>
+	</table>
+
+	<form method="post" >
+		<?php wp_nonce_field( 'xyz_smap_th_settings_form_nonce' );?>
+	<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
+
+	<table class="widefat xyz_smap_widefat_table"  style="width: 99%;">
+
+	<tr valign="top"><td> <?php _e('Enable auto publish posts to my Threads account','social-media-auto-publish'); ?> </td>
+		<td width="50%" class="switch-field">
+			<label id="xyz_smap_thpost_permission_yes"><input type="radio" name="xyz_smap_thpost_permission" value="1" <?php  if(get_option('xyz_smap_thpost_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
+			<label id="xyz_smap_thpost_permission_no"><input type="radio" name="xyz_smap_thpost_permission" value="0" <?php  if(get_option('xyz_smap_thpost_permission')==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
+		</td>
+	</tr>
+
+
+	<tr valign="top" class="xyz_threads_settings">
+	<td width="50%"> <?php _e('Threads app ID','social-media-auto-publish'); ?>
+	<span class="mandatory">*</span>
+	 </td>
+	<td>
+		<input id="xyz_smap_th_app_id" name="xyz_smap_th_app_id" type="text" value="<?php if($lms1=="") {echo esc_html(get_option('xyz_smap_th_app_id'));}?>"/>
+	</td></tr>
+
+
+	<tr valign="top" class="xyz_threads_settings"><td> <?php _e('Threads app secret','social-media-auto-publish'); ?>
+	<span class="mandatory">*</span> </td>
+	<td>
+		<input id="xyz_smap_th_app_secret" name="xyz_smap_th_app_secret" type="text" value="<?php if($lms2=="") { echo esc_html(get_option('xyz_smap_th_app_secret')); }?>" />
+	</td></tr>
+
+
+
+	<?php if(get_option('xyz_smap_thaf')==0 ){?>
+	<tr valign="top" id="xyz_smap_th_username_label"><td> <?php _e('Threads username','social-media-auto-publish'); ?> </td>
+	<td><input id="xyz_smap_th_username" name="xyz_smap_th_username" type="text" value="<?php if($thms2=="") { echo esc_html(get_option('xyz_smap_th_username')); }?>"  readonly /></td>
+	</tr>
+	<?php }?>
+
+	<tr valign="top">
+					<td> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
+						onmouseover="detdisplay_smap('xyz_th')" onmouseout="dethide_smap('xyz_th')" style="width:13px;height:auto;">
+						<div id="xyz_th" class="smap_informationdiv"
+							style="display: none; font-weight: normal;">
+							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
+							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
+							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
+							{POST_CONTENT} - <?php _e('Insert the description of your post.','social-media-auto-publish'); ?><br/>
+							{BLOG_TITLE} - <?php _e('Insert the name of your blog.','social-media-auto-publish'); ?><br/>
+							{USER_NICENAME} - <?php _e('Insert the nicename of the author.','social-media-auto-publish'); ?><br/>
+							{POST_ID} - <?php _e('Insert the ID of your post.','social-media-auto-publish'); ?><br/>
+							{POST_PUBLISH_DATE} - <?php _e('Insert the publish date of your post.','social-media-auto-publish'); ?><br/>
+							{USER_DISPLAY_NAME} - <?php _e('Insert the display name of the author.','social-media-auto-publish'); ?>
+						</div><br/><span style="color: #0073aa;">[<?php _e('Optional','social-media-auto-publish'); ?>]</span></td>
+	<td>
+	<select name="xyz_smap_th_info" id="xyz_smap_th_info" onchange="xyz_smap_th_info_insert(this)">
+		<option value ="0" selected="selected"> --<?php _e('Select','social-media-auto-publish'); ?>-- </option>
+		<option value ="1">{POST_TITLE}  </option>
+		<option value ="2">{PERMALINK} </option>
+		<option value ="3">{POST_EXCERPT}  </option>
+		<option value ="4">{POST_CONTENT}   </option>
+		<option value ="5">{BLOG_TITLE}   </option>
+		<option value ="6">{USER_NICENAME}   </option>
+		<option value ="7">{POST_ID}   </option>
+		<option value ="8">{POST_PUBLISH_DATE}   </option>
+		<option value ="9">{USER_DISPLAY_NAME}   </option>
+		</select> </td></tr><tr><td>&nbsp;</td><td>
+		<textarea id="xyz_smap_thmessage"  name="xyz_smap_thmessage" style="height:80px !important;" ><?php echo esc_textarea(get_option('xyz_smap_thmessage'));?></textarea>
+	</td></tr>
+
+	<tr valign="top">
+		<td> <?php _e('Posting method','social-media-auto-publish'); ?>
+		</td>
+		<td>
+		<select id="xyz_smap_thpost_method" name="xyz_smap_thpost_method">
+				<option value="1"
+	<?php  if(get_option('xyz_smap_thpost_method')==1) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
+				<option value="2"
+	<?php  if(get_option('xyz_smap_thpost_method')==2) echo 'selected';?>> <?php _e('Attach your blog post','social-media-auto-publish'); ?> </option>
+					<option value="3"
+	<?php  if(get_option('xyz_smap_thpost_method')==3) echo 'selected';?>> <?php _e('Text message with image','social-media-auto-publish'); ?> </option>
+		</select>
+		</td>
+	</tr>
+
+		<tr>
+			<td   id="bottomBorderNone"></td>
+					<td   id="bottomBorderNone"><div style="height: 50px;">
+							<input type="submit" class="submit_smap_new"
+								style=" margin-top: 10px; "
+								name="threads" value="<?php _e('Save','social-media-auto-publish'); ?>" /></div>
+					</td>
+		</tr>
+
+</table>
+
+
+</form>
+</div>
+
 
 	<?php
 
@@ -2696,7 +2941,10 @@ jQuery(document).ready(function() {
 				document.getElementById("xyz_smap_default_tgtab_settings").click();
 
 				<?php }
+	else if(isset($_POST['threads'])|| (isset($_GET['msg']) && $_GET['msg']==10)){?>
+		document.getElementById("xyz_smap_default_thtab_settings").click();
 
+		<?php }
 			else{
 				if (isset($_POST['fb'])){?>
 				document.getElementById("xyz_smap_default_fbtab_settings").click();
@@ -2748,7 +2996,7 @@ jQuery(document).ready(function() {
 
    var smap_toggle_element_ids=['xyz_smap_post_permission','xyz_smap_include_categories','xyz_smap_default_selection_edit','xyz_smap_default_selection_create','xyz_smap_peer_verification',
 		'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate', 'xyz_smap_tbpost_permission',
-		 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
+		 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache','xyz_smap_thpost_permission'];
 
    jQuery.each(smap_toggle_element_ids, function( index, value ) {
 		   checkedval= jQuery("input[name='"+value+"']:checked").val();
@@ -2967,6 +3215,16 @@ function xyz_smap_tg_info_insert(inf){
 
 	}
 
+function xyz_smap_th_info_insert(inf){
+	var e = document.getElementById("xyz_smap_th_info");
+	var ins_opt = e.options[e.selectedIndex].text;
+	if(ins_opt=="0")
+		ins_opt="";
+	var str=jQuery("textarea#xyz_smap_thmessage").val()+ins_opt;
+	jQuery("textarea#xyz_smap_thmessage").val(str);
+	jQuery('#xyz_smap_th_info :eq(0)').prop('selected', true);
+	jQuery("textarea#xyz_smap_thmessage").focus();
+}
 function xyz_smap_show_postCategory(val)
 {
 	if(val==0)
@@ -2982,7 +3240,7 @@ function xyz_smap_show_visibility(val)
 		jQuery('#shareprivate').show();
 }
 var smap_toggle_element_ids=['xyz_smap_post_permission','xyz_smap_include_categories','xyz_smap_default_selection_edit','xyz_smap_default_selection_create','xyz_smap_peer_verification',
-	'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate','xyz_smap_tbpost_permission',
+	'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate','xyz_smap_tbpost_permission','xyz_smap_thpost_permission',
 	 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache'];
 
 jQuery.each(smap_toggle_element_ids, function( index, value ) {
@@ -3102,7 +3360,8 @@ function smap_popup_tw_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 	var smap_solution_url='<?php echo XYZ_SMAP_SOLUTION_AUTH_URL;?>';
 	childWindow = window.open(smap_solution_url+"authorize-twitter/twitter.php?smap_tw_auth_id="+xyz_smap_smapsoln_userid+"&account_id="+account_id+
 			"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source=smap&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
-	return false;	}
+	return false;	
+	}
 }
 
 function smap_popup_connect_to_xyzscripts()
@@ -3113,7 +3372,7 @@ function smap_popup_connect_to_xyzscripts()
 	return false;
 }
 function xyz_smap_ProcessChildMessage(message) {
-	var messageType = message.slice(0,5);
+	var messageType = (typeof message === 'string') ? message.slice(0, 5) : "";
 	if(messageType==="error")
 	{
 		message=message.substring(6);
@@ -3128,7 +3387,8 @@ function xyz_smap_ProcessChildMessage(message) {
 			}, 500);
 		});
 	}
-	var obj1=jQuery.parseJSON(message);
+	var obj1 = (typeof message === 'string') ? jQuery.parseJSON(message) : {};
+	//var obj1=jQuery.parseJSON(message);
 	if(obj1.content &&  obj1.userid && obj1.xyzscripts_user)
 	{
 		var xyz_userid=obj1.userid;var xyz_user_hash=obj1.content;
@@ -3193,42 +3453,6 @@ function xyz_smap_ProcessChildMessage(message) {
     		else{
     		  var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
     		 window.location.href = base_url+'&msg=6';
-	}
-		});
-	}
-
-	else if((obj1.xyz_tw_username) && (obj1.xyz_tw_user_id)){
-	//page updation after smapsolutions twitter authorization
-			var secretkey=obj1.xyz_secretkey;
-
-			var smapsoln_userid=obj1.xyz_smapsoln_userid;
-			var xyz_tw_user_id=obj1.xyz_tw_user_id;
-			var account_id=obj1.xyz_account_id;
-			var xyz_smap_xyzscripts_hash_val=obj1.xyz_smap_xyzscripts_hash_val;
-			var xyz_smap_xyzscripts_user_id=obj1.xyz_smap_xyzscripts_user_id;
-			var xyz_tw_username=obj1.xyz_tw_username;
-			var xyz_smap_tw_account_details_nonce= '<?php echo wp_create_nonce('xyz_smap_tw_account_details_nonce');?>';
-			var dataString = {
-				action: 'xyz_smap_tw_account_details_auto_update',
-
-				smap_secretkey: secretkey,
-				xyz_smap_xyzscripts_user_id: xyz_smap_xyzscripts_user_id,
-				smapsoln_userid:smapsoln_userid,
-				xyz_tw_user_id:xyz_tw_user_id,
-				xyz_tw_username:xyz_tw_username,
-				account_id:account_id,
-				xyz_smap_xyzscripts_hash_val:xyz_smap_xyzscripts_hash_val,
-				dataType: 'json',
-				_wpnonce: xyz_smap_tw_account_details_nonce
-			};
-			jQuery.post(ajaxurl, dataString ,function(response)
-			{
-				if(response==-1)
-				       	alert(xyz_script_smap_var.alert3);
-				else
-				{
-				 var base_url = '<?php echo admin_url('admin.php?page=social-media-auto-publish-settings');?>';//msg -
-		 window.location.href = base_url+'&msg=8';
 				}
 			});
 	}

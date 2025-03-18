@@ -59,7 +59,8 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 			|| (get_option('xyz_smap_ig_token')!="" && get_option('xyz_smap_igpost_permission')==1 && get_option('xyz_smap_ig_app_sel_mode')==0) ||(get_option('xyz_smap_smapsoln_userid_ig')!=0 && get_option('xyz_smap_ig_page_names')!='' && get_option('xyz_smap_ig_app_sel_mode')==1 && get_option('xyz_smap_igpost_permission')==1)
 	    || (get_option('xyz_smap_smapsoln_userid_tw')!=0 && get_option('xyz_smap_tw_app_sel_mode')==1) ||
 	    (get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!="" && get_option('xyz_smap_tbpost_permission')==1)				
-		||(get_option('xyz_smap_bot_token')!="" && get_option('xyz_smap_bot_username')!="" && get_option('xyz_smap_tgpost_permission')==1))
+		||(get_option('xyz_smap_bot_token')!="" && get_option('xyz_smap_bot_username')!="" && get_option('xyz_smap_tgpost_permission')==1)
+		||(get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_th_user_id')!="" && get_option('xyz_smap_thpost_permission')==1))
 	    add_meta_box( 'xyz_smap', '<strong>Social Media Auto Publish </strong>', 'xyz_smap_addpostmetatags',
 	        null, 'normal', 'high',
 	        array(
@@ -288,6 +289,35 @@ if (isBlockEditorPage &&
 					jQuery('#xyz_smap_tgpost_permission_yes').removeClass('xyz_smap_toggle_off');
 					jQuery('#xyz_smap_tgpost_permission_yes').addClass('xyz_smap_toggle_on');
 				}	
+				//Threads
+				if(xyz_smap_default_selection_edit==0 && jQuery("input[name='xyz_smap_thpost_permission']:checked").val()==1) {
+                    
+					document.getElementById("thai").style.display='none';
+					document.getElementById("thmftarea").style.display='none';
+					document.getElementById("thmf").style.display='none';	
+					
+					jQuery('#xyz_smap_thpost_permission_0').prop('checked',true);
+					
+					jQuery('#xyz_smap_thpost_permission_yes').removeClass('xyz_smap_toggle_on');
+					jQuery('#xyz_smap_thpost_permission_yes').addClass('xyz_smap_toggle_off');
+					
+					jQuery('#xyz_smap_thpost_permission_no').removeClass('xyz_smap_toggle_off');
+					jQuery('#xyz_smap_thpost_permission_no').addClass('xyz_smap_toggle_on');                    	                    
+				}
+				else if(xyz_smap_default_selection_edit==1 && jQuery("input[name='xyz_smap_thpost_permission']:checked").val()==0) {
+													 
+					document.getElementById("thai").style.display='';
+					document.getElementById("thmftarea").style.display='';	
+					document.getElementById("thmf").style.display='';	
+					
+					jQuery('#xyz_smap_thpost_permission_1').prop('checked',true);
+					
+					jQuery('#xyz_smap_thpost_permission_no').removeClass('xyz_smap_toggle_on');
+					jQuery('#xyz_smap_thpost_permission_no').addClass('xyz_smap_toggle_off');
+					
+					jQuery('#xyz_smap_thpost_permission_yes').removeClass('xyz_smap_toggle_off');
+					jQuery('#xyz_smap_thpost_permission_yes').addClass('xyz_smap_toggle_on');
+				}
 
 			}
 			}
@@ -302,6 +332,7 @@ var icheckid;
 var tcheckid;
 var tbcheckid;
 var tgcheckid;
+var thcheckid;
 function displaycheck()
 {
 	if(document.getElementById("xyz_smap_post_permission_yes") || document.getElementById("xyz_smap_post_permission_no"))
@@ -323,8 +354,8 @@ function displaycheck()
 
 	if(document.getElementById("xyz_smap_twpost_permission_yes")||document.getElementById("xyz_smap_twpost_permission_no"))
 	{
-var tcheckid=jQuery("input[name='xyz_smap_twpost_permission']:checked").val();
-if(tcheckid==1)
+	var tcheckid=jQuery("input[name='xyz_smap_twpost_permission']:checked").val();
+	if(tcheckid==1)
 		{
 			
 			document.getElementById("twmf").style.display='';
@@ -412,6 +443,24 @@ var tgcheckid=jQuery("input[name='xyz_smap_tgpost_permission']:checked").val();
 			document.getElementById("tgai").style.display='none';			
 		}
 	}
+	if(document.getElementById("xyz_smap_thpost_permission_yes")||document.getElementById("xyz_smap_thpost_permission_no"))
+	{
+	var thcheckid=jQuery("input[name='xyz_smap_thpost_permission']:checked").val();
+	if(thcheckid==1)
+		{
+			
+			document.getElementById("thmf").style.display='';
+			document.getElementById("thmftarea").style.display='';	
+			document.getElementById("thai").style.display='';	
+		}
+		else
+		{
+			
+			document.getElementById("thmf").style.display='none';
+			document.getElementById("thmftarea").style.display='none';
+			document.getElementById("thai").style.display='none';			
+		}
+	}
 
 
 }
@@ -460,6 +509,8 @@ jQuery(document).ready(function() {
 	 var xyz_smap_tgpost_permission=jQuery("input[name='xyz_smap_tgpost_permission']:checked").val();
 	 XyzSmapToggleRadio(xyz_smap_tgpost_permission,'xyz_smap_tgpost_permission');
 
+	 var xyz_smap_thpost_permission=jQuery("input[name='xyz_smap_thpost_permission']:checked").val();
+	 XyzSmapToggleRadio(xyz_smap_thpost_permission,'xyz_smap_thpost_permission'); 
 
 	var wp_version='<?php echo XYZ_SMAP_WP_VERSION; ?>';
 	if (wp_version <= '5.3') {
@@ -553,6 +604,7 @@ function smap_get_categorylist(val)
 				jQuery('#xyz_smap_lnMetabox').hide();
 				jQuery('#xyz_smap_igMetabox').hide();
 				jQuery('#xyz_smap_tgMetabox').hide();
+				jQuery('#xyz_smap_thMetabox').hide();
 			}
 			else
 			{
@@ -561,6 +613,7 @@ function smap_get_categorylist(val)
 				jQuery('#xyz_smap_lnMetabox').show();
 				jQuery('#xyz_smap_igMetabox').show();
 				jQuery('#xyz_smap_tgMetabox').show();
+				jQuery('#xyz_smap_thMetabox').show();
 			}
 		}
 }
@@ -772,8 +825,6 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	</td></tr>
 	<?php 
 	}
-	
-	
 	
 	if((get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_tw_app_sel_mode')==0) || (get_option('xyz_smap_tw_app_sel_mode')==1 && get_option('xyz_smap_smapsoln_userid_tw')!=0))
 	{
@@ -1035,7 +1086,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		<textarea id="xyz_smap_lnmessage"  name="xyz_smap_lnmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_smap_lnmessage);?></textarea>
 	</td></tr>
 	<tr valign="top" id="lnpm">
-		<td> <?php _e('Posting method','social-media-auto-publish'); ?> </td>
+		<td  class="xyz_smap_pleft15"> <?php _e('Posting method','social-media-auto-publish'); ?> </td>
 		<td>
 		<select id="xyz_smap_lnpost_method" name="xyz_smap_lnpost_method">
 				<option value="1"
@@ -1146,6 +1197,100 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<?php }?>
 	</td></tr>
 	<?php }
+
+
+if( get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_thaf')!=1 && get_option('xyz_smap_thpost_permission')!=0  )
+{
+	$postid=0;
+	if (isset($_GET['post']))
+		$postid=intval($_GET['post']);
+	$post_permission=get_option('xyz_smap_thpost_permission');
+	$get_post_meta_future_data='';
+	if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+		$get_post_meta_future_data=get_post_meta($postid,"xyz_smap_th_future_to_publish",true);
+	if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_th_permission']))
+	{
+		$post_permission=$get_post_meta_future_data['post_th_permission'];
+		$xyz_smap_thpost_method=$get_post_meta_future_data['xyz_smap_thpost_method'];
+		$xyz_th_message=$get_post_meta_future_data['xyz_th_message'];
+	}
+	else {
+		$xyz_smap_thpost_method=get_option('xyz_smap_thpost_method');
+		$xyz_th_message=get_option('xyz_smap_thmessage');
+	}
+?>
+
+<tr id="xyz_smap_thMetabox"><td colspan="2" >
+<?php  if(get_option('xyz_smap_thpost_permission')==1) {?>
+<table class="xyz_smap_meta_acclist_table"><!-- TW META -->
+
+
+<tr>
+	<td colspan="2" class="xyz_smap_pleft15 xyz_smap_meta_acclist_table_td"><strong> <?php _e('Threads','social-media-auto-publish'); ?> </strong>
+	</td>
+</tr>
+
+<tr><td colspan="2" valign="top">&nbsp;</td></tr>
+
+<tr valign="top">
+	<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my threads account','social-media-auto-publish'); ?>
+	</td>
+  <td  class="switch-field">
+	<label id="xyz_smap_thpost_permission_yes"><input type="radio" name="xyz_smap_thpost_permission" id="xyz_smap_thpost_permission_1" value="1" <?php  if ($post_permission==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
+	<label id="xyz_smap_thpost_permission_no"><input type="radio" name="xyz_smap_thpost_permission" id="xyz_smap_thpost_permission_0" value="0" <?php if ($post_permission==0) echo "checked";?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
+ </td>
+</tr>
+
+<tr valign="top" id="thai">
+	<td class="xyz_smap_pleft15"> <?php _e('Posting method','social-media-auto-publish'); ?> 
+	</td>
+	<td><select id="xyz_smap_thpost_method" name="xyz_smap_thpost_method">
+			<option value="1" <?php  if($xyz_smap_thpost_method==1) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
+			<option value="2" <?php  if($xyz_smap_thpost_method==2) echo 'selected';?>> <?php _e('Attach your blog post','social-media-auto-publish'); ?> </option>
+			<option value="3" <?php  if($xyz_smap_thpost_method==3) echo 'selected';?>> <?php _e('Text message with image','social-media-auto-publish'); ?> </option>
+	</select>
+	</td>
+</tr>
+
+<tr valign="top" id="thmf">
+	<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
+					onmouseover="detdisplay_smap('xyz_th')" onmouseout="dethide_smap('xyz_th')">
+					<div id="xyz_th" class="smap_informationdiv" style="display: none; font-weight: normal;">
+						{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
+						{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
+						{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
+						{POST_CONTENT} - <?php _e('Insert the description of your post.','social-media-auto-publish'); ?><br/>
+						{BLOG_TITLE} - <?php _e('Insert the name of your blog.','social-media-auto-publish'); ?><br/>
+						{USER_NICENAME} - <?php _e('Insert the nicename of the author.','social-media-auto-publish'); ?><br/>
+						{POST_ID} - <?php _e('Insert the ID of your post.','social-media-auto-publish'); ?><br/>
+						{POST_PUBLISH_DATE} - <?php _e('Insert the publish date of your post.','social-media-auto-publish'); ?><br/>
+						{USER_DISPLAY_NAME} - <?php _e('Insert the display name of the author.','social-media-auto-publish'); ?>
+					</div>
+		</td>
+	
+	
+		<td>
+		<select name="xyz_smap_th_info" id="xyz_smap_th_info" onchange="xyz_smap_th_info_insert(this)">
+			<option value ="0" selected="selected"> --<?php _e('Select','social-media-auto-publish'); ?>-- </option>
+			<option value ="1">{POST_TITLE}  </option>
+			<option value ="2">{PERMALINK} </option>
+			<option value ="3">{POST_EXCERPT}  </option>
+			<option value ="4">{POST_CONTENT}   </option>
+			<option value ="5">{BLOG_TITLE}   </option>
+			<option value ="6">{USER_NICENAME}   </option>
+			<option value ="7">{POST_ID}   </option>
+			<option value ="8">{POST_PUBLISH_DATE}   </option>
+			<option value ="9">{USER_DISPLAY_NAME}   </option>
+			</select> </td></tr>
+			
+			<tr id="thmftarea"><td>&nbsp;</td><td>
+			<textarea id="xyz_smap_thmessage"  name="xyz_smap_thmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_th_message);?></textarea>
+		</td></tr>
+
+		</table>
+		<?php }?>
+		</td></tr>
+<?php }
 	
 	
 	?>
@@ -1195,6 +1340,10 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 				
 		jQuery('#xyz_smap_tgpost_permission_0').attr('checked',true);
 		displaycheck();
+		//TH 
+	
+		jQuery('#xyz_smap_thpost_permission_0').attr('checked',true);
+		displaycheck();
 	}
 function load_create_action()
 	{
@@ -1205,12 +1354,11 @@ function load_create_action()
 		if(xyz_smap_default_selection_create==1 ||xyz_smap_default_selection_create==2)
 			return;
 		//FB 
-	jQuery('#xyz_smap_post_permission_0').attr('checked',true);
+		jQuery('#xyz_smap_post_permission_0').attr('checked',true);
 		displaycheck();
         //TW 
 		jQuery('#xyz_smap_twpost_permission_0').attr('checked',true);
 		displaycheck();
-
 		//TB 
 		jQuery('#xyz_smap_tbpost_permission_0').attr('checked',true);
 		displaycheck();
@@ -1221,6 +1369,9 @@ function load_create_action()
 		jQuery('#xyz_smap_igpost_permission_0').attr('checked',true);
 		displaycheck();
 		jQuery('#xyz_smap_tgpost_permission_0').attr('checked',true);
+		displaycheck();
+		//TH 
+		jQuery('#xyz_smap_thpost_permission_0').attr('checked',true);
 		displaycheck();
 	}
 
@@ -1297,6 +1448,19 @@ function load_create_action()
 	    jQuery("textarea#xyz_smap_tgmessage").focus();
 
 	}
+
+	function xyz_smap_th_info_insert(inf){
+		
+	    var e = document.getElementById("xyz_smap_th_info");
+	    var ins_opt = e.options[e.selectedIndex].text;
+	    if(ins_opt=="0")
+	    	ins_opt="";
+	    var str=jQuery("textarea#xyz_smap_thmessage").val()+ins_opt;
+	    jQuery("textarea#xyz_smap_thmessage").val(str);
+	    jQuery('#xyz_smap_th_info :eq(0)').prop('selected', true);
+	    jQuery("textarea#xyz_smap_thmessage").focus();
+
+	}
 	
 	jQuery("#xyz_smap_twpost_permission_no").click(function(){
 		displaycheck();
@@ -1355,6 +1519,17 @@ function load_create_action()
 	jQuery("#xyz_smap_tgpost_permission_yes").click(function(){
 		displaycheck();
 		XyzSmapToggleRadio(1,'xyz_smap_tgpost_permission');
+		
+	});
+
+	jQuery("#xyz_smap_thpost_permission_no").click(function(){
+		displaycheck();
+		XyzSmapToggleRadio(0,'xyz_smap_thpost_permission');
+		
+	});
+	jQuery("#xyz_smap_thpost_permission_yes").click(function(){
+		displaycheck();
+		XyzSmapToggleRadio(1,'xyz_smap_thpost_permission');
 		
 	});
 	

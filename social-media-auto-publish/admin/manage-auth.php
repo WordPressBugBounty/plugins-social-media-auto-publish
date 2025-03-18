@@ -50,7 +50,7 @@ color:#2f2f2f ;
 .widefat tr:hover {background-color: #cccccc;}
 
 
-.delete_auth_entry,.delete_ln_auth_entry,.delete_tw_auth_entry,.delete_ig_auth_entry,.delete_inactive_fb_entry,.delete_inactive_ln_entry,.delete_inactive_ig_entry,.delete_inactive_tw_entry{background-color: #00a0d2;
+.delete_auth_entry,.delete_ln_auth_entry,.delete_ig_auth_entry,.delete_inactive_fb_entry,.delete_inactive_ln_entry,.delete_inactive_ig_entry{background-color: #00a0d2;
 border: none;
 padding: 5px 10px;
 color: #fff;
@@ -58,7 +58,7 @@ border-radius: 2px;
 outline:0;
 }
 
-.delete_auth_entry:hover,.delete_ln_auth_entry:hover,.delete_tw_auth_entry:hover,.delete_ig_auth_entry:hover{background-color:#008282;}
+.delete_auth_entry:hover,.delete_ln_auth_entry:hover,.delete_ig_auth_entry:hover{background-color:#008282;}
 
 .select_box
 {
@@ -219,72 +219,6 @@ jQuery(document).ready(function() {
 	    });
 	});
 /////////////////////////////////LinkedIn Ajax//////////////////////////////////////////////	
-
-/////////////////////////////////Twitter Ajax//////////////////////////////////////////////
-	jQuery('#tw_auth_entries_div').show();
-	jQuery("#tw_show_same_domain").attr('checked', true);
-	jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').hide();
-	jQuery('#tw_smap_manage_auth_table tr:has(td.tw_same_domain)').show();
-
-	jQuery("#tw_show_all").click(function(){
-		jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').show();
-		jQuery('#tw_smap_manage_auth_table tr:has(td.tw_same_domain)').show();
-	});
-		jQuery("#tw_show_same_domain").click(function(){
-			jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').hide();
-			jQuery('#tw_smap_manage_auth_table tr:has(td.tw_same_domain)').show();
-		});
-			jQuery("#tw_show_diff_domain").click(function(){
-				jQuery('#tw_smap_manage_auth_table tr:has(td.tw_diff_domain)').show();
-				jQuery('#tw_smap_manage_auth_table tr:has(td.tw_same_domain)').hide();
-			});
-				jQuery(".delete_tw_auth_entry").off('click').on('click', function() {
-	    var tw_auth_id=jQuery(this).attr("data-auth_id");
-	    var plugin_src=jQuery(this).attr("data-plugin-src");
-	    jQuery("#show-del-icon_"+tw_auth_id).hide();
-	    jQuery("#ajax-save_"+tw_auth_id).show();
-	    var xyzscripts_user_hash=jQuery(this).attr("data-xyzscripts_hash");
-	    var xyzscripts_id=jQuery(this).attr("data-xyzscriptsid");
-		var account_id =jQuery(this).attr("data-tw_account_id");
-	    var xyz_smap_del_entries_tw_nonce= '<?php echo wp_create_nonce('xyz_smap_del_entries_tw_nonce');?>';
-	    var dataString = {
-	    	action: 'xyz_smap_del_tw_entries',
-	    	tw_auth_id: tw_auth_id ,
-	    	account_id: account_id,
-	    	xyzscripts_id: xyzscripts_id,
-	    	plugin_src:plugin_src,
-	    	xyzscripts_user_hash: xyzscripts_user_hash,
-	    	dataType: 'json',
-	    	_wpnonce: xyz_smap_del_entries_tw_nonce
-	    };
-	    jQuery.post(ajaxurl, dataString ,function(data) {
-	    	jQuery("#ajax-save_"+tw_auth_id).hide();
-	    	 if(data==1)
-			       	alert(xyz_script_smap_var.alert3);
-			else{
-	    	var data=jQuery.parseJSON(data);
-	    	if(data.status==1){
-	    		jQuery(".tr_"+tw_auth_id).remove();
-	    		if(jQuery('#system_notice_area').length==0)
-	    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-	    			jQuery("#system_notice_area").html(xyz_script_smap_var.html1); 
- 			  	jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-	    			jQuery("#system_notice_area").show();
-	    			jQuery('#system_notice_area_dismiss').click(function() {
-	    				jQuery('#system_notice_area').animate({
-	    					opacity : 'hide',
-	    					height : 'hide'
-	    				}, 500);
-	    			});
-	    	}
-	    	else if(data.status==0 )
-	    	{
-	    		jQuery("#show_err_"+tw_auth_id).append(data.msg );
-	    	}
-	    }
-	    });
-	});
-/////////////////////////////////Twitter Ajax//////////////////////////////////////////////				
 			
 			
 /////////////////////////////////Instagram Ajax//////////////////////////////////////////////
@@ -475,53 +409,7 @@ jQuery(".delete_inactive_ln_entry").off('click').on('click', function() {
     });
   });
 ///////////////////////////////////////////////////////////////////
-//////////////////////////////DELETE INACTIVE TW ACCOUNT///////////
-jQuery(".delete_inactive_tw_entry").off('click').on('click', function() {
-    var inactive_tw_userid=jQuery(this).attr("data-twid");
-    var tr_iterationid=jQuery(this).attr("data-tw_iterationid");
-    jQuery("#show-del-icon-inactive-tw_"+tr_iterationid).hide();
-    jQuery("#ajax-save-inactive-tw_"+tr_iterationid).show();
-    var xyzscripts_user_hash=jQuery(this).attr("data-xyzscripts_hash");
-    var xyzscripts_id=jQuery(this).attr("data-xyzscriptsid");
-    var xyz_smap_del_twuser_entries_nonce= '<?php echo wp_create_nonce('xyz_smap_del_twuser_entries_nonce');?>';
-    var dataString = {
-    	action: 'xyz_smap_del_twuser_entries',
-    	tr_iterationid: tr_iterationid ,
-    	xyzscripts_id: xyzscripts_id,
-    	xyzscripts_user_hash: xyzscripts_user_hash,
-    	inactive_tw_userid: inactive_tw_userid,
-    	dataType: 'json',
-    	_wpnonce: xyz_smap_del_twuser_entries_nonce
-    };
-    jQuery.post(ajaxurl, dataString ,function(data) {
-    	jQuery("#ajax-save-inactive-tw_"+tr_iterationid).hide();
-    	 if(data==1)
-		       	alert(xyz_script_smap_var.alert3);
-		else{
 
-    	var data=jQuery.parseJSON(data);
-    	if(data.status==1){
-    		jQuery(".tr_inactive"+tr_iterationid).remove();
-    		if(jQuery('#system_notice_area').length==0)
-    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html6); 
- 			jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-    			jQuery("#system_notice_area").show();
-    			jQuery('#system_notice_area_dismiss').click(function() {
-    				jQuery('#system_notice_area').animate({
-    					opacity : 'hide',
-    					height : 'hide'
-    				}, 500);
-    			});
-    	}
-    	else if(data.status==0 )
-    	{
-    		jQuery("#show_err_inactive_tw_"+tr_iterationid).append(data.msg );
-    	}
-    }
-    });
-  });
-///////////////////////////////////////////////////////////////////
 //////////////////////////////DELETE INACTIVE IG ACCOUNT///////////
 jQuery(".delete_inactive_ig_entry").off('click').on('click', function() {
     var inactive_ig_userid=jQuery(this).attr("data-igid");
@@ -600,8 +488,6 @@ if(media=='facebook')
 		childWindow=window.open(smap_solution_url+"authorize_linkedIn/linkedin.php?smap_ln_auth_id="+xyz_smap_pre_smapsoln_userid+"&account_id="+account_id+"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source="+smap_plugin_source+"&smap_api_upgrade=1&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
 	else if(media=='instagram')
 		childWindow=window.open(smap_solution_url+"authorize-instagram/instagram.php?smap_id=="+xyz_smap_pre_smapsoln_userid+"&account_id="+account_id+"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source="+smap_plugin_source+"&smap_api_upgrade=1&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
-	else if(media=='twitter')
-		childWindow=window.open(smap_solution_url+"authorize-twitter/twitter.php?smap_tw_auth_id="+xyz_smap_pre_smapsoln_userid+"&account_id="+account_id+"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source="+smap_plugin_source+"&smap_api_upgrade=1&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
 	return false;
 }
 	</script>
@@ -614,7 +500,6 @@ if(media=='facebook')
    
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_instagram_auths')" id="xyz_smap_ig_auth_tab"> <?php _e('Instagram Authorizations','social-media-auto-publish'); ?> </button>
    
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_twitter_auths')" id="xyz_smap_tw_auth_tab"> <?php _e('Twitter Authorizations','social-media-auto-publish'); ?> </button>
    
 </div>
 <div id="xyz_smap_facebook_auths" class="xyz_smap_tabcontent">
@@ -1043,141 +928,6 @@ if($result_ig['status']==1 || isset($result_ig['package_details'])){
 					</div>	<br/><?php
 }
 ?></div>
-<!-- Twitter  -->
-<div id="xyz_smap_twitter_auths" class="xyz_smap_tabcontent">
-	<?php
-// 	$url_ln=XYZ_SMAP_SOLUTION_AUTH_URL.'authorize_instagram/manage-authorizations.php';
-	$url_tw=XYZ_SMAP_SOLUTION_AUTH_URL.'authorize-twitter/manage-tw-authorizations.php';
-$content_tw=xyz_smap_post_to_smap_api($manage_auth_parameters,$url_tw,$xyzscripts_hash_val);
-$result_tw=json_decode($content_tw,true);//print_r($result_tw);//die;
-if(!empty($result_tw) && isset($result_tw['status']))
-{
-	if($result_tw['status']==0)
-	{
-	$er_msg=$result_tw['msg'];
-	echo '<div style="color:red;font-size:15px;">'.$er_msg.'</div>';
-	}
-	if($result_tw['status']==1 || isset($result_tw['package_details'])){
-		$tw_auth_entries=$result_tw['msg'];
-		?>
-		<div id="tw_auth_entries_div" style="margin-bottom: 5px;">
-					<br/>
-					<?php if(!empty($result_tw) && isset($result_tw['package_details']))
-					{
-						?><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?> :</div><?php 
-						$tw_package_details=$result_tw['package_details'];?>
-						<div class="xyz_smap_plan_div"> <?php _e('Allowed Twitter users','social-media-auto-publish'); ?> : <?php echo $tw_package_details['allowed_tw_user_accounts'];?> &nbsp;</div>
-						<div  class="xyz_smap_plan_div"> <?php _e('API limit per account','social-media-auto-publish'); ?>  :  <?php echo $tw_package_details['allowed_twapi_calls'];?> <?php _e('per hour','social-media-auto-publish'); ?> &nbsp;</div>
-						<div  class="xyz_smap_plan_div"> <?php _e('Package Expiry','social-media-auto-publish'); ?>  :  <?php echo date('d/m/Y g:i a', $tw_package_details['tw_expiry_time']);?>  &nbsp;</div>
-						<div  class="xyz_smap_plan_div"> <?php _e('Package Status','social-media-auto-publish'); ?>  :  <?php echo $tw_package_details['package_status'];?> &nbsp;</div>
-						<?php 
-// 						if ($tw_package_details['package_status']=='Expired')
-						{
-							$xyz_smap_accountId=$xyz_smap_pre_smapsoln_userid=0;
-							$request_hash=md5($xyzscripts_user_id.$xyzscripts_hash_val);
-							$auth_secret_key=md5('smapsolutions'.$domain_name.$xyz_smap_accountId.$xyz_smap_pre_smapsoln_userid.$xyzscripts_user_id.$request_hash.$xyz_smap_licence_key.$free_plugin_source.'1');
-							?>
-							<div  class="xyz_smap_plan_div">
-							<a href="javascript:smap_popup_purchase_plan('<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>','twitter');void(0);">
-							<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; <?php _e('Upgrade/Renew','social-media-auto-publish'); ?> 
-							</a> 
-							</div>
-							<?php 
-						}
-					}
-					if (is_array($tw_auth_entries) && !empty($tw_auth_entries)){
-					?><br/>
-						<span class="select_box"  style="float: left;margin-top: 16px;" >
-						<input type="radio" name="tw_domain_selection" value="0" id="tw_show_all"> <?php _e('Show all entries','social-media-auto-publish'); ?> 
-						<input type="radio" name="tw_domain_selection" value="1" id="tw_show_same_domain"> <?php _e('Show entries from current wp installation','social-media-auto-publish'); ?>  
-						<input type="radio" name="tw_domain_selection" value="2" id="tw_show_diff_domain" > <?php _e('Show entries from other wp installations','social-media-auto-publish'); ?> 
-						</span>
-						<table cellpadding="0" cellspacing="0" class="widefat" style="width: 99%; margin: 0 auto; border-bottom:none;" id="tw_smap_manage_auth_table">
-						<thead>
-						<tr class="xyz_smap_manage_auth_th_tw">
-						<th scope="col" width="13%"> <?php _e('Twitter user name','social-media-auto-publish'); ?> </th>
 
-						<th scope="col" width="10%"> <?php echo $smap_wp_url; ?> </th>
-						<th scope="col" width="10%"> <?php _e('Plugin','social-media-auto-publish'); ?> </th>
-						<th scope="col" width="5%"> <?php  echo $smap_premium_title; ?> </th>
-						<th scope="col" width="5%"> <?php _e('Action','social-media-auto-publish'); ?> </th>
-						</tr>
-						</thead> <?php
-						$i=0;
-						foreach ($tw_auth_entries as $tw_auth_entries_key => $tw_auth_entries_val)
-						{ 
-						    //echo 'dsfsdf';print_r($tw_auth_entries_val);
-// 							if (isset($tw_auth_entries_val['auth_id'])){
-							    if (isset($tw_auth_entries_val['tw_username'])){
-							?>
-							 <tr class="tr_<?php echo $tw_auth_entries_val['auth_id'];?>">
-							 <td><?php  echo $tw_auth_entries_val['tw_username'];?>
-							 	</td>
 						
-							 	<?php 	if($tw_auth_entries_val['domain_name']==$domain_name){?>
-							 	<td class='tw_same_domain'> <?php echo $tw_auth_entries_val['domain_name'];?> </td>
-							 	<?php }
-							 	else{?>
-							 	<td class='tw_diff_domain'> <?php echo $tw_auth_entries_val['domain_name'];?> </td>
-							 	<?php } ?>
-							 	<td> <?php
-							 	if($tw_auth_entries_val['free_plugin_source']=='twap')
-							 		echo 'WP TWITTER AUTO PUBLISH';
-							 		elseif ($tw_auth_entries_val['free_plugin_source']=='smap')
-							 		echo 'SOCIAL MEDIA AUTO PUBLISH';
-							 		elseif ($tw_auth_entries_val['free_plugin_source']=='pls')
-							 		echo 'XYZ WP SMAP Premium Plus';
-							 		else echo 'XYZ WP SMAP Premium';
-							 		?></td>
-							 		<td> <?php if($tw_auth_entries_val['smap_pre_account_id']!=0){echo $tw_auth_entries_val['smap_pre_account_id'];}
-							 		else _e('Not Applicable','social-media-auto-publish'); ?> </td>
-							 		<td>
-							 		<?php
-							 		if ($domain_name==$tw_auth_entries_val['domain_name'] && $free_plugin_source==$tw_auth_entries_val['free_plugin_source'] ) {
-							 		?>
-							 		<span id='ajax-save_<?php echo $tw_auth_entries_val['auth_id'];?>' style="display:none;"><img	title="Deleting entry"	src="<?php echo plugins_url("images/ajax-loader.gif",XYZ_SMAP_PLUGIN_FILE);?>" style="width:20px;height:20px; "/></span>
-							 		<span id='show-del-icon_<?php echo $tw_auth_entries_val['auth_id'];?>'>
-							 		<input type="button" class="delete_tw_auth_entry" data-auth_id=<?php echo $tw_auth_entries_val['auth_id'];?> data-tw_account_id=<?php echo $tw_auth_entries_val['smap_pre_account_id'];?>   data-plugin-src=<?php echo $tw_auth_entries_val['free_plugin_source'];?> data-xyzscriptsid="<?php echo $xyzscripts_user_id;?>" data-xyzscripts_hash="<?php echo $xyzscripts_hash_val;?>" name='del_tw_entry' value="<?php _e('Delete','social-media-auto-publish'); ?>" >
-							 		</span>
-							 		<span id='show_err_<?php echo $tw_auth_entries_val['auth_id'];?>' style="color:red;" ></span>
-							 		<?php
-							 		?></td>
-							 		</tr>
-							 		<?php
-							 		}
-							}
-							else if (isset($tw_auth_entries_val['inactive_tw_userid']))
-							{
-								?>
-						 <tr class="tr_inactive<?php echo $i;?>">
-						 <td><?php  echo $tw_auth_entries_val['inactive_tw_username'];?><br/> <?php _e('(Inactive)','social-media-auto-publish'); ?> 
-						 </td>
-						 <td>-</td>
-						 <td>-</td>
-						 <td>-</td>
-						 <td>-</td>
-						 <td>
-						 <span id='ajax-save-inactive-tw_<?php echo $i;?>' style="display:none;"><img	title="Deleting entry"	src="<?php echo plugins_url("images/ajax-loader.gif",XYZ_SMAP_PLUGIN_FILE);?>" style="width:20px;height:20px; "></span>
-						 <span id='show-del-icon-inactive-tw_<?php echo $i;?>'>
-						 <input type="button" class="delete_inactive_tw_entry" data-tw_iterationid=<?php echo $i;?> data-twid=<?php echo $tw_auth_entries_val['inactive_tw_userid'];?>  data-xyzscriptsid="<?php echo $xyzscripts_user_id;?>" data-xyzscripts_hash="<?php echo $xyzscripts_hash_val;?>" name='del_entry' value="<?php _e('Delete','social-media-auto-publish'); ?>" >
-						 </span>
-						 <span id='show_err_inactive_tw_<?php echo $i;?>' style="color:red;" ></span>
-						 </td>
-						 </tr>
-						<?php 
-							$i++;
-						}
-						}///////////////foreach
-					?>
-					<tr id="xyz_smap_no_auth_entries_tw" style="display: none;"><td> <?php _e('No Authorizations','social-media-auto-publish'); ?> </td></tr>
-					</table>
-					<br/>
-	<?php  }?>
-					</div>	<br/><?php
-}
-}
-else { ?>
-	<div> <?php _e('Unable to connect. Please check your curl and firewall settings','social-media-auto-publish'); ?> </div>
-<?php } ?>
-</div>
 </div>

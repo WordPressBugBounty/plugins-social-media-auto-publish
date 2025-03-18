@@ -1,50 +1,49 @@
-<?php 
+<?php
 if( !defined('ABSPATH') ){ exit();}
 ?></div>
 <?php
 if(get_option('xyz_smap_premium_version_ads')==1){?>
 <div id="xyz-wp-smap-premium">
-
-	<div style="float: left; padding: 0 5px">
-		<h2 style="vertical-align: middle;">
-		<a target="_blank" href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/features"> 
-		<?php $smap_plugin="XYZ WP SMAP Premium";
-		      $smap_plugin_msg=sprintf(__('Fully Featured %s Plugin','social-media-auto-publish'),$smap_plugin); 
-	     echo $smap_plugin_msg; ?> </a> - <?php _e('Just 29 USD','social-media-auto-publish'); ?>
-		</h2>
-	</div>
-	<div class="xyz-smap-buy-now">
-<a target="_blank" href="https://xyzscripts.com/members/product/purchase/XYZWPSMPPRE"><img 
-            src="<?php  echo plugins_url("images/orange_buynow.png",XYZ_SMAP_PLUGIN_FILE); ?>">
-		</a>
-	</div>
-	<div style="float: left; padding: 0 5px">
-<h2 style="vertical-align: middle;text-shadow: 1px 1px 1px #686868">
-( <a 	href="<?php echo admin_url('admin.php?page=social-media-auto-publish-about');?>"> <?php _e('Compare Features','social-media-auto-publish'); ?> </a>) 
-
-</h2>		
-	</div>
+      <div class="ContentCenter">
+            <a target="_blank" href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/features">🚀 Upgrade to the Fully Featured XYZ WP Social Media Auto Publish Premium Plugin for </a>
+             <span style="font-size: 28px; color:#fbff00;"> Just 29 USD</span>
+      <br/><span style="font-size: 14px;color:#fff;">Unlock advanced scheduling, multi-account publishing, hashtag automation, and seamless social media integration!</span>
+    </div>
+				<div class="clear"></div>
+	<div class="ButtonWrap">
+    <div class="BuyNowButton">
+        <a target="_blank"
+            href="https://xyzscripts.com/members/product/purchase/XYZWPSMPPRE">🛒 Buy Now
+        </a>
+    </div>
+    <div class="CompareButton">
+    <h2>
+            <a 	href="<?php echo admin_url('admin.php?page=social-media-auto-publish-about');?>"> <?php _e('Compare Features','social-media-auto-publish'); ?> </a>
+        </h2>
+    </div>
+		</div>
 </div>
 <?php }?>
 
-<div style="clear: both;"></div>
+<div style="clear: both;">
+</div>
 
 
+<div class="xyz-smap-wrap">
 
-<div style="width: 100%">
-		
 <div class="xyz_smap_social_media">
 <h3 class="xyz_smap_inner_head"> <?php _e('Follow Us','social-media-auto-publish'); ?> </h3>
    <a target="_blank" href="http://facebook.com/xyzscripts" class="xyz_home_fbook"></a>
    <a target="_blank" href="http://twitter.com/xyzscripts" class="xyz_home_twitt"></a>
+        <a target="_blank" href="https://www.instagram.com/xyz_scripts/" class="xyz_home_insta"></a>
  <a style="margin-right:0px;" target="_blank" href="https://www.linkedin.com/company/xyzscripts" class="xyz_home_linkedin"></a>
 </div>
 
 <div class="xyz_smap_sugession">
 <h3 class="xyz_smap_inner_head"> <?php _e('Support','social-media-auto-publish'); ?> </h3>
-<p style="width:100%;"><a target="_blank" href="https://xyzscripts.com/donate/5" > <?php _e('Donate','social-media-auto-publish'); ?> </a></p>
+
 <p style="width:100%;"><a target="_blank" href="https://xyzscripts.com/support/" > <?php _e('Contact Us','social-media-auto-publish'); ?> </a></p>
-<p><a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" > <?php _e('Please Rate Us','social-media-auto-publish'); ?> 
+<p><a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" > <?php _e('Please Rate Us','social-media-auto-publish'); ?>
  </a></p>
 <a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" ><span class="xyz_new_star"></span></a>
 
@@ -60,7 +59,7 @@ function check_email(emailString)
     var matchArray = emailString.match(mailPattern);
     if (emailString.length == 0)
     return false;
-       
+
     if (matchArray == null)    {
     return false;
     }else{
@@ -68,22 +67,22 @@ function check_email(emailString)
     }
 }
 
-   
+
 function verify_lists(form)
 {
-   
+
     var total=0;
     var checkBox=form['chk[]'];
-   
+
     if(checkBox.length){
-   
+
     for(var i=0;i<checkBox.length;i++){
     checkBox[i].checked?total++:null;
     }
     }else{
-       
+
     checkBox.checked?total++:null;
-       
+
     }
     if(total>0){
     return true;
@@ -92,7 +91,7 @@ function verify_lists(form)
     }
 
 }
-   
+
 function verify_fields()
 {
 
@@ -116,15 +115,15 @@ function verify_fields()
 <input type="hidden" name="redirPending" value="https://xyzscripts.com/subscription/active/XYZWPSMPPRE">
 <input type="hidden" name="mode" value="1">
 <input class="xyz_smap_name"  type="text" placeholder="<?php _e('Name','social-media-auto-publish'); ?>" name="field1" value="<?php
-if ($current_user->user_firstname != "" || $current_user->user_lastname != "") 
+if ($current_user->user_firstname != "" || $current_user->user_lastname != "")
 {
     echo esc_html($current_user->user_firstname . " " . $current_user->user_lastname);
-} 
-else if (strcasecmp($current_user->display_name, 'admin')!=0 && strcasecmp($current_user->display_name , "administrator")!=0 ) 
+}
+else if (strcasecmp($current_user->display_name, 'admin')!=0 && strcasecmp($current_user->display_name , "administrator")!=0 )
 {
     echo esc_html($current_user->display_name);
-} 
-else if (strcasecmp($current_user->user_login ,"admin")!=0 && strcasecmp($current_user->user_login , "administrator")!=0 ) 
+}
+else if (strcasecmp($current_user->user_login ,"admin")!=0 && strcasecmp($current_user->user_login , "administrator")!=0 )
 {
     echo esc_html($current_user->user_login);
 }
@@ -137,13 +136,11 @@ type="text" placeholder="<?php _e('Email','social-media-auto-publish'); ?>" valu
 
 <input type="hidden" name="listName" value="7,1,"/>
 </form>
-</div>   
-<div class="xyz_smap_inmotion">
-   <a target="_blank" href="http://inmotion-hosting.evyy.net/c/1150074/260033/4222">
-   <img src="<?php echo plugins_url()?>/social-media-auto-publish/images/xyz.png" class="xyz_inmotion_label"></a></div>
+</div>
 </div>
 
-<div style="clear: both;"></div>
+<div style="clear: both;">
+</div>
 <div style="width: 100%">
 
 <div class="xyz_our_plugins_new">
@@ -167,7 +164,7 @@ type="text" placeholder="<?php _e('Email','social-media-auto-publish'); ?>" valu
     <a target="_blank"  href="https://wordpress.org/plugins/wp-gallery-manager/"><span>16</span>  WP Gallery Manager</a>
 </div>
 </div>
-<div class="xyz_smap_poweredBy">  
+<div class="xyz_poweredBy">
 <?php _e('Powered by','social-media-auto-publish'); ?> <a href="http://xyzscripts.com" target="_blank">XYZScripts</a>
 </div>
 <div style="clear: both;"></div>

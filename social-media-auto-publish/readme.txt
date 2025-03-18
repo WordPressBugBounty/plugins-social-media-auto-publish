@@ -1,13 +1,13 @@
 === Social Media Auto Publish ===
 Contributors: f1logic
 Donate link: https://xyzscripts.com/donate/
-Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies, publish to telegram
+Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to threads,  post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies, publish to telegram
 Requires at least: 3.0
-Tested up to: 6.7.1
-Stable tag: 3.4.1
+Tested up to: 6.7.2
+Stable tag: 3.5
 License: GPLv2 or later
 
-Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn and Telegram.
+Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn, Threads and Telegram.
 
 == Description ==
 
@@ -27,12 +27,12 @@ A quick look into Social Media Auto Publish :
 	★ Filter items  to be published based on categories
 	★ Filter items to be published based on custom post types
 	★ Enable or disable wordpress page publishing
-	★ Customizable  message formats for Twitter, LinkedIn, Instagram, Tumblr, Facebook and Telegram
+	★ Customizable  message formats for Twitter, LinkedIn, Instagram, Tumblr, Facebook, Threads and Telegram
 
 
 = Social Media Auto Publish Features in Detail =
 
-The Social Media Auto Publish lets you publish posts automatically from your blog to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn and Telegram. The plugin supports filtering posts based on  custom post-types as well as categories.
+The Social Media Auto Publish lets you publish posts automatically from your blog to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn, Threads and Telegram. The plugin supports filtering posts based on  custom post-types as well as categories.
 
 The prominent features of  the social media auto publish plugin are highlighted below.
 
@@ -46,6 +46,7 @@ The various social media supported are listed below.
     Instagram
     Tumblr
     Telegram
+    Threads
 
 = Filter Settings =
 
@@ -57,7 +58,7 @@ The plugin offers multiple kinds of filters for contents to be published automat
 
 = Message Format Settings =
 
-    Separate message format for Facebook, Twitter, Instagram, Tumblr, LinkedIn and Telegram
+    Separate message format for Facebook, Twitter, Instagram, Tumblr, LinkedIn, Threads and Telegram
     Supports post title, description, excerpt, permalink, blog title, nicename, post id and post publish date
 
 = Posting options =
@@ -69,6 +70,7 @@ The plugin offers multiple kinds of filters for contents to be published automat
     Post to Twitter with image
     Post to LinkedIn with image
     Post to Telegram with image
+    Post to Threads with image
     Post to specific pages on LinkedIn
     Attach post to LinkedIn
     Publish message to Instagram with image
@@ -142,11 +144,16 @@ SSL peer verification may not be functioning in your server. Please turn off SSL
 4. This is the Instagram configuration section.
 5. This is the Tumblr configuration section.
 6. This is the Telegram configuration section.
-7. This is the general settings section.
-8. Publishing options while creating a post.
-9. Auto publish logs.
+7. This is the Threads configuration section.
+8. This is the general settings section.
+9. Publishing options while creating a post.
+10. Auto publish logs.
 
 == Changelog ==
+
+= Social Media Auto Publish 3.5 =
+* Added support for Threads publishing
+* LinkedIn api updated
 
 = Social Media Auto Publish 3.4.1 =
 * Fixed a critical issue that caused errors in certain cases when connecting to Telegram

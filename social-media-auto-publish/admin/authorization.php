@@ -337,4 +337,71 @@ $redirecturl=urlencode(admin_url('admin.php?page=social-media-auto-publish-setti
 			exit();
 		}
 	}
+	//////////////THREADS
+	$th_app_id = get_option('xyz_smap_th_app_id');
+	$th_app_secret = get_option('xyz_smap_th_app_secret');
+	$redirecturl=admin_url('admin.php?page=social-media-auto-publish-settings&auth=1');
+	if(is_ssl()===false)
+	$redirect_uri=preg_replace("/^http:/i", "https:", $redirecturl);
+	if (isset($_POST['th_auth'])) {
+		if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce($_REQUEST['_wpnonce'], 'xyz_smap_th_auth_form_nonce')) {
+			//echo 1 ;die;
+			wp_nonce_ays('xyz_smap_th_auth_form_nonce');
+			exit();
+		}
+   $scope = 'threads_basic,threads_content_publish'; // Required Scopes
+if (!isset($_GET['code']) ) {
+   // Step 1: Redirect to authorization URL
+   $xyz_smap_th_session_state = md5(uniqid(rand(), TRUE));
+   setcookie("xyz_smap_th_session_state",$xyz_smap_th_session_state,"0","/");
+	   $auth_url = "https://threads.net/oauth/authorize?client_id=" . urlencode($th_app_id) .
+	   "&redirect_uri=" . urlencode($redirect_uri) .
+	   "&scope=" . urlencode($scope) .
+	   "&response_type=code" .
+	   "&state=" . urlencode($xyz_smap_th_session_state);
+   header("Location: " . $auth_url);
+   die;
+		}
+	}
+	if (isset($_COOKIE['xyz_smap_th_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_th_session_state'] === $_REQUEST['state'])) 
+	{
+		$code = isset($_GET['code']) ? $_GET['code'] : null;
+		$state = isset($_GET['state']) ? $_GET['state'] : null;
+		require_once(dirname(__FILE__) . '/../api/threads.php');
+		$token_response = xyz_smap_exchange_code_for_token($th_app_id, $th_app_secret, $code, $redirect_uri);
+		if (is_wp_error($token_response) || !isset($token_response['access_token'])) 
+		{
+			wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&th_auth_err=Error exchanging code for token.'));
+			exit();
+		}
+			$short_lived_token = $token_response['access_token'];
+			$user_id = sanitize_text_field($token_response['user_id']);
+			$long_lived_token_response = xyz_smap_exchange_for_long_lived_token($th_app_secret, $short_lived_token);
+			if (is_wp_error($long_lived_token_response) || !isset($long_lived_token_response['access_token'])) 
+			{
+				wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&th_auth_err=Error exchanging for long-lived token.'));
+				exit();
+			}
+				$long_lived_token_response['expires_in'] = time() + $long_lived_token_response['expires_in'];
+				$access_token = json_encode($long_lived_token_response);
+				$user_info_url = "https://graph.threads.net/me?fields=username&access_token=" . urlencode($long_lived_token_response['access_token']);
+				$verify_ssl = get_option('xyz_smap_peer_verification') == '1';
+				$response = wp_remote_get($user_info_url, ['sslverify' => $verify_ssl]);
+				if (!is_array($response) || is_wp_error($response)) {
 
+					wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&th_auth_err=Error fetching user information.'));
+					exit();
+				}
+					$result = json_decode($response['body'], true);
+					if (!isset($result['username'])) {
+						wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&th_auth_err=Username not found.'));
+				exit();
+			}
+					$xyz_smap_th_username = sanitize_text_field($result['username']);
+		update_option('xyz_smap_th_access_token', $access_token);
+		update_option('xyz_smap_thaf', 0);
+		update_option('xyz_smap_th_user_id', $user_id);
+		update_option('xyz_smap_th_username', $xyz_smap_th_username);
+		wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&msg=10'));
+		exit();
+	}
