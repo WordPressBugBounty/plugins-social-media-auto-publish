@@ -41,6 +41,9 @@ function smap_free_destroy()
 		
 	delete_option('xyz_smap_twconsumer_secret');
 	delete_option('xyz_smap_twconsumer_id');
+	delete_option('xyz_smap_tw_client_secret');
+	delete_option('xyz_smap_tw_client_id');
+	delete_option('xyz_smap_tw_af');
 	delete_option('xyz_smap_tw_id');
 	delete_option('xyz_smap_current_twappln_token');
 	delete_option('xyz_smap_twpost_permission');

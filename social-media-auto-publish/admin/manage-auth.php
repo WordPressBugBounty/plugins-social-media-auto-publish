@@ -2,11 +2,11 @@
 global $wpdb;
 if(isset($_GET['msg']) && $_GET['msg']=='smap_pack_updated'){
 	?>
-<div class="system_notice_area_style1" id="system_notice_area">
+<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area">
 <?php $smap_word="SMAP";
       $smap_update_msg=sprintf(__('%s Package updated successfully.','social-media-auto-publish'),$smap_word); 
  echo $smap_update_msg; ?>
-&nbsp;&nbsp;&nbsp;<span id="system_notice_area_dismiss"><?php _e('Dismiss','social-media-auto-publish'); ?>
+&nbsp;&nbsp;&nbsp;<span id="xyz_smap_system_notice_area_dismiss"><?php _e('Dismiss','social-media-auto-publish'); ?>
 </span>
 </div>
 <?php
@@ -134,13 +134,13 @@ jQuery(document).ready(function() {
 	    	if(data.status==1){
 	    		jQuery(".tr_"+auth_id).remove();
 
-	    		if(jQuery('#system_notice_area').length==0)
-	    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-	    			jQuery("#system_notice_area").html(xyz_script_smap_var.html1); 
- 			  	jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-	    			jQuery("#system_notice_area").show();
-	    			jQuery('#system_notice_area_dismiss').click(function() {
-	    				jQuery('#system_notice_area').animate({
+	    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+	    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+	    			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html1); 
+ 			  	jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+	    			jQuery("#xyz_smap_system_notice_area").show();
+	    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+	    				jQuery('#xyz_smap_system_notice_area').animate({
 	    					opacity : 'hide',
 	    					height : 'hide'
 	    				}, 500);
@@ -199,13 +199,13 @@ jQuery(document).ready(function() {
 	    	var data=jQuery.parseJSON(data);
 	    	if(data.status==1){
 	    		jQuery(".tr_"+ln_auth_id).remove();
-	    		if(jQuery('#system_notice_area').length==0)
-	    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-	    			jQuery("#system_notice_area").html(xyz_script_smap_var.html1); 
- 			  	jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-	    			jQuery("#system_notice_area").show();
-	    			jQuery('#system_notice_area_dismiss').click(function() {
-	    				jQuery('#system_notice_area').animate({
+	    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+	    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+	    			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html1); 
+ 			  	jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+	    			jQuery("#xyz_smap_system_notice_area").show();
+	    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+	    				jQuery('#xyz_smap_system_notice_area').animate({
 	    					opacity : 'hide',
 	    					height : 'hide'
 	    				}, 500);
@@ -266,13 +266,13 @@ jQuery(document).ready(function() {
 	    	var data=jQuery.parseJSON(data);
 	    	if(data.status==1){
 	    		jQuery(".tr_"+ig_auth_id).remove();
-	    		if(jQuery('#system_notice_area').length==0)
-	    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-	    			jQuery("#system_notice_area").html(xyz_script_smap_var.html1); 
- 			  	jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-	    			jQuery("#system_notice_area").show();
-	    			jQuery('#system_notice_area_dismiss').click(function() {
-	    				jQuery('#system_notice_area').animate({
+	    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+	    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+	    			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html1); 
+ 			  	jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+	    			jQuery("#xyz_smap_system_notice_area").show();
+	    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+	    				jQuery('#xyz_smap_system_notice_area').animate({
 	    					opacity : 'hide',
 	    					height : 'hide'
 	    				}, 500);
@@ -343,13 +343,13 @@ jQuery(".delete_inactive_fb_entry").off('click').on('click', function() {
     	var data=jQuery.parseJSON(data);
     	if(data.status==1){
     		jQuery(".tr_inactive"+tr_iterationid).remove();
-    		if(jQuery('#system_notice_area').length==0)
-    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html4); 
- 			jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-    			jQuery("#system_notice_area").show();
-    			jQuery('#system_notice_area_dismiss').click(function() {
-    				jQuery('#system_notice_area').animate({
+    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html4); 
+ 			jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+    			jQuery("#xyz_smap_system_notice_area").show();
+    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+    				jQuery('#xyz_smap_system_notice_area').animate({
     					opacity : 'hide',
     					height : 'hide'
     				}, 500);
@@ -389,13 +389,13 @@ jQuery(".delete_inactive_ln_entry").off('click').on('click', function() {
     	var data=jQuery.parseJSON(data);
     	if(data.status==1){
     		jQuery(".tr_inactive"+tr_iterationid).remove();
-    		if(jQuery('#system_notice_area').length==0)
-    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html5); 
- 			jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-    			jQuery("#system_notice_area").show();
-    			jQuery('#system_notice_area_dismiss').click(function() {
-    				jQuery('#system_notice_area').animate({
+    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html5); 
+ 			jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+    			jQuery("#xyz_smap_system_notice_area").show();
+    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+    				jQuery('#xyz_smap_system_notice_area').animate({
     					opacity : 'hide',
     					height : 'hide'
     				}, 500);
@@ -437,13 +437,13 @@ jQuery(".delete_inactive_ig_entry").off('click').on('click', function() {
     	var data=jQuery.parseJSON(data);
     	if(data.status==1){
     		jQuery(".tr_inactive"+tr_iterationid).remove();
-    		if(jQuery('#system_notice_area').length==0)
-    			jQuery('body').append('<div class="system_notice_area_style1" id="system_notice_area"></div>');
-			jQuery("#system_notice_area").html(xyz_script_smap_var.html7); 
- 			jQuery("#system_notice_area").append('<span id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
-    			jQuery("#system_notice_area").show();
-    			jQuery('#system_notice_area_dismiss').click(function() {
-    				jQuery('#system_notice_area').animate({
+    		if(jQuery('#xyz_smap_system_notice_area').length==0)
+    			jQuery('body').append('<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area"></div>');
+			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html7); 
+ 			jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish');?> </span>');
+    			jQuery("#xyz_smap_system_notice_area").show();
+    			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
+    				jQuery('#xyz_smap_system_notice_area').animate({
     					opacity : 'hide',
     					height : 'hide'
     				}, 500);

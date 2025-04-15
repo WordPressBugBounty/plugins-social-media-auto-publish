@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-03-13 15:53+0530\n"
-"PO-Revision-Date: 2025-03-13 15:57+0530\n"
+"POT-Creation-Date: 2025-04-15 11:50+0530\n"
+"PO-Revision-Date: 2025-04-15 11:50+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -10,9 +10,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: social-media-auto-publish.php\n"
 "X-Poedit-SearchPath-1: admin/suggest_feature.php\n"
 "X-Poedit-SearchPath-2: admin/settings.php\n"
@@ -29,6 +29,7 @@ msgstr ""
 "X-Poedit-SearchPath-13: admin/ajax-backlink.php\n"
 "X-Poedit-SearchPath-14: admin/admin-notices.php\n"
 "X-Poedit-SearchPath-15: admin/about.php\n"
+"X-Poedit-SearchPath-16: xyz-functions.php\n"
 
 #: admin/about.php:9
 #, php-format
@@ -75,26 +76,26 @@ msgstr "%s 溢价"
 msgid "Supported Media"
 msgstr "支持的媒体"
 
-#: admin/about.php:37 admin/admin-notices.php:55 admin/metabox.php:665
-#: admin/settings.php:845
+#: admin/about.php:37 admin/admin-notices.php:55 admin/metabox.php:666
+#: admin/settings.php:875
 msgid "Facebook"
 msgstr "脸书"
 
-#: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:856
-#: admin/settings.php:846
+#: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:855
+#: admin/settings.php:876
 msgid "Twitter"
 msgstr "推特"
 
-#: admin/about.php:56 admin/admin-notices.php:57 admin/metabox.php:1030
-#: admin/settings.php:847
+#: admin/about.php:56 admin/admin-notices.php:57 admin/metabox.php:1027
+#: admin/settings.php:877
 msgid "LinkedIn"
 msgstr "领英"
 
-#: admin/about.php:65 admin/metabox.php:769
+#: admin/about.php:65 admin/metabox.php:770
 msgid "Instagram"
 msgstr "Instagram"
 
-#: admin/about.php:74 admin/metabox.php:943 admin/settings.php:849
+#: admin/about.php:74 admin/metabox.php:940 admin/settings.php:879
 msgid "Tumblr"
 msgstr "棒棒哒"
 
@@ -102,13 +103,13 @@ msgstr "棒棒哒"
 msgid "Pinterest"
 msgstr "興趣"
 
-#: admin/about.php:92 admin/metabox.php:1137 admin/settings.php:850
+#: admin/about.php:92 admin/metabox.php:1134 admin/settings.php:880
 msgid "Telegram"
 msgstr "電報"
 
-#: admin/about.php:101 admin/metabox.php:1229 admin/settings.php:851
+#: admin/about.php:101 admin/metabox.php:1226 admin/settings.php:881
 msgid "Threads"
-msgstr ""
+msgstr "线程数"
 
 #: admin/about.php:112
 msgid "Posting Options"
@@ -400,7 +401,7 @@ msgstr "59 美元起"
 msgid "Purchase"
 msgstr "购买"
 
-#: admin/about.php:622
+#: admin/about.php:622 admin/footer.php:21
 msgid "Buy Now"
 msgstr "立即购买"
 
@@ -439,69 +440,84 @@ msgstr "捐"
 msgid "Don't Show This Again"
 msgstr "不要再显示这个"
 
-#: admin/footer.php:21
+#: admin/footer.php:9
+#, php-format
+msgid ""
+"%sUpgrade to the Fully Featured XYZ WP Social Media Auto Publish Premium "
+"Plugin for %sJust 29 USD%s"
+msgstr ""
+"%s升级至功能齐全的 XYZ WP Social Media Auto Publish Premium 插件只需 %s 即可"
+"获得 29 美元%s"
+
+#: admin/footer.php:15
+msgid ""
+"Unlock advanced scheduling, multi-account publishing, hashtag automation, "
+"and seamless social media integration!"
+msgstr "解锁高级调度、多帐户发布、标签自动化和无缝社交媒体集成！"
+
+#: admin/footer.php:26
 msgid "Compare Features"
 msgstr "比较功能"
 
-#: admin/footer.php:35
+#: admin/footer.php:40
 msgid "Follow Us"
 msgstr "跟着我们"
 
-#: admin/footer.php:43
+#: admin/footer.php:48
 msgid "Support"
 msgstr "支持"
 
-#: admin/footer.php:45
+#: admin/footer.php:50
 msgid "Contact Us"
 msgstr "联系我们"
 
-#: admin/footer.php:46
+#: admin/footer.php:51
 msgid "Please Rate Us"
 msgstr "请评价我们"
 
-#: admin/footer.php:50
+#: admin/footer.php:55
 msgid "Create a ticket at Wordpress forum"
 msgstr "在 Wordpress 论坛上创建票证"
 
-#: admin/footer.php:53
+#: admin/footer.php:58
 msgid "Stay tuned for our updates"
 msgstr "请继续关注我们的更新"
 
-#: admin/footer.php:117
+#: admin/footer.php:122
 msgid "Name"
 msgstr "姓名"
 
-#: admin/footer.php:133
+#: admin/footer.php:138
 msgid "Email"
 msgstr "电子邮件"
 
-#: admin/footer.php:135
+#: admin/footer.php:140
 msgid "Subscribe"
 msgstr "订阅"
 
-#: admin/footer.php:147
+#: admin/footer.php:152
 msgid "Our Plugins"
 msgstr "我们的插件"
 
-#: admin/footer.php:168
+#: admin/footer.php:173
 msgid "Powered by"
 msgstr "供电"
 
-#: admin/header.php:19 admin/settings.php:719
+#: admin/header.php:19 admin/settings.php:749
 msgid "Settings updated successfully."
 msgstr "设置更新成功。"
 
 #: admin/header.php:19 admin/header.php:33 admin/header.php:49
 #: admin/manage-auth.php:9 admin/manage-auth.php:140 admin/manage-auth.php:205
 #: admin/manage-auth.php:272 admin/manage-auth.php:349
-#: admin/manage-auth.php:395 admin/manage-auth.php:442 admin/settings.php:36
-#: admin/settings.php:53 admin/settings.php:70 admin/settings.php:720
-#: admin/settings.php:728 admin/settings.php:737 admin/settings.php:748
-#: admin/settings.php:757 admin/settings.php:768 admin/settings.php:777
-#: admin/settings.php:816 admin/settings.php:3270 admin/settings.php:3295
-#: admin/settings.php:3323 admin/settings.php:3348 admin/settings.php:3384
-#: admin/suggest_feature.php:11 admin/suggest_feature.php:19
-#: admin/suggest_feature.php:27
+#: admin/manage-auth.php:395 admin/manage-auth.php:443 admin/settings.php:37
+#: admin/settings.php:54 admin/settings.php:71 admin/settings.php:88
+#: admin/settings.php:750 admin/settings.php:758 admin/settings.php:767
+#: admin/settings.php:778 admin/settings.php:787 admin/settings.php:798
+#: admin/settings.php:807 admin/settings.php:846 admin/settings.php:3386
+#: admin/settings.php:3411 admin/settings.php:3439 admin/settings.php:3464
+#: admin/settings.php:3499 admin/suggest_feature.php:11
+#: admin/suggest_feature.php:19 admin/suggest_feature.php:27
 msgid "Dismiss"
 msgstr "清除"
 
@@ -557,7 +573,7 @@ msgstr "发表于"
 msgid "Status"
 msgstr "状态"
 
-#: admin/logs.php:78
+#: admin/logs.php:76
 msgid ""
 "For publishing a simple text message, it will take 1 API call, Upload image "
 "option will take 2-3 API calls in Facebook and 4 API calls in LinkedIn, and "
@@ -579,145 +595,145 @@ msgid ""
 "Please authorize %s app under Facebook/LinkedIn settings to access this page."
 msgstr "请在 Facebook/LinkedIn 设置下授权 %s 应用访问此页面。"
 
-#: admin/manage-auth.php:494 admin/menu.php:38
+#: admin/manage-auth.php:495 admin/menu.php:38
 msgid "Manage Authorizations"
 msgstr "管理授权"
 
-#: admin/manage-auth.php:496
+#: admin/manage-auth.php:497
 msgid "Facebook Authorizations"
 msgstr "脸书授权"
 
-#: admin/manage-auth.php:498
+#: admin/manage-auth.php:499
 msgid "LinkedIn Authorizations"
 msgstr "领英授权"
 
-#: admin/manage-auth.php:500
+#: admin/manage-auth.php:501
 msgid "Instagram Authorizations"
 msgstr "Instagram 授权"
 
-#: admin/manage-auth.php:525 admin/manage-auth.php:676
-#: admin/manage-auth.php:816
+#: admin/manage-auth.php:527 admin/manage-auth.php:678
+#: admin/manage-auth.php:818
 msgid "Current Plan"
 msgstr "当前计划"
 
-#: admin/manage-auth.php:527
+#: admin/manage-auth.php:529
 msgid "Allowed Facebook users"
 msgstr "允许的 Facebook 用户"
 
-#: admin/manage-auth.php:528 admin/manage-auth.php:679
-#: admin/manage-auth.php:819
+#: admin/manage-auth.php:530 admin/manage-auth.php:681
+#: admin/manage-auth.php:821
 msgid "API limit per account"
 msgstr "每个帐户的 API 限制"
 
-#: admin/manage-auth.php:528 admin/manage-auth.php:819
+#: admin/manage-auth.php:530 admin/manage-auth.php:821
 msgid "per hour"
 msgstr "每小时"
 
-#: admin/manage-auth.php:529 admin/manage-auth.php:680
-#: admin/manage-auth.php:820
+#: admin/manage-auth.php:531 admin/manage-auth.php:682
+#: admin/manage-auth.php:822
 msgid "Package Expiry"
 msgstr "包裹到期"
 
-#: admin/manage-auth.php:530 admin/manage-auth.php:681
-#: admin/manage-auth.php:821
+#: admin/manage-auth.php:532 admin/manage-auth.php:683
+#: admin/manage-auth.php:823
 msgid "Package Status"
 msgstr "包裹状态"
 
-#: admin/manage-auth.php:540 admin/manage-auth.php:691
-#: admin/manage-auth.php:831
+#: admin/manage-auth.php:542 admin/manage-auth.php:693
+#: admin/manage-auth.php:833
 msgid "Upgrade/Renew"
 msgstr "升级/更新"
 
-#: admin/manage-auth.php:547 admin/manage-auth.php:700
-#: admin/manage-auth.php:840
+#: admin/manage-auth.php:549 admin/manage-auth.php:702
+#: admin/manage-auth.php:842
 msgid "Show all entries"
 msgstr "显示所有条目"
 
-#: admin/manage-auth.php:548 admin/manage-auth.php:701
-#: admin/manage-auth.php:841
+#: admin/manage-auth.php:550 admin/manage-auth.php:703
+#: admin/manage-auth.php:843
 msgid "Show entries from current wp installation"
 msgstr "显示当前 wp 安装的条目"
 
-#: admin/manage-auth.php:549 admin/manage-auth.php:702
-#: admin/manage-auth.php:842
+#: admin/manage-auth.php:551 admin/manage-auth.php:704
+#: admin/manage-auth.php:844
 msgid "Show entries from other wp installations"
 msgstr "显示来自其他 wp 安装的条目"
 
-#: admin/manage-auth.php:555
+#: admin/manage-auth.php:557
 msgid "Facebook username"
 msgstr "脸书用户名"
 
-#: admin/manage-auth.php:556 admin/manage-auth.php:708
-#: admin/manage-auth.php:848
+#: admin/manage-auth.php:558 admin/manage-auth.php:710
+#: admin/manage-auth.php:850
 msgid "Selected pages"
 msgstr "选定页面"
 
-#: admin/manage-auth.php:557
+#: admin/manage-auth.php:559
 msgid "Selected groups"
 msgstr "选定的组"
 
-#: admin/manage-auth.php:559
+#: admin/manage-auth.php:561
 #, php-format
 msgid "%s url"
 msgstr "%s 网址"
 
-#: admin/manage-auth.php:561 admin/manage-auth.php:711
-#: admin/manage-auth.php:851
+#: admin/manage-auth.php:563 admin/manage-auth.php:713
+#: admin/manage-auth.php:853
 msgid "Plugin"
 msgstr "插件"
 
-#: admin/manage-auth.php:563
+#: admin/manage-auth.php:565
 #, php-format
 msgid "Account ID %s"
 msgstr "帐户 ID %s"
 
-#: admin/manage-auth.php:565 admin/manage-auth.php:713
-#: admin/manage-auth.php:853
+#: admin/manage-auth.php:567 admin/manage-auth.php:715
+#: admin/manage-auth.php:855
 msgid "Action"
 msgstr "行动"
 
-#: admin/manage-auth.php:605 admin/manage-auth.php:743
-#: admin/manage-auth.php:884
+#: admin/manage-auth.php:607 admin/manage-auth.php:745
+#: admin/manage-auth.php:886
 msgid "Not Applicable"
 msgstr "不适用"
 
-#: admin/manage-auth.php:611 admin/manage-auth.php:634
-#: admin/manage-auth.php:750 admin/manage-auth.php:772
-#: admin/manage-auth.php:891 admin/manage-auth.php:912
+#: admin/manage-auth.php:613 admin/manage-auth.php:636
+#: admin/manage-auth.php:752 admin/manage-auth.php:774
+#: admin/manage-auth.php:893 admin/manage-auth.php:914
 msgid "Delete"
 msgstr "删除"
 
-#: admin/manage-auth.php:624 admin/manage-auth.php:763
-#: admin/manage-auth.php:903
+#: admin/manage-auth.php:626 admin/manage-auth.php:765
+#: admin/manage-auth.php:905
 msgid "(Inactive)"
 msgstr "(不活动）"
 
-#: admin/manage-auth.php:645 admin/manage-auth.php:782
-#: admin/manage-auth.php:922
+#: admin/manage-auth.php:647 admin/manage-auth.php:784
+#: admin/manage-auth.php:924
 msgid "No Authorizations"
 msgstr "无授权"
 
-#: admin/manage-auth.php:653 admin/manage-auth.php:790
+#: admin/manage-auth.php:655 admin/manage-auth.php:792
 msgid "Unable to connect. Please check your curl and firewall settings"
 msgstr "无法连接。请检查您的 curl 和防火墙设置"
 
-#: admin/manage-auth.php:678
+#: admin/manage-auth.php:680
 msgid "Allowed LinkedIn users"
 msgstr "允许的 LinkedIn 用户"
 
-#: admin/manage-auth.php:679
+#: admin/manage-auth.php:681
 msgid "per day"
 msgstr "每天"
 
-#: admin/manage-auth.php:707
+#: admin/manage-auth.php:709
 msgid "LinkedIn user name"
 msgstr "领英用户名"
 
-#: admin/manage-auth.php:818
+#: admin/manage-auth.php:820
 msgid "Allowed Instagram users"
 msgstr "允许的 Instagram 用户"
 
-#: admin/manage-auth.php:847
+#: admin/manage-auth.php:849
 msgid "Instagram user name"
 msgstr "Instagram 用户名"
 
@@ -779,515 +795,523 @@ msgstr "日志"
 msgid "Suggest a Feature"
 msgstr "建议一个功能"
 
-#: admin/metabox.php:672 admin/settings.php:965
+#: admin/metabox.php:673 admin/settings.php:993
 msgid "Enable auto publish post to my facebook account"
 msgstr "启用自动将帖子发布到我的 Facebook 帐户"
 
-#: admin/metabox.php:675 admin/metabox.php:779 admin/metabox.php:866
-#: admin/metabox.php:879 admin/metabox.php:951 admin/metabox.php:1040
-#: admin/metabox.php:1147 admin/metabox.php:1239 admin/settings.php:968
-#: admin/settings.php:1101 admin/settings.php:1332 admin/settings.php:1624
-#: admin/settings.php:1751 admin/settings.php:1886 admin/settings.php:2002
-#: admin/settings.php:2007 admin/settings.php:2020 admin/settings.php:2182
-#: admin/settings.php:2399 admin/settings.php:2531 admin/settings.php:2680
-#: admin/settings.php:2688 admin/settings.php:2737 admin/settings.php:2747
-#: admin/settings.php:2827 admin/settings.php:2878 admin/settings.php:2888
+#: admin/metabox.php:676 admin/metabox.php:780 admin/metabox.php:865
+#: admin/metabox.php:878 admin/metabox.php:948 admin/metabox.php:1037
+#: admin/metabox.php:1144 admin/metabox.php:1236 admin/settings.php:996
+#: admin/settings.php:1129 admin/settings.php:1360 admin/settings.php:1713
+#: admin/settings.php:1862 admin/settings.php:1997 admin/settings.php:2113
+#: admin/settings.php:2118 admin/settings.php:2131 admin/settings.php:2293
+#: admin/settings.php:2511 admin/settings.php:2643 admin/settings.php:2792
+#: admin/settings.php:2800 admin/settings.php:2849 admin/settings.php:2859
+#: admin/settings.php:2939 admin/settings.php:2990 admin/settings.php:3000
 msgid "Yes"
 msgstr "没有人"
 
-#: admin/metabox.php:676 admin/metabox.php:780 admin/metabox.php:867
-#: admin/metabox.php:877 admin/metabox.php:952 admin/metabox.php:959
-#: admin/metabox.php:1041 admin/metabox.php:1148 admin/metabox.php:1240
-#: admin/settings.php:969 admin/settings.php:1102 admin/settings.php:1333
-#: admin/settings.php:1625 admin/settings.php:1752 admin/settings.php:1887
-#: admin/settings.php:2003 admin/settings.php:2008 admin/settings.php:2021
-#: admin/settings.php:2183 admin/settings.php:2400 admin/settings.php:2453
-#: admin/settings.php:2532 admin/settings.php:2681 admin/settings.php:2689
-#: admin/settings.php:2738 admin/settings.php:2748 admin/settings.php:2828
-#: admin/settings.php:2879 admin/settings.php:2889
+#: admin/metabox.php:677 admin/metabox.php:781 admin/metabox.php:866
+#: admin/metabox.php:876 admin/metabox.php:949 admin/metabox.php:956
+#: admin/metabox.php:1038 admin/metabox.php:1145 admin/metabox.php:1237
+#: admin/settings.php:997 admin/settings.php:1130 admin/settings.php:1361
+#: admin/settings.php:1714 admin/settings.php:1863 admin/settings.php:1998
+#: admin/settings.php:2114 admin/settings.php:2119 admin/settings.php:2132
+#: admin/settings.php:2294 admin/settings.php:2512 admin/settings.php:2565
+#: admin/settings.php:2644 admin/settings.php:2793 admin/settings.php:2801
+#: admin/settings.php:2850 admin/settings.php:2860 admin/settings.php:2940
+#: admin/settings.php:2991 admin/settings.php:3001
 msgid "No"
 msgstr "不"
 
-#: admin/metabox.php:680 admin/metabox.php:784 admin/metabox.php:1089
-#: admin/metabox.php:1153 admin/metabox.php:1245 admin/settings.php:1040
-#: admin/settings.php:1404 admin/settings.php:1982 admin/settings.php:2242
-#: admin/settings.php:2618
+#: admin/metabox.php:681 admin/metabox.php:785 admin/metabox.php:1086
+#: admin/metabox.php:1150 admin/metabox.php:1242 admin/settings.php:1068
+#: admin/settings.php:1432 admin/settings.php:2093 admin/settings.php:2354
+#: admin/settings.php:2730
 msgid "Posting method"
 msgstr "发帖方式"
 
-#: admin/metabox.php:684 admin/metabox.php:1093 admin/metabox.php:1157
-#: admin/metabox.php:1248 admin/settings.php:1046 admin/settings.php:1987
-#: admin/settings.php:2247 admin/settings.php:2623
+#: admin/metabox.php:685 admin/metabox.php:1090 admin/metabox.php:1154
+#: admin/metabox.php:1245 admin/settings.php:1074 admin/settings.php:2098
+#: admin/settings.php:2359 admin/settings.php:2735
 msgid "Simple text message"
 msgstr "简单的短信"
 
-#: admin/metabox.php:686 admin/metabox.php:787 admin/metabox.php:1097
-#: admin/metabox.php:1159 admin/metabox.php:1250 admin/settings.php:1991
-#: admin/settings.php:2251
+#: admin/metabox.php:687 admin/metabox.php:788 admin/metabox.php:1094
+#: admin/metabox.php:1156 admin/metabox.php:1247 admin/settings.php:2102
+#: admin/settings.php:2363
 msgid "Text message with image"
 msgstr "带图片的短信"
 
-#: admin/metabox.php:688 admin/settings.php:1050
+#: admin/metabox.php:689 admin/settings.php:1078
 msgid "Upload image to app album"
 msgstr "上传图片到应用相册"
 
-#: admin/metabox.php:690 admin/settings.php:1052
+#: admin/metabox.php:691 admin/settings.php:1080
 msgid "Upload image to timeline album"
 msgstr "将图像上传到时间线相册"
 
-#: admin/metabox.php:693 admin/settings.php:1048 admin/settings.php:1055
+#: admin/metabox.php:694 admin/settings.php:1076 admin/settings.php:1083
 msgid "Text message with attached link"
 msgstr "带有附加链接的短信"
 
-#: admin/metabox.php:695 admin/metabox.php:1095 admin/metabox.php:1249
-#: admin/settings.php:1057 admin/settings.php:1989 admin/settings.php:2249
+#: admin/metabox.php:696 admin/metabox.php:1092 admin/metabox.php:1246
+#: admin/settings.php:1085 admin/settings.php:2100 admin/settings.php:2361
 msgid "Attach your blog post"
 msgstr "附上您的博文"
 
-#: admin/metabox.php:698 admin/settings.php:1060
+#: admin/metabox.php:699 admin/settings.php:1088
 msgid "Share a link to your blog post"
 msgstr "分享指向您的博客文章的链接"
 
-#: admin/metabox.php:704 admin/metabox.php:792 admin/metabox.php:885
-#: admin/metabox.php:966 admin/metabox.php:1056 admin/metabox.php:1164
-#: admin/metabox.php:1256 admin/settings.php:1066 admin/settings.php:1410
-#: admin/settings.php:1717 admin/settings.php:1951 admin/settings.php:2211
-#: admin/settings.php:2460 admin/settings.php:2630
+#: admin/metabox.php:705 admin/metabox.php:793 admin/metabox.php:884
+#: admin/metabox.php:963 admin/metabox.php:1053 admin/metabox.php:1161
+#: admin/metabox.php:1253 admin/settings.php:1094 admin/settings.php:1438
+#: admin/settings.php:1828 admin/settings.php:2062 admin/settings.php:2323
+#: admin/settings.php:2572 admin/settings.php:2742
 msgid "Message format for posting"
 msgstr "发帖的消息格式"
 
-#: admin/metabox.php:707 admin/metabox.php:795 admin/metabox.php:888
-#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1167
-#: admin/metabox.php:1259 admin/settings.php:1069 admin/settings.php:1413
-#: admin/settings.php:1721 admin/settings.php:1955 admin/settings.php:2215
-#: admin/settings.php:2464 admin/settings.php:2633
+#: admin/metabox.php:708 admin/metabox.php:796 admin/metabox.php:887
+#: admin/metabox.php:967 admin/metabox.php:1057 admin/metabox.php:1164
+#: admin/metabox.php:1256 admin/settings.php:1097 admin/settings.php:1441
+#: admin/settings.php:1832 admin/settings.php:2066 admin/settings.php:2327
+#: admin/settings.php:2576 admin/settings.php:2745
 msgid "Insert the title of your post."
 msgstr "插入帖子的标题。"
 
-#: admin/metabox.php:708 admin/metabox.php:796 admin/metabox.php:889
-#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1168
-#: admin/metabox.php:1260 admin/settings.php:1070 admin/settings.php:1414
-#: admin/settings.php:1722 admin/settings.php:1956 admin/settings.php:2216
-#: admin/settings.php:2465 admin/settings.php:2634
+#: admin/metabox.php:709 admin/metabox.php:797 admin/metabox.php:888
+#: admin/metabox.php:968 admin/metabox.php:1058 admin/metabox.php:1165
+#: admin/metabox.php:1257 admin/settings.php:1098 admin/settings.php:1442
+#: admin/settings.php:1833 admin/settings.php:2067 admin/settings.php:2328
+#: admin/settings.php:2577 admin/settings.php:2746
 msgid "Insert the URL where your post is displayed."
 msgstr "插入显示您的帖子的 URL。"
 
-#: admin/metabox.php:709 admin/metabox.php:797 admin/metabox.php:890
-#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1169
-#: admin/metabox.php:1261 admin/settings.php:1071 admin/settings.php:1415
-#: admin/settings.php:1723 admin/settings.php:1957 admin/settings.php:2217
-#: admin/settings.php:2466 admin/settings.php:2635
+#: admin/metabox.php:710 admin/metabox.php:798 admin/metabox.php:889
+#: admin/metabox.php:969 admin/metabox.php:1059 admin/metabox.php:1166
+#: admin/metabox.php:1258 admin/settings.php:1099 admin/settings.php:1443
+#: admin/settings.php:1834 admin/settings.php:2068 admin/settings.php:2329
+#: admin/settings.php:2578 admin/settings.php:2747
 msgid "Insert the excerpt of your post."
 msgstr "插入您的帖子的摘录。"
 
-#: admin/metabox.php:710 admin/metabox.php:798 admin/metabox.php:891
-#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1170
-#: admin/metabox.php:1262 admin/settings.php:1072 admin/settings.php:1416
-#: admin/settings.php:1724 admin/settings.php:1958 admin/settings.php:2218
-#: admin/settings.php:2467 admin/settings.php:2636
+#: admin/metabox.php:711 admin/metabox.php:799 admin/metabox.php:890
+#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1167
+#: admin/metabox.php:1259 admin/settings.php:1100 admin/settings.php:1444
+#: admin/settings.php:1835 admin/settings.php:2069 admin/settings.php:2330
+#: admin/settings.php:2579 admin/settings.php:2748
 msgid "Insert the description of your post."
 msgstr "插入您的帖子的描述。"
 
-#: admin/metabox.php:711 admin/metabox.php:799 admin/metabox.php:892
-#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1171
-#: admin/metabox.php:1263 admin/settings.php:1073 admin/settings.php:1417
-#: admin/settings.php:1725 admin/settings.php:1959 admin/settings.php:2219
-#: admin/settings.php:2468 admin/settings.php:2637
+#: admin/metabox.php:712 admin/metabox.php:800 admin/metabox.php:891
+#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1168
+#: admin/metabox.php:1260 admin/settings.php:1101 admin/settings.php:1445
+#: admin/settings.php:1836 admin/settings.php:2070 admin/settings.php:2331
+#: admin/settings.php:2580 admin/settings.php:2749
 msgid "Insert the name of your blog."
 msgstr "插入您的博客名称。"
 
-#: admin/metabox.php:712 admin/metabox.php:800 admin/metabox.php:893
-#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1172
-#: admin/metabox.php:1264 admin/settings.php:1074 admin/settings.php:1418
-#: admin/settings.php:1726 admin/settings.php:1960 admin/settings.php:2220
-#: admin/settings.php:2469 admin/settings.php:2638
+#: admin/metabox.php:713 admin/metabox.php:801 admin/metabox.php:892
+#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1169
+#: admin/metabox.php:1261 admin/settings.php:1102 admin/settings.php:1446
+#: admin/settings.php:1837 admin/settings.php:2071 admin/settings.php:2332
+#: admin/settings.php:2581 admin/settings.php:2750
 msgid "Insert the nicename of the author."
 msgstr "插入作者的昵称。"
 
-#: admin/metabox.php:713 admin/metabox.php:801 admin/metabox.php:894
-#: admin/metabox.php:976 admin/metabox.php:1066 admin/metabox.php:1173
-#: admin/metabox.php:1265 admin/settings.php:1075 admin/settings.php:1419
-#: admin/settings.php:1727 admin/settings.php:1961 admin/settings.php:2221
-#: admin/settings.php:2470 admin/settings.php:2639
+#: admin/metabox.php:714 admin/metabox.php:802 admin/metabox.php:893
+#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1170
+#: admin/metabox.php:1262 admin/settings.php:1103 admin/settings.php:1447
+#: admin/settings.php:1838 admin/settings.php:2072 admin/settings.php:2333
+#: admin/settings.php:2582 admin/settings.php:2751
 msgid "Insert the ID of your post."
 msgstr "插入您的帖子的 ID。"
 
-#: admin/metabox.php:714 admin/metabox.php:802 admin/metabox.php:895
-#: admin/metabox.php:977 admin/metabox.php:1067 admin/metabox.php:1174
-#: admin/metabox.php:1266 admin/settings.php:1076 admin/settings.php:1420
-#: admin/settings.php:1728 admin/settings.php:1962 admin/settings.php:2222
-#: admin/settings.php:2471 admin/settings.php:2640
+#: admin/metabox.php:715 admin/metabox.php:803 admin/metabox.php:894
+#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1171
+#: admin/metabox.php:1263 admin/settings.php:1104 admin/settings.php:1448
+#: admin/settings.php:1839 admin/settings.php:2073 admin/settings.php:2334
+#: admin/settings.php:2583 admin/settings.php:2752
 msgid "Insert the publish date of your post."
 msgstr "插入帖子的发布日期。"
 
-#: admin/metabox.php:715 admin/metabox.php:803 admin/metabox.php:896
-#: admin/metabox.php:978 admin/metabox.php:1068 admin/metabox.php:1175
-#: admin/metabox.php:1267 admin/settings.php:1077 admin/settings.php:1421
-#: admin/settings.php:1729 admin/settings.php:1963 admin/settings.php:2223
-#: admin/settings.php:2472 admin/settings.php:2641
+#: admin/metabox.php:716 admin/metabox.php:804 admin/metabox.php:895
+#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1172
+#: admin/metabox.php:1264 admin/settings.php:1105 admin/settings.php:1449
+#: admin/settings.php:1840 admin/settings.php:2074 admin/settings.php:2335
+#: admin/settings.php:2584 admin/settings.php:2753
 msgid "Insert the display name of the author."
 msgstr "插入作者的显示名称。"
 
-#: admin/metabox.php:720 admin/metabox.php:808 admin/metabox.php:903
-#: admin/metabox.php:982 admin/metabox.php:1073 admin/metabox.php:1180
-#: admin/metabox.php:1274 admin/settings.php:1081 admin/settings.php:1425
-#: admin/settings.php:1733 admin/settings.php:1967 admin/settings.php:2227
-#: admin/settings.php:2477 admin/settings.php:2645
+#: admin/metabox.php:721 admin/metabox.php:809 admin/metabox.php:900
+#: admin/metabox.php:979 admin/metabox.php:1070 admin/metabox.php:1177
+#: admin/metabox.php:1271 admin/settings.php:1109 admin/settings.php:1453
+#: admin/settings.php:1844 admin/settings.php:2078 admin/settings.php:2339
+#: admin/settings.php:2589 admin/settings.php:2757
 msgid "Select"
 msgstr "选择"
 
-#: admin/metabox.php:776 admin/settings.php:1329
+#: admin/metabox.php:777 admin/settings.php:1357
 msgid "Enable auto publish post to my instagram account"
 msgstr "启用自动将帖子发布到我的 Instagram 帐户"
 
-#: admin/metabox.php:863 admin/settings.php:1622
+#: admin/metabox.php:862 admin/settings.php:1711
 msgid "Enable auto publish posts to my twitter account"
 msgstr "启用自动将帖子发布到我的 Twitter 帐户"
 
-#: admin/metabox.php:872 admin/settings.php:1748
+#: admin/metabox.php:871 admin/settings.php:1859
 msgid "Attach image to twitter post"
 msgstr "将图像附加到推特帖子"
 
-#: admin/metabox.php:948 admin/settings.php:2396
+#: admin/metabox.php:945 admin/settings.php:2508
 msgid "Enable auto publish posts to my tumblr account"
 msgstr "启用自动将帖子发布到我的 tumblr 帐户"
 
-#: admin/metabox.php:956 admin/settings.php:2449
+#: admin/metabox.php:953 admin/settings.php:2561
 msgid "Attachment to be posted to Tumblr"
 msgstr "将发布到 Tumblr 的附件"
 
-#: admin/metabox.php:960 admin/settings.php:2454
+#: admin/metabox.php:957 admin/settings.php:2566
 msgid "Image"
 msgstr "图片"
 
-#: admin/metabox.php:961 admin/settings.php:2455
+#: admin/metabox.php:958 admin/settings.php:2567
 msgid "Link"
 msgstr "链接"
 
-#: admin/metabox.php:1037 admin/settings.php:1884
+#: admin/metabox.php:1034 admin/settings.php:1995
 msgid "Enable auto publish posts to my linkedin account"
 msgstr "启用自动将帖子发布到我的linkedin帐户"
 
-#: admin/metabox.php:1047 admin/settings.php:2028
+#: admin/metabox.php:1044 admin/settings.php:2139
 msgid "Share post content with"
 msgstr "分享帖子内容"
 
-#: admin/metabox.php:1051 admin/settings.php:2031
+#: admin/metabox.php:1048 admin/settings.php:2142
 msgid "Public"
 msgstr "公共"
 
-#: admin/metabox.php:1051
+#: admin/metabox.php:1048
 msgid "Connections only"
 msgstr "仅限连接"
 
-#: admin/metabox.php:1144
+#: admin/metabox.php:1141
 msgid "Enable auto publish posts to my telegram account"
 msgstr "啟用自動發布貼文到我的電報帳戶"
 
-#: admin/metabox.php:1236
+#: admin/metabox.php:1233
 msgid "Enable auto publish posts to my threads account"
 msgstr "启用自动发布帖子到我的主题账户"
 
-#: admin/settings.php:6
+#: admin/settings.php:7
 #, php-format
 msgid "Connect your %s account"
 msgstr "连接您的 %s 帐户"
 
-#: admin/settings.php:34
+#: admin/settings.php:35
 msgid ""
 "Thanks again for using the plugin. We will never show the message again."
 msgstr "再次感谢您使用该插件。我们永远不会再显示该消息。"
 
-#: admin/settings.php:127
+#: admin/settings.php:135
 msgid "Please fill facebook application name."
 msgstr "请填写脸书应用名称。"
 
-#: admin/settings.php:132
+#: admin/settings.php:140
 msgid "Please fill facebook application id."
 msgstr "请填写脸书申请编号。"
 
-#: admin/settings.php:137
+#: admin/settings.php:145
 msgid "Please fill facebook application secret."
 msgstr "请填写脸书申请密码。"
 
-#: admin/settings.php:158 admin/settings.php:248
+#: admin/settings.php:166 admin/settings.php:256
 msgid "Please select atleast one page"
 msgstr "选择至少一个列表"
 
-#: admin/settings.php:218
+#: admin/settings.php:226
 msgid "Please fill instagram application name."
 msgstr "请填写 Instagram 应用名称。"
 
-#: admin/settings.php:223
+#: admin/settings.php:231
 msgid "Please fill instagram application id."
 msgstr "请填写 Instagram 应用程序 ID。"
 
-#: admin/settings.php:228
+#: admin/settings.php:236
 msgid "Please fill instagram application secret."
 msgstr "请填写 Instagram 申请密码。"
 
-#: admin/settings.php:303 admin/settings.php:471
+#: admin/settings.php:316
+msgid "Please fill Client ID."
+msgstr "请填写客户ID."
+
+#: admin/settings.php:321
+msgid "Please fill Client Secret."
+msgstr "请填写客户机密。"
+
+#: admin/settings.php:329 admin/settings.php:501
 msgid "Please fill api key."
 msgstr "请填写 api 密钥。"
 
-#: admin/settings.php:308 admin/settings.php:475
+#: admin/settings.php:334 admin/settings.php:505
 msgid "Please fill api secret."
 msgstr "请填写api secret。"
 
-#: admin/settings.php:313
-msgid "Please fill twitter username."
-msgstr "请填写推特用户名。"
-
-#: admin/settings.php:318
+#: admin/settings.php:339
 msgid "Please fill twitter access token."
 msgstr "请填写推特访问令牌。"
 
-#: admin/settings.php:323
+#: admin/settings.php:344
 msgid "Please fill twitter access token secret."
 msgstr "请填写 twitter 访问令牌密码。"
 
-#: admin/settings.php:328 admin/settings.php:426 admin/settings.php:495
-#: admin/settings.php:686
+#: admin/settings.php:350
+msgid "Please fill twitter username."
+msgstr "请填写推特用户名。"
+
+#: admin/settings.php:355 admin/settings.php:456 admin/settings.php:525
+#: admin/settings.php:716
 msgid "Please fill message format for posting."
 msgstr "请填写留言格式进行发布。"
 
-#: admin/settings.php:411
+#: admin/settings.php:441
 msgid "Please fill linkedin api key"
 msgstr "请填写linkedin api key"
 
-#: admin/settings.php:416
+#: admin/settings.php:446
 msgid "Please fill linkedin api secret"
 msgstr "请填写linkedin api secret"
 
-#: admin/settings.php:421
+#: admin/settings.php:451
 msgid "Please select share post to profile or company page"
 msgstr "请选择将帖子分享到个人资料或公司页面"
 
-#: admin/settings.php:480
+#: admin/settings.php:510
 msgid "Please fill tumblr username."
 msgstr "请填写 tumblr 用户名。"
 
-#: admin/settings.php:485
+#: admin/settings.php:515
 msgid "Please fill tumblr access token."
 msgstr "请填写 tumblr 访问令牌。"
 
-#: admin/settings.php:490
+#: admin/settings.php:520
 msgid "Please fill tumblr access token secret."
 msgstr "请填写 tumblr 访问令牌密码。"
 
-#: admin/settings.php:538
+#: admin/settings.php:568
 msgid "Please fill telegram application name."
 msgstr "請填寫電報應用名稱。"
 
-#: admin/settings.php:543
+#: admin/settings.php:573
 msgid "Please fill Telegram Bot token."
 msgstr "請填寫 Telegram Bot 令牌。"
 
-#: admin/settings.php:563
+#: admin/settings.php:593
 msgid "Please fill Channel ID or Group ID"
 msgstr "請填寫頻道 ID 或群組 ID"
 
-#: admin/settings.php:612
+#: admin/settings.php:642
 msgid "There must be atleast one valid channel ID or Group ID."
 msgstr "必須至少有一個有效的通道 ID 或群組 ID。"
 
-#: admin/settings.php:672
+#: admin/settings.php:702
 msgid "Please fill application ID."
 msgstr "请填写脸书申请编号。"
 
-#: admin/settings.php:676
+#: admin/settings.php:706
 msgid "Please fill application secret."
 msgstr "请填写脸书申请密码。"
 
-#: admin/settings.php:681
+#: admin/settings.php:711
 msgid "Please authorize your account."
 msgstr "请连接您的 %s 会员帐户."
 
-#: admin/settings.php:727
+#: admin/settings.php:757
 msgid "Unable to authorize the linkedin application. Please check the details."
 msgstr "无法授权linkedin 应用程序。请检查详细信息。"
 
-#: admin/settings.php:736
+#: admin/settings.php:766
 msgid "The state does not match. You may be a victim of CSRF."
 msgstr "状态不匹配。你可能是 CSRF 的受害者。"
 
-#: admin/settings.php:747
+#: admin/settings.php:777
 msgid ""
 "Unable to authorize the facebook application. Please check your curl/fopen "
 "and firewall settings."
 msgstr "无法授权 facebook 应用程序。请检查您的 curl/fopen 和防火墙设置。"
 
-#: admin/settings.php:756
+#: admin/settings.php:786
 msgid "Account has been authenticated successfully."
 msgstr "帐户已成功验证。"
 
-#: admin/settings.php:766
+#: admin/settings.php:796
 #, php-format
 msgid "Successfully connected to %s member area"
 msgstr "已成功连接到 %s 会员区"
 
-#: admin/settings.php:776
+#: admin/settings.php:806
 msgid "Selected pages saved successfully."
 msgstr "所选页面已成功保存。"
 
-#: admin/settings.php:848
+#: admin/settings.php:878
 msgid "instagram"
 msgstr "instagram"
 
-#: admin/settings.php:852
+#: admin/settings.php:882
 msgid "General Settings"
 msgstr "通用设置"
 
-#: admin/settings.php:867 admin/settings.php:901 admin/settings.php:1244
-#: admin/settings.php:1276 admin/settings.php:1578 admin/settings.php:1801
-#: admin/settings.php:1834 admin/settings.php:2136
+#: admin/settings.php:897 admin/settings.php:931 admin/settings.php:1272
+#: admin/settings.php:1304 admin/settings.php:1602 admin/settings.php:1687
+#: admin/settings.php:1912 admin/settings.php:1945 admin/settings.php:2247
 msgid "Application needs authorisation"
 msgstr "应用程序需要授权"
 
-#: admin/settings.php:872 admin/settings.php:906 admin/settings.php:1248
-#: admin/settings.php:1281 admin/settings.php:1583 admin/settings.php:1804
-#: admin/settings.php:1839 admin/settings.php:2139
+#: admin/settings.php:902 admin/settings.php:936 admin/settings.php:1276
+#: admin/settings.php:1309 admin/settings.php:1607 admin/settings.php:1692
+#: admin/settings.php:1915 admin/settings.php:1950 admin/settings.php:2250
 msgid "Authorize"
 msgstr "授权"
 
-#: admin/settings.php:882 admin/settings.php:917 admin/settings.php:1257
-#: admin/settings.php:1292 admin/settings.php:1594 admin/settings.php:1814
-#: admin/settings.php:1850 admin/settings.php:2147
+#: admin/settings.php:912 admin/settings.php:947 admin/settings.php:1285
+#: admin/settings.php:1320 admin/settings.php:1618 admin/settings.php:1701
+#: admin/settings.php:1925 admin/settings.php:1961 admin/settings.php:2258
 msgid "Reauthorize"
 msgstr "重新授权"
 
-#: admin/settings.php:927 admin/settings.php:1299
+#: admin/settings.php:957 admin/settings.php:1327
 msgid "Application is authorized, go posting."
 msgstr "申请被授权，去发帖。"
 
-#: admin/settings.php:942 admin/settings.php:1308 admin/settings.php:1603
-#: admin/settings.php:1860 admin/settings.php:2157 admin/settings.php:2375
+#: admin/settings.php:970 admin/settings.php:1336 admin/settings.php:1971
+#: admin/settings.php:2268 admin/settings.php:2487
 msgid "Note"
 msgstr "注意"
 
-#: admin/settings.php:942
+#: admin/settings.php:970
 msgid ""
 "You have to create a Facebook application before filling the following "
 "details."
 msgstr "在填写以下详细信息之前，您必须创建一个 Facebook 应用程序。"
 
-#: admin/settings.php:943 admin/settings.php:2158
+#: admin/settings.php:971 admin/settings.php:2269
 msgid "Click here </a></b>to create new Facebook application."
 msgstr "单击此处</a></b>创建新的 Facebook 应用程序。"
 
-#: admin/settings.php:944
+#: admin/settings.php:972
 #, php-format
 msgid "In the application page in facebook, navigate to <b>%s</b>."
 msgstr "在 facebook 的应用程序页面中，导航到 <b>%s</b>。"
 
-#: admin/settings.php:944
+#: admin/settings.php:972
 msgid "Set the site url as"
 msgstr "将网站网址设置为"
 
-#: admin/settings.php:946 admin/settings.php:1312
+#: admin/settings.php:974 admin/settings.php:1340
 #, php-format
 msgid "And then navigate to <b>%s</b>. Set the Valid OAuth redirect URIs as"
 msgstr "然后导航到 <b>%s</b>。将有效 OAuth 重定向 URI 设置为"
 
-#: admin/settings.php:949 admin/settings.php:1315 admin/settings.php:1608
-#: admin/settings.php:1867 admin/settings.php:2163 admin/settings.php:2382
-#: admin/settings.php:2514
+#: admin/settings.php:977 admin/settings.php:1343 admin/settings.php:1978
+#: admin/settings.php:2274 admin/settings.php:2494 admin/settings.php:2626
 #, php-format
 msgid "For detailed step-by-step instructions, %sClick here%s"
 msgstr "有关详细的分步说明，%s单击此处%s"
 
-#: admin/settings.php:962 admin/settings.php:1326 admin/settings.php:1619
-#: admin/settings.php:1880 admin/settings.php:2176 admin/settings.php:2393
-#: admin/settings.php:2525
+#: admin/settings.php:990 admin/settings.php:1354 admin/settings.php:1708
+#: admin/settings.php:1991 admin/settings.php:2287 admin/settings.php:2505
+#: admin/settings.php:2637
 msgid "All fields given below are mandatory"
 msgstr "下面给出的所有字段均为必填项"
 
-#: admin/settings.php:973 admin/settings.php:1337 admin/settings.php:2536
+#: admin/settings.php:1001 admin/settings.php:1365 admin/settings.php:2648
 msgid "Application name"
 msgstr "应用名称"
 
-#: admin/settings.php:974 admin/settings.php:1338 admin/settings.php:2537
+#: admin/settings.php:1002 admin/settings.php:1366 admin/settings.php:2649
 msgid "This is for tracking purpose"
 msgstr "这是为了跟踪目的"
 
-#: admin/settings.php:982 admin/settings.php:1346 admin/settings.php:1629
+#: admin/settings.php:1010 admin/settings.php:1374 admin/settings.php:1718
 msgid "Application Selection"
 msgstr "应用选择"
 
-#: admin/settings.php:986 admin/settings.php:1350 admin/settings.php:1633
+#: admin/settings.php:1014 admin/settings.php:1378
 msgid "Own App"
 msgstr "自己的应用程序"
 
-#: admin/settings.php:986
+#: admin/settings.php:1014
 msgid "requires app submission and Facebook review"
 msgstr "需要应用提交和 Facebook 审核"
 
-#: admin/settings.php:986 admin/settings.php:1350 admin/settings.php:1633
+#: admin/settings.php:1014 admin/settings.php:1378 admin/settings.php:1722
+#: admin/settings.php:1725
 msgid "Help"
 msgstr "帮助"
 
-#: admin/settings.php:988 admin/settings.php:1352 admin/settings.php:1635
+#: admin/settings.php:1016 admin/settings.php:1380 admin/settings.php:1727
 msgid "App approval service available for 50 USD"
 msgstr "50 美元的应用程序审批服务"
 
-#: admin/settings.php:991 admin/settings.php:1355 admin/settings.php:1638
+#: admin/settings.php:1019 admin/settings.php:1383 admin/settings.php:1730
 msgid "Expected time frame"
 msgstr "预计时间范围"
 
-#: admin/settings.php:991 admin/settings.php:1355 admin/settings.php:1638
+#: admin/settings.php:1019 admin/settings.php:1383 admin/settings.php:1730
 msgid "30 days"
 msgstr "30天"
 
-#: admin/settings.php:992 admin/settings.php:1356 admin/settings.php:1639
+#: admin/settings.php:1020 admin/settings.php:1384 admin/settings.php:1731
 msgid "Required details"
 msgstr "所需详细信息"
 
-#: admin/settings.php:992
+#: admin/settings.php:1020
 msgid "1.WordPress login"
 msgstr "1.WordPress登录"
 
-#: admin/settings.php:993
+#: admin/settings.php:1021
 msgid ""
 "2. Admin access to Facebook developer app for review submission (temporary)."
 msgstr "2. 管理员访问 Facebook 开发者应用程序以提交评论（临时）。"
 
-#: admin/settings.php:994 admin/settings.php:1358 admin/settings.php:1641
+#: admin/settings.php:1022 admin/settings.php:1386 admin/settings.php:1733
 msgid "For more details contact"
 msgstr "更多详情请联系"
 
-#: admin/settings.php:994 admin/settings.php:1358 admin/settings.php:1641
+#: admin/settings.php:1022 admin/settings.php:1386 admin/settings.php:1733
 msgid "Support Desk"
 msgstr "支持台"
 
-#: admin/settings.php:998
+#: admin/settings.php:1026
 #, php-format
 msgid "%s App ( ready to publish )"
 msgstr "%s 应用程序（准备发布）"
 
-#: admin/settings.php:998 admin/settings.php:1362 admin/settings.php:1646
-#: admin/settings.php:1899
+#: admin/settings.php:1026 admin/settings.php:1390 admin/settings.php:1738
+#: admin/settings.php:2010
 msgid "Starts from 10 USD per year"
 msgstr "每年 10 美元起"
 
-#: admin/settings.php:1001 admin/settings.php:1365 admin/settings.php:1651
-#: admin/settings.php:1903
+#: admin/settings.php:1029 admin/settings.php:1393 admin/settings.php:1743
+#: admin/settings.php:2014
 msgid "30 DAYS FREE TRIAL AVAILABLE"
 msgstr "提供 30 天免费试用"
 
-#: admin/settings.php:1004
+#: admin/settings.php:1032
 #, php-format
 msgid "How to use %s application"
 msgstr "如何使用 %s 应用程序"
 
-#: admin/settings.php:1022 admin/settings.php:1386
+#: admin/settings.php:1050 admin/settings.php:1414
 msgid "Application id"
 msgstr "应用程序编号"
 
-#: admin/settings.php:1031 admin/settings.php:1395
+#: admin/settings.php:1059 admin/settings.php:1423
 msgid "Application secret"
 msgstr "应用秘密"
 
-#: admin/settings.php:1041
+#: admin/settings.php:1069
 msgid ""
 "Create app album(with <b> Application name </b>) in the Facebook pages,<br/> "
 "if you are using the posting method <b> Upload image to app album"
@@ -1295,197 +1319,246 @@ msgstr ""
 "在 Facebook 页面中创建应用相册（使用 <b> 应用名称</b>），<br/>如果您使用的是"
 "发布方式 <b> 将图片上传到应用相册"
 
-#: admin/settings.php:1098
+#: admin/settings.php:1126
 msgid "Clear facebook cache before publishing to facebook"
 msgstr "在发布到 facebook 之前清除 facebook 缓存"
 
-#: admin/settings.php:1161
+#: admin/settings.php:1189
 msgid "Select facebook pages for auto publish"
 msgstr "选择 Facebook 页面进行自动发布"
 
-#: admin/settings.php:1170 admin/settings.php:1479
+#: admin/settings.php:1198 admin/settings.php:1507
 msgid "Select All"
 msgstr "Select All"
 
-#: admin/settings.php:1195
+#: admin/settings.php:1223
 msgid "Selected facebook pages for auto publish"
 msgstr "选定的 Facebook 页面用于自动发布"
 
-#: admin/settings.php:1219 admin/settings.php:1543 admin/settings.php:1771
-#: admin/settings.php:2108 admin/settings.php:2261 admin/settings.php:2663
+#: admin/settings.php:1247 admin/settings.php:1571 admin/settings.php:1882
+#: admin/settings.php:2219 admin/settings.php:2373 admin/settings.php:2775
 msgid "Save"
 msgstr "保存"
 
-#: admin/settings.php:1223 admin/settings.php:1547 admin/settings.php:1775
-#: admin/settings.php:2112
+#: admin/settings.php:1251 admin/settings.php:1575 admin/settings.php:1886
+#: admin/settings.php:2223
 msgid "Free trial is available only for first time users"
 msgstr "免费试用仅适用于首次使用的用户"
 
-#: admin/settings.php:1226 admin/settings.php:1550 admin/settings.php:1778
-#: admin/settings.php:2115
+#: admin/settings.php:1254 admin/settings.php:1578 admin/settings.php:1889
+#: admin/settings.php:2226
 msgid "Use reauthorize button to change selected values"
 msgstr "使用重新授权按钮更改所选值"
 
-#: admin/settings.php:1308
+#: admin/settings.php:1336
 msgid ""
 "You have to create a Instagram application before filling the following "
 "details."
 msgstr "在填写以下详细信息之前，您必须创建一个 Instagram 应用程序。"
 
-#: admin/settings.php:1309
+#: admin/settings.php:1337
 msgid "Click here </a></b>to create new Instagram application."
 msgstr "单击此处</a></b>创建新的 Instagram 应用程序。"
 
-#: admin/settings.php:1310
+#: admin/settings.php:1338
 #, php-format
 msgid ""
 "In the application page in instagram, navigate to <b>%s</b>. Set the site "
 "url as"
 msgstr "在 instagram 的应用程序页面中，导航到 <b>%s</b>。将网站网址设置为"
 
-#: admin/settings.php:1350
+#: admin/settings.php:1378
 msgid "requires app submission and Instagram review"
 msgstr "需要应用提交和 Instagram 审核"
 
-#: admin/settings.php:1356 admin/settings.php:1639
+#: admin/settings.php:1384 admin/settings.php:1731
 msgid "1. WordPress login"
 msgstr "1. WordPress 登录"
 
-#: admin/settings.php:1357
+#: admin/settings.php:1385
 msgid ""
 "2. Admin access to Instagram developer app for review submission (temporary)."
 msgstr "2. 管理员访问 Instagram 开发者应用程序以提交评论（临时）。"
 
-#: admin/settings.php:1406
+#: admin/settings.php:1434
 msgid "Text message with Image"
 msgstr "带图片的短信"
 
-#: admin/settings.php:1422
+#: admin/settings.php:1450
 msgid "Optional in the case of <b>Text message with image </b>posting methods"
 msgstr "在<b>带有图片的文本消息</b>发布方法的情况下是可选的"
 
-#: admin/settings.php:1474
+#: admin/settings.php:1502
 msgid "Select instagram pages for auto publish"
 msgstr "选择用于自动发布的 Instagram 页面"
 
-#: admin/settings.php:1519
+#: admin/settings.php:1547
 msgid "Selected instagram pages for auto publish"
 msgstr "选定的用于自动发布的 Instagram 页面"
 
-#: admin/settings.php:1603
+#: admin/settings.php:1628 admin/settings.php:1651 admin/settings.php:2623
+msgid "Note:"
+msgstr "注意:"
+
+#: admin/settings.php:1628 admin/settings.php:1651
 msgid ""
 "You have to create a Twitter application before filling in following fields."
 msgstr "在填写以下字段之前，您必须创建一个 Twitter 应用程序。"
 
-#: admin/settings.php:1604
-msgid ""
-"Click here </a></b>to create new application. Specify the website for the "
-"application as"
-msgstr "单击此处</a></b>创建新应用程序。将应用程序的网站指定为"
+#: admin/settings.php:1630 admin/settings.php:1654
+#, php-format
+msgid "%sClick here%s to create a new application."
+msgstr "%s单击此处%s创建一个新的应用程序。"
 
-#: admin/settings.php:1605
+#: admin/settings.php:1635 admin/settings.php:1659
+#, php-format
+msgid "In the twitter application, navigate to <b>%s</b>."
+msgstr "在 Twitter 应用程序中，导航到 <b>%s</b>。"
+
+#: admin/settings.php:1638
+#, php-format
+msgid "Set <b>App permissions</b> to <b>%s</b>."
+msgstr "将<b>应用程序权限</b>设置为<b>%s</b>。"
+
+#: admin/settings.php:1641 admin/settings.php:1668
+#, php-format
+msgid "Specify <b>Website URL</b> as %s"
+msgstr "将<b>网站网址</b>指定为 %s"
+
+#: admin/settings.php:1646
+#, php-format
+msgid "After updation , navigate to <b>%s</b> where you will get <b>%s</b>."
+msgstr "更新后，导航到<b>%s</b>，您将获得<b>%s</b>。"
+
+#: admin/settings.php:1647 admin/settings.php:1674
 #, php-format
 msgid ""
-"In the twitter application, navigate to <b>%s</b>. Select <b>%s</b> option."
-msgstr "在 twitter 应用程序中，导航到 <b>%s</b>。选择 <b>%s</b> 选项。"
+"For detailed step by step instructions <b><a href=\"%s\" target=\"_blank\"> "
+"Click here"
+msgstr "详细的分步说明<b><a href=\"%s\" target=\"_blank\"> 点击这里"
 
-#: admin/settings.php:1606
+#: admin/settings.php:1663
 #, php-format
 msgid ""
-"After updating access, navigate to <b>%s</b> in the application and click "
-"<b>Create my access token </b> button."
+"Set <b>App permissions</b> to <b>%s</b>, and <b>Type of App</b> to <b>%s</"
+"b> .<br>Under <b>App info</b> section set <b>Redirect URI</b> to: %s"
 msgstr ""
-"更新访问权限后，导航到应用程序中的 <b>%s</b> 并单击 <b>创建我的访问令牌</b> "
-"按钮。"
+"将<b>应用权限</b>设置为<b>%s</b>，并将<b>应用类型</b>设置为<b>%s</b>。<br>在"
+"<b>应用信息</b>部分，将<b>重定向URI</b>设置为：%s"
 
-#: admin/settings.php:1633
+#: admin/settings.php:1673
+#, php-format
+msgid ""
+"After updation , navigate to <b>%s</b> where you will get <b>%s</b><br>under "
+"<b>%s</b>."
+msgstr "更新后，导航到<b>%s</b>，您将在<b>%s</b>下获得<b>%s</b><br>。"
+
+#: admin/settings.php:1722
+msgid ""
+"Own App (Traditional: This is for supporting old users, We advise switching "
+"to OAuth 2.0)"
+msgstr "自己的应用程序（传统：这是为了支持老用户，我们建议切换到 OAuth 2.0）"
+
+#: admin/settings.php:1722
 msgid "requires app submission and Twitter review"
 msgstr "需要应用提交和 Twitter 审核"
 
-#: admin/settings.php:1640
+#: admin/settings.php:1725
+msgid "Own App (OAuth2.0 :Recommended)"
+msgstr "自己的应用程序（OAuth2.0：推荐）"
+
+#: admin/settings.php:1732
 msgid ""
 "2. Admin access to Twitter developer app for review submission (temporary)"
 msgstr "2. 管理员权限访问 Twitter 开发者应用以提交评论（临时）"
 
-#: admin/settings.php:1672 admin/settings.php:2404
+#: admin/settings.php:1765 admin/settings.php:2516
 msgid "API key"
 msgstr "API 密钥"
 
-#: admin/settings.php:1681 admin/settings.php:2413
+#: admin/settings.php:1774 admin/settings.php:2525
 msgid "API secret"
 msgstr "API 秘密"
 
-#: admin/settings.php:1690
+#: admin/settings.php:1784 admin/settings.php:2046
+msgid "Client ID"
+msgstr "客户编号"
+
+#: admin/settings.php:1792
+msgid "Client Secret "
+msgstr "客户秘密 "
+
+#: admin/settings.php:1801
 msgid "Twitter username"
 msgstr "Twitter用户名"
 
-#: admin/settings.php:1699 admin/settings.php:2430
+#: admin/settings.php:1810 admin/settings.php:2542
 msgid "Access token"
 msgstr "访问令牌"
 
-#: admin/settings.php:1708 admin/settings.php:2439
+#: admin/settings.php:1819 admin/settings.php:2551
 msgid "Access token secret"
 msgstr "访问令牌秘密"
 
-#: admin/settings.php:1756
+#: admin/settings.php:1867
 msgid "Twitter character limit"
 msgstr "推特字数限制"
 
-#: admin/settings.php:1759
+#: admin/settings.php:1870
 msgid "The character limit of tweets  is 280."
 msgstr "推文的字符数限制为 280。"
 
-#: admin/settings.php:1760
+#: admin/settings.php:1871
 msgid ""
 "Use 140 for languages like Chinese, Japanese and Korean <br/> which won't "
 "get the 280 character length limit."
 msgstr ""
 "对中文、日文和韩文等语言使用 140<br/>，这样就没有 280 个字符的长度限制。"
 
-#: admin/settings.php:1860
+#: admin/settings.php:1971
 msgid ""
 "You have to create a Linkedin application before filling the following "
 "details."
 msgstr "在填写以下详细信息之前，您必须创建一个 Linkedin 应用程序。"
 
-#: admin/settings.php:1861
+#: admin/settings.php:1972
 msgid "Click here </a></b> to create new Linkedin application."
 msgstr "单击此处</a></b> 以创建新的Linkedin 应用程序。"
 
-#: admin/settings.php:1862
+#: admin/settings.php:1973
 msgid "Specify the website url for the application as"
 msgstr "将应用程序的网站 url 指定为"
 
-#: admin/settings.php:1864
+#: admin/settings.php:1975
 msgid "Specify the authorized redirect url as"
 msgstr "将授权的重定向 url 指定为"
 
-#: admin/settings.php:1890
+#: admin/settings.php:2001
 #, php-format
 msgid "%s usage"
 msgstr "%s 使用情况"
 
-#: admin/settings.php:1894
+#: admin/settings.php:2005
 msgid "Own app-Basic profile fields only"
 msgstr "仅拥有自己的应用程序基本配置文件字段"
 
-#: admin/settings.php:1896
+#: admin/settings.php:2007
 msgid "Own app-Basic profile fields + company pages"
 msgstr "自己的应用程序-基本个人资料字段+公司页面"
 
-#: admin/settings.php:1896
+#: admin/settings.php:2007
 msgid "requires app submission and LinkedIn review"
 msgstr "需要应用提交和 LinkedIn 审核"
 
-#: admin/settings.php:1897 admin/settings.php:1940
+#: admin/settings.php:2008 admin/settings.php:2051
 msgid "How can I create a Linkedin Application"
 msgstr "如何创建 Linkedin 应用程序"
 
-#: admin/settings.php:1922
+#: admin/settings.php:2033
 msgid "LinkedIn Sign-In Method"
 msgstr "LinkedIn登录方法"
 
-#: admin/settings.php:1924
+#: admin/settings.php:2035
 msgid ""
 "Starting from August 1, 2023, \"<b>Sign In with LinkedIn</b>\" (SIWL) has "
 "been deprecated. For all new apps, we strongly recommend using \"<b>Sign In "
@@ -1503,186 +1576,178 @@ msgstr ""
 "过渡到“使用 OpenID Connect 通过 LinkedIn 登录”，请确保在 LinkedIn 开发人员应"
 "用程序的产品部分下添加此选项。"
 
-#: admin/settings.php:1929
+#: admin/settings.php:2040
 msgid "Sign In with LinkedIn"
 msgstr "使用 LinkedIn 登录"
 
-#: admin/settings.php:1931
+#: admin/settings.php:2042
 msgid "Sign In with LinkedIn using OpenID Connect"
 msgstr "使用 OpenID Connect 登录 LinkedIn"
 
-#: admin/settings.php:1935
-msgid "Client ID"
-msgstr "客户编号"
-
-#: admin/settings.php:1944
+#: admin/settings.php:2055
 msgid "Client Secret"
 msgstr "客户秘密"
 
-#: admin/settings.php:1964 admin/settings.php:2224
+#: admin/settings.php:2075 admin/settings.php:2336
 msgid "Optional"
 msgstr "自选的"
 
-#: admin/settings.php:1999 admin/settings.php:2018
+#: admin/settings.php:2110 admin/settings.php:2129
 msgid "Share post to profile"
 msgstr "将帖子分享到个人资料"
 
-#: admin/settings.php:2030
+#: admin/settings.php:2141
 msgid "Connections"
 msgstr "连接"
 
-#: admin/settings.php:2035
+#: admin/settings.php:2146
 msgid "Select pages for auto publish"
 msgstr "选择页面进行自动发布"
 
-#: admin/settings.php:2053
+#: admin/settings.php:2164
 msgid "Failed to fetch company details."
 msgstr "未能获取公司详细信息。"
 
-#: admin/settings.php:2070 admin/settings.php:2074
+#: admin/settings.php:2181 admin/settings.php:2185
 msgid "No companies found."
 msgstr "没有找到公司。"
 
-#: admin/settings.php:2083
+#: admin/settings.php:2194
 msgid "Share post to company page"
 msgstr "将帖子分享到公司页面"
 
-#: admin/settings.php:2157
+#: admin/settings.php:2268
 msgid ""
 "You have to create a Facebook application with Access the Threads API as Use "
 "case before filling the following details."
 msgstr ""
-"在填写以下详细信息之前，您必须先创建一个 Facebook 应用程序，并使用访问线程 "
-"API 作为用例。"
+"在填写以下详细信息之前，您必须创建一个以访问线程 API 作为用例的 Facebook 应用"
+"程序。"
 
-#: admin/settings.php:2160
+#: admin/settings.php:2271
 msgid ""
 "In the application page in facebook, navigate to Use cases > Access the "
 "Threads API > Customize > Settings. Set Redirect Callback URLs as "
 msgstr ""
-"在 facebook 的应用程序页面中，导航到用例 > 访问线程 API > 自定义 > 设置。将重"
+"在 Facebook 的应用程序页面中，导航至用例 > 访问线程 API > 自定义 > 设置。将重"
 "定向回调 URL 设置为 "
 
-#: admin/settings.php:2180
+#: admin/settings.php:2291
 msgid "Enable auto publish posts to my Threads account"
 msgstr "启用自动发布帖子到我的 Threads 帐户"
 
-#: admin/settings.php:2189
+#: admin/settings.php:2300
 msgid "Threads app ID"
-msgstr "线程用户名"
+msgstr "Threads 应用 ID"
 
-#: admin/settings.php:2197
+#: admin/settings.php:2308
 msgid "Threads app secret"
-msgstr "线程用户名"
+msgstr "Threads 应用程序机密"
 
-#: admin/settings.php:2205
+#: admin/settings.php:2317
 msgid "Threads username"
 msgstr "线程用户名"
 
-#: admin/settings.php:2375
+#: admin/settings.php:2487
 msgid ""
 "You have to create a Tumblr application before filling in following fields."
 msgstr "在填写以下字段之前，您必须创建一个 Tumblr 应用程序。"
 
-#: admin/settings.php:2376
+#: admin/settings.php:2488
 msgid ""
 "Click here </a></b> to create new application.<br> Specify the application "
 "website for the application as"
 msgstr "单击此处</a></b>创建新应用程序。<br>将应用程序的应用程序网站指定为"
 
-#: admin/settings.php:2378
+#: admin/settings.php:2490
 msgid "Specify the default callback URL as"
 msgstr "将默认回调 URL 指定为"
 
-#: admin/settings.php:2409
+#: admin/settings.php:2521
 msgid "How can I create a Tumblr Application"
 msgstr "如何创建 Tumblr 应用程序"
 
-#: admin/settings.php:2421
+#: admin/settings.php:2533
 msgid "Tumblr username"
 msgstr "Tumblr 用户名"
 
-#: admin/settings.php:2473
+#: admin/settings.php:2585
 msgid "Note : </b>Message can not be posted to tumblr while attaching image."
 msgstr "注意：</b>附加图片时不能将消息发布到 tumblr。"
 
-#: admin/settings.php:2496
+#: admin/settings.php:2608
 msgid "save"
 msgstr "保存"
 
-#: admin/settings.php:2511
-msgid "Note:"
-msgstr "注意:"
-
-#: admin/settings.php:2512
+#: admin/settings.php:2624
 msgid ""
 "You have to generate Telegram Bot token, group id, channel id before filling "
 "the following details."
 msgstr ""
 "在填寫以下詳細資訊之前，您必須產生 Telegram Bot 令牌、群組 ID、頻道 ID。"
 
-#: admin/settings.php:2528
+#: admin/settings.php:2640
 msgid "Enable auto publish post to my telegram account"
 msgstr "啟用自動發布貼文到我的電報帳戶"
 
-#: admin/settings.php:2545
+#: admin/settings.php:2657
 msgid "Bot token"
 msgstr "機器人代幣"
 
-#: admin/settings.php:2555
+#: admin/settings.php:2667
 msgid "Bot Username"
 msgstr "機器人用戶名"
 
-#: admin/settings.php:2557
+#: admin/settings.php:2669
 msgid ""
 "[Auto-filled after you submit the form with a valid Bot Token. No need to "
 "enter it.]"
 msgstr "[使用有效的机器人令牌提交表单后自动填写。无需输入。]"
 
-#: admin/settings.php:2587
+#: admin/settings.php:2699
 msgid "Channel IDs(Chat ID) for auto publish"
 msgstr "用於自動發布的頻道 ID（聊天 ID）"
 
-#: admin/settings.php:2589 admin/settings.php:2603
+#: admin/settings.php:2701 admin/settings.php:2715
 msgid ""
 "[Prefix each ID with a \"-\" symbol and separate them with commas e.g., "
 "-123456789, -987654321]"
 msgstr "[每个 ID 前面加上“-”符号并用逗号分隔，例如 -123456789、-987654321]"
 
-#: admin/settings.php:2601
+#: admin/settings.php:2713
 msgid "Group IDs(Chat ID) for auto publish"
 msgstr ""
 "Идентификаторы групп (идентификатор чата) для автоматической публикации"
 
-#: admin/settings.php:2625
+#: admin/settings.php:2737
 msgid "Text message with Image "
 msgstr "带图片的短信 "
 
-#: admin/settings.php:2674
+#: admin/settings.php:2786
 msgid "Basic Settings"
 msgstr "基本设置"
 
-#: admin/settings.php:2677
+#: admin/settings.php:2789
 msgid "Publish wordpress `posts` to social media"
 msgstr "将 wordpress 的“帖子”发布到社交媒体"
 
-#: admin/settings.php:2686
+#: admin/settings.php:2798
 msgid "Publish wordpress `pages` to social media"
 msgstr "将 wordpress 的“页面”发布到社交媒体"
 
-#: admin/settings.php:2710
+#: admin/settings.php:2822
 msgid "Select wordpress custom post types for auto publish"
 msgstr "为自动发布选择 wordpress 自定义帖子类型"
 
-#: admin/settings.php:2727
+#: admin/settings.php:2839
 msgid "Advanced Settings"
 msgstr "高级设置"
 
-#: admin/settings.php:2729
+#: admin/settings.php:2841
 msgid "Enforce og tags for Facebook and LinkedIn"
 msgstr "为 Facebook 和 LinkedIn 强制执行 og 标签"
 
-#: admin/settings.php:2731
+#: admin/settings.php:2843
 msgid ""
 "If you enable, Open Graph tags will be generated while posting to Facebook "
 "and LinkedIn. <br/>\n"
@@ -1698,7 +1763,7 @@ msgstr ""
 "的链接</b> 或<b> 在 Facebook 中附加您的博客文章</b> 以及在分享到 LinkedIn "
 "时。"
 
-#: admin/settings.php:2733
+#: admin/settings.php:2845
 msgid ""
 "If Open Graph tags are present, most major content sharing platform's "
 "crawler will not have to rely on it's own analysis to determine what content "
@@ -1708,11 +1773,11 @@ msgstr ""
 "如果存在 Open Graph 标签，大多数主要内容共享平台的爬虫将不必依靠自己的分析来"
 "确定要共享的内容，从而提高共享的信息正是您想要的信息的可能性。"
 
-#: admin/settings.php:2742
+#: admin/settings.php:2854
 msgid "Add twitter cards while posting to twitter"
 msgstr "在推特上发帖时添加推特卡"
 
-#: admin/settings.php:2744
+#: admin/settings.php:2856
 msgid ""
 "By crawling twitter card specific meta tags, twitter can generate a "
 "summarised preview of the tweeted link.<br/> * To generete tweet preview of "
@@ -1721,63 +1786,63 @@ msgstr ""
 "通过抓取推特卡片特定的元标记，推特可以生成推文链接的摘要预览。<br/> * 要生成"
 "帖子的推文预览，请将<b>将媒体附加到推特帖子</b>设置为<b>否< /b>。"
 
-#: admin/settings.php:2754
+#: admin/settings.php:2866
 msgid "Select post categories for auto publish"
 msgstr "选择自动发布的帖子类别"
 
-#: admin/settings.php:2760
+#: admin/settings.php:2872
 msgid "All"
 msgstr "全部"
 
-#: admin/settings.php:2762
+#: admin/settings.php:2874
 msgid "Specific"
 msgstr "具体的"
 
-#: admin/settings.php:2798
+#: admin/settings.php:2910
 msgid "NIL"
 msgstr "零"
 
-#: admin/settings.php:2805
+#: admin/settings.php:2917
 msgid "Auto publish on creating posts/pages/custom post types"
 msgstr "在创建帖子/页面/自定义帖子类型时自动发布"
 
-#: admin/settings.php:2808 admin/settings.php:2818
+#: admin/settings.php:2920 admin/settings.php:2930
 msgid "Enabled"
 msgstr "启用"
 
-#: admin/settings.php:2809 admin/settings.php:2819
+#: admin/settings.php:2921 admin/settings.php:2931
 msgid "Disabled"
 msgstr "禁用"
 
-#: admin/settings.php:2810 admin/settings.php:2820
+#: admin/settings.php:2922 admin/settings.php:2932
 msgid "Use metabox settings"
 msgstr "Использовать настройки метабокса"
 
-#: admin/settings.php:2815
+#: admin/settings.php:2927
 msgid "Auto publish on editing posts/pages/custom post types"
 msgstr "在编辑帖子/页面/自定义帖子类型时自动发布"
 
-#: admin/settings.php:2825
+#: admin/settings.php:2937
 msgid "Enable SSL peer verification in remote requests"
 msgstr "在远程请求中启用 SSL 对等验证"
 
-#: admin/settings.php:2833
+#: admin/settings.php:2945
 msgid "Apply filters during publishing"
 msgstr "在发布期间应用过滤器"
 
-#: admin/settings.php:2872
+#: admin/settings.php:2984
 msgid "Other Settings"
 msgstr "其他设置"
 
-#: admin/settings.php:2875
+#: admin/settings.php:2987
 msgid "Enable credit link to author"
 msgstr "启用作者的信用链接"
 
-#: admin/settings.php:2885
+#: admin/settings.php:2997
 msgid "Enable premium version ads"
 msgstr "启用高级版广告"
 
-#: admin/settings.php:2896
+#: admin/settings.php:3008
 msgid "Update Settings"
 msgstr "更新设置"
 
@@ -1812,6 +1877,13 @@ msgstr "发送邮件给我们"
 msgid "Hi there!  Im just a plugin, not much I can do when called directly."
 msgstr "你好呀！我只是一个插件，直接调用时我无能为力。"
 
+#: xyz-functions.php:411
+msgid "Every 2 Hours"
+msgstr "每 2 小时"
+
+#~ msgid "Just 29 USD"
+#~ msgstr "只需 29 美元"
+
 #~ msgid "Twitter Authorizations"
 #~ msgstr "推特授权"
 
@@ -1820,6 +1892,19 @@ msgstr "你好呀！我只是一个插件，直接调用时我无能为力。"
 
 #~ msgid "Twitter user name"
 #~ msgstr "Twitter用户名"
+
+#~ msgid ""
+#~ "Click here </a></b>to create new application. Specify the website for the "
+#~ "application as"
+#~ msgstr "单击此处</a></b>创建新应用程序。将应用程序的网站指定为"
+
+#, php-format
+#~ msgid ""
+#~ "After updating access, navigate to <b>%s</b> in the application and click "
+#~ "<b>Create my access token </b> button."
+#~ msgstr ""
+#~ "更新访问权限后，导航到应用程序中的 <b>%s</b> 并单击 <b>创建我的访问令牌</"
+#~ "b> 按钮。"
 
 #~ msgid "Application ID"
 #~ msgstr "应用程序编号"
@@ -1830,9 +1915,6 @@ msgstr "你好呀！我只是一个插件，直接调用时我无能为力。"
 #, php-format
 #~ msgid "Fully Featured %s Plugin"
 #~ msgstr "功能齐全的 %s 插件"
-
-#~ msgid "Just 29 USD"
-#~ msgstr "只需 29 美元"
 
 #~ msgid "No logs Found"
 #~ msgstr "未找到日志"
@@ -1857,12 +1939,6 @@ msgstr "你好呀！我只是一个插件，直接调用时我无能为力。"
 
 #~ msgid "Click here"
 #~ msgstr "点击这里"
-
-#, php-format
-#~ msgid ""
-#~ "For detailed step by step instructions <b><a href=\"%s\" "
-#~ "target=\"_blank\"> Click here"
-#~ msgstr "详细的分步说明<b><a href=\"%s\" target=\"_blank\"> 点击这里"
 
 #~ msgid "for step by step instructions."
 #~ msgstr "有关详细的分步说明."

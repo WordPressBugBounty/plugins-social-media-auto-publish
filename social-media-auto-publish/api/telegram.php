@@ -5,7 +5,9 @@ if (!function_exists("xyz_smap_tg_verify_bot_token")) {
     {
         $responseDataReturn=array();
         $apiUrl = "https://api.telegram.org/bot{$botApiToken}/getMe";
-        $response = wp_remote_get( $apiUrl );
+        $response = wp_remote_get( $apiUrl, array(
+            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+        ));
         if ( is_wp_error( $response ) ) {
             // Handle error
             $responseDataReturn['error']=$response->get_error_message();
@@ -36,7 +38,8 @@ if (!function_exists("xyz_smap_tg_get_channel_group_name")) {
             $channel_details = array(
                 'body' => array(
                     'chat_id' => $channel_Id
-                )
+                ),
+                'sslverify' => get_option('xyz_smap_peer_verification') == '1',
             );
             // Make the request using wp_remote_post
             $response = wp_remote_post($apiUrl, $channel_details);
@@ -74,7 +77,7 @@ if (!function_exists("xyz_smap_make_tg_post")) {
         // Check if media type is valid
         if (array_key_exists($media_type, $mediaEndpoints)) {
             $url = $baseUrl . $mediaEndpoints[$media_type];
-
+        $xyz_media_param_enc['sslverify'] = get_option('xyz_smap_peer_verification') == '1';
         // Make the request using wp_remote_post
         $response = wp_remote_post($url, $xyz_media_param_enc);
         if (is_wp_error($response)) {

@@ -41,19 +41,40 @@ if(!function_exists('xyz_smap_plugin_get_version'))
 	}
 }
 
+if(!function_exists('xyz_smap_run_upgrade_routines'))
+{
+function xyz_smap_run_upgrade_routines($old_version, $new_version) {
+	global $wpdb;
+	if (is_multisite()) {
+		$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+		foreach ($blog_ids as $blog_id) {
+			switch_to_blog($blog_id);
+			// Run install logic for each site
+			smap_install_free();
+			// Clear any relevant caches (example: object cache)
+			wp_cache_flush();
+			restore_current_blog();
+		}
+	} else {
+		// Single site: just run install and cache clear
+		smap_install_free();
+		wp_cache_flush();
+	}
+}
+}
 
 if(!function_exists('xyz_smap_links')){
 	function xyz_smap_links($links, $file) {
 		$base = plugin_basename(XYZ_SMAP_PLUGIN_FILE);
 		if ($file == $base) {
 
-			$links[] = '<a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/"  title="FAQ">FAQ</a>';
-			$links[] = '<a href="http://help.xyzscripts.com/docs/social-media-auto-publish/"  title="Read Me">README</a>';
-			$links[] = '<a href="https://xyzscripts.com/support/" class="xyz_support" title="Support"></a>';
-			$links[] = '<a href="http://twitter.com/xyzscripts" class="xyz_twitt" title="Follow us on twitter"></a>';
-			$links[] = '<a href="https://www.facebook.com/xyzscripts" class="xyz_fbook" title="Facebook"></a>';
-			$links[] = '<a href="http://www.linkedin.com/company/xyzscripts" class="xyz_linkedin" title="Follow us on linkedIn"></a>';
-			$links[] = '<a href="https://www.instagram.com/xyz_scripts/" class="xyz_insta" title="Follow us on Instagram"></a>';
+			$links[] = '<a href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/"  title="FAQ">FAQ</a>';
+			$links[] = '<a href="https://help.xyzscripts.com/docs/social-media-auto-publish/"  title="Read Me">README</a>';
+			$links[] = '<a href="https://xyzscripts.com/support/" class="xyz_smap_support" title="Support"></a>';
+			$links[] = '<a href="https://twitter.com/xyzscripts" class="xyz_smap_twitt" title="Follow us on twitter"></a>';
+			$links[] = '<a href="https://www.facebook.com/xyzscripts" class="xyz_smap_fbook" title="Facebook"></a>';
+			$links[] = '<a href="https://www.linkedin.com/company/xyzscripts" class="xyz_smap_linkedin" title="Follow us on linkedIn"></a>';
+			$links[] = '<a href="https://www.instagram.com/xyz_scripts/" class="xyz_smap_insta" title="Follow us on Instagram"></a>';
 		}
 		return $links;
 	}
@@ -381,6 +402,15 @@ if (!function_exists("xyz_smap_clear_open_graph_cache")) {
 		} catch (Exception $e){
 			return 'Graph returned an error: ' . $e->getMessage();
 		}
+	}
+}
+if (!function_exists("xyz_smap_custom_cron_interval")) {
+	function xyz_smap_custom_cron_interval( $schedules ) {
+		$schedules['smap_reauth_every_two_hours'] = array(
+			'interval' => 2 * 60 * 60, // 2 hours in seconds
+			'display'  => __( 'Every 2 Hours','social-media-auto-publish' ),
+		);
+		return $schedules;
 	}
 }
 ?>

@@ -54,7 +54,8 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 
 	}
 	if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_option('xyz_smap_pages_ids')!="" && get_option('xyz_smap_post_permission')==1 && (get_option('xyz_smap_app_sel_mode')==0)) ||
-	    (get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_twpost_permission')==1)
+(get_option('xyz_smap_tw_app_sel_mode')==0 && get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_twpost_permission')==1)
+		||(get_option('xyz_smap_tw_app_sel_mode')==2 && get_option('xyz_smap_tw_client_id')!="" && get_option('xyz_smap_tw_client_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_twpost_permission')==1)	
 	    || (get_option('xyz_smap_lnaf')==0 && get_option('xyz_smap_lnpost_permission')==1 && ( get_option('xyz_smap_ln_company_ids')!=''|| get_option('xyz_smap_lnshare_to_profile')==1)) || (get_option('xyz_smap_app_sel_mode')==1 && get_option('xyz_smap_page_names')!="" && get_option('xyz_smap_post_permission')==1)
 			|| (get_option('xyz_smap_ig_token')!="" && get_option('xyz_smap_igpost_permission')==1 && get_option('xyz_smap_ig_app_sel_mode')==0) ||(get_option('xyz_smap_smapsoln_userid_ig')!=0 && get_option('xyz_smap_ig_page_names')!='' && get_option('xyz_smap_ig_app_sel_mode')==1 && get_option('xyz_smap_igpost_permission')==1)
 	    || (get_option('xyz_smap_smapsoln_userid_tw')!=0 && get_option('xyz_smap_tw_app_sel_mode')==1) ||
@@ -671,7 +672,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top">
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish post to my facebook account','social-media-auto-publish'); ?> 
 		</td>
-	 <td  class="switch-field">
+	 <td  class="xyz_smap_switch_field">
 		<label id="xyz_smap_post_permission_yes"><input type="radio" name="xyz_smap_post_permission" id="xyz_smap_post_permission_1" value="1" <?php if ($post_permission==1)echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_post_permission_no"><input type="radio" name="xyz_smap_post_permission" id="xyz_smap_post_permission_0" value="0" <?php if ($post_permission==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 	 </td>
@@ -703,7 +704,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="fpmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_fb')" onmouseout="dethide_smap('xyz_fb')">
-						<div id="xyz_fb" class="smap_informationdiv" style="display: none;">
+						<div id="xyz_fb" class="xyz_smap_informationdiv" style="display: none;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
 							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
@@ -775,7 +776,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top">
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish post to my instagram account','social-media-auto-publish'); ?> 
 		</td>
-	 <td  class="switch-field">
+	 <td  class="xyz_smap_switch_field">
 		<label id="xyz_smap_igpost_permission_yes"><input type="radio" name="xyz_smap_igpost_permission" id="xyz_smap_igpost_permission_1" value="1" <?php if ($post_permission==1)echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_igpost_permission_no"><input type="radio" name="xyz_smap_igpost_permission" id="xyz_smap_igpost_permission_0" value="0" <?php if ($post_permission==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 	 </td>
@@ -791,7 +792,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="igmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_ig')" onmouseout="dethide_smap('xyz_ig')">
-						<div id="xyz_ig" class="smap_informationdiv" style="display: none;">
+						<div id="xyz_ig" class="xyz_smap_informationdiv" style="display: none;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
 							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
@@ -826,7 +827,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<?php 
 	}
 	
-	if((get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_tw_app_sel_mode')==0) || (get_option('xyz_smap_tw_app_sel_mode')==1 && get_option('xyz_smap_smapsoln_userid_tw')!=0))
+	if((get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_tw_app_sel_mode')==0) || (get_option('xyz_smap_tw_app_sel_mode')==2 && get_option('xyz_smap_tw_token')!="" && get_option('xyz_smap_tw_af')!=1))
 	{
 		$postid=0;
 		if (isset($_GET['post']))
@@ -850,8 +851,6 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr id="xyz_smap_twMetabox"><td colspan="2" >
 <?php  if(get_option('xyz_smap_twpost_permission')==1) {?>
 <table class="xyz_smap_meta_acclist_table"><!-- TW META -->
-
-
 <tr>
 		<td colspan="2" class="xyz_smap_pleft15 xyz_smap_meta_acclist_table_td"><strong> <?php _e('Twitter','social-media-auto-publish'); ?> </strong>
 		</td>
@@ -862,7 +861,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top">
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my twitter account','social-media-auto-publish'); ?>
 		</td>
- 	 <td  class="switch-field">
+ 	 <td  class="xyz_smap_switch_field">
 		<label id="xyz_smap_twpost_permission_yes"><input type="radio" name="xyz_smap_twpost_permission" id="xyz_smap_twpost_permission_1" value="1" <?php  if ($post_permission==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_twpost_permission_no"><input type="radio" name="xyz_smap_twpost_permission" id="xyz_smap_twpost_permission_0" value="0" <?php if ($post_permission==0) echo "checked";?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 	 </td>
@@ -884,7 +883,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="twmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_tw')" onmouseout="dethide_smap('xyz_tw')">
-						<div id="xyz_tw" class="smap_informationdiv" style="display: none; font-weight: normal;">
+						<div id="xyz_tw" class="xyz_smap_informationdiv" style="display: none; font-weight: normal;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
 							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
@@ -895,9 +894,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 							{POST_PUBLISH_DATE} - <?php _e('Insert the publish date of your post.','social-media-auto-publish'); ?><br/>
 							{USER_DISPLAY_NAME} - <?php _e('Insert the display name of the author.','social-media-auto-publish'); ?>
 						</div>
-		</td>
-		
-		
+		</td>		
 	<td>
 	<select name="xyz_smap_tw_info" id="xyz_smap_tw_info" onchange="xyz_smap_tw_info_insert(this)">
 		<option value ="0" selected="selected"> --<?php _e('Select','social-media-auto-publish'); ?>-- </option>
@@ -947,7 +944,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top">
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my tumblr account','social-media-auto-publish'); ?> 
 		</td>
-		<td  class="switch-field">
+		<td  class="xyz_smap_switch_field">
 		<label id="xyz_smap_tbpost_permission_yes"><input type="radio" name="xyz_smap_tbpost_permission" id="xyz_smap_tbpost_permission_1" value="1" <?php if ($post_permission==1) echo "checked";?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_tbpost_permission_no"><input type="radio" name="xyz_smap_tbpost_permission" id="xyz_smap_tbpost_permission_0" value="0" <?php if ($post_permission==0) echo "checked";?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 	</td>
@@ -965,7 +962,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="tbmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?>  <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_tb')" onmouseout="dethide_smap('xyz_tb')" style="width:13px;height:auto;">
-						<div id="xyz_tb" class="smap_informationdiv"
+						<div id="xyz_tb" class="xyz_smap_informationdiv"
 							style="display: none; font-weight: normal;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
@@ -1036,7 +1033,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" >
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my linkedin account','social-media-auto-publish'); ?> 
 		</td>
-	 	  <td  class="switch-field">
+	 	  <td  class="xyz_smap_switch_field">
 			<label id="xyz_smap_lnpost_permission_yes"><input type="radio" name="xyz_smap_lnpost_permission" id="xyz_smap_lnpost_permission_1" value="1" <?php if ($post_permission==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 			<label id="xyz_smap_lnpost_permission_no"><input type="radio" name="xyz_smap_lnpost_permission" id="xyz_smap_lnpost_permission_0" value="0" <?php if ($post_permission==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 		 </td>
@@ -1055,7 +1052,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="lnmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_ln')" onmouseout="dethide_smap('xyz_ln')">
-						<div id="xyz_ln" class="smap_informationdiv"
+						<div id="xyz_ln" class="xyz_smap_informationdiv"
 							style="display: none; font-weight: normal;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
@@ -1143,7 +1140,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top">
 		<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my telegram account','social-media-auto-publish'); ?>
 		</td>
-	 <td  class="switch-field">
+	 <td  class="xyz_smap_switch_field">
 		<label id="xyz_smap_tgpost_permission_yes"><input type="radio" name="xyz_smap_tgpost_permission" id="xyz_smap_tgpost_permission_1" value="1" <?php if ($post_permission==1)echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 		<label id="xyz_smap_tgpost_permission_no"><input type="radio" name="xyz_smap_tgpost_permission" id="xyz_smap_tgpost_permission_0" value="0" <?php if ($post_permission==0) echo "checked";?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
 	 </td>
@@ -1163,7 +1160,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<tr valign="top" id="tgmf">
 		<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 						onmouseover="detdisplay_smap('xyz_tg')" onmouseout="dethide_smap('xyz_tg')">
-						<div id="xyz_tg" class="smap_informationdiv" style="display: none; font-weight: normal;">
+						<div id="xyz_tg" class="xyz_smap_informationdiv" style="display: none; font-weight: normal;">
 							{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 							{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
 							{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>
@@ -1235,7 +1232,7 @@ if( get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_thaf')!=1
 <tr valign="top">
 	<td class="xyz_smap_pleft15" width="60%"> <?php _e('Enable auto publish posts to my threads account','social-media-auto-publish'); ?>
 	</td>
-  <td  class="switch-field">
+  <td  class="xyz_smap_switch_field">
 	<label id="xyz_smap_thpost_permission_yes"><input type="radio" name="xyz_smap_thpost_permission" id="xyz_smap_thpost_permission_1" value="1" <?php  if ($post_permission==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 	<label id="xyz_smap_thpost_permission_no"><input type="radio" name="xyz_smap_thpost_permission" id="xyz_smap_thpost_permission_0" value="0" <?php if ($post_permission==0) echo "checked";?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
  </td>
@@ -1255,7 +1252,7 @@ if( get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_thaf')!=1
 <tr valign="top" id="thmf">
 	<td class="xyz_smap_pleft15"> <?php _e('Message format for posting','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>"
 					onmouseover="detdisplay_smap('xyz_th')" onmouseout="dethide_smap('xyz_th')">
-					<div id="xyz_th" class="smap_informationdiv" style="display: none; font-weight: normal;">
+					<div id="xyz_th" class="xyz_smap_informationdiv" style="display: none; font-weight: normal;">
 						{POST_TITLE} - <?php _e('Insert the title of your post.','social-media-auto-publish'); ?><br/>
 						{PERMALINK} - <?php _e('Insert the URL where your post is displayed.','social-media-auto-publish'); ?><br/>
 						{POST_EXCERPT} - <?php _e('Insert the excerpt of your post.','social-media-auto-publish'); ?><br/>

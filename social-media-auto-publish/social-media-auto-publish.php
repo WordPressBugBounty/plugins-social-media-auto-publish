@@ -3,7 +3,7 @@
  Plugin Name: Social Media Auto Publish
 Plugin URI: https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/
 Description:   Publish posts automatically from your blog to social media networks like Facebook, Twitter,  Instagram, LinkedIn, Tumblr, Threads and Telegram. The plugin supports filtering posts by post-types and categories.
-Version: 3.5
+Version: 3.6
 Requires PHP: 7.4
 Author: xyzscripts.com
 Author URI: https://xyzscripts.com/
@@ -36,7 +36,7 @@ function plugin_load_smaptextdomain() {
     load_plugin_textdomain( 'social-media-auto-publish', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'init', 'plugin_load_smaptextdomain' );
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 define('XYZ_SMAP_PLUGIN_FILE',__FILE__);
 
 if (!defined('XYZ_SMAP_FB_API_VERSION'))
@@ -100,5 +100,18 @@ function xyz_smap_add_action_links( $links ) {
 			'<a href="' . admin_url( 'admin.php?page=social-media-auto-publish-settings' ) . '">Settings</a>',
 	);
 	return array_merge( $links, $xyz_smap_links);
+}
+add_action('admin_init', 'xyz_smap_check_and_upgrade_plugin_version');
+function xyz_smap_check_and_upgrade_plugin_version() {
+	if ( ! function_exists( 'get_plugins' ) )
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$current_version = xyz_smap_plugin_get_version();
+	$saved_version   = get_option('xyz_smap_free_version');
+	if ($saved_version === false) {
+		add_option('xyz_smap_free_version', $current_version);
+	} elseif (version_compare($current_version, $saved_version, '>')) {
+		xyz_smap_run_upgrade_routines($saved_version, $current_version);
+		update_option('xyz_smap_free_version', $current_version);
+	}
 }
 ?>

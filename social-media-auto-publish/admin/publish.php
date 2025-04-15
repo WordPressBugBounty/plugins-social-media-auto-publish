@@ -157,7 +157,6 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 }
 
 function xyz_link_publish($post_ID) {
-
 	$_POST_CPY=$_POST;
 	$_POST=stripslashes_deep($_POST);
 	$get_post_meta_future_data_fb=get_post_meta($post_ID,"xyz_smap_fb_future_to_publish",true);
@@ -257,17 +256,25 @@ function xyz_link_publish($post_ID) {
 
 
 /////////////twitter//////////
+$tclient_id=$tclient_secret=$taccess_token=$taccess_token_secret=$tappid=$tappsecret=$tauthToken='';
+$tw_af=1;
+$xyz_smap_tw_app_sel_mode=get_option('xyz_smap_tw_app_sel_mode');
+if($xyz_smap_tw_app_sel_mode==0){
 	$tappid=get_option('xyz_smap_twconsumer_id');
 	$tappsecret=get_option('xyz_smap_twconsumer_secret');
-	$twid=get_option('xyz_smap_tw_id');
 	$taccess_token=get_option('xyz_smap_current_twappln_token');
 	$taccess_token_secret=get_option('xyz_smap_twaccestok_secret');
+}
+elseif($xyz_smap_tw_app_sel_mode==2){
+	$tauthToken = get_option('xyz_smap_tw_token');
+	$tw_af = get_option('xyz_smap_tw_af');
+}
+	$twid=get_option('xyz_smap_tw_id');
 	if ($messagetopost=='')
 	$messagetopost=get_option('xyz_smap_twmessage');
 	if(isset($_POST['xyz_smap_twmessage']))
 		$messagetopost=$_POST['xyz_smap_twmessage'];
 	$appid=get_option('xyz_smap_application_id');
-
 	if ($post_twitter_image_permission==0)
 	$post_twitter_image_permission=get_option('xyz_smap_twpost_image_permission');
 	if(isset($_POST['xyz_smap_twpost_image_permission']))
@@ -965,7 +972,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 		        array_push($smap_ig_update_opt_array,$post_ig_options);
 		        update_option('xyz_smap_igap_post_logs', $smap_ig_update_opt_array);
 		}
-		if((($taccess_token!="" && $taccess_token_secret!="" && $tappid!="" && $tappsecret!="" && $xyz_smap_tw_app_sel_mode==0)||($xyz_smap_tw_app_sel_mode==1  && $xyz_smap_secret_key_tw!='')) && $post_twitter_permission==1)
+		if((($taccess_token!="" && $taccess_token_secret!="" && $tappid!="" && $tappsecret!="" && $xyz_smap_tw_app_sel_mode==0)||($xyz_smap_tw_app_sel_mode==2  && $tauthToken!='' && $tw_af!=1)) && $post_twitter_permission==1)
 		{
 			////image up start///
 			$img_status="";
@@ -984,6 +991,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 						$image_found = 1;
 							if (($img['headers']['content-length']) && trim($img['headers']['content-length'])!='')
 							{
+							$img_size_bytes=$img['headers']['content-length'];
 								$img_size=$img['headers']['content-length']/(1024*1024);
 								if($img_size>3){$image_found=0;$img_status="Image skipped(greater than 3MB)";}
 							}
@@ -1005,7 +1013,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 										  file_put_contents($xyz_smap_image_files, $img);
 
 											////////////////////////////
-
 					}
 					else
 						$image_found = 0;
@@ -1013,7 +1020,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 				else {
 					$image_found=0;
 				}
-
 			}
 			///Twitter upload image end/////
 			$messagetopost=str_replace("&nbsp;","",$messagetopost);
@@ -1031,23 +1037,16 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			$substring=str_replace('{POST_PUBLISH_DATE}', $publish_time, $substring);
 			$substring=str_replace('{USER_DISPLAY_NAME}', $display_name,$substring );
 			preg_match_all($reg_exUrl,$substring,$matches); // @ is same as /
-
 			if(is_array($matches) && isset($matches[0]))
 			{
 				$matches=$matches[0];
 				$final_str='';
 				$len=0;
 			    $tw_max_len=get_option('xyz_smap_twtr_char_limit');
-
-// 				if($image_found==1)
-// 					$tw_max_len=$tw_max_len-24;
-
                 if (function_exists('mb_strlen') && function_exists('mb_strpos') && function_exists('mb_substr')) {
 				foreach ($matches as $key=>$val)
 				{
-
 						$url_max_len=23;//23 for https and 22 for http
-
 					$messagepart=mb_substr($substring, 0, mb_strpos($substring, $val));
 
 					if(mb_strlen($messagepart)>($tw_max_len-$len))
@@ -1083,7 +1082,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 
 				if(mb_strlen($substring)>0 && $tw_max_len>$len)
 				{
-
 					if(mb_strlen($substring)>($tw_max_len-$len))
 					{
 						$final_str.=mb_substr($substring,0,$tw_max_len-$len-3)."...";
@@ -1146,9 +1144,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			}
   		/* if (strlen($substring)>$tw_max_len)
                 	$substring=substr($substring, 0, $tw_max_len-3)."...";*/
-
   		if($xyz_smap_tw_app_sel_mode==0)
-			//$twobj = new SMAPTwitterOAuth(array( 'consumer_key' => $tappid, 'consumer_secret' => $tappsecret, 'user_token' => $taccess_token, 'user_secret' => $taccess_token_secret,'curl_ssl_verifypeer'   => false));
 			{
 								$twobj = new Abraham\TwitterOAuth\TwitterOAuth(
 												 $tappid,
@@ -1158,12 +1154,29 @@ if(isset($_POST['xyz_smap_tgmessage']))
 										 );
 										 $twobj->userId = explode('-', $taccess_token)[0];
 										 $twobj->setApiVersion('2');
-
+			}
+			elseif($xyz_smap_tw_app_sel_mode==2)
+			{
+				require_once (dirname(__FILE__) . '/../api/twitter.php');
+				// Re-authenticate if 2 hours have passed since the last authorization
+				$reauth_err=0;
+				$current_time=time();
+				$last_auth_time = get_option('xyz_smap_last_auth_time'); 
+				$auth_timer = (2 * 60 * 60) - (2 * 60);
+				 if ((time() - $last_auth_time) >= $auth_timer)
+				 {
+					$response=xyz_smap_twitter_auth2_reauth();
+					if(isset($response['status']) && $response['status']=='error'){
+						$reauth_err=1;
+						$tw_publish_status_insert=serialize("<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>");
+					}
+					$tauthToken = get_option('xyz_smap_tw_token');
+				}		
 							}
 		$tw_api_count=0;
-
 			 $tw_publish_status='';
- 			if($image_found==1 && $post_twitter_image_permission==1 && $xyz_smap_tw_app_sel_mode==0)
+ 			if($image_found==1 && $post_twitter_image_permission==1){ 
+				if($xyz_smap_tw_app_sel_mode==0)
  			{
  				$twobj->setTimeouts( 10, 40 );
  				$twobj->setApiVersion( '1.1' );
@@ -1190,9 +1203,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
  			if ( isset( $resultfrtw->data ) && ! is_wp_error( $resultfrtw->data ) ) {
  					// Tweet posted successfully
  						$tw_publish_status="<span style=\"color:green\">statuses/update : Success.</span>";
-
  				} else if( is_wp_error( $resultfrtw->data )) {
-
  				$error_string = $resultfrtw->data->get_error_message();
  				$tw_publish_status="<span style=\"color:red\">".$error_string.".</span>";
 
@@ -1206,8 +1217,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
  				}
  				if($img_status!="")
  					$tw_publish_status.="<span style=\"color:red\">".$img_status.".</span>";
-
- 				$tw_api_count++;
  				}
  				else
  				{
@@ -1217,6 +1226,27 @@ if(isset($_POST['xyz_smap_tgmessage']))
          {
               unlink($xyz_smap_image_files);
          }
+				}
+				elseif($xyz_smap_tw_app_sel_mode==2 && $reauth_err!=1){
+					$response=xyz_smap_upload_media($tauthToken,$attachmenturl,$img_size_bytes);
+					if($response['status']=='error'){
+						$tw_publish_status="<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>";
+					}
+					elseif (isset($response['status']) && $response['status'] === 'success' && !empty($response['data'])) 
+					{
+						$mediaId=$response['data']['id'];
+						$response=xyz_smap_create_post($tauthToken,$mediaId,$substring);
+						if($response['status']=='error'){
+							$tw_publish_status="<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>";
+						}
+						else{
+							// $tweet_id=$response['data']['id'];
+							$tw_publish_status="<span style=\"color:green\">statuses/update : Success.</span>";
+						}
+						if($img_status!="")
+							$tw_publish_status.="<span style=\"color:red\">".$img_status.".</span>";
+					}
+				}		
 
  			}
  			else
@@ -1250,10 +1280,17 @@ if(isset($_POST['xyz_smap_tgmessage']))
  								else
  									$tw_publish_status="<span style=\"color:red\">Not Available</span>";
  							}
-
- 							$tw_api_count++;
-
  			     }
+				  elseif($xyz_smap_tw_app_sel_mode==2  && $reauth_err!=1){
+					$response=xyz_smap_post_to_twitter($tauthToken,$substring);
+					if($response['status']=='error'){
+						$tw_publish_status="<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>";
+					}
+					else{
+						$tweet_id=$response['data']['id'];
+						$tw_publish_status="<span style=\"color:green\">statuses/update : Success.</span>";
+					}				
+			 	}
  			}
  			$tweet_id_string='';
  			if ($xyz_smap_tw_app_sel_mode==0)
@@ -1263,17 +1300,21 @@ if(isset($_POST['xyz_smap_tgmessage']))
      		if (isset($resp->id) && !empty($resp->id)){
      				$tweet_link="https://twitter.com/".$twid."/status/".$resp->id;
      				$tweet_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\" href=".$tweet_link.">View Tweet</a></span>";
-
      			}
-
      			$tw_publish_status_insert=serialize($tw_publish_status.$tweet_id_string);
  	       	}
-
-
-
+			elseif ($xyz_smap_tw_app_sel_mode==2  && $reauth_err!=1)
+			{
+				if(isset($response['data']))
+					$resp = $response['data'];
+				if (isset($resp['id']) && !empty($resp['id'])){
+					$tweet_link="https://twitter.com/".$twid."/status/".$resp['id'];
+					$tweet_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\" href=".$tweet_link.">View Tweet</a></span>";
+				}
+				$tw_publish_status_insert=serialize($tw_publish_status.$tweet_id_string);
+			}
 			if($xyz_smap_tw_app_sel_mode==1)
 			{
-
 			    $xyz_smap_xyzscripts_userid=get_option('xyz_smap_xyzscripts_user_id');
 			    $xyz_smap_smapsoln_userid_tw=get_option('xyz_smap_smapsoln_userid_tw');
 			    $xyz_smap_smapsoln_sec_key=get_option('xyz_smap_secret_key_tw');
@@ -1322,11 +1363,8 @@ if(isset($_POST['xyz_smap_tgmessage']))
 					'publishtime'	=>	$time,
 					'status'	=>	$tw_publish_status_insert
 			);
-
 			$smap_tw_update_opt_array=array();
-
 			$smap_tw_arr_retrive=(get_option('xyz_smap_twap_post_logs'));
-
 			$smap_tw_update_opt_array[0]=isset($smap_tw_arr_retrive[0]) ? $smap_tw_arr_retrive[0] : '';
 			$smap_tw_update_opt_array[1]=isset($smap_tw_arr_retrive[1]) ? $smap_tw_arr_retrive[1] : '';
 			$smap_tw_update_opt_array[2]=isset($smap_tw_arr_retrive[2]) ? $smap_tw_arr_retrive[2] : '';
@@ -1340,7 +1378,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			array_shift($smap_tw_update_opt_array);
 			array_push($smap_tw_update_opt_array,$post_tw_options);
 			update_option('xyz_smap_twap_post_logs', $smap_tw_update_opt_array);
-
 		}
 		if($tbaccess_token!="" && $tbaccess_token_secret!="" && $tmbappid!="" && $tmbappsecret!="" && $post_tb_permission==1)
 		{
@@ -1384,13 +1421,13 @@ if(isset($_POST['xyz_smap_tgmessage']))
 		    $client->setToken($tbaccess_token, $tbaccess_token_secret);
 		    $tb_publish_status=array();$tb_publish_status['status_msg']='';
 		    if($post_tumblr_media_permission==1)//&& $image_found==1)
-		        $data = array('type' => 'photo', 'caption' => $name, 'source' => $attachmenturl);//image
+		        $data = array('type' => 'photo', 'caption' => $substring, 'source' => $attachmenturl);//image
 		        else if($post_tumblr_media_permission==2)
 		        {
 		            if($image_found==1)
-		                $data = array('type' => 'link','title' => $name, 'url' => $link, 'description'=>$description, 'thumbnail'=>$attachmenturl); //link with img
+		                $data = array('type' => 'link','title' => $name, 'url' => $link, 'description'=>$substring, 'thumbnail'=>$attachmenturl); //link with img
 		                else
-		                    $data = array('type' => 'link','title' => $name, 'url' => $link, 'description'=>$description); //link without image
+		                    $data = array('type' => 'link','title' => $name, 'url' => $link, 'description'=>$substring); //link without image
 		        }
 		        else
 		            $data = array('type' => 'text', 'title' => $name, 'body' => $substring);    //simple text

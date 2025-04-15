@@ -3,20 +3,24 @@ if( !defined('ABSPATH') ){ exit();}
 ?></div>
 <?php
 if(get_option('xyz_smap_premium_version_ads')==1){?>
-<div id="xyz-wp-smap-premium">
-      <div class="ContentCenter">
-            <a target="_blank" href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/features">🚀 Upgrade to the Fully Featured XYZ WP Social Media Auto Publish Premium Plugin for </a>
-             <span style="font-size: 28px; color:#fbff00;"> Just 29 USD</span>
-      <br/><span style="font-size: 14px;color:#fff;">Unlock advanced scheduling, multi-account publishing, hashtag automation, and seamless social media integration!</span>
+<div id="xyz_smap_wp_premium">
+      <div class="xyz_smap_ContentCenter">
+      <?php printf(
+        __('%sUpgrade to the Fully Featured XYZ WP Social Media Auto Publish Premium Plugin for %sJust 29 USD%s', 'social-media-auto-publish'),
+        '<a href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/features" target="_blank">',
+        '</a><span style="font-size: 28px; color:#fbff00;">',
+        '</span>'
+        );?>
+ <br/><span style="font-size: 14px;color:#fff;"><?php _e('Unlock advanced scheduling, multi-account publishing, hashtag automation, and seamless social media integration!','social-media-auto-publish'); ?></span>
     </div>
 				<div class="clear"></div>
-	<div class="ButtonWrap">
-    <div class="BuyNowButton">
+	<div class="xyz_smap_ButtonWrap">
+    <div class="xyz_smap_BuyNowButton">
         <a target="_blank"
-            href="https://xyzscripts.com/members/product/purchase/XYZWPSMPPRE">🛒 Buy Now
+            href="https://xyzscripts.com/members/product/purchase/XYZWPSMPPRE">🛒 <?php _e('Buy Now','social-media-auto-publish'); ?>
         </a>
     </div>
-    <div class="CompareButton">
+    <div class="xyz_smap_CompareButton">
     <h2>
             <a 	href="<?php echo admin_url('admin.php?page=social-media-auto-publish-about');?>"> <?php _e('Compare Features','social-media-auto-publish'); ?> </a>
         </h2>
@@ -33,9 +37,9 @@ if(get_option('xyz_smap_premium_version_ads')==1){?>
 
 <div class="xyz_smap_social_media">
 <h3 class="xyz_smap_inner_head"> <?php _e('Follow Us','social-media-auto-publish'); ?> </h3>
-   <a target="_blank" href="http://facebook.com/xyzscripts" class="xyz_home_fbook"></a>
-   <a target="_blank" href="http://twitter.com/xyzscripts" class="xyz_home_twitt"></a>
-        <a target="_blank" href="https://www.instagram.com/xyz_scripts/" class="xyz_home_insta"></a>
+   <a target="_blank" href="http://facebook.com/xyzscripts" class="xyz_smap_home_fbook"></a>
+   <a target="_blank" href="http://twitter.com/xyzscripts" class="xyz_smap_home_twitt"></a>
+        <a target="_blank" href="https://www.instagram.com/xyz_scripts/" class="xyz_smap_home_insta"></a>
  <a style="margin-right:0px;" target="_blank" href="https://www.linkedin.com/company/xyzscripts" class="xyz_home_linkedin"></a>
 </div>
 
@@ -45,7 +49,7 @@ if(get_option('xyz_smap_premium_version_ads')==1){?>
 <p style="width:100%;"><a target="_blank" href="https://xyzscripts.com/support/" > <?php _e('Contact Us','social-media-auto-publish'); ?> </a></p>
 <p><a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" > <?php _e('Please Rate Us','social-media-auto-publish'); ?>
  </a></p>
-<a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" ><span class="xyz_new_star"></span></a>
+<a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/reviews/" ><span class="xyz_smap_new_star"></span></a>
 
 <p style="width:100%;"><a target="_blank" href="https://wordpress.org/support/plugin/social-media-auto-publish/" > <?php _e('Create a ticket at Wordpress forum','social-media-auto-publish'); ?> </a></p>
 </div>
@@ -132,7 +136,7 @@ else if (strcasecmp($current_user->user_login ,"admin")!=0 && strcasecmp($curren
 <input class="xyz_smap_email" name="email"
 type="text" placeholder="<?php _e('Email','social-media-auto-publish'); ?>" value="<?php    echo esc_html($current_user->user_email); ?>" />
 
-<input id="xyz_smap_submit_smap" class="sbmt_btn" type="submit" value="<?php _e('Subscribe','social-media-auto-publish'); ?>" name="Submit"  onclick="javascript: if(!verify_fields()) return false; " />
+<input id="xyz_smap_submit_smap_new" class="xyz_smap_submit_btn" type="submit" value="<?php _e('Subscribe','social-media-auto-publish'); ?>" name="Submit"  onclick="javascript: if(!verify_fields()) return false; " />
 
 <input type="hidden" name="listName" value="7,1,"/>
 </form>
@@ -143,8 +147,8 @@ type="text" placeholder="<?php _e('Email','social-media-auto-publish'); ?>" valu
 </div>
 <div style="width: 100%">
 
-<div class="xyz_our_plugins_new">
-<p class="xyz_plugin_head"> <?php _e('Our Plugins','social-media-auto-publish'); ?>: </p>
+<div class="xyz_smap_our_plugins_new">
+<p class="xyz_smap_plugin_head"> <?php _e('Our Plugins','social-media-auto-publish'); ?>: </p>
 
     <a target="_blank"  href="https://wordpress.org/plugins/social-media-auto-publish/"><span>1</span>Social Media Auto Publish</a>
     <a target="_blank"  href="https://wordpress.org/plugins/facebook-auto-publish/"><span>2</span>WP2Social Auto Publish</a>
@@ -164,7 +168,7 @@ type="text" placeholder="<?php _e('Email','social-media-auto-publish'); ?>" valu
     <a target="_blank"  href="https://wordpress.org/plugins/wp-gallery-manager/"><span>16</span>  WP Gallery Manager</a>
 </div>
 </div>
-<div class="xyz_poweredBy">
+<div class="xyz_smap_poweredBy">
 <?php _e('Powered by','social-media-auto-publish'); ?> <a href="http://xyzscripts.com" target="_blank">XYZScripts</a>
 </div>
 <div style="clear: both;"></div>

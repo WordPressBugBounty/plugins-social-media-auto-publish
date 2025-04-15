@@ -176,3 +176,11 @@ function xyz_smap_insert_og_twitter_card(){
 	}
 }
 }
+        add_filter( 'cron_schedules', 'xyz_smap_custom_cron_interval' );
+        if ( ! wp_next_scheduled( 'xyz_smap_tw_auto_reauth' ) ) {
+            wp_schedule_event( time(), 'smap_reauth_every_two_hours', 'xyz_smap_tw_auto_reauth' );
+        }
+if(get_option('xyz_smap_tw_app_sel_mode')==2){
+	require_once (dirname(__FILE__) . '/../api/twitter.php');
+            add_action( 'xyz_smap_tw_auto_reauth', 'xyz_smap_twitter_auth2_reauth' );
+}

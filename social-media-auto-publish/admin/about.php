@@ -18,7 +18,7 @@ if( !defined('ABSPATH') ){ exit();}
 	echo $smap_feature_msg; ?>
 </p>
  </div>
- <table class="xyz-premium-comparison" cellspacing=0 style="width: 99%;">
+ <table class="xyz_smap_premium_comparison" cellspacing=0 style="width: 99%;">
 	<tr style="background-color: #EDEDED">
 		<td><h2> <?php _e('Feature group','social-media-auto-publish'); ?> </h2></td>
 		<td><h2> <?php _e('Feature','social-media-auto-publish'); ?> </h2></td>
@@ -619,7 +619,7 @@ if( !defined('ABSPATH') ){ exit();}
 	<tr>
 		<td> <?php _e('Purchase','social-media-auto-publish'); ?> </td>
 		<td></td>
-		<td style="padding: 2px" colspan='2' ><a target="_blank"href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/purchase"  class="xyz-smap-buy-button"> <?php _e('Buy Now','social-media-auto-publish'); ?> </a>
+		<td style="padding: 2px" colspan='2' ><a target="_blank"href="https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/purchase"  class="xyz_smap_buy_button"> <?php _e('Buy Now','social-media-auto-publish'); ?> </a>
 		</td>
 	</tr>
 		

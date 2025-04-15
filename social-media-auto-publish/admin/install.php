@@ -61,11 +61,11 @@ function smap_install_free()
 	
 	add_option('xyz_smap_twconsumer_secret', '');
 	add_option('xyz_smap_twconsumer_id','');
+	add_option('xyz_smap_tw_client_id', '');//auth2.0
+	add_option('xyz_smap_tw_client_secret','');//auth2.0
 	add_option('xyz_smap_tw_id', '');
-	/*$xyz_smap_current_twappln_token= get_option('xyz_smap_current_twappln_token');
-	if ($xyz_smap_current_twappln_token!="")
-	    add_option('xyz_smap_tw_app_sel_mode','0');//if already publishing using own app
-	else*/
+	add_option('xyz_smap_tw_af',1);
+	
 	    add_option('xyz_smap_tw_app_sel_mode','0');
 	add_option('xyz_smap_current_twappln_token', '');
 	add_option('xyz_smap_twpost_permission', '1');

@@ -4,7 +4,7 @@ Donate link: https://xyzscripts.com/donate/
 Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to threads,  post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies, publish to telegram
 Requires at least: 3.0
 Tested up to: 6.7.2
-Stable tag: 3.5
+Stable tag: 3.6
 License: GPLv2 or later
 
 Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn, Threads and Telegram.
@@ -21,7 +21,8 @@ A quick look into Social Media Auto Publish :
 	★ Publish to LinkedIn with image
 	★ Publish to Instagram with image
 	★ Publish to Tumblr with image
-    	★ Publish to Telegram with image
+    ★ Publish to Telegram with image
+    ★ Publish to Threads with image
 	★ Attach post to LinkedIn
 	★ Attach post to Tumblr
 	★ Filter items  to be published based on categories
@@ -150,6 +151,11 @@ SSL peer verification may not be functioning in your server. Please turn off SSL
 10. Auto publish logs.
 
 == Changelog ==
+
+= Social Media Auto Publish 3.6 =
+* Twitter API v2 Endpoint Integration
+* Improved compatibility with PHP & WordPress
+* Enabled message format for all Tumblr posting methods 
 
 = Social Media Auto Publish 3.5 =
 * Added support for Threads publishing

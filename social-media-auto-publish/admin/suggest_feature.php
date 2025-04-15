@@ -6,25 +6,25 @@ if(isset($_GET['msg']))
 	$xyz_smap_message = $_GET['msg'];
 if($xyz_smap_message == 1){
 	?>
-	<div class="system_notice_area_style1" id="system_notice_area">
+	<div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area">
 	<?php _e('Thank you for the suggestion.','social-media-auto-publish'); ?> &nbsp;&nbsp;&nbsp;<span
-	id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
+	id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 	</div>
 	<?php
 	}
 else if($xyz_smap_message == 2){
 		?>
-		<div class="system_notice_area_style0" id="system_notice_area">
+		<div class="xyz_smap_system_notice_area_style0" id="xyz_smap_system_notice_area">
 		<?php $smap_wp_mail="wp_mail"; $smap_wp_mail_msg=sprintf(__('%s not able to process the request.','social-media-auto-publish'),$smap_wp_mail); echo $smap_wp_mail_msg; ?> &nbsp;&nbsp;&nbsp;<span
-		id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
+		id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 		</div>
 		<?php
 	}
 else if($xyz_smap_message == 3){
 	?>
-	<div class="system_notice_area_style0" id="system_notice_area">
+	<div class="xyz_smap_system_notice_area_style0" id="xyz_smap_system_notice_area">
 	 <?php _e('Please suggest a feature.','social-media-auto-publish'); ?> &nbsp;&nbsp;&nbsp;<span
-	id="system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
+	id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>
 	</div>
 	<?php
 }
@@ -70,7 +70,7 @@ if (isset($_POST) && isset($_POST['xyz_send_mail']))
 <textarea name="xyz_smap_suggested_feature" id="xyz_smap_suggested_feature" style="width:620px;height:250px !important;"></textarea>
 </td></tr>
 <tr>
-<td><input name="xyz_send_mail" class="submit_smap_new" style="color:#FFFFFF;border-radius:4px;border:1px solid #1A87B9; margin-bottom:10px;" type="submit" value=" <?php _e('Send Mail To Us','social-media-auto-publish'); ?>">
+<td><input name="xyz_send_mail" class="xyz_smap_submit_smap_new" style="color:#FFFFFF;border-radius:4px;border:1px solid #1A87B9; margin-bottom:10px;" type="submit" value=" <?php _e('Send Mail To Us','social-media-auto-publish'); ?>">
 </td></tr>
 </table>
 </form>
