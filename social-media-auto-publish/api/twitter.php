@@ -3,8 +3,8 @@
 if(!function_exists('xyz_smap_twitter_auth2_reauth'))
 {
  function xyz_smap_twitter_auth2_reauth() {
-    $client_id = get_option('xyz_twap_client_id');
-    $client_secret = get_option('xyz_twap_client_secret');
+    $client_id = get_option('xyz_smap_tw_client_id');
+    $client_secret = get_option('xyz_smap_tw_client_secret');
     $refresh_token = get_option('xyz_smap_tw_refresh_token');
     $current_time=time();
     $auth_header = base64_encode("$client_id:$client_secret");
