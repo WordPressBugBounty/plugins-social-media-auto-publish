@@ -236,7 +236,7 @@ a.xyz_smap_link:hover{text-decoration:underline;}
 }
 .xyz_smap_widefat_table textarea
 {
-width: 200px;padding: 5px !important;height: 80px !important;
+padding: 5px !important;min-height: 80px !important;min-width: 200px !important;resize:auto !important;
 }
 
 .xyz_smap_metalist_table{
@@ -250,8 +250,11 @@ width: 100%;
 .xyz_smap_meta_acclist_table{
 	width: 100%;border: 1px solid #DFDFDF;border-radius:3px; margin-top: 8px;padding-bottom: 5px;
 }
-.xyz_smap_meta_acclist_table select ,.xyz_smap_meta_acclist_table textarea{
+.xyz_smap_meta_acclist_table select {
     width: 200px;padding: 3px !important;height: 2.35em !important;
+}
+.xyz_smap_meta_acclist_table textarea{
+    padding: 3px !important;min-height: 80px !important;min-width: 200px !important;resize:auto !important;
 }
 a {
 	text-decoration: none;

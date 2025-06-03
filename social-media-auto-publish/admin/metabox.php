@@ -731,7 +731,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		</select> </td></tr>
 		
 		<tr id="fpmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_message"  name="xyz_smap_message" style="height:80px !important;" ><?php echo esc_textarea($xyz_fb_message);?></textarea>
+		<textarea id="xyz_smap_message"  name="xyz_smap_message" ><?php echo esc_textarea($xyz_fb_message);?></textarea>
 	</td></tr>
 	
 	</table><?php }?>
@@ -819,7 +819,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		</select> </td></tr>
 		
 		<tr id="igmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_igmessage"  name="xyz_smap_igmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_ig_message);?></textarea>
+		<textarea id="xyz_smap_igmessage"  name="xyz_smap_igmessage"><?php echo esc_textarea($xyz_ig_message);?></textarea>
 	</td></tr>
 	
 	</table><?php }?>
@@ -910,7 +910,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		</select> </td></tr>
 		
 		<tr id="twmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_twmessage"  name="xyz_smap_twmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_tw_message);?></textarea>
+		<textarea id="xyz_smap_twmessage"  name="xyz_smap_twmessage"><?php echo esc_textarea($xyz_tw_message);?></textarea>
 	</td></tr>
 	
 	</table>
@@ -988,7 +988,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		<option value ="9">{USER_DISPLAY_NAME}   </option>
 		</select> </td></tr>
 		<tr id="tbmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_tbmessage"  name="xyz_smap_tbmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_smap_tbmessage);?></textarea>
+		<textarea id="xyz_smap_tbmessage"  name="xyz_smap_tbmessage"><?php echo esc_textarea($xyz_smap_tbmessage);?></textarea>
 	</td></tr>
 	</table>
 	<?php }?>
@@ -1080,7 +1080,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		</select> </td></tr>
 		
 		<tr id="lnmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_lnmessage"  name="xyz_smap_lnmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_smap_lnmessage);?></textarea>
+		<textarea id="xyz_smap_lnmessage"  name="xyz_smap_lnmessage"><?php echo esc_textarea($xyz_smap_lnmessage);?></textarea>
 	</td></tr>
 	<tr valign="top" id="lnpm">
 		<td  class="xyz_smap_pleft15"> <?php _e('Posting method','social-media-auto-publish'); ?> </td>
@@ -1187,7 +1187,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		</select> </td></tr>
 		
 		<tr id="tgmftarea"><td>&nbsp;</td><td>
-		<textarea id="xyz_smap_tgmessage"  name="xyz_smap_tgmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_tg_message);?></textarea>
+		<textarea id="xyz_smap_tgmessage"  name="xyz_smap_tgmessage"><?php echo esc_textarea($xyz_tg_message);?></textarea>
 	</td></tr>
 	
 	</table>
@@ -1281,7 +1281,7 @@ if( get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_thaf')!=1
 			</select> </td></tr>
 			
 			<tr id="thmftarea"><td>&nbsp;</td><td>
-			<textarea id="xyz_smap_thmessage"  name="xyz_smap_thmessage" style="height:80px !important;" ><?php echo esc_textarea($xyz_th_message);?></textarea>
+			<textarea id="xyz_smap_thmessage"  name="xyz_smap_thmessage"><?php echo esc_textarea($xyz_th_message);?></textarea>
 		</td></tr>
 
 		</table>

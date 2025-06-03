@@ -651,7 +651,7 @@ if(isset($_POST['tele']))
 			$tgms5=$xyz_smap_verify_bot_token['error'];
 		}
 		}
-		$xyz_smap_tgmessage=sanitize_text_field($_POST['xyz_smap_tgmessage']);
+		$xyz_smap_tgmessage=$_POST['xyz_smap_tgmessage'];
 		if($tgerf==0){
 			update_option('xyz_smap_tgapplication_name',$xyz_smap_tgapplication_name);
 			update_option('xyz_smap_bot_token',$xyz_smap_bot_token);

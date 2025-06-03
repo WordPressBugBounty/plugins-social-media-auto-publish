@@ -43,7 +43,7 @@ if(!function_exists('xyz_smap_plugin_get_version'))
 
 if(!function_exists('xyz_smap_run_upgrade_routines'))
 {
-function xyz_smap_run_upgrade_routines($old_version, $new_version) {
+function xyz_smap_run_upgrade_routines() {
 	global $wpdb;
 	if (is_multisite()) {
 		$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -52,13 +52,13 @@ function xyz_smap_run_upgrade_routines($old_version, $new_version) {
 			// Run install logic for each site
 			smap_install_free();
 			// Clear any relevant caches (example: object cache)
-			wp_cache_flush();
+			//wp_cache_flush();
 			restore_current_blog();
 		}
 	} else {
 		// Single site: just run install and cache clear
 		smap_install_free();
-		wp_cache_flush();
+		//wp_cache_flush();
 	}
 }
 }
