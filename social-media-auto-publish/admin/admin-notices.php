@@ -53,7 +53,7 @@ $xyz_smap_notice = wp_nonce_url($xyz_smap_notice,'smap-shw');
 	
 	<div id="show_share_icons_smap" style="display: none;">
 	<a class="button" style="background-color:#3b5998;color:white;margin-right:4px;margin-left:100px;margin-top: 25px;" href="http://www.facebook.com/sharer/sharer.php?u=https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/" target="_blank"> <?php _e('Facebook','social-media-auto-publish'); ?> </a>
-	<a class="button" style="background-color:#00aced;color:white;margin-right:4px;margin-left:20px;margin-top: 25px;" href="http://twitter.com/share?url=https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/&text='.$sharelink_text.'" target="_blank"> <?php _e('Twitter','social-media-auto-publish'); ?> </a>
+	<a class="button" style="background-color:#00aced;color:white;margin-right:4px;margin-left:20px;margin-top: 25px;" href="http://x.com/share?url=https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/&text='.$sharelink_text.'" target="_blank"> <?php _e('Twitter','social-media-auto-publish'); ?> </a>
 	<a class="button" style="background-color:#007bb6;color:white;margin-right:4px;margin-left:20px;margin-top: 25px;" href="http://www.linkedin.com/shareArticle?mini=true&url=https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/" target="_blank"> <?php _e('LinkedIn','social-media-auto-publish'); ?> </a>
 	</div>
 	<?php echo '</div>';

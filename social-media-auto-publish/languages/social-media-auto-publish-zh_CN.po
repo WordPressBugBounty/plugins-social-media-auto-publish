@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-04-15 11:50+0530\n"
-"PO-Revision-Date: 2025-04-15 11:50+0530\n"
+"POT-Creation-Date: 2025-06-06 16:50+0530\n"
+"PO-Revision-Date: 2025-06-06 16:51+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -82,7 +82,6 @@ msgid "Facebook"
 msgstr "脸书"
 
 #: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:855
-#: admin/settings.php:876
 msgid "Twitter"
 msgstr "推特"
 
@@ -1154,6 +1153,12 @@ msgstr "已成功连接到 %s 会员区"
 msgid "Selected pages saved successfully."
 msgstr "所选页面已成功保存。"
 
+#: admin/settings.php:876
+#, fuzzy
+#| msgid "Twitter"
+msgid "Twitter / X"
+msgstr "推特"
+
 #: admin/settings.php:878
 msgid "instagram"
 msgstr "instagram"
@@ -1245,8 +1250,7 @@ msgstr "自己的应用程序"
 msgid "requires app submission and Facebook review"
 msgstr "需要应用提交和 Facebook 审核"
 
-#: admin/settings.php:1014 admin/settings.php:1378 admin/settings.php:1722
-#: admin/settings.php:1725
+#: admin/settings.php:1014 admin/settings.php:1378
 msgid "Help"
 msgstr "帮助"
 
@@ -1454,14 +1458,8 @@ msgid ""
 msgstr "更新后，导航到<b>%s</b>，您将在<b>%s</b>下获得<b>%s</b><br>。"
 
 #: admin/settings.php:1722
-msgid ""
-"Own App (Traditional: This is for supporting old users, We advise switching "
-"to OAuth 2.0)"
-msgstr "自己的应用程序（传统：这是为了支持老用户，我们建议切换到 OAuth 2.0）"
-
-#: admin/settings.php:1722
-msgid "requires app submission and Twitter review"
-msgstr "需要应用提交和 Twitter 审核"
+msgid "Own App- Traditional (Deprecating soon. Use OAuth 2.0)"
+msgstr "自己的应用程序 - 传统（即将弃用。使用 OAuth 2.0）"
 
 #: admin/settings.php:1725
 msgid "Own App (OAuth2.0 :Recommended)"
@@ -1880,6 +1878,15 @@ msgstr "你好呀！我只是一个插件，直接调用时我无能为力。"
 #: xyz-functions.php:411
 msgid "Every 2 Hours"
 msgstr "每 2 小时"
+
+#~ msgid ""
+#~ "Own App (Traditional: This is for supporting old users, We advise "
+#~ "switching to OAuth 2.0)"
+#~ msgstr ""
+#~ "自己的应用程序（传统：这是为了支持老用户，我们建议切换到 OAuth 2.0）"
+
+#~ msgid "requires app submission and Twitter review"
+#~ msgstr "需要应用提交和 Twitter 审核"
 
 #~ msgid "Just 29 USD"
 #~ msgstr "只需 29 美元"

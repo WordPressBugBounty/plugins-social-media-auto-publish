@@ -71,7 +71,7 @@ if(!function_exists('xyz_smap_links')){
 			$links[] = '<a href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/"  title="FAQ">FAQ</a>';
 			$links[] = '<a href="https://help.xyzscripts.com/docs/social-media-auto-publish/"  title="Read Me">README</a>';
 			$links[] = '<a href="https://xyzscripts.com/support/" class="xyz_smap_support" title="Support"></a>';
-			$links[] = '<a href="https://twitter.com/xyzscripts" class="xyz_smap_twitt" title="Follow us on twitter"></a>';
+			$links[] = '<a href="https://x.com/xyzscripts" class="xyz_smap_twitt" title="Follow us on twitter"></a>';
 			$links[] = '<a href="https://www.facebook.com/xyzscripts" class="xyz_smap_fbook" title="Facebook"></a>';
 			$links[] = '<a href="https://www.linkedin.com/company/xyzscripts" class="xyz_smap_linkedin" title="Follow us on linkedIn"></a>';
 			$links[] = '<a href="https://www.instagram.com/xyz_scripts/" class="xyz_smap_insta" title="Follow us on Instagram"></a>';

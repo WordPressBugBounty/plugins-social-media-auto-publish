@@ -1228,7 +1228,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
          }
 				}
 				elseif($xyz_smap_tw_app_sel_mode==2 && $reauth_err!=1){
-					$response=xyz_smap_upload_media($tauthToken,$attachmenturl,$img_size_bytes);
+					$response=xyz_smap_upload_media($tauthToken,$attachmenturl);
 					if($response['status']=='error'){
 						$tw_publish_status="<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>";
 					}
@@ -1298,7 +1298,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 				if(isset($resultfrtw->data))
      			$resp = $resultfrtw->data;
      		if (isset($resp->id) && !empty($resp->id)){
-     				$tweet_link="https://twitter.com/".$twid."/status/".$resp->id;
+     				$tweet_link="https://x.com/".$twid."/status/".$resp->id;
      				$tweet_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\" href=".$tweet_link.">View Tweet</a></span>";
      			}
      			$tw_publish_status_insert=serialize($tw_publish_status.$tweet_id_string);
@@ -1308,7 +1308,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 				if(isset($response['data']))
 					$resp = $response['data'];
 				if (isset($resp['id']) && !empty($resp['id'])){
-					$tweet_link="https://twitter.com/".$twid."/status/".$resp['id'];
+					$tweet_link="https://x.com/".$twid."/status/".$resp['id'];
 					$tweet_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\" href=".$tweet_link.">View Tweet</a></span>";
 				}
 				$tw_publish_status_insert=serialize($tw_publish_status.$tweet_id_string);
@@ -1431,7 +1431,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 		        }
 		        else
 		            $data = array('type' => 'text', 'title' => $name, 'body' => $substring);    //simple text
-		            //print_r($data);die;
 		            if(!empty($data))
 		            {
 		                try{

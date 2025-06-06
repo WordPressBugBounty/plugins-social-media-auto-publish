@@ -873,7 +873,7 @@ function dethide_smap(id)
 <div style="width: 100%">
 <div class="xyz_smap_tab">
   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_facebook_settings')" id="xyz_smap_default_fbtab_settings"> <?php _e('Facebook','social-media-auto-publish'); ?> </button>
-   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_twitter_settings')" id="xyz_smap_default_twtab_settings"> <?php _e('Twitter','social-media-auto-publish'); ?> </button>
+   <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_twitter_settings')" id="xyz_smap_default_twtab_settings"> <?php _e('Twitter / X','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_linkedin_settings')" id="xyz_smap_default_lntab_settings"> <?php _e('LinkedIn','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_instagram_settings')" id="xyz_smap_default_igtab_settings"> <?php _e('instagram','social-media-auto-publish'); ?> </button>
    <button class="xyz_smap_tablinks" onclick="xyz_smap_open_tab(event, 'xyz_smap_tumblr_settings')" id="xyz_smap_default_tmtab_settings"> <?php _e('Tumblr','social-media-auto-publish'); ?> </button>
@@ -1628,7 +1628,7 @@ function dethide_smap(id)
 	<b><?php _e('Note:','social-media-auto-publish');?></b> <?php _e('You have to create a Twitter application before filling in following fields.','social-media-auto-publish');	
 	printf(
 		__('%sClick here%s to create a new application.', 'social-media-auto-publish'),
-		'<b><a href="https://developer.twitter.com/en/portal/projects-and-apps" target="_blank">',
+		'<b><a href="https://developer.x.com/en/portal/projects-and-apps" target="_blank">',
 		'</a></b>'
 	);?>
 		<br><?php $smap_path1="Settings > User authentication settings > Edit";
@@ -1649,10 +1649,10 @@ function dethide_smap(id)
 	<!-- ////////////////////oauth2.0 postingmethod/////////////// -->
 				<div class="xyz_smap_twitter_oauth2_settings">
 		<b><?php _e('Note:','social-media-auto-publish');?></b> <?php _e('You have to create a Twitter application before filling in following fields.','social-media-auto-publish');?> 	
-		<b><a href="https://developer.twitter.com/en/portal/projects-and-apps" target="_blank">
+		<b><a href="https://developer.x.com/en/portal/projects-and-apps" target="_blank">
 		<?php printf(
 		__('%sClick here%s to create a new application.', 'social-media-auto-publish'),
-		'<b><a href="https://developer.twitter.com/en/portal/projects-and-apps" target="_blank">',
+		'<b><a href="https://developer.x.com/en/portal/projects-and-apps" target="_blank">',
 		'</a></b>'
 		);?>
 		 <br><?php $smap_path1="Settings > User authentication settings > Edit";
@@ -1719,10 +1719,10 @@ if($xyz_smap_tw_app_sel_mode==2)
 			</td>
 				<td>
 				<input type="radio" name="xyz_smap_tw_app_sel_mode" id="xyz_smap_tw_app_sel_mode_reviewd" value="0" <?php if(get_option('xyz_smap_tw_app_sel_mode')==0)echo 'checked';?>>
-		<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App (Traditional: This is for supporting old users, We advise switching to OAuth 2.0)','social-media-auto-publish'); ?> ( <?php _e('requires app submission and Twitter review','social-media-auto-publish'); ?>-<a href="https://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-twitter-application/" style="color: #a7a7a7;text-decoration: underline; " target="_blank" > <?php _e('Help','social-media-auto-publish'); ?> </a>)</span>
+		<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App- Traditional (Deprecating soon. Use OAuth 2.0)','social-media-auto-publish');?></span>
 				<br>
 		<input type="radio" name="xyz_smap_tw_app_sel_mode" id="xyz_smap_tw_app_sel_mode" value="2" <?php if($xyz_smap_tw_app_sel_mode==2) echo 'checked';?>>
-		<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App (OAuth2.0 :Recommended)','twitter-auto-publish'); ?><a href="http://help.xyzscripts.com/docs/social-media-auto-publish/faq/how-can-i-create-twitter-application/" style="color: #a7a7a7;text-decoration: underline; " target="_blank" > <?php _e('Help','twitter-auto-publish'); ?> </a></span>
+		<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App (OAuth2.0 :Recommended)','twitter-auto-publish'); ?></span>
 
 				<div class="xyz_smap_twitter_settings" style="display: none;" onmouseover="detdisplay_smap('xyz_smap_app_review')" onmouseout="dethide_smap('xyz_smap_app_review')"><span style="padding-left: 25px;color: #0073aa;"> <?php _e('App approval service available for 50 USD','social-media-auto-publish'); ?>
 				</span><br/>

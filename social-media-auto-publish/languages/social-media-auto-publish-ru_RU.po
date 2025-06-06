@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-04-15 11:46+0530\n"
-"PO-Revision-Date: 2025-04-15 11:47+0530\n"
+"POT-Creation-Date: 2025-06-06 16:50+0530\n"
+"PO-Revision-Date: 2025-06-06 16:50+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -85,7 +85,6 @@ msgid "Facebook"
 msgstr "Фейсбук"
 
 #: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:855
-#: admin/settings.php:876
 msgid "Twitter"
 msgstr "Твиттер"
 
@@ -1198,6 +1197,12 @@ msgstr "Успешное подключение к членской зоне %s"
 msgid "Selected pages saved successfully."
 msgstr "Выбранные страницы успешно сохранены."
 
+#: admin/settings.php:876
+#, fuzzy
+#| msgid "Twitter"
+msgid "Twitter / X"
+msgstr "Твиттер"
+
 #: admin/settings.php:878
 msgid "instagram"
 msgstr "инстаграм"
@@ -1292,8 +1297,7 @@ msgstr "Собственное приложение"
 msgid "requires app submission and Facebook review"
 msgstr "требуется отправка приложения и проверка Facebook"
 
-#: admin/settings.php:1014 admin/settings.php:1378 admin/settings.php:1722
-#: admin/settings.php:1725
+#: admin/settings.php:1014 admin/settings.php:1378
 msgid "Help"
 msgstr "Помощь"
 
@@ -1519,16 +1523,9 @@ msgstr ""
 "<b>%s</b>."
 
 #: admin/settings.php:1722
-msgid ""
-"Own App (Traditional: This is for supporting old users, We advise switching "
-"to OAuth 2.0)"
+msgid "Own App- Traditional (Deprecating soon. Use OAuth 2.0)"
 msgstr ""
-"Собственное приложение (традиционное: для поддержки старых пользователей, мы "
-"рекомендуем перейти на OAuth 2.0)"
-
-#: admin/settings.php:1722
-msgid "requires app submission and Twitter review"
-msgstr "требуется отправка приложения и проверка в Твиттере"
+"Собственное приложение — традиционное (скоро устареет. Используйте OAuth 2.0)"
 
 #: admin/settings.php:1725
 msgid "Own App (OAuth2.0 :Recommended)"
@@ -1979,6 +1976,16 @@ msgstr "Всем привет! Я просто плагин, мало что м�
 #: xyz-functions.php:411
 msgid "Every 2 Hours"
 msgstr "Каждые 2 часа"
+
+#~ msgid ""
+#~ "Own App (Traditional: This is for supporting old users, We advise "
+#~ "switching to OAuth 2.0)"
+#~ msgstr ""
+#~ "Собственное приложение (традиционное: для поддержки старых пользователей, "
+#~ "мы рекомендуем перейти на OAuth 2.0)"
+
+#~ msgid "requires app submission and Twitter review"
+#~ msgstr "требуется отправка приложения и проверка в Твиттере"
 
 #~ msgid "Just 29 USD"
 #~ msgstr "Всего 29 долларов США"

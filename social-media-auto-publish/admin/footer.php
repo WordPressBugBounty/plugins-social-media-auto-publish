@@ -38,7 +38,7 @@ if(get_option('xyz_smap_premium_version_ads')==1){?>
 <div class="xyz_smap_social_media">
 <h3 class="xyz_smap_inner_head"> <?php _e('Follow Us','social-media-auto-publish'); ?> </h3>
    <a target="_blank" href="http://facebook.com/xyzscripts" class="xyz_smap_home_fbook"></a>
-   <a target="_blank" href="http://twitter.com/xyzscripts" class="xyz_smap_home_twitt"></a>
+   <a target="_blank" href="http://x.com/xyzscripts" class="xyz_smap_home_twitt"></a>
         <a target="_blank" href="https://www.instagram.com/xyz_scripts/" class="xyz_smap_home_insta"></a>
  <a style="margin-right:0px;" target="_blank" href="https://www.linkedin.com/company/xyzscripts" class="xyz_home_linkedin"></a>
 </div>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-04-15 12:06+0530\n"
-"PO-Revision-Date: 2025-04-15 12:07+0530\n"
+"POT-Creation-Date: 2025-06-06 16:47+0530\n"
+"PO-Revision-Date: 2025-06-06 16:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -85,7 +85,6 @@ msgid "Facebook"
 msgstr "Facebook"
 
 #: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:855
-#: admin/settings.php:876
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -1203,6 +1202,12 @@ msgstr "Connexion réussie à l'espace membre %s"
 msgid "Selected pages saved successfully."
 msgstr "Les pages sélectionnées ont été enregistrées avec succès."
 
+#: admin/settings.php:876
+#, fuzzy
+#| msgid "Twitter"
+msgid "Twitter / X"
+msgstr "Twitter"
+
 #: admin/settings.php:878
 msgid "instagram"
 msgstr "instagram"
@@ -1298,8 +1303,7 @@ msgstr "Propre application"
 msgid "requires app submission and Facebook review"
 msgstr "nécessite la soumission de l'application et l'examen de Facebook"
 
-#: admin/settings.php:1014 admin/settings.php:1378 admin/settings.php:1722
-#: admin/settings.php:1725
+#: admin/settings.php:1014 admin/settings.php:1378
 msgid "Help"
 msgstr "Aider"
 
@@ -1527,16 +1531,9 @@ msgstr ""
 "b><br>sous <b>%s</b>."
 
 #: admin/settings.php:1722
-msgid ""
-"Own App (Traditional: This is for supporting old users, We advise switching "
-"to OAuth 2.0)"
+msgid "Own App- Traditional (Deprecating soon. Use OAuth 2.0)"
 msgstr ""
-"Application propre (traditionnelle : elle sert à prendre en charge les "
-"anciens utilisateurs. Nous vous conseillons de passer à OAuth 2.0)"
-
-#: admin/settings.php:1722
-msgid "requires app submission and Twitter review"
-msgstr "nécessite la soumission de l'application et l'examen de Twitter"
+"Application propre - Traditionnelle (bientôt obsolète. Utiliser OAuth 2.0)"
 
 #: admin/settings.php:1725
 msgid "Own App (OAuth2.0 :Recommended)"
@@ -1992,6 +1989,16 @@ msgstr ""
 #: xyz-functions.php:411
 msgid "Every 2 Hours"
 msgstr "Toutes les 2 heures"
+
+#~ msgid ""
+#~ "Own App (Traditional: This is for supporting old users, We advise "
+#~ "switching to OAuth 2.0)"
+#~ msgstr ""
+#~ "Application propre (traditionnelle : elle sert à prendre en charge les "
+#~ "anciens utilisateurs. Nous vous conseillons de passer à OAuth 2.0)"
+
+#~ msgid "requires app submission and Twitter review"
+#~ msgstr "nécessite la soumission de l'application et l'examen de Twitter"
 
 #~ msgid "Twitter Authorizations"
 #~ msgstr "Autorisations Twitter"
