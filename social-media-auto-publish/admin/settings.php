@@ -2735,6 +2735,8 @@ echo '<b>' . __('Note:', 'social-media-auto-publish') . '</b> ' .
 	<?php  if(get_option('xyz_smap_tgpost_method')==1) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
 				<option value="2"
 	<?php  if(get_option('xyz_smap_tgpost_method')==2) echo 'selected';?>> <?php _e('Text message with Image ','social-media-auto-publish'); ?> </option>
+	<option value="3"
+	<?php  if(get_option('xyz_smap_tgpost_method')==3) echo 'selected';?>> <?php _e('Share a Link ','social-media-auto-publish'); ?> </option>
 		</select>
 		</td>
 				</tr>
@@ -2838,7 +2840,7 @@ echo '<b>' . __('Note:', 'social-media-auto-publish') . '</b> ' .
 					</tr>
 					<tr><td><h2> <?php _e('Advanced Settings','social-media-auto-publish'); ?> </h2></td></tr>
 					<tr valign="top">
-						<td> <?php _e('Enforce og tags for Facebook and LinkedIn','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>" onmouseover="detdisplay_smap('xyz_smap_free_enforce_og')" onmouseout="dethide_smap('xyz_smap_free_enforce_og')" style="width:13px;height:auto;">
+						<td> <?php _e('Enforce og tags for Facebook, LinkedIn and Telegram','social-media-auto-publish'); ?> <img src="<?php echo $heimg?>" onmouseover="detdisplay_smap('xyz_smap_free_enforce_og')" onmouseout="dethide_smap('xyz_smap_free_enforce_og')" style="width:13px;height:auto;">
 						<div id="xyz_smap_free_enforce_og" class=xyz_smap_informationdiv style="display: none;width: 400px;">
 						 <?php _e('If you enable, Open Graph tags will be generated while posting to Facebook and LinkedIn. <br/>
 						 When sharing links to Facebook and LinkedIn, <b> Facebook/LinkedIn Crawler </b> uses internal heuristics to set the preview image for your content when using the posting method <b> Share a link to your blog post </b> or <b> Attach your blog post </b> in Facebook and also when sharing to LinkedIn.','social-media-auto-publish'); ?>

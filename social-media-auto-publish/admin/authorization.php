@@ -130,14 +130,15 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
 		}
 		update_option('xyz_smap_fb_numericid',$page_id);
 		
-		header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&auth=1'));
+		wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1' ) );
+exit;
 	}
 	else {
 		
 		$xyz_smap_af=get_option('xyz_smap_af');
 		
 		if($xyz_smap_af==1){
-			header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&msg=3'));
+			wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&msg=3' ) );
 			exit();
 		}
 	}
@@ -247,7 +248,8 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
                 $business_acc_id_list=rtrim($business_acc_id_list,",");
                 if($business_acc_id_list!="")
                     update_option('xyz_smap_ig_pages_ids',$business_acc_id_list);
-                    header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&auth=1'));
+					wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1' ) );
+exit;
                 }
                 $url = 'https://graph.facebook.com/'.XYZ_SMAP_IG_API_VERSION.'/me?access_token='.$access_token;
                 $contentget=wp_remote_get($url,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));$page_id='';
@@ -258,13 +260,14 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
                     $page_id=$pagearray->id;
                 }
                 update_option('xyz_smap_ig_numericid',$page_id);
-                header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&auth=1&msg=9'));
+				wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1&msg=9' ) );
+				exit;
         }
         else {
             $xyz_smap_ig_af=get_option('xyz_smap_ig_af');
             if($xyz_smap_ig_af==1){
-                header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&msg=3'));
-                exit();
+				wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&msg=3' ) );
+				exit;
             }
         }
 }
@@ -309,8 +312,17 @@ $redirecturl=urlencode(admin_url('admin.php?page=social-media-auto-publish-setti
 	}
 	if( isset($_GET['error']) && isset($_GET['error_description']) )//if any error
 	{
-		header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&ln_auth_err='.$_GET['error'].':'.$_GET['error_description']));
-		exit();
+		$ln_error       = isset($_GET['error']) ? sanitize_text_field($_GET['error']) : '';
+		$ln_error_desc  = isset($_GET['error_description']) ? sanitize_text_field($_GET['error_description']) : '';
+		$redirect_url = add_query_arg(
+			array(
+				'page'        => 'social-media-auto-publish-settings',
+				'ln_auth_err' => $ln_error . ':' . $ln_error_desc,
+			),
+		admin_url('admin.php')
+);
+wp_safe_redirect( $redirect_url );
+exit;
 	}
 	else if(isset($_GET['code']) && isset($_GET['state']) && $_GET['state']==$state)
 	{
@@ -328,13 +340,22 @@ $redirecturl=urlencode(admin_url('admin.php?page=social-media-auto-publish-setti
 		}
 		update_option('xyz_smap_application_lnarray', $ln_acc_tok_json);
 		update_option('xyz_smap_lnaf',0);
-		header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&msg=4'));
-		exit();
+		wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&msg=4' ) );
+		exit;
 		}
 		else if (isset($ln_acc_tok_arr->error)&& isset($ln_acc_tok_arr->error_description))
 		{
-			header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&ln_auth_err='.$ln_acc_tok_arr->error.':'.$ln_acc_tok_arr->error_description));
-			exit();
+			$ln_error       = isset($ln_acc_tok_arr->error) ? sanitize_text_field($ln_acc_tok_arr->error) : '';
+			$ln_error_desc  = isset($ln_acc_tok_arr->error_description) ? sanitize_text_field($ln_acc_tok_arr->error_description) : '';
+			$redirect_url = add_query_arg(
+				array(
+					'page'         => 'social-media-auto-publish-settings',
+					'ln_auth_err'  => $ln_error . ':' . $ln_error_desc,
+				),
+				admin_url('admin.php')
+			);
+			wp_safe_redirect( $redirect_url );
+			exit;
 		}
 	}
 	//////////////THREADS
@@ -359,8 +380,8 @@ if (!isset($_GET['code']) ) {
 	   "&scope=" . urlencode($scope) .
 	   "&response_type=code" .
 	   "&state=" . urlencode($xyz_smap_th_session_state);
-   header("Location: " . $auth_url);
-   die;
+				wp_redirect( $auth_url );
+				exit;
 		}
 	}
 	if (isset($_COOKIE['xyz_smap_th_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_th_session_state'] === $_REQUEST['state'])) 

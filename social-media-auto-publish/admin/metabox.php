@@ -1154,6 +1154,8 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<?php  if($xyz_smap_tgpost_method==1) echo 'selected';?>> <?php _e('Simple text message','social-media-auto-publish'); ?> </option>
 				<option value="2"
 	<?php  if($xyz_smap_tgpost_method==2) echo 'selected';?>> <?php _e('Text message with image','social-media-auto-publish'); ?> </option>	
+	<option value="3"
+	<?php  if($xyz_smap_tgpost_method==3) echo 'selected';?>> <?php _e('Share a Link','social-media-auto-publish'); ?> </option>	
 		</select>				
 		</td>
 	</tr>

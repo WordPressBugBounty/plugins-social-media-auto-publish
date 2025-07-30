@@ -48,17 +48,17 @@ if (isset($_POST) && isset($_POST['xyz_send_mail']))
 		$xyz_smap_headers = array('From: '.$xyz_smap_admin_username.' <'. $xyz_smap_sender_email .'>' ,'Content-Type: text/html; charset=UTF-8');
 		$wp_mail_processed=wp_mail( $xyz_smap_recv_email, $xyz_smap_mail_subject, $xyz_smap_feature_content, $xyz_smap_headers );
 		if ($wp_mail_processed==true){
-		 header("Location:".admin_url('admin.php?page=social-media-auto-publish-suggest-features&msg=1'));
-		 exit();
+			wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-suggest-features&msg=1' ) );
+			exit;
 		}
 		else {
-			header("Location:".admin_url('admin.php?page=social-media-auto-publish-suggest-features&msg=2'));
-			exit();
+			wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-suggest-features&msg=2' ));
+			exit;
 		}
 	}
 	else {
-		header("Location:".admin_url('admin.php?page=social-media-auto-publish-suggest-features&msg=3'));
-		exit();
+		wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-suggest-features&msg=3' ) );
+		exit;
 	}
 }?>
 <form method="post" >

@@ -106,15 +106,17 @@ function xyz_smap_insert_og_twitter_card(){
 		$get_post_meta_future_tw_data=get_post_meta($postid,"xyz_smap_tw_future_to_publish",true);
 		$get_post_meta_future_fb_data=get_post_meta($postid,"xyz_smap_fb_future_to_publish",true);
 		$get_post_meta_future_ln_data=get_post_meta($postid,"xyz_smap_ln_future_to_publish",true);
+		$get_post_meta_future_tg_data=get_post_meta($postid,"xyz_smap_tg_future_to_publish",true);
 		
 		$get_post_meta_insert_og=get_post_meta($postid,"xyz_smap_insert_og",true); 
 		$get_post_meta_insert_twitter_card=get_post_meta($postid,"xyz_smap_insert_twitter_card",true);
 
-		if(strpos($_SERVER["HTTP_USER_AGENT"], "Twitterbot") === false  &&  strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") === false && strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") === false && strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") === false )
+		if(strpos($_SERVER["HTTP_USER_AGENT"], "Twitterbot") === false  &&  strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") === false && strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") === false && strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") === false && strpos($_SERVER["HTTP_USER_AGENT"], "TelegramBot") === false)
         return;
 
-		if ((!empty($get_post_meta_future_fb_data) && ( $xyz_smap_free_enforce_og_tags==1 ))|| (!empty($get_post_meta_future_ln_data) && ( $xyz_smap_free_enforce_og_tags==1 )) 
-		    || (!empty($get_post_meta_future_tw_data) && ( $xyz_smap_free_enforce_twitter_cards==1 )))
+		if (
+    ( $xyz_smap_free_enforce_og_tags == 1 && ( !empty($get_post_meta_future_fb_data) || !empty($get_post_meta_future_ln_data) || !empty($get_post_meta_future_tg_data) ) ) ||
+    ( $xyz_smap_free_enforce_twitter_cards == 1 && !empty($get_post_meta_future_tw_data)))
 		{
 			$ar2=explode(",",$xyz_smap_apply_filters);
 			$excerpt = $post->post_excerpt;
@@ -151,8 +153,9 @@ function xyz_smap_insert_og_twitter_card(){
 					$name=strip_tags($name);
 					$name=strip_shortcodes($name);
 			$attachmenturl=xyz_smap_getimage($postid, $post->post_content);
-			if ((($get_post_meta_insert_og==1) && isset($_SERVER["HTTP_USER_AGENT"]) && (strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") !== false || strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") !== false
-			    || strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") !== false))) 
+			if ((($get_post_meta_insert_og==1) && isset($_SERVER["HTTP_USER_AGENT"]) && 
+			(strpos($_SERVER["HTTP_USER_AGENT"], "facebookexternalhit/") !== false || strpos($_SERVER["HTTP_USER_AGENT"], "Facebot") !== false
+			    || strpos($_SERVER["HTTP_USER_AGENT"], "LinkedInBot") !== false || strpos($_SERVER["HTTP_USER_AGENT"], "TelegramBot") !== false))) 
 			{
 			if(!empty( $name ))
 				echo '<meta property="og:title" content="'.$name.'" />';

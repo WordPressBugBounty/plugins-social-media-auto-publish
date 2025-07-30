@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-06-06 16:50+0530\n"
-"PO-Revision-Date: 2025-06-06 16:51+0530\n"
+"POT-Creation-Date: 2025-07-29 17:49+0530\n"
+"PO-Revision-Date: 2025-07-29 17:49+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: social-media-auto-publish.php\n"
@@ -106,7 +106,7 @@ msgstr "興趣"
 msgid "Telegram"
 msgstr "電報"
 
-#: admin/about.php:101 admin/metabox.php:1226 admin/settings.php:881
+#: admin/about.php:101 admin/metabox.php:1228 admin/settings.php:881
 msgid "Threads"
 msgstr "线程数"
 
@@ -191,26 +191,30 @@ msgstr "使用帖子标签作为哈希标签的选项"
 msgid "Enable/Disable SSL peer verification"
 msgstr "启用/禁用 SSL 对等验证"
 
-#: admin/about.php:291
+#: admin/about.php:288
+msgid "Carousel post support for Instagram and Telegram"
+msgstr "轮播帖子支持 Instagram 和 Telegram"
+
+#: admin/about.php:300
 msgid "Image Options"
 msgstr "图像选项"
 
-#: admin/about.php:292
+#: admin/about.php:301
 msgid "Publish images along with post content"
 msgstr "发布图像以及帖子内容"
 
-#: admin/about.php:302
+#: admin/about.php:311
 msgid ""
 "Separate default image url for publishing to multiple social media accounts"
 msgstr "用于发布到多个社交媒体帐户的单独默认图像 URL"
 
-#: admin/about.php:312
+#: admin/about.php:321
 msgid ""
 "Option to specify preference from featured image, post content, post meta "
 "and open graph tags"
 msgstr "选择从特色图像、帖子内容、帖子元和开放图形标签中指定偏好"
 
-#: admin/about.php:322
+#: admin/about.php:331
 msgid ""
 "Publish multiple images to facebook, tumblr, linkedin, twitter, threads and "
 "telegram along with post content"
@@ -218,15 +222,15 @@ msgstr ""
 "将多张图片与帖子内容一起发布到 Facebook、Tumblr、LinkedIn、Twitter、Threads "
 "和 Telegram"
 
-#: admin/about.php:332
+#: admin/about.php:341
 msgid "Option to specify multiphoto preference from post content and post meta"
 msgstr "从帖子内容和帖子元中指定多张照片偏好的选项"
 
-#: admin/about.php:344
+#: admin/about.php:353
 msgid "Video/Audio Options"
 msgstr "视频/音频选项"
 
-#: admin/about.php:345
+#: admin/about.php:354
 msgid ""
 "Publish video to facebook, tumblr,Linkedin, Instagram, twitter, threads and "
 "telegram along with post content"
@@ -234,134 +238,134 @@ msgstr ""
 "将视频与帖子内容一起发布到 Facebook、Tumblr、Linkedin、Instagram、Twitter、"
 "Threads 和 Telegram"
 
-#: admin/about.php:355
+#: admin/about.php:364
 msgid ""
 "Option to specify preference from post content, post meta and open graph tags"
 msgstr "从帖子内容、帖子元和开放图形标签中指定偏好的选项"
 
-#: admin/about.php:364
+#: admin/about.php:373
 msgid "Publish audio to tumblr and telegram along with post content"
 msgstr "將音訊與貼文內容一起發佈到 tumblr 和 telegram"
 
-#: admin/about.php:373
+#: admin/about.php:382
 msgid ""
 "Option to specify audio preference from  post content, post meta and open "
 "graph tags"
 msgstr "从帖子内容、帖子元和打开图形标签中指定音频偏好的选项"
 
-#: admin/about.php:384
+#: admin/about.php:393
 msgid "Filter Options"
 msgstr "过滤器选项"
 
-#: admin/about.php:385
+#: admin/about.php:394
 msgid "Filter posts to publish based on categories"
 msgstr "根据类别过滤要发布的帖子"
 
-#: admin/about.php:395
+#: admin/about.php:404
 msgid "Filter posts to publish based on custom post types"
 msgstr "根据自定义帖子类型过滤要发布的帖子"
 
-#: admin/about.php:404
+#: admin/about.php:413
 msgid "Filter posts to publish based on sticky posts"
 msgstr "根据粘性帖子过滤要发布的帖子"
 
-#: admin/about.php:413
+#: admin/about.php:422
 msgid "Configuration to enable/disable page publishing"
 msgstr "启用/禁用页面发布的配置"
 
-#: admin/about.php:423
+#: admin/about.php:432
 msgid "Category filter for individual accounts"
 msgstr "个人帐户的类别过滤器"
 
-#: admin/about.php:433
+#: admin/about.php:442
 msgid "Custom post type filter for individual accounts"
 msgstr "个人帐户的自定义帖子类型过滤器"
 
-#: admin/about.php:443
+#: admin/about.php:452
 msgid "Enable/Disable page publishing for individual accounts"
 msgstr "为个人帐户启用/禁用页面发布"
 
-#: admin/about.php:452
+#: admin/about.php:461
 msgid "Override auto publish scheduling for individual accounts"
 msgstr "覆盖个人帐户的自动发布计划"
 
-#: admin/about.php:461
+#: admin/about.php:470
 msgid "Override auto publish based on sticky posts for individual accounts"
 msgstr "覆盖基于个人帐户的粘性帖子的自动发布"
 
-#: admin/about.php:472
+#: admin/about.php:481
 msgid "Scheduling"
 msgstr "调度"
 
-#: admin/about.php:473
+#: admin/about.php:482
 msgid "Instantaneous post publishing"
 msgstr "即时发布"
 
-#: admin/about.php:483
+#: admin/about.php:492
 msgid "Scheduled post publishing using cron"
 msgstr "使用 cron 定时发布"
 
-#: admin/about.php:493
+#: admin/about.php:502
 msgid "Status summary of auto publish tasks by mail"
 msgstr "通过邮件自动发布任务的状态摘要"
 
-#: admin/about.php:503
+#: admin/about.php:512
 msgid "Configurable auto publishing time interval"
 msgstr "可配置的自动发布时间间隔"
 
-#: admin/about.php:517
+#: admin/about.php:526
 msgid "Publishing History"
 msgstr "出版历史"
 
-#: admin/about.php:518
+#: admin/about.php:527
 msgid "View auto publish history"
 msgstr "查看自动发布历史"
 
-#: admin/about.php:527
+#: admin/about.php:536
 msgid "View auto publish error logs"
 msgstr "查看自动发布错误日志"
 
-#: admin/about.php:537
+#: admin/about.php:546
 msgid "Option to republish post"
 msgstr "重新发布帖子的选项"
 
-#: admin/about.php:547
+#: admin/about.php:556
 msgid "Option to reschedule publishing"
 msgstr "重新安排发布的选项"
 
-#: admin/about.php:558
+#: admin/about.php:567
 msgid "Installation and Support"
 msgstr "安装和支持"
 
-#: admin/about.php:559
+#: admin/about.php:568
 msgid "Free Installation"
 msgstr "免费安装"
 
-#: admin/about.php:568
+#: admin/about.php:577
 msgid "Privilege customer support"
 msgstr "特权客户支持"
 
-#: admin/about.php:578
+#: admin/about.php:587
 msgid "Addon Features"
 msgstr "附加功能"
 
-#: admin/about.php:579
+#: admin/about.php:588
 msgid "Advanced Autopublish Scheduler"
 msgstr "高级自动发布计划程序"
 
-#: admin/about.php:588
+#: admin/about.php:597
 msgid "URL-Shortener"
 msgstr "网址缩短器"
 
-#: admin/about.php:597
+#: admin/about.php:606
 msgid "Privilege Management"
 msgstr "权限管理"
 
-#: admin/about.php:606
+#: admin/about.php:615
 msgid "Other"
 msgstr "其他"
 
-#: admin/about.php:608
+#: admin/about.php:617
 #, php-format
 msgid ""
 "%s API package for 1 year, worth 30 USD(1 fb account @ 10 api calls per "
@@ -372,39 +376,39 @@ msgstr ""
 "linkedin 帐户 @ 每天 25 个 api，1 个 Twitter 帐户 @ 每小时 10 个 api 调用，1 "
 "个 instagram 帐户 @ 每天 25 个 api）"
 
-#: admin/about.php:610
+#: admin/about.php:619
 msgid "1 month free subscription"
 msgstr "1个月免费订阅"
 
-#: admin/about.php:611
+#: admin/about.php:620
 msgid "1 year free subscription"
 msgstr "1年免费订阅"
 
-#: admin/about.php:614
+#: admin/about.php:623
 msgid "Price"
 msgstr "价钱"
 
-#: admin/about.php:615
+#: admin/about.php:624
 msgid "FREE"
 msgstr "免费"
 
-#: admin/about.php:616
+#: admin/about.php:625
 msgid "Starts from 29 USD"
 msgstr "29 美元起"
 
-#: admin/about.php:617
+#: admin/about.php:626
 msgid "Starts from 59 USD"
 msgstr "59 美元起"
 
-#: admin/about.php:620
+#: admin/about.php:629
 msgid "Purchase"
 msgstr "购买"
 
-#: admin/about.php:622 admin/footer.php:21
+#: admin/about.php:631 admin/footer.php:21
 msgid "Buy Now"
 msgstr "立即购买"
 
-#: admin/about.php:629
+#: admin/about.php:638
 msgid "Pinterest is added on experimental basis."
 msgstr "Pinterest 是在实验基础上添加的。"
 
@@ -513,9 +517,9 @@ msgstr "设置更新成功。"
 #: admin/settings.php:54 admin/settings.php:71 admin/settings.php:88
 #: admin/settings.php:750 admin/settings.php:758 admin/settings.php:767
 #: admin/settings.php:778 admin/settings.php:787 admin/settings.php:798
-#: admin/settings.php:807 admin/settings.php:846 admin/settings.php:3386
-#: admin/settings.php:3411 admin/settings.php:3439 admin/settings.php:3464
-#: admin/settings.php:3499 admin/suggest_feature.php:11
+#: admin/settings.php:807 admin/settings.php:846 admin/settings.php:3388
+#: admin/settings.php:3413 admin/settings.php:3441 admin/settings.php:3466
+#: admin/settings.php:3501 admin/suggest_feature.php:11
 #: admin/suggest_feature.php:19 admin/suggest_feature.php:27
 msgid "Dismiss"
 msgstr "清除"
@@ -800,44 +804,44 @@ msgstr "启用自动将帖子发布到我的 Facebook 帐户"
 
 #: admin/metabox.php:676 admin/metabox.php:780 admin/metabox.php:865
 #: admin/metabox.php:878 admin/metabox.php:948 admin/metabox.php:1037
-#: admin/metabox.php:1144 admin/metabox.php:1236 admin/settings.php:996
+#: admin/metabox.php:1144 admin/metabox.php:1238 admin/settings.php:996
 #: admin/settings.php:1129 admin/settings.php:1360 admin/settings.php:1713
 #: admin/settings.php:1862 admin/settings.php:1997 admin/settings.php:2113
 #: admin/settings.php:2118 admin/settings.php:2131 admin/settings.php:2293
-#: admin/settings.php:2511 admin/settings.php:2643 admin/settings.php:2792
-#: admin/settings.php:2800 admin/settings.php:2849 admin/settings.php:2859
-#: admin/settings.php:2939 admin/settings.php:2990 admin/settings.php:3000
+#: admin/settings.php:2511 admin/settings.php:2643 admin/settings.php:2794
+#: admin/settings.php:2802 admin/settings.php:2851 admin/settings.php:2861
+#: admin/settings.php:2941 admin/settings.php:2992 admin/settings.php:3002
 msgid "Yes"
 msgstr "没有人"
 
 #: admin/metabox.php:677 admin/metabox.php:781 admin/metabox.php:866
 #: admin/metabox.php:876 admin/metabox.php:949 admin/metabox.php:956
-#: admin/metabox.php:1038 admin/metabox.php:1145 admin/metabox.php:1237
+#: admin/metabox.php:1038 admin/metabox.php:1145 admin/metabox.php:1239
 #: admin/settings.php:997 admin/settings.php:1130 admin/settings.php:1361
 #: admin/settings.php:1714 admin/settings.php:1863 admin/settings.php:1998
 #: admin/settings.php:2114 admin/settings.php:2119 admin/settings.php:2132
 #: admin/settings.php:2294 admin/settings.php:2512 admin/settings.php:2565
-#: admin/settings.php:2644 admin/settings.php:2793 admin/settings.php:2801
-#: admin/settings.php:2850 admin/settings.php:2860 admin/settings.php:2940
-#: admin/settings.php:2991 admin/settings.php:3001
+#: admin/settings.php:2644 admin/settings.php:2795 admin/settings.php:2803
+#: admin/settings.php:2852 admin/settings.php:2862 admin/settings.php:2942
+#: admin/settings.php:2993 admin/settings.php:3003
 msgid "No"
 msgstr "不"
 
 #: admin/metabox.php:681 admin/metabox.php:785 admin/metabox.php:1086
-#: admin/metabox.php:1150 admin/metabox.php:1242 admin/settings.php:1068
+#: admin/metabox.php:1150 admin/metabox.php:1244 admin/settings.php:1068
 #: admin/settings.php:1432 admin/settings.php:2093 admin/settings.php:2354
 #: admin/settings.php:2730
 msgid "Posting method"
 msgstr "发帖方式"
 
 #: admin/metabox.php:685 admin/metabox.php:1090 admin/metabox.php:1154
-#: admin/metabox.php:1245 admin/settings.php:1074 admin/settings.php:2098
+#: admin/metabox.php:1247 admin/settings.php:1074 admin/settings.php:2098
 #: admin/settings.php:2359 admin/settings.php:2735
 msgid "Simple text message"
 msgstr "简单的短信"
 
 #: admin/metabox.php:687 admin/metabox.php:788 admin/metabox.php:1094
-#: admin/metabox.php:1156 admin/metabox.php:1247 admin/settings.php:2102
+#: admin/metabox.php:1156 admin/metabox.php:1249 admin/settings.php:2102
 #: admin/settings.php:2363
 msgid "Text message with image"
 msgstr "带图片的短信"
@@ -854,7 +858,7 @@ msgstr "将图像上传到时间线相册"
 msgid "Text message with attached link"
 msgstr "带有附加链接的短信"
 
-#: admin/metabox.php:696 admin/metabox.php:1092 admin/metabox.php:1246
+#: admin/metabox.php:696 admin/metabox.php:1092 admin/metabox.php:1248
 #: admin/settings.php:1085 admin/settings.php:2100 admin/settings.php:2361
 msgid "Attach your blog post"
 msgstr "附上您的博文"
@@ -864,90 +868,90 @@ msgid "Share a link to your blog post"
 msgstr "分享指向您的博客文章的链接"
 
 #: admin/metabox.php:705 admin/metabox.php:793 admin/metabox.php:884
-#: admin/metabox.php:963 admin/metabox.php:1053 admin/metabox.php:1161
-#: admin/metabox.php:1253 admin/settings.php:1094 admin/settings.php:1438
+#: admin/metabox.php:963 admin/metabox.php:1053 admin/metabox.php:1163
+#: admin/metabox.php:1255 admin/settings.php:1094 admin/settings.php:1438
 #: admin/settings.php:1828 admin/settings.php:2062 admin/settings.php:2323
-#: admin/settings.php:2572 admin/settings.php:2742
+#: admin/settings.php:2572 admin/settings.php:2744
 msgid "Message format for posting"
 msgstr "发帖的消息格式"
 
 #: admin/metabox.php:708 admin/metabox.php:796 admin/metabox.php:887
-#: admin/metabox.php:967 admin/metabox.php:1057 admin/metabox.php:1164
-#: admin/metabox.php:1256 admin/settings.php:1097 admin/settings.php:1441
+#: admin/metabox.php:967 admin/metabox.php:1057 admin/metabox.php:1166
+#: admin/metabox.php:1258 admin/settings.php:1097 admin/settings.php:1441
 #: admin/settings.php:1832 admin/settings.php:2066 admin/settings.php:2327
-#: admin/settings.php:2576 admin/settings.php:2745
+#: admin/settings.php:2576 admin/settings.php:2747
 msgid "Insert the title of your post."
 msgstr "插入帖子的标题。"
 
 #: admin/metabox.php:709 admin/metabox.php:797 admin/metabox.php:888
-#: admin/metabox.php:968 admin/metabox.php:1058 admin/metabox.php:1165
-#: admin/metabox.php:1257 admin/settings.php:1098 admin/settings.php:1442
+#: admin/metabox.php:968 admin/metabox.php:1058 admin/metabox.php:1167
+#: admin/metabox.php:1259 admin/settings.php:1098 admin/settings.php:1442
 #: admin/settings.php:1833 admin/settings.php:2067 admin/settings.php:2328
-#: admin/settings.php:2577 admin/settings.php:2746
+#: admin/settings.php:2577 admin/settings.php:2748
 msgid "Insert the URL where your post is displayed."
 msgstr "插入显示您的帖子的 URL。"
 
 #: admin/metabox.php:710 admin/metabox.php:798 admin/metabox.php:889
-#: admin/metabox.php:969 admin/metabox.php:1059 admin/metabox.php:1166
-#: admin/metabox.php:1258 admin/settings.php:1099 admin/settings.php:1443
+#: admin/metabox.php:969 admin/metabox.php:1059 admin/metabox.php:1168
+#: admin/metabox.php:1260 admin/settings.php:1099 admin/settings.php:1443
 #: admin/settings.php:1834 admin/settings.php:2068 admin/settings.php:2329
-#: admin/settings.php:2578 admin/settings.php:2747
+#: admin/settings.php:2578 admin/settings.php:2749
 msgid "Insert the excerpt of your post."
 msgstr "插入您的帖子的摘录。"
 
 #: admin/metabox.php:711 admin/metabox.php:799 admin/metabox.php:890
-#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1167
-#: admin/metabox.php:1259 admin/settings.php:1100 admin/settings.php:1444
+#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1169
+#: admin/metabox.php:1261 admin/settings.php:1100 admin/settings.php:1444
 #: admin/settings.php:1835 admin/settings.php:2069 admin/settings.php:2330
-#: admin/settings.php:2579 admin/settings.php:2748
+#: admin/settings.php:2579 admin/settings.php:2750
 msgid "Insert the description of your post."
 msgstr "插入您的帖子的描述。"
 
 #: admin/metabox.php:712 admin/metabox.php:800 admin/metabox.php:891
-#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1168
-#: admin/metabox.php:1260 admin/settings.php:1101 admin/settings.php:1445
+#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1170
+#: admin/metabox.php:1262 admin/settings.php:1101 admin/settings.php:1445
 #: admin/settings.php:1836 admin/settings.php:2070 admin/settings.php:2331
-#: admin/settings.php:2580 admin/settings.php:2749
+#: admin/settings.php:2580 admin/settings.php:2751
 msgid "Insert the name of your blog."
 msgstr "插入您的博客名称。"
 
 #: admin/metabox.php:713 admin/metabox.php:801 admin/metabox.php:892
-#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1169
-#: admin/metabox.php:1261 admin/settings.php:1102 admin/settings.php:1446
+#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1171
+#: admin/metabox.php:1263 admin/settings.php:1102 admin/settings.php:1446
 #: admin/settings.php:1837 admin/settings.php:2071 admin/settings.php:2332
-#: admin/settings.php:2581 admin/settings.php:2750
+#: admin/settings.php:2581 admin/settings.php:2752
 msgid "Insert the nicename of the author."
 msgstr "插入作者的昵称。"
 
 #: admin/metabox.php:714 admin/metabox.php:802 admin/metabox.php:893
-#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1170
-#: admin/metabox.php:1262 admin/settings.php:1103 admin/settings.php:1447
+#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1172
+#: admin/metabox.php:1264 admin/settings.php:1103 admin/settings.php:1447
 #: admin/settings.php:1838 admin/settings.php:2072 admin/settings.php:2333
-#: admin/settings.php:2582 admin/settings.php:2751
+#: admin/settings.php:2582 admin/settings.php:2753
 msgid "Insert the ID of your post."
 msgstr "插入您的帖子的 ID。"
 
 #: admin/metabox.php:715 admin/metabox.php:803 admin/metabox.php:894
-#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1171
-#: admin/metabox.php:1263 admin/settings.php:1104 admin/settings.php:1448
+#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1173
+#: admin/metabox.php:1265 admin/settings.php:1104 admin/settings.php:1448
 #: admin/settings.php:1839 admin/settings.php:2073 admin/settings.php:2334
-#: admin/settings.php:2583 admin/settings.php:2752
+#: admin/settings.php:2583 admin/settings.php:2754
 msgid "Insert the publish date of your post."
 msgstr "插入帖子的发布日期。"
 
 #: admin/metabox.php:716 admin/metabox.php:804 admin/metabox.php:895
-#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1172
-#: admin/metabox.php:1264 admin/settings.php:1105 admin/settings.php:1449
+#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1174
+#: admin/metabox.php:1266 admin/settings.php:1105 admin/settings.php:1449
 #: admin/settings.php:1840 admin/settings.php:2074 admin/settings.php:2335
-#: admin/settings.php:2584 admin/settings.php:2753
+#: admin/settings.php:2584 admin/settings.php:2755
 msgid "Insert the display name of the author."
 msgstr "插入作者的显示名称。"
 
 #: admin/metabox.php:721 admin/metabox.php:809 admin/metabox.php:900
-#: admin/metabox.php:979 admin/metabox.php:1070 admin/metabox.php:1177
-#: admin/metabox.php:1271 admin/settings.php:1109 admin/settings.php:1453
+#: admin/metabox.php:979 admin/metabox.php:1070 admin/metabox.php:1179
+#: admin/metabox.php:1273 admin/settings.php:1109 admin/settings.php:1453
 #: admin/settings.php:1844 admin/settings.php:2078 admin/settings.php:2339
-#: admin/settings.php:2589 admin/settings.php:2757
+#: admin/settings.php:2589 admin/settings.php:2759
 msgid "Select"
 msgstr "选择"
 
@@ -999,7 +1003,11 @@ msgstr "仅限连接"
 msgid "Enable auto publish posts to my telegram account"
 msgstr "啟用自動發布貼文到我的電報帳戶"
 
-#: admin/metabox.php:1233
+#: admin/metabox.php:1158
+msgid "Share a Link"
+msgstr "分享链接"
+
+#: admin/metabox.php:1235
 msgid "Enable auto publish posts to my threads account"
 msgstr "启用自动发布帖子到我的主题账户"
 
@@ -1154,10 +1162,8 @@ msgid "Selected pages saved successfully."
 msgstr "所选页面已成功保存。"
 
 #: admin/settings.php:876
-#, fuzzy
-#| msgid "Twitter"
 msgid "Twitter / X"
-msgstr "推特"
+msgstr "推特/X"
 
 #: admin/settings.php:878
 msgid "instagram"
@@ -1340,7 +1346,7 @@ msgid "Selected facebook pages for auto publish"
 msgstr "选定的 Facebook 页面用于自动发布"
 
 #: admin/settings.php:1247 admin/settings.php:1571 admin/settings.php:1882
-#: admin/settings.php:2219 admin/settings.php:2373 admin/settings.php:2775
+#: admin/settings.php:2219 admin/settings.php:2373 admin/settings.php:2777
 msgid "Save"
 msgstr "保存"
 
@@ -1721,31 +1727,35 @@ msgstr ""
 msgid "Text message with Image "
 msgstr "带图片的短信 "
 
-#: admin/settings.php:2786
+#: admin/settings.php:2739
+msgid "Share a Link "
+msgstr "分享链接 "
+
+#: admin/settings.php:2788
 msgid "Basic Settings"
 msgstr "基本设置"
 
-#: admin/settings.php:2789
+#: admin/settings.php:2791
 msgid "Publish wordpress `posts` to social media"
 msgstr "将 wordpress 的“帖子”发布到社交媒体"
 
-#: admin/settings.php:2798
+#: admin/settings.php:2800
 msgid "Publish wordpress `pages` to social media"
 msgstr "将 wordpress 的“页面”发布到社交媒体"
 
-#: admin/settings.php:2822
+#: admin/settings.php:2824
 msgid "Select wordpress custom post types for auto publish"
 msgstr "为自动发布选择 wordpress 自定义帖子类型"
 
-#: admin/settings.php:2839
+#: admin/settings.php:2841
 msgid "Advanced Settings"
 msgstr "高级设置"
 
-#: admin/settings.php:2841
-msgid "Enforce og tags for Facebook and LinkedIn"
-msgstr "为 Facebook 和 LinkedIn 强制执行 og 标签"
-
 #: admin/settings.php:2843
+msgid "Enforce og tags for Facebook, LinkedIn and Telegram"
+msgstr "为 Facebook、LinkedIn 和 Telegram 强制执行 og 标签"
+
+#: admin/settings.php:2845
 msgid ""
 "If you enable, Open Graph tags will be generated while posting to Facebook "
 "and LinkedIn. <br/>\n"
@@ -1761,7 +1771,7 @@ msgstr ""
 "的链接</b> 或<b> 在 Facebook 中附加您的博客文章</b> 以及在分享到 LinkedIn "
 "时。"
 
-#: admin/settings.php:2845
+#: admin/settings.php:2847
 msgid ""
 "If Open Graph tags are present, most major content sharing platform's "
 "crawler will not have to rely on it's own analysis to determine what content "
@@ -1771,11 +1781,11 @@ msgstr ""
 "如果存在 Open Graph 标签，大多数主要内容共享平台的爬虫将不必依靠自己的分析来"
 "确定要共享的内容，从而提高共享的信息正是您想要的信息的可能性。"
 
-#: admin/settings.php:2854
+#: admin/settings.php:2856
 msgid "Add twitter cards while posting to twitter"
 msgstr "在推特上发帖时添加推特卡"
 
-#: admin/settings.php:2856
+#: admin/settings.php:2858
 msgid ""
 "By crawling twitter card specific meta tags, twitter can generate a "
 "summarised preview of the tweeted link.<br/> * To generete tweet preview of "
@@ -1784,63 +1794,63 @@ msgstr ""
 "通过抓取推特卡片特定的元标记，推特可以生成推文链接的摘要预览。<br/> * 要生成"
 "帖子的推文预览，请将<b>将媒体附加到推特帖子</b>设置为<b>否< /b>。"
 
-#: admin/settings.php:2866
+#: admin/settings.php:2868
 msgid "Select post categories for auto publish"
 msgstr "选择自动发布的帖子类别"
 
-#: admin/settings.php:2872
+#: admin/settings.php:2874
 msgid "All"
 msgstr "全部"
 
-#: admin/settings.php:2874
+#: admin/settings.php:2876
 msgid "Specific"
 msgstr "具体的"
 
-#: admin/settings.php:2910
+#: admin/settings.php:2912
 msgid "NIL"
 msgstr "零"
 
-#: admin/settings.php:2917
+#: admin/settings.php:2919
 msgid "Auto publish on creating posts/pages/custom post types"
 msgstr "在创建帖子/页面/自定义帖子类型时自动发布"
 
-#: admin/settings.php:2920 admin/settings.php:2930
+#: admin/settings.php:2922 admin/settings.php:2932
 msgid "Enabled"
 msgstr "启用"
 
-#: admin/settings.php:2921 admin/settings.php:2931
+#: admin/settings.php:2923 admin/settings.php:2933
 msgid "Disabled"
 msgstr "禁用"
 
-#: admin/settings.php:2922 admin/settings.php:2932
+#: admin/settings.php:2924 admin/settings.php:2934
 msgid "Use metabox settings"
 msgstr "Использовать настройки метабокса"
 
-#: admin/settings.php:2927
+#: admin/settings.php:2929
 msgid "Auto publish on editing posts/pages/custom post types"
 msgstr "在编辑帖子/页面/自定义帖子类型时自动发布"
 
-#: admin/settings.php:2937
+#: admin/settings.php:2939
 msgid "Enable SSL peer verification in remote requests"
 msgstr "在远程请求中启用 SSL 对等验证"
 
-#: admin/settings.php:2945
+#: admin/settings.php:2947
 msgid "Apply filters during publishing"
 msgstr "在发布期间应用过滤器"
 
-#: admin/settings.php:2984
+#: admin/settings.php:2986
 msgid "Other Settings"
 msgstr "其他设置"
 
-#: admin/settings.php:2987
+#: admin/settings.php:2989
 msgid "Enable credit link to author"
 msgstr "启用作者的信用链接"
 
-#: admin/settings.php:2997
+#: admin/settings.php:2999
 msgid "Enable premium version ads"
 msgstr "启用高级版广告"
 
-#: admin/settings.php:3008
+#: admin/settings.php:3010
 msgid "Update Settings"
 msgstr "更新设置"
 
@@ -1857,17 +1867,17 @@ msgstr "%s 无法处理请求。"
 msgid "Please suggest a feature."
 msgstr "请推荐一个功能。"
 
-#: admin/suggest_feature.php:66
+#: admin/suggest_feature.php:67
 msgid "Contribute And Get Rewarded"
 msgstr "贡献并获得奖励"
 
-#: admin/suggest_feature.php:67
+#: admin/suggest_feature.php:68
 msgid ""
 "Suggest a feature for this plugin and stand a chance to get a free copy of "
 "premium version of this plugin."
 msgstr "建议此插件的功能并有机会获得此插件的高级版本的免费副本。"
 
-#: admin/suggest_feature.php:73
+#: admin/suggest_feature.php:74
 msgid "Send Mail To Us"
 msgstr "发送邮件给我们"
 

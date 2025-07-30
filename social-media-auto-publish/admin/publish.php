@@ -383,15 +383,17 @@ if(isset($_POST['xyz_smap_tgmessage']))
 	$xyz_smap_thpost_method=get_option('xyz_smap_thpost_method');
 	if(isset($_POST['xyz_smap_thpost_method']))
 		$xyz_smap_thpost_method=intval($_POST['xyz_smap_thpost_method']);
-		////////////////////////
 
 
 	$postpp= get_post($post_ID);global $wpdb;
 	$reg_exUrl = "/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-	$entries0 = $wpdb->get_results($wpdb->prepare( 'SELECT user_nicename,display_name FROM '.$wpdb->base_prefix.'users WHERE ID =%d',$postpp->post_author));
-	foreach( $entries0 as $entry ) {
-		$user_nicename=$entry->user_nicename;
-		$display_name=$entry->display_name;
+	$display_name =$user_nicename = '';
+	$postpp= get_post($post_ID);
+	$author_id = $postpp->post_author;
+	$user = get_userdata($author_id);
+	if ($user) {
+	$display_name = $user->display_name;
+	$user_nicename = $user->user_nicename;
 	}
 
 	if ($postpp->post_status == 'publish')
@@ -2050,6 +2052,20 @@ if(isset($_POST['xyz_smap_tgmessage']))
 				),
 			);                 
 		}  
+		if($tg_posting_method==3)//Share link
+		{ $media_type='text';      
+			if($message5=='')
+			$message5=$content_title; 
+			$xyz_media_param = array(
+				'body' => array(
+					'chat_id' => $channel_id,
+					'text'    => $message5,
+					'link_preview_options' => json_encode(array(
+						'url' => $link
+					)),
+				),
+			);                 
+		}  
 		if($tg_posting_method==2) 
 		{					
 			if($image_spec!=0)
@@ -2083,6 +2099,8 @@ if(isset($_POST['xyz_smap_tgmessage']))
 				$xyz_tg_media_result='';                         
                 $xyz_tg_media_result=xyz_smap_make_tg_post($xyz_smap_bot_token,
                 $media_type,$xyz_media_param);
+				if($tg_posting_method==3)
+				$media_type='link';
                 if(isset($xyz_tg_media_result['error']) && $xyz_tg_media_result['error']!='')//wp_error
                 {
                     $err_msg=$xyz_tg_media_result['error'];
