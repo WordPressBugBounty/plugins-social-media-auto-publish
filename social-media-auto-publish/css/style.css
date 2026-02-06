@@ -252,6 +252,7 @@ width: 100%;
 }
 .xyz_smap_meta_acclist_table select {
     width: 200px;padding: 3px !important;height: 2.35em !important;
+
 }
 .xyz_smap_meta_acclist_table textarea{
     padding: 3px !important;min-height: 80px !important;min-width: 200px !important;resize:auto !important;
@@ -340,7 +341,7 @@ float: left;
 	justify-content: center; 
 	background: #fff; 
 	border-radius: 2px;
-	padding:5px 5px;
+	padding:0px 5px;
 }
 
     .xyz_smap_social_media a{
@@ -456,10 +457,48 @@ float: left;
     border: 1px solid #F15E77 !important;
     background-color: #ffeddf !important;
     box-shadow: none !important;}
+    .xyz-smap-footer-contact{
+        width: 98%;
+        float: left;
+        padding: 5px 5px;
+        margin-top: 10px;
+        text-align: center;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(270deg, #01b3b7, #1593d3, #1abc9c, #1a87b9);
+        background-size: 800% 800%;
+        animation: gradientMove 15s ease infinite;
+    }
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-
-
-
+    .xyz-smap-footer-contact a {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 7px 18px;
+        margin-left: 10px;
+        background:#d96b0a;
+        color: #000;
+        border-radius: 5px;
+        transition: all 0.3s;
+        animation: pulse 2s infinite;
+        border: solid 1px #25233b;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    .xyz-smap-footer-contact a:hover {
+        background: #e67e22;
+        transform: scale(1.1);
+    }
 
 
     @media screen and (max-width: 1351px) {
@@ -525,6 +564,9 @@ float: left;
     .xyz_smap_email{border:none; width:46%;}
 
 	#xyz_smap_wp_premium{width: 94%;}
+    .xyz-smap-footer-contact {
+        width: 93%;
+    }
 }
 
 @media screen and (max-width: 768px)
@@ -552,6 +594,7 @@ float: left;
     .xyz_smap_social_media{width:92.5%;max-height: 120px;}
 
     .xyz_smap_email { border: none; width: 95%;}
+    .xyz-smap-footer-contact { width: 92.5%; }
 }
 
 @media screen and (max-width: 532px){
@@ -567,6 +610,7 @@ float: left;
 .xyz_smap_name{border:none; width:95%;}
 
 .xyz_smap_email{border:none; width:95%;}
+.xyz-smap-footer-contact {width: 92.5%;}
 
 }
 

@@ -34,6 +34,14 @@ if(get_option('xyz_smap_premium_version_ads')==1){?>
 
 
 <div class="xyz-smap-wrap">
+<div class="xyz-smap-footer-contact">
+    🚀 <span style="font-style: italic;font-size:larger;"><?php _e('We are available for custom development','social-media-auto-publish'); ?></span> — 
+    <a href="https://xyzscripts.com/support/" target="_blank">
+       <?php _e('Get a quote','social-media-auto-publish'); ?>
+    </a>
+</div>
+</div>
+<div class="xyz-smap-wrap">
 
 <div class="xyz_smap_social_media">
 <h3 class="xyz_smap_inner_head"> <?php _e('Follow Us','social-media-auto-publish'); ?> </h3>

@@ -3,7 +3,7 @@
  Plugin Name: Social Media Auto Publish
 Plugin URI: https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/
 Description:   Publish posts automatically from your blog to social media networks like Facebook, Twitter,  Instagram, LinkedIn, Tumblr, Threads and Telegram. The plugin supports filtering posts by post-types and categories.
-Version: 3.6.4
+Version: 3.6.6
 Requires PHP: 7.4
 Author: xyzscripts.com
 Author URI: https://xyzscripts.com/
@@ -40,9 +40,9 @@ add_action( 'init', 'plugin_load_smaptextdomain' );
 define('XYZ_SMAP_PLUGIN_FILE',__FILE__);
 
 if (!defined('XYZ_SMAP_FB_API_VERSION'))
-	define('XYZ_SMAP_FB_API_VERSION','v20.0');
+	define('XYZ_SMAP_FB_API_VERSION','v24.0');
 if (!defined('XYZ_SMAP_IG_API_VERSION'))
-  define('XYZ_SMAP_IG_API_VERSION','v20.0');
+  define('XYZ_SMAP_IG_API_VERSION','v24.0');
   if (!defined('XYZ_SMAP_TH_API_VERSION'))
   define('XYZ_SMAP_TH_API_VERSION','v1.0');
 if (!defined('XYZ_SMAP_SOLUTION_AUTH_URL'))
@@ -51,8 +51,6 @@ if (!defined('XYZ_SMAP_SOLUTION_PUBLISH_URL'))
 define('XYZ_SMAP_SOLUTION_PUBLISH_URL','https://free-publish.smapsolutions.com/');
 if (!defined('XYZ_SMAP_SOLUTION_LN_PUBLISH_URL'))
 	define('XYZ_SMAP_SOLUTION_LN_PUBLISH_URL','https://li-publish.smapsolutions.com/');
-if (!defined('XYZ_SMAP_SOLUTION_TW_PUBLISH_URL'))
-    define('XYZ_SMAP_SOLUTION_TW_PUBLISH_URL','https://tw-publish.smapsolutions.com/');
 if (!defined('XYZ_SMAP_SOLUTION_IG_PUBLISH_URL'))
     define('XYZ_SMAP_SOLUTION_IG_PUBLISH_URL','https://ig-publish.smapsolutions.com/');
 define('XYZ_SMAP_TW_API_OAUTH2_URL','https://api.x.com/2/');
@@ -79,7 +77,7 @@ require_once( dirname( __FILE__ ) . '/admin/publish.php' );
 
 if(!class_exists('SMAPOAuth2'))
 require_once( dirname( __FILE__ ) . '/api/linkedin.php' );
-require_once( dirname( __FILE__ ) . '/admin/ajax-backlink.php' );
+require_once( dirname( __FILE__ ) . '/admin/ajax-actions.php' );
 require_once( dirname( __FILE__ ) . '/admin/metabox.php' );
 require_once( dirname( __FILE__ ) . '/admin/admin-notices.php' );
 

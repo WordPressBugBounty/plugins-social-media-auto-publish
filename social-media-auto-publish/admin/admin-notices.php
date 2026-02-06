@@ -71,3 +71,124 @@ if($smap_installed_date < ( time() - (20*24*60*60) ))
 		add_action('admin_notices', 'wp_smap_admin_notice');
 	}
 }
+///smapsolutions notice section//////
+function xyz_wp_smap_smapsolutions_admin_notice() {
+    if (!current_user_can('administrator')) {
+        return;
+    }
+    // --- SMAP Solutions Expiry Notices ---
+    $expiry_data = get_option('xyz_smap_smapsolutions_pack_expiry', []);
+    if (empty($expiry_data)) return;
+    // Remove invalid or empty timestamps
+    $expiry_data = array_filter($expiry_data, function($ts) {
+        return !empty($ts) && is_numeric($ts);
+    });
+    if (empty($expiry_data)) return;
+    $now = current_time('timestamp');
+    $messages = [];
+    $displayed_services = [];
+    foreach ($expiry_data as $service => $expiry) {
+        $service_name = xyz_smap_format_smapsolutions_service_name($service);
+        $dismissed_stage = get_user_meta(get_current_user_id(), "xyz_smap_notice_dismissed_$service", true);
+        $diff = $expiry - $now;
+        // Global plan
+        if ($service === 'smapsolution_all_expiry') {
+            if ($diff <= 30*DAY_IN_SECONDS && $diff > 7*DAY_IN_SECONDS && $dismissed_stage !== '30days') {
+                $messages[] = __("SMAP Solutions package expires in 30 days.", "social-media-auto-publish");
+                $displayed_services[] = $service;
+            } elseif ($diff <= 7*DAY_IN_SECONDS && $diff > 0 && $dismissed_stage !== '1week') {
+                $messages[] = __("SMAP Solutions package expires in 1 week!", "social-media-auto-publish");
+                $displayed_services[] = $service;
+            } elseif ($diff <= 0 && $dismissed_stage !== 'expired') {
+                $messages[] = __("SMAP Solutions package has expired!", "social-media-auto-publish");
+                $displayed_services[] = $service;
+            }
+            break; // skip individual packages if global plan is set
+        }
+        // Individual packages
+        if ($diff <= 30*DAY_IN_SECONDS && $diff > 7*DAY_IN_SECONDS && $dismissed_stage !== '30days') {
+            $messages[] = sprintf(
+                __("SMAP Solutions %s package expires in 30 days.", "social-media-auto-publish"),
+                $service_name
+            );
+            $displayed_services[] = $service;
+        } elseif ($diff <= 7*DAY_IN_SECONDS && $diff > 0 && $dismissed_stage !== '1week') {
+            $messages[] = sprintf(
+                __("SMAP Solutions %s package expires in 1 week!", "social-media-auto-publish"),
+                $service_name
+            );
+            $displayed_services[] = $service;
+        } elseif ($diff <= 0 && $dismissed_stage !== 'expired') {
+            $messages[] = sprintf(
+                __("SMAP Solutions %s package has expired!", "social-media-auto-publish"),
+                $service_name
+            );
+            $displayed_services[] = $service;
+        }
+    }
+    if (!empty($messages)) {
+        $dismiss_url = wp_nonce_url(
+            add_query_arg([
+                'xyz_smap_dismiss' => 1,
+                'services' => implode(',', $displayed_services)
+            ]), 
+            'xyz_smap_dismiss_notice'
+        );
+        echo '<div class="notice notice-warning is-dismissible">';
+        echo '<p style="color: #2271b1;padding:0;margin:2px 0;"><strong>' 
+             . esc_html__("SMAP Solutions Notice:", "social-media-auto-publish") 
+             . '</strong></p>';
+        foreach ($messages as $msg) {
+            echo '<span style="color:indianred;"><strong>' . esc_html($msg) . '</strong></span><br/>';
+        }
+        echo '<p style="text-align:right;padding:0;margin:2px 0;font-weight:bold;">
+            <a href="' . esc_url($dismiss_url) . '">' 
+            . esc_html__("Don't show this again", "social-media-auto-publish") 
+            . '</a></p>';
+        echo '</div>';
+    }
+}
+function xyz_smap_format_smapsolutions_service_name($service) {
+    // Remove prefix
+    $name = str_replace('smapsolution_', '', $service);
+    // Remove _expiry suffix
+    $name = str_replace('_expiry', '', $name);
+    if ($name === 'all') {
+        $name = 'Plan';
+    }
+    return ucfirst($name);
+}
+add_action('admin_notices', 'xyz_wp_smap_smapsolutions_admin_notice');
+// --- Handle dismissal only for displayed services ---
+add_action('admin_init', function() {
+    if (isset($_GET['xyz_smap_dismiss']) && check_admin_referer('xyz_smap_dismiss_notice')) {
+        $services = explode(',', sanitize_text_field(wp_unslash($_GET['services'])));
+        $expiry_data = get_option('xyz_smap_smapsolutions_pack_expiry', []);
+        $now = current_time('timestamp');
+        foreach ($services as $service) {
+            // Only process services that have expiry data
+            if (!isset($expiry_data[$service])) {
+                continue;
+            }
+            $expiry = $expiry_data[$service];
+            $diff = $expiry - $now;
+            $dismissed_stage = get_user_meta(get_current_user_id(), "xyz_smap_notice_dismissed_$service", true);
+            // 30 Days (30 > diff > 7)
+            if ($diff <= 30*DAY_IN_SECONDS && $diff > 7*DAY_IN_SECONDS && $dismissed_stage !== '30days') // && $dismissed_stage !== '1week' && $dismissed_stage !== 'expired'
+            {
+                update_user_meta(get_current_user_id(), "xyz_smap_notice_dismissed_$service", '30days');
+            } 
+            // 1 Week (7 > diff > 0)
+            elseif ($diff <= 7*DAY_IN_SECONDS && $diff > 0 && $dismissed_stage !== '1week' ) //&& $dismissed_stage !== 'expired'
+            {
+                update_user_meta(get_current_user_id(), "xyz_smap_notice_dismissed_$service", '1week');
+            } 
+            // Expired (diff <= 0)
+            elseif ($diff <= 0 && $dismissed_stage !== 'expired') {
+                update_user_meta(get_current_user_id(), "xyz_smap_notice_dismissed_$service", 'expired');
+            }
+        }
+        wp_safe_redirect(remove_query_arg(['xyz_smap_dismiss', 'services']));
+        exit;
+    }
+});

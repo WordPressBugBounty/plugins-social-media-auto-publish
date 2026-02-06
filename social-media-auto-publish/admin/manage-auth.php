@@ -38,7 +38,7 @@ padding-bottom: 12px;
 text-align: left;}
 
 .widefat td, .widefat th {
-color:#2f2f2f ;
+	color:#2f2f2f ;
 	padding: 12px 5px;
 	margin: 0px;
 }
@@ -69,7 +69,7 @@ color: #2f2f2f;
 width: 96.8%;
 margin-bottom: 1px;
 }
-.xyz_smap_plan_div{
+/* .xyz_smap_plan_div{
 float:left;
 background-color:#b7b6b6;
 border-radius:3px;
@@ -84,6 +84,98 @@ margin-left: 1px;
     float: left;
     padding: 2px;
     background-color: #30a0d2;
+} */
+.xyz_smap_plan_container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #ffffffe0; /* Same blue as label */
+  padding: 8px 6px;
+  border-radius: 5px;
+  margin-top: 10px;
+  gap: 8px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.xyz_smap_plan_label {
+  background-color: #e63946; /* Slightly darker for distinction */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 5px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.xyz_smap_plan_div {
+  background-color: #00a0d2;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 5px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-grow: 1;
+  text-align: center;
+  min-width: fit-content;
+}
+
+.xyz_smap_plan_div a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.xyz_smap_plan_div a:hover {
+  text-decoration: underline;
+}
+
+.xyz_smap_over_all_container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background-color: #ffffffe0; 
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+  width: 99%;
+}
+
+.xyz_smap_over_all_plan_label {
+  background-color: #e63946; /* Red for label */
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.xyz_smap_over_all_div {
+  background-color: #00a0d2; /* Lighter than container for contrast */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin: 4px 6px;
+  flex-grow: 1;
+  text-align: center;
+  min-width: fit-content;
+  white-space: nowrap;
+}
+
+.xyz_smap_over_all_div a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.xyz_smap_over_all_div a:hover {
+  text-decoration: underline;
 }
 </style>
 <script type="text/javascript">
@@ -456,14 +548,30 @@ jQuery(".delete_inactive_ig_entry").off('click').on('click', function() {
     }
     });
   });
-///////////////////////////////////////////////////////////////////
 
+	// Secure message listener with origin validation
 window.addEventListener('message', function(e) {
+		const xyz_smap_allowed_origins = [
+			 window.location.origin, // same site
+			"https://authorize.smapsolutions.com" 
+		];
+		if (!xyz_smap_allowed_origins.includes(e.origin)) {
+				console.warn('Blocked message from unauthorized origin:', e.origin);
+				return;
+			}
+			if (typeof e.data === 'string') {
 	ProcessChildMessage_2(e.data);
+			}
 } , false);
-//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 	function ProcessChildMessage_2(message) {
-			var obj1=jQuery.parseJSON(message);//console.log(message);
+				try {
+						var obj1 = jQuery.parseJSON(message); 
+					} 
+				catch (error) {
+						console.error('Social Media Auto Publish: Failed to parse JSON message.', error);
+						return;
+					}
 		  	if(obj1.smap_api_upgrade && obj1.success_flag){ 
 			   var base = '<?php echo admin_url('admin.php?page=social-media-auto-publish-manage-authorizations&msg=smap_pack_updated');?>';
 			  window.location.href = base;
@@ -521,11 +629,14 @@ if(!empty($result) && isset($result['status']))
 
 	?>
 		<div id="auth_entries_div" style="margin-bottom: 5px;">
-							<br/>
+						
 					<?php if(!empty($result) && isset($result['package_details']))
 					{
-						?><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?> :</div><?php 
-						$package_details=$result['package_details'];	?>
+						$package_details=$result['package_details'];	
+						xyz_smap_update_package_expiry('facebook', $package_details['expiry_time']);	
+						?>
+						<div class="xyz_smap_plan_container">
+						<div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?> :</div>
 						<div class="xyz_smap_plan_div"> <?php _e('Allowed Facebook users','social-media-auto-publish'); ?> : <?php echo $package_details['allowed_fb_user_accounts'];?> &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('API limit per account','social-media-auto-publish'); ?> :  <?php echo $package_details['allowed_api_calls'];?> <?php _e('per hour','social-media-auto-publish'); ?> &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('Package Expiry','social-media-auto-publish'); ?>  :  <?php echo date('d/m/Y g:i a', $package_details['expiry_time']);?>  &nbsp;</div>
@@ -542,9 +653,10 @@ if(!empty($result) && isset($result['status']))
 							<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;<?php _e('Upgrade/Renew','social-media-auto-publish'); ?>
 							</a> 
 							</div>
+						</div>
 							<?php 
 						}
-					}if (is_array($auth_entries) && !empty($auth_entries)){?><br/>
+					}if (is_array($auth_entries) && !empty($auth_entries)){?>
 						<span class="select_box" style="float: left;margin-top: 16px;" >
 						<input type="radio" name="domain_selection" value="0" id="show_all"> <?php _e('Show all entries','social-media-auto-publish'); ?> 
 						<input type="radio" name="domain_selection" value="1" id="show_same_domain"> <?php _e('Show entries from current wp installation','social-media-auto-publish'); ?>  
@@ -672,11 +784,13 @@ if(!empty($result_ln) && isset($result_ln['status']))
 		$ln_auth_entries=$result_ln['msg'];
 ?>
 		<div id="ln_auth_entries_div" style="margin-bottom: 5px;">
-					<br/>
+					
 					<?php if(!empty($result_ln) && isset($result_ln['package_details']))
 					{
-						?><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?>:</div><?php 
-						$ln_package_details=$result_ln['package_details'];?>
+						$ln_package_details=$result_ln['package_details'];
+						xyz_smap_update_package_expiry('linkedin', $ln_package_details['ln_expiry_time']);	
+
+						?><div class="xyz_smap_plan_container"><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?>:</div>
 						<div class="xyz_smap_plan_div"> <?php _e('Allowed LinkedIn users','social-media-auto-publish'); ?> : <?php echo $ln_package_details['allowed_ln_user_accounts'];?> &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('API limit per account','social-media-auto-publish'); ?>  :  <?php echo $ln_package_details['allowed_lnapi_calls'];?> <?php _e('per day','social-media-auto-publish'); ?>  &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('Package Expiry','social-media-auto-publish'); ?>  :  <?php echo date('d/m/Y g:i a', $ln_package_details['ln_expiry_time']);?>  &nbsp;</div>
@@ -692,12 +806,12 @@ if(!empty($result_ln) && isset($result_ln['status']))
 							<a href="javascript:smap_popup_purchase_plan('<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>','linkedin');void(0);">
 							<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; <?php _e('Upgrade/Renew','social-media-auto-publish'); ?> 
 							</a> 
-							</div>
+							</div></div>
 							<?php 
 						}
 					}
 					if (is_array($ln_auth_entries) && !empty($ln_auth_entries)){
-					?><br/>
+					?>
 						<span class="select_box"  style="float: left;margin-top: 16px;" >
 						<input type="radio" name="ln_domain_selection" value="0" id="ln_show_all"> <?php _e('Show all entries','social-media-auto-publish'); ?> 
 						<input type="radio" name="ln_domain_selection" value="1" id="ln_show_same_domain"> <?php _e('Show entries from current wp installation','social-media-auto-publish'); ?>  
@@ -812,11 +926,12 @@ if($result_ig['status']==1 || isset($result_ig['package_details'])){
     $ig_auth_entries=$result_ig['msg'];
     ?>
 		<div id="ig_auth_entries_div" style="margin-bottom: 5px;">
-					<br/>
+					
 					<?php if(!empty($result_ig) && isset($result_ig['package_details']))
 					{
-						?><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?> :</div><?php 
-						$ig_package_details=$result_ig['package_details'];?>
+						$ig_package_details=$result_ig['package_details'];
+						xyz_smap_update_package_expiry('instagram', $ig_package_details['ig_expiry_time']);	
+						?><div class="xyz_smap_plan_container"><div class="xyz_smap_plan_label"> <?php _e('Current Plan','social-media-auto-publish'); ?> :</div>
 						<div class="xyz_smap_plan_div"> <?php _e('Allowed Instagram users','social-media-auto-publish'); ?> : <?php echo $ig_package_details['allowed_ig_user_accounts'];?> &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('API limit per account','social-media-auto-publish'); ?>  :  <?php echo $ig_package_details['allowed_ig_api_calls'];?> <?php _e('per hour','social-media-auto-publish'); ?>  &nbsp;</div>
 						<div  class="xyz_smap_plan_div"> <?php _e('Package Expiry','social-media-auto-publish'); ?>  :  <?php echo date('d/m/Y g:i a', $ig_package_details['ig_expiry_time']);?>  &nbsp;</div>
@@ -832,12 +947,12 @@ if($result_ig['status']==1 || isset($result_ig['package_details'])){
 							<a href="javascript:smap_popup_purchase_plan('<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>','instagram');void(0);">
 							<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; <?php _e('Upgrade/Renew','social-media-auto-publish'); ?> 
 							</a> 
-							</div>
+							</div></div>
 							<?php 
 						}
 					}
 					if (is_array($ig_auth_entries) && !empty($ig_auth_entries)){
-					?><br/>
+					?>
 						<span class="select_box"  style="float: left;margin-top: 16px;" >
 						<input type="radio" name="ig_domain_selection" value="0" id="ig_show_all"> <?php _e('Show all entries','social-media-auto-publish'); ?> 
 						<input type="radio" name="ig_domain_selection" value="1" id="ig_show_same_domain"> <?php _e('Show entries from current wp installation','social-media-auto-publish'); ?>  

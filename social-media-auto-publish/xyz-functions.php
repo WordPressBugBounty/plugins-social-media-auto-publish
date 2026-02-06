@@ -373,8 +373,6 @@ if(!function_exists('xyz_smap_post_to_smap_api'))
 		{
 			if ($url==XYZ_SMAP_SOLUTION_LN_PUBLISH_URL.'api/v2/publish.php')
 				$response=array('status'=>0,'ln_api_count'=>0,'msg'=>'Error:unable to connect');
-				elseif ($url==XYZ_SMAP_SOLUTION_TW_PUBLISH_URL.'api/publish.php')
-				    $response=array('status'=>0,'tw_api_count'=>0,'msg'=>'Error:unable to connect');
 				elseif ($url==XYZ_SMAP_SOLUTION_IG_PUBLISH_URL.'api/instagram_publish.php')
 				    $response=array('status'=>0,'ig_api_count'=>0,'msg'=>'Error:unable to connect');
 				elseif ($url==XYZ_SMAP_SOLUTION_PUBLISH_URL.'api/facebook.php')
@@ -412,5 +410,70 @@ if (!function_exists("xyz_smap_custom_cron_interval")) {
 		);
 		return $schedules;
 	}
+}
+if (!function_exists('xyz_smap_update_package_expiry')) {
+    function xyz_smap_update_package_expiry($service, $new_timestamp) {
+        // service = 'facebook', 'instagram', 'linkedin', or 'all'
+        if (empty($new_timestamp) || !is_numeric($new_timestamp)) return;
+        $expiry_data = get_option('xyz_smap_smapsolutions_pack_expiry', []);
+        $individual_keys = [
+            'smapsolution_facebook_expiry',
+            'smapsolution_instagram_expiry',
+            'smapsolution_linkedin_expiry'
+        ];
+        // Helper function to reset only for users who had previously dismissed
+        $reset_dismissal = function($meta_key) {
+            global $wpdb;
+            $user_ids = $wpdb->get_col(
+                $wpdb->prepare(
+                    "SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = %s",
+                    $meta_key
+                )
+            );
+            foreach ($user_ids as $uid) {
+                delete_user_meta($uid, $meta_key);
+            }
+        };
+        if ($service === 'all') {
+            $old_timestamp = $expiry_data['smapsolution_all_expiry'] ?? null;
+            $expiry_data['smapsolution_all_expiry'] = $new_timestamp;
+            // Remove individual entries
+            foreach ($individual_keys as $k) {
+                unset($expiry_data[$k]);
+            }
+            // Reset dismissal for all admins if timestamp changed
+            if ($old_timestamp !== null && $old_timestamp != $new_timestamp) {
+                $reset_dismissal('xyz_smap_notice_dismissed_all');
+            }
+        } else {
+            $key = 'smapsolution_' . $service . '_expiry';
+            // Skip individual update if global plan exists
+            if (!empty($expiry_data['smapsolution_all_expiry'])) return;
+            $old_timestamp = $expiry_data[$key] ?? null;
+            // Only update if different
+            if (!isset($expiry_data[$key]) || $expiry_data[$key] != $new_timestamp) {
+                $expiry_data[$key] = $new_timestamp;
+                // Reset dismissal for all admins
+                $reset_dismissal('xyz_smap_notice_dismissed_' . $service);
+            }
+            // Merge individual plans into global if identical
+            $valid_timestamps = [];
+            foreach ($individual_keys as $k) {
+                if (!empty($expiry_data[$k]) && is_numeric($expiry_data[$k])) {
+                    $valid_timestamps[$k] = $expiry_data[$k];
+                }
+            }
+            if (count($valid_timestamps) === count($individual_keys) &&
+                count(array_unique($valid_timestamps)) === 1) {
+                $expiry_data['smapsolution_all_expiry'] = current($valid_timestamps);
+                foreach ($individual_keys as $k) {
+                    unset($expiry_data[$k]);
+                }
+                // Reset dismissal for all admins for global plan
+                $reset_dismissal('xyz_smap_notice_dismissed_all');
+            }
+        }
+        update_option('xyz_smap_smapsolutions_pack_expiry', $expiry_data);
+    }
 }
 ?>

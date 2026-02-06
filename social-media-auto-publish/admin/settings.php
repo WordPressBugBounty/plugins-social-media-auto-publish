@@ -799,7 +799,7 @@ if(isset($_GET['msg']) && $_GET['msg']==5)
 </div>
 	<?php
 }
-if(isset($_GET['msg']) && ($_GET['msg']==6|| $_GET['msg']==7))
+if(isset($_GET['msg']) && ($_GET['msg']==6|| $_GET['msg']==7||$_GET['msg']==9))
 {
 	?>
 <div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area">
@@ -1299,7 +1299,7 @@ function dethide_smap(id)
             if($igaf==1)
 			{
 				?>
-	 			<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
+	 			<span id='ajax-save-ig' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
 	 			<span id="auth_message">
  				<span style="color: red;" > <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span> <br>
  				<form method="post">
@@ -1312,7 +1312,7 @@ function dethide_smap(id)
  				else
  				{
  					?>
-				<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
+				<span id='ajax-save-ig' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
  				<form method="post" id="re_auth_message">
  				<?php wp_nonce_field( 'xyz_smap_ig_auth_form_nonce' );?>
  				<input type="hidden" value="<?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?>" id="parent_domain">
@@ -1399,7 +1399,7 @@ function dethide_smap(id)
 						<?php
  			if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && $xyz_smap_ig_app_sel_mode==1)
 			{  ?>
-			<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
+			<tr valign="top" id="xyz_smap_conn_to_xyzscripts_ig">
 			<td width="50%">	</td>
 			<td width="50%">
 			<span id='ajax-save-xyzscript_acc_ig' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
@@ -1585,40 +1585,6 @@ function dethide_smap(id)
 	$tclient_id=get_option('xyz_smap_tw_client_id');	$tclient_secret=get_option('xyz_smap_tw_client_secret');
 	$tw_af=get_option('xyz_smap_tw_af');
 
-		    if ($xyz_smap_tw_app_sel_mode==1){
-        	    $domain_name=trim(get_option('siteurl'));
-        	    $xyz_smap_smapsoln_userid_tw=intval(trim(get_option('xyz_smap_smapsoln_userid_tw')));
-        	    $xyzscripts_hash_val=trim(get_option('xyz_smap_xyzscripts_hash_val'));
-        	    $xyzscripts_user_id=trim(get_option('xyz_smap_xyzscripts_user_id'));
-        	    $xyz_smap_accountId=0;
-        	    $xyz_smap_licence_key='';
-        	    $request_hash=md5($xyzscripts_user_id.$xyzscripts_hash_val);
-        	    $auth_secret_key=md5('smapsolutions'.$domain_name.$xyz_smap_accountId.$xyz_smap_smapsoln_userid_tw.$xyzscripts_user_id.$request_hash.$xyz_smap_licence_key.'smap');
-        	    if(empty($xyz_smap_smapsoln_userid_tw))
-        	    {
-		          ?>
-	 				<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
-		 			<span id="auth_message">
-		 				<span style="color: red;" > <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span> <br>
-		 				<form method="post">
-		 			     <?php wp_nonce_field( 'xyz_smap_tw_auth_form_nonce' );?>
-		 			     <input type="hidden" value="<?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?>" id="parent_domain">
-		 					<input type="submit" class="xyz_smap_submit_smap_new" name="tw_auth"
-	 						value="<?php _e('Authorize','social-media-auto-publish'); ?>" onclick="javascript:return smap_popup_tw_auth('<?php echo urlencode($domain_name);?>','<?php echo $xyz_smap_smapsoln_userid_tw;?>','<?php echo $xyzscripts_user_id;?>','<?php echo $xyzscripts_hash_val;?>','<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>');void(0);"/><br><br>
-	 				</form></span>
- 				<?php }
-    			else
-    			{
-    				?>
-    			<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
-    			<form method="post" id="re_auth_message">
-    			<?php wp_nonce_field( 'xyz_smap_tw_auth_form_nonce' );?>
-    			<input type="hidden" value="<?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?>" id="parent_domain">
-    			<input type="submit" class="xyz_smap_submit_smap_new" name="tw_auth"
-    			value="<?php _e('Reauthorize','social-media-auto-publish'); ?>" title="Reauthorize the account" onclick="javascript:return smap_popup_tw_auth('<?php echo urlencode($domain_name);?>','<?php echo $xyz_smap_smapsoln_userid_tw;?>','<?php echo $xyzscripts_user_id;?>','<?php echo $xyzscripts_hash_val;?>','<?php echo $auth_secret_key;?>','<?php echo $request_hash;?>');void(0);"/><br><br>
-    			</form>
-    			<?php }
-		 	}
 	       ?>
             <table class="widefat" style="width: 99%;background-color: #FFFBCC" id= "xyz_smap_tw_app_creation_note">
             <tr>
@@ -1724,42 +1690,8 @@ if($xyz_smap_tw_app_sel_mode==2)
 		<input type="radio" name="xyz_smap_tw_app_sel_mode" id="xyz_smap_tw_app_sel_mode" value="2" <?php if($xyz_smap_tw_app_sel_mode==2) echo 'checked';?>>
 		<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App (OAuth2.0 :Recommended)','twitter-auto-publish'); ?></span>
 
-				<div class="xyz_smap_twitter_settings" style="display: none;" onmouseover="detdisplay_smap('xyz_smap_app_review')" onmouseout="dethide_smap('xyz_smap_app_review')"><span style="padding-left: 25px;color: #0073aa;"> <?php _e('App approval service available for 50 USD','social-media-auto-publish'); ?>
-				</span><br/>
-				<div id="xyz_smap_app_review" class="xyz_smap_informationdiv" style="display: none;width: 400px;">
-				<b> <?php _e('Expected time frame','social-media-auto-publish'); ?>: </b><br/> <?php _e('30 days','social-media-auto-publish'); ?> <br/>
-				<b> <?php _e('Required details','social-media-auto-publish'); ?>:</b><br/> <?php _e('1. WordPress login','social-media-auto-publish'); ?> <br/>
-				<?php _e('2. Admin access to Twitter developer app for review submission (temporary)','social-media-auto-publish'); ?>.<br/>
-				<?php _e('For more details contact','social-media-auto-publish'); ?> <a href="https://xyzscripts.com/support/" target="_blank" > <?php _e('Support Desk','social-media-auto-publish'); ?> </a> .
-				</div>
-				</div><br/>
-		<?php if(get_option('xyz_smap_tw_app_sel_mode')==1) {?>
-				<input type="radio" name="xyz_smap_tw_app_sel_mode" id="xyz_smap_tw_app_sel_mode_xyzapp" value="1" <?php if(get_option('xyz_smap_tw_app_sel_mode')==1) echo 'checked';?>>
-				<span style="color: #000000;font-size: 13px;background-color: #f7a676;font-weight: 500;padding: 3px 5px;"><i class="fa fa-star-o" aria-hidden="true" style="margin-right:5px;"></i> <?php echo $smap_ready_pub; ?> <i class="fa fa-star-o" aria-hidden="true" style="margin-right:5px;"></i></span><br> <span style="padding-left: 30px;"> <?php _e('Starts from 10 USD per year','social-media-auto-publish'); ?> </span><br>
-				<span style="color: #6a364a;font-size: 13px;padding-left: 30px;">SMAPSolution will no-longer support media uploads,please use {PERMALINK}<br/></span>
-				<span style="color: #6a364a;font-size: 13px;padding-left: 30px;"> in message format to display preview of post</span><br>
-				<?php if(get_option('xyz_smap_smapsoln_userid_tw')==0)
-				{?>
-				<span style="color: #ff5e00;padding-left: 27px;font-size: small;"><b> <?php _e('30 DAYS FREE TRIAL AVAILABLE','social-media-auto-publish'); ?>*</b></span>
-				<br/>
-				<?php }?>
-	<?php }?>
-				</td>
-			</tr>
-						<?php
-			if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && $xyz_smap_tw_app_sel_mode==1)
-			{  ?>
-			<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
-			<td width="50%">	</td>
-			<td width="50%">
-			<span id='ajax-save-xyzscript_acc' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
-			<span id="connect_to_xyzscripts"style="background-color: #1A87B9;color: white; padding: 4px 5px;
-    text-align: center; text-decoration: none;   display: inline-block;border-radius: 4px;">
-			<a href="javascript:smap_popup_connect_to_xyzscripts();void(0);" style="color:white !important;"> <?php echo $smap_connect_xyz; ?> </a>
-			</span>
 			</td>
 			</tr>
-			<?php }?>
 <!-- ////////////Tradional credentials////////// -->
 		<tr valign="top" class="xyz_smap_twitter_traditional_settings">
 				<td width="50%"> <?php _e('API key','social-media-auto-publish'); ?><span class="xyz_smap_mandatory">*</span>
@@ -1882,12 +1814,6 @@ if($xyz_smap_tw_app_sel_mode==2)
     						name="twit" value="<?php _e('Save','social-media-auto-publish'); ?>" /></div>
     			</td>
     		</tr>
-    			<?php if(get_option('xyz_smap_smapsoln_userid_tw')==0){?>
-				<tr><td style='color: #ce5c19;padding-left:0px;'>*<?php _e('Free trial is available only for first time users','social-media-auto-publish'); ?> </td></tr>
-				<?php }
-				else{?>
-				<tr><td style='color: #ce5c19;padding-left:0px;'>*<?php _e('Use reauthorize button to change selected values','social-media-auto-publish'); ?> </td></tr>
-				<?php }?>
 	</table>
 
 	</form>
@@ -1940,7 +1866,7 @@ else{
 	if($lnaf==1 )
 	{
 			?>
-	 			<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
+	 			<span id='ajax-save-ln' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
 	 			<span id="auth_message">
 	 				<span style="color: red;" > <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span> <br>
 	 				<form method="post">
@@ -1953,7 +1879,7 @@ else{
 	 				else if($lnaf==0 )
 	 				{//echo 'domain_name= '.$domain_name.'xyz_smap_smapsoln_userid_ln= '.$xyz_smap_smapsoln_userid_ln.'xyzscripts_user_id= '.$xyzscripts_user_id.'xyzscripts_hash_val= '.$xyzscripts_hash_val.'auth_secret_key= '.$request_hash;
  					?>
- 					<span id='ajax-save' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
+ 					<span id='ajax-save-ln' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
 	 				<form method="post" id="re_auth_message">
 	 				<?php wp_nonce_field( 'xyz_smap_fb_auth_nonce' );?>
 	 				<input type="hidden" value="<?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?>" id="parent_domain">
@@ -2018,7 +1944,7 @@ else{
 	</td></tr>
 	<?php if( ($xyzscripts_user_id =='' || $xyzscripts_hash_val=='') && get_option('xyz_smap_ln_api_permission')==2)
 	{  ?>
-	<tr valign="top" id="xyz_smap_conn_to_xyzscripts">
+	<tr valign="top" id="xyz_smap_conn_to_xyzscripts_ln">
 	<td width="50%">	</td>
 	<td width="50%">
 	<span id='ajax-save-xyzscript_acc_ln' style="display:none;"><img	class="img"  title="Saving details"	src="<?php echo plugins_url('../images/ajax-loader.gif',__FILE__);?>" style="width:65px;height:70px; "></span>
@@ -3136,12 +3062,12 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 	   if(xyz_smap_ig_app_sel_mode !=0){
 		    jQuery('#xyz_smap_ig_app_creation_note').hide();
 			jQuery('.xyz_smap_instagram_settings').hide();
-			jQuery('#xyz_smap_conn_to_xyzscripts').show();
+			jQuery('#xyz_smap_conn_to_xyzscripts_ig').show();
 			}
 		   else{
 			jQuery('#xyz_smap_ig_app_creation_note').show();
 		   	jQuery('.xyz_smap_instagram_settings').show();
-		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
+		   	jQuery('#xyz_smap_conn_to_xyzscripts_ig').hide();
 		   	}
 
 
@@ -3149,7 +3075,6 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 	   if(xyz_smap_tw_app_sel_mode ==1){
 			jQuery('.xyz_smap_twitter_traditional_settings').hide();
 			jQuery('#xyz_smap_conn_to_xyzscripts').show();
-			jQuery('.xyz_smap_twitter_auth').show();
    		}
 		else if(xyz_smap_tw_app_sel_mode==0){
 			jQuery('.xyz_smap_twitter_traditional_settings').show();
@@ -3180,12 +3105,12 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 	   if(xyz_smap_ig_app_sel_mode !=0){
 		    jQuery('#xyz_smap_ig_app_creation_note').hide();
 			jQuery('.xyz_smap_instagram_settings').hide();
-			jQuery('#xyz_smap_conn_to_xyzscripts').show();
+			jQuery('#xyz_smap_conn_to_xyzscripts_ig').show();
 			}
 		   else{
 			jQuery('#xyz_smap_ig_app_creation_note').show();
 		   	jQuery('.xyz_smap_instagram_settings').show();
-		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
+		   	jQuery('#xyz_smap_conn_to_xyzscripts_ig').hide();
 		   	}
 	   });
 	   jQuery("input[name='xyz_smap_tw_app_sel_mode']").click(function(){
@@ -3210,24 +3135,41 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
    if(xyz_smap_app_sel_mode ==2){
 		jQuery('.xyz_smap_linkedin_settings').hide();
 		jQuery('#xyz_smap_linkedin_settings_note').hide();
+		jQuery('#xyz_smap_conn_to_xyzscripts_ln').show();
    }
    else{
 	   	jQuery('.xyz_smap_linkedin_settings').show();
 		jQuery('#xyz_smap_linkedin_settings_note').show();
+		jQuery('#xyz_smap_conn_to_xyzscripts_ln').hide();
    }
    jQuery("input[name='xyz_smap_ln_api_permission']").click(function(){
 	   var xyz_smap_app_sel_mode=jQuery("input[name='xyz_smap_ln_api_permission']:checked").val();
 	   if(xyz_smap_app_sel_mode ==2){
 			jQuery('.xyz_smap_linkedin_settings').hide();
 			jQuery('#xyz_smap_linkedin_settings_note').hide();
+			jQuery('#xyz_smap_conn_to_xyzscripts_ln').show();
 	  		}
 		   else{
 		   	jQuery('.xyz_smap_linkedin_settings').show();
 		   	jQuery('#xyz_smap_linkedin_settings_note').show();
+			   jQuery('#xyz_smap_conn_to_xyzscripts_ln').hide();
 		   	}
 	   });
+		// Secure message listener with origin validation
    window.addEventListener('message', function(e) {
+		// Allowed origins (add your authorized app domains here)
+		const xyz_smap_allowed_origins = [
+			window.location.origin, // same site
+			"https://smap.xyzscripts.com",
+			"https://authorize.smapsolutions.com" // your hosted authorization service
+		];
+		if (!xyz_smap_allowed_origins.includes(e.origin)) {
+				console.warn('Blocked message from unauthorized origin:', e.origin);
+				return;
+			}
+			if (typeof e.data === 'string') {
 	   xyz_smap_ProcessChildMessage(e.data);
+			}
 	} , false);
 	});
 
@@ -3457,32 +3399,7 @@ function smap_popup_ln_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user
 			"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source=smap&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
 	return false;	}
 }
-function smap_popup_tw_auth(domain_name,xyz_smap_smapsoln_userid,xyzscripts_user_id,xyzscripts_hash_val,auth_secret_key,request_hash)
-{
-	if(xyzscripts_user_id==''|| xyzscripts_hash_val==''){
-		if(jQuery('#xyz_smap_system_notice_area').length==0)
-			jQuery('body').append('<div class="xyz_smap_system_notice_area_style0" id="xyz_smap_system_notice_area"></div>');
-			jQuery("#xyz_smap_system_notice_area").html(xyz_script_smap_var.html3);
-	    		jQuery("#xyz_smap_system_notice_area").append('<span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
-			jQuery("#xyz_smap_system_notice_area").show();
-			jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
-				jQuery('#xyz_smap_system_notice_area').animate({
-					opacity : 'hide',
-					height : 'hide'
-				}, 500);
-			});
-			return false;
-	}
-	else{
-	var childWindow = null;
-	var smap_licence_key='';
-	var account_id=0;
-	var smap_solution_url='<?php echo XYZ_SMAP_SOLUTION_AUTH_URL;?>';
-	childWindow = window.open(smap_solution_url+"authorize-twitter/twitter.php?smap_tw_auth_id="+xyz_smap_smapsoln_userid+"&account_id="+account_id+
-			"&domain_name="+domain_name+"&xyzscripts_user_id="+xyzscripts_user_id+"&smap_licence_key="+smap_licence_key+"&auth_secret_key="+auth_secret_key+"&free_plugin_source=smap&request_hash="+request_hash, "SmapSolutions Authorization", "toolbar=yes,scrollbars=yes,resizable=yes,left=500,width=600,height=600");
-	return false;	
-	}
-}
+
 
 function smap_popup_connect_to_xyzscripts()
 {
@@ -3492,13 +3409,22 @@ function smap_popup_connect_to_xyzscripts()
 	return false;
 }
 function xyz_smap_ProcessChildMessage(message) {
-	var messageType = (typeof message === 'string') ? message.slice(0, 5) : "";
-	if(messageType==="error")
-	{
-		message=message.substring(6);
-		if(jQuery('#xyz_smap_system_notice_area').length==0)
+	if (typeof message !== 'string' || message.length === 0) return;
+    var messageType = message.slice(0,5);
+    if (messageType === "error") {
+        var message = message.substring(6);
+        // Remove any potentially malicious tags 
+		message = message.replace(/<script[^>]*?>.*?<\/script>/gi, '');
+        message = message.replace(/on\w+="[^"]*"/gi, '');
+        message = message.replace(/javascript:/gi, '');
+		message = message.replace(/<[^>]*>?/gm, '');
+        if (jQuery('#xyz_smap_system_notice_area').length === 0) {
 		jQuery('body').append('<div class="xyz_smap_system_notice_area_style0" id="xyz_smap_system_notice_area"></div>');
-		jQuery("#xyz_smap_system_notice_area").html(message+' <span id="xyz_smap_system_notice_area_dismiss"> <?php _e('Dismiss','social-media-auto-publish'); ?> </span>');
+        }
+        // .text() instead of .html() to prevent XSS
+        jQuery("#xyz_smap_system_notice_area")
+            .text(message + ' ')
+            .append('<span id="xyz_smap_system_notice_area_dismiss"> Dismiss </span>');
 		jQuery("#xyz_smap_system_notice_area").show();
 		jQuery('#xyz_smap_system_notice_area_dismiss').click(function() {
 			jQuery('#xyz_smap_system_notice_area').animate({
@@ -3506,6 +3432,7 @@ function xyz_smap_ProcessChildMessage(message) {
 				height : 'hide'
 			}, 500);
 		});
+			return;
 	}
 	var obj1 = (typeof message === 'string') ? jQuery.parseJSON(message) : {};
 	//var obj1=jQuery.parseJSON(message);
@@ -3542,6 +3469,10 @@ function xyz_smap_ProcessChildMessage(message) {
     	var secretkey=obj1.secretkey;
     	var xyz_smap_fb_numericid=obj1.xyz_fb_numericid;
     	var smapsoln_userid=obj1.smapsoln_userid;
+		var expiry_time = 0;
+			if (obj1.fb_expiry_time) {
+				expiry_time = obj1.fb_expiry_time;
+			}
     	var list='';
     	for (var key in obj) {
     	  if (obj.hasOwnProperty(key)) {
@@ -3561,6 +3492,7 @@ function xyz_smap_ProcessChildMessage(message) {
     			smap_secretkey: secretkey,
     			xyz_fb_numericid: xyz_smap_fb_numericid,
     			smapsoln_userid:smapsoln_userid,
+				expiry_time:expiry_time,
     			dataType: 'json',
     			_wpnonce: xyz_smap_selected_pages_nonce
     		};
@@ -3582,6 +3514,10 @@ function xyz_smap_ProcessChildMessage(message) {
     	var secretkey=obj1.secretkey;
     	var xyz_smap_ig_numericid=obj1.xyz_ig_numericid;
     	var smapsoln_userid=obj1.smapsoln_userid;
+		var expiry_time = 0;
+			if (obj1.ig_expiry_time) {
+				expiry_time = obj1.ig_expiry_time;
+			}
     	var list='';
     	for (var key in obj) {
     	  if (obj.hasOwnProperty(key)) {
@@ -3601,12 +3537,13 @@ function xyz_smap_ProcessChildMessage(message) {
     			smap_secretkey: secretkey,
     			xyz_ig_numericid: xyz_smap_ig_numericid,
     			smapsoln_userid: smapsoln_userid,
+				expiry_time:expiry_time,
     			dataType: 'json',
     			_wpnonce: xyz_smap_selected_pages_nonce
     	};
 		jQuery("#re_auth_message").hide();
 		jQuery("#auth_message").hide();
-		jQuery("#ajax-save").show();
+		jQuery("#ajax-save-ig").show();
     	jQuery.post(ajaxurl, dataString ,function(response)
 		{
     		 if(response==-1)
@@ -3631,6 +3568,10 @@ function xyz_smap_ProcessChildMessage(message) {
 	var xyz_smap_xyzscripts_user_id=obj1.xyz_smap_xyzscripts_user_id;
 	var xyz_smap_ln_selected_pages_nonce= '<?php echo wp_create_nonce('xyz_smap_ln_selected_pages_nonce');?>';
 	var pages_obj = obj;
+	var expiry_time = 0;
+		if (obj1.ln_expiry_time) {
+			expiry_time = obj1.ln_expiry_time;
+		}
 	var list='';
 	for (var key in obj) {
 	  if (obj.hasOwnProperty(key)) {
@@ -3650,13 +3591,14 @@ function xyz_smap_ProcessChildMessage(message) {
 			xyz_smap_premium_xyzscripts_user_id: xyz_smap_xyzscripts_user_id,
 			smapsoln_userid:smapsoln_userid,
 			xyz_ln_user_id:xyz_ln_user_id,
+			expiry_time:expiry_time,
 			xyz_smap_xyzscripts_hash_val:xyz_smap_xyzscripts_hash_val,
 			dataType: 'json',
 			_wpnonce: xyz_smap_ln_selected_pages_nonce
 		};
 		jQuery("#re_auth_message").hide();
 		jQuery("#auth_message").hide();
-		jQuery("#ajax-save").show();
+		jQuery("#ajax-save-ln").show();
 	jQuery.post(ajaxurl, dataString ,function(response) {
 		 if(response==1)
 		       	alert(xyz_script_smap_var.alert3);

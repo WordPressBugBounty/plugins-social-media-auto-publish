@@ -21,9 +21,10 @@ function xyz_smap_add_admin_scripts()
 	    'html6'  => sprintf(__('In-active Twitter account successfully deleted from %s','social-media-auto-publish'),$smap_smapsolution_var),
 	    'html7'  => sprintf(__('In-active Instagram account successfully deleted from %s','social-media-auto-publish'),$smap_smapsolution_var),
 	));
-	wp_register_style('xyz_smap_style', plugins_url('social-media-auto-publish/css/style.css'));
+	$current_version=xyz_smap_plugin_get_version();
+	wp_register_style('xyz_smap_style', plugins_url('social-media-auto-publish/css/style.css'),array(),$current_version);
 	wp_enqueue_style('xyz_smap_style');
-	wp_register_style( 'xyz_smap_font_style',plugins_url('social-media-auto-publish/css/font-awesome.min.css'));
+	wp_register_style( 'xyz_smap_font_style',plugins_url('social-media-auto-publish/css/font-awesome.min.css'),array(),$current_version);
 	wp_enqueue_style('xyz_smap_font_style');
 }
 
@@ -35,7 +36,7 @@ function xyz_smap_menu()
 	add_menu_page('Social Media Auto Publish - Manage settings', 'Social Media Auto Publish', 'manage_options', 'social-media-auto-publish-settings', 'xyz_smap_settings',plugin_dir_url( XYZ_SMAP_PLUGIN_FILE ) . 'images/smap.png');
 	$page=add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - Manage settings', __('Settings','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-settings' ,'xyz_smap_settings');
 	if(get_option('xyz_smap_xyzscripts_hash_val')!=''&& get_option('xyz_smap_xyzscripts_user_id')!='')
-	   add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - Manage Authorizations', __('Manage Authorizations','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-manage-authorizations' ,'xyz_smap_manage_authorizations');
+	   add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - SmapSolutions Authorizations', __('SmapSolutions Authorizations','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-manage-authorizations' ,'xyz_smap_manage_authorizations');
 	   add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - Logs', __('Logs','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-log' ,'xyz_smap_logs'); 
 	   add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - About', __('About','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-about' ,'xyz_smap_about');
 	   add_submenu_page('social-media-auto-publish-settings', 'Social Media Auto Publish - Suggest Feature', __('Suggest a Feature','social-media-auto-publish'), 'manage_options', 'social-media-auto-publish-suggest-features' ,'xyz_smap_suggest_feature');

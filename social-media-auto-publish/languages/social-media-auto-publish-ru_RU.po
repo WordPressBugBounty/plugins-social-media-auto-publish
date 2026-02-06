@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-07-29 17:47+0530\n"
-"PO-Revision-Date: 2025-07-29 17:48+0530\n"
+"POT-Creation-Date: 2025-10-24 16:57+0530\n"
+"PO-Revision-Date: 2025-10-24 16:58+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: social-media-auto-publish.php\n"
@@ -465,6 +465,33 @@ msgstr "Пожертвовать"
 msgid "Don't Show This Again"
 msgstr "Не показывать это снова"
 
+#: admin/admin-notices.php:104
+msgid "SMAP Solutions package expires in 30 days."
+msgstr "Срок действия пакета SMAP Solutions истекает через 30 дней."
+
+#: admin/admin-notices.php:107
+msgid "SMAP Solutions package expires in 1 week!"
+msgstr "Пакет SMAP Solutions истекает через 1 неделю!"
+
+#: admin/admin-notices.php:110
+msgid "SMAP Solutions package has expired!"
+msgstr "Срок действия пакета SMAP Solutions истек!"
+
+#: admin/admin-notices.php:119
+#, php-format
+msgid "SMAP Solutions %s package expires in 30 days."
+msgstr "Срок действия пакета SMAP Solutions %s истекает через 30 дней."
+
+#: admin/admin-notices.php:125
+#, php-format
+msgid "SMAP Solutions %s package expires in 1 week!"
+msgstr "Срок действия пакета SMAP Solutions %s истекает через 1 неделю!"
+
+#: admin/admin-notices.php:131
+#, php-format
+msgid "SMAP Solutions %s package has expired!"
+msgstr "Срок действия пакета SMAP Solutions %s истек!"
+
 #: admin/footer.php:9
 #, php-format
 msgid ""
@@ -487,47 +514,55 @@ msgstr ""
 msgid "Compare Features"
 msgstr "Сравните функции"
 
-#: admin/footer.php:40
+#: admin/footer.php:39
+msgid "We are available for custom development"
+msgstr "Мы готовы выполнить индивидуальную разработку"
+
+#: admin/footer.php:41
+msgid "Get a quote"
+msgstr "Получить цитату"
+
+#: admin/footer.php:48
 msgid "Follow Us"
 msgstr "Подписывайтесь на нас"
 
-#: admin/footer.php:48
+#: admin/footer.php:56
 msgid "Support"
 msgstr "Поддержки"
 
-#: admin/footer.php:50
+#: admin/footer.php:58
 msgid "Contact Us"
 msgstr "Связаться с нами"
 
-#: admin/footer.php:51
+#: admin/footer.php:59
 msgid "Please Rate Us"
 msgstr "Пожалуйста, оцените нас"
 
-#: admin/footer.php:55
+#: admin/footer.php:63
 msgid "Create a ticket at Wordpress forum"
 msgstr "Создать тикет на форуме Wordpress"
 
-#: admin/footer.php:58
+#: admin/footer.php:66
 msgid "Stay tuned for our updates"
 msgstr "Следите за нашими обновлениями"
 
-#: admin/footer.php:122
+#: admin/footer.php:130
 msgid "Name"
 msgstr "Имя"
 
-#: admin/footer.php:138
+#: admin/footer.php:146
 msgid "Email"
 msgstr "Эл. адрес"
 
-#: admin/footer.php:140
+#: admin/footer.php:148
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: admin/footer.php:152
+#: admin/footer.php:160
 msgid "Our Plugins"
 msgstr "Наши плагины"
 
-#: admin/footer.php:173
+#: admin/footer.php:181
 msgid "Powered by"
 msgstr "Питаться от"
 
@@ -536,9 +571,9 @@ msgid "Settings updated successfully."
 msgstr "Настройки успешно обновлены."
 
 #: admin/header.php:19 admin/header.php:33 admin/header.php:49
-#: admin/manage-auth.php:9 admin/manage-auth.php:140 admin/manage-auth.php:205
-#: admin/manage-auth.php:272 admin/manage-auth.php:349
-#: admin/manage-auth.php:395 admin/manage-auth.php:443 admin/settings.php:37
+#: admin/manage-auth.php:9 admin/manage-auth.php:232 admin/manage-auth.php:297
+#: admin/manage-auth.php:364 admin/manage-auth.php:441
+#: admin/manage-auth.php:487 admin/manage-auth.php:535 admin/settings.php:37
 #: admin/settings.php:54 admin/settings.php:71 admin/settings.php:88
 #: admin/settings.php:750 admin/settings.php:758 admin/settings.php:767
 #: admin/settings.php:778 admin/settings.php:787 admin/settings.php:798
@@ -569,7 +604,7 @@ msgstr "Voprosy-Otvety"
 msgid "Readme"
 msgstr "Прочти меня"
 
-#: admin/header.php:105 admin/menu.php:40
+#: admin/header.php:105 admin/menu.php:41
 msgid "About"
 msgstr "О"
 
@@ -626,146 +661,146 @@ msgstr ""
 "Пожалуйста, авторизуйте приложение %s в настройках Facebook/LinkedIn для "
 "доступа к этой странице."
 
-#: admin/manage-auth.php:495 admin/menu.php:38
+#: admin/manage-auth.php:587
 msgid "Manage Authorizations"
 msgstr "Управление авторизациями"
 
-#: admin/manage-auth.php:497
+#: admin/manage-auth.php:589
 msgid "Facebook Authorizations"
 msgstr "Авторизация Facebook"
 
-#: admin/manage-auth.php:499
+#: admin/manage-auth.php:591
 msgid "LinkedIn Authorizations"
 msgstr "Авторизация LinkedIn"
 
-#: admin/manage-auth.php:501
+#: admin/manage-auth.php:593
 msgid "Instagram Authorizations"
 msgstr "Авторизация в Instagram"
 
-#: admin/manage-auth.php:527 admin/manage-auth.php:678
-#: admin/manage-auth.php:818
+#: admin/manage-auth.php:623 admin/manage-auth.php:777
+#: admin/manage-auth.php:918
 msgid "Current Plan"
 msgstr "Текущий план"
 
-#: admin/manage-auth.php:529
+#: admin/manage-auth.php:624
 msgid "Allowed Facebook users"
 msgstr "Разрешенные пользователи Facebook"
 
-#: admin/manage-auth.php:530 admin/manage-auth.php:681
-#: admin/manage-auth.php:821
+#: admin/manage-auth.php:625 admin/manage-auth.php:779
+#: admin/manage-auth.php:920
 msgid "API limit per account"
 msgstr "Ограничение API на аккаунт"
 
-#: admin/manage-auth.php:530 admin/manage-auth.php:821
+#: admin/manage-auth.php:625 admin/manage-auth.php:920
 msgid "per hour"
 msgstr "в час"
 
-#: admin/manage-auth.php:531 admin/manage-auth.php:682
-#: admin/manage-auth.php:822
+#: admin/manage-auth.php:626 admin/manage-auth.php:780
+#: admin/manage-auth.php:921
 msgid "Package Expiry"
 msgstr "Срок действия пакета"
 
-#: admin/manage-auth.php:532 admin/manage-auth.php:683
-#: admin/manage-auth.php:823
+#: admin/manage-auth.php:627 admin/manage-auth.php:781
+#: admin/manage-auth.php:922
 msgid "Package Status"
 msgstr "Статус пакета"
 
-#: admin/manage-auth.php:542 admin/manage-auth.php:693
-#: admin/manage-auth.php:833
+#: admin/manage-auth.php:637 admin/manage-auth.php:791
+#: admin/manage-auth.php:932
 msgid "Upgrade/Renew"
 msgstr "Обновить/обновить"
 
-#: admin/manage-auth.php:549 admin/manage-auth.php:702
-#: admin/manage-auth.php:842
+#: admin/manage-auth.php:645 admin/manage-auth.php:800
+#: admin/manage-auth.php:941
 msgid "Show all entries"
 msgstr "Показать все записи"
 
-#: admin/manage-auth.php:550 admin/manage-auth.php:703
-#: admin/manage-auth.php:843
+#: admin/manage-auth.php:646 admin/manage-auth.php:801
+#: admin/manage-auth.php:942
 msgid "Show entries from current wp installation"
 msgstr "Показать записи из текущей установки wp"
 
-#: admin/manage-auth.php:551 admin/manage-auth.php:704
-#: admin/manage-auth.php:844
+#: admin/manage-auth.php:647 admin/manage-auth.php:802
+#: admin/manage-auth.php:943
 msgid "Show entries from other wp installations"
 msgstr "Показать записи из других установок wp"
 
-#: admin/manage-auth.php:557
+#: admin/manage-auth.php:653
 msgid "Facebook username"
 msgstr "Имя пользователя Facebook"
 
-#: admin/manage-auth.php:558 admin/manage-auth.php:710
-#: admin/manage-auth.php:850
+#: admin/manage-auth.php:654 admin/manage-auth.php:808
+#: admin/manage-auth.php:949
 msgid "Selected pages"
 msgstr "Выбранные страницы"
 
-#: admin/manage-auth.php:559
+#: admin/manage-auth.php:655
 msgid "Selected groups"
 msgstr "Выбранные группы"
 
-#: admin/manage-auth.php:561
+#: admin/manage-auth.php:657
 #, php-format
 msgid "%s url"
 msgstr "URL-адрес %s"
 
-#: admin/manage-auth.php:563 admin/manage-auth.php:713
-#: admin/manage-auth.php:853
+#: admin/manage-auth.php:659 admin/manage-auth.php:811
+#: admin/manage-auth.php:952
 msgid "Plugin"
 msgstr "Плагин"
 
-#: admin/manage-auth.php:565
+#: admin/manage-auth.php:661
 #, php-format
 msgid "Account ID %s"
 msgstr "Идентификатор учетной записи %s"
 
-#: admin/manage-auth.php:567 admin/manage-auth.php:715
-#: admin/manage-auth.php:855
+#: admin/manage-auth.php:663 admin/manage-auth.php:813
+#: admin/manage-auth.php:954
 msgid "Action"
 msgstr "Действие"
 
-#: admin/manage-auth.php:607 admin/manage-auth.php:745
-#: admin/manage-auth.php:886
+#: admin/manage-auth.php:703 admin/manage-auth.php:843
+#: admin/manage-auth.php:985
 msgid "Not Applicable"
 msgstr "Непригодный"
 
-#: admin/manage-auth.php:613 admin/manage-auth.php:636
-#: admin/manage-auth.php:752 admin/manage-auth.php:774
-#: admin/manage-auth.php:893 admin/manage-auth.php:914
+#: admin/manage-auth.php:709 admin/manage-auth.php:732
+#: admin/manage-auth.php:850 admin/manage-auth.php:872
+#: admin/manage-auth.php:992 admin/manage-auth.php:1013
 msgid "Delete"
 msgstr "Удалить"
 
-#: admin/manage-auth.php:626 admin/manage-auth.php:765
-#: admin/manage-auth.php:905
+#: admin/manage-auth.php:722 admin/manage-auth.php:863
+#: admin/manage-auth.php:1004
 msgid "(Inactive)"
 msgstr "(Неактивный)"
 
-#: admin/manage-auth.php:647 admin/manage-auth.php:784
-#: admin/manage-auth.php:924
+#: admin/manage-auth.php:743 admin/manage-auth.php:882
+#: admin/manage-auth.php:1023
 msgid "No Authorizations"
 msgstr "Нет авторизации"
 
-#: admin/manage-auth.php:655 admin/manage-auth.php:792
+#: admin/manage-auth.php:751 admin/manage-auth.php:890
 msgid "Unable to connect. Please check your curl and firewall settings"
 msgstr ""
 "Невозможно подключиться. Пожалуйста, проверьте настройки curl и брандмауэра"
 
-#: admin/manage-auth.php:680
+#: admin/manage-auth.php:778
 msgid "Allowed LinkedIn users"
 msgstr "Разрешенные пользователи LinkedIn"
 
-#: admin/manage-auth.php:681
+#: admin/manage-auth.php:779
 msgid "per day"
 msgstr "в день"
 
-#: admin/manage-auth.php:709
+#: admin/manage-auth.php:807
 msgid "LinkedIn user name"
 msgstr "Имя пользователя LinkedIn"
 
-#: admin/manage-auth.php:820
+#: admin/manage-auth.php:919
 msgid "Allowed Instagram users"
 msgstr "Разрешенные пользователи Instagram"
 
-#: admin/manage-auth.php:849
+#: admin/manage-auth.php:948
 msgid "Instagram user name"
 msgstr "Имя пользователя инстаграм"
 
@@ -815,15 +850,19 @@ msgstr "Неактивная учетная запись Twitter успешно 
 msgid "In-active Instagram account successfully deleted from %s"
 msgstr "Неактивный аккаунт Instagram успешно удален из %s"
 
-#: admin/menu.php:36
+#: admin/menu.php:37
 msgid "Settings"
 msgstr "Hастроек"
 
 #: admin/menu.php:39
+msgid "SmapSolutions Authorizations"
+msgstr "Авторизации SmapSolutions"
+
+#: admin/menu.php:40
 msgid "Logs"
 msgstr "Рекорды"
 
-#: admin/menu.php:41
+#: admin/menu.php:42
 msgid "Suggest a Feature"
 msgstr "Предложить функцию"
 

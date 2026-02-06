@@ -143,9 +143,7 @@ function smap_install_free()
 	add_option('xyz_smap_lnappscoped_userid','');
 	add_option('xyz_smap_ln_api_permission',2);
 	add_option('xyz_smap_smapsoln_userid_ln','0');
-	add_option('xyz_smap_smapsoln_userid_tw','0');
 	add_option('xyz_smap_smapsoln_userid_ig','0');
-	add_option('xyz_smap_secret_key_tw','');
 	add_option('xyz_smap_secret_key_ig','');
 	add_option('xyz_smap_secret_key_ln','');//54
 	add_option('xyz_smap_ln_page_names','');

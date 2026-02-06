@@ -34,6 +34,7 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 	$igpost_permission=get_option('xyz_smap_igpost_permission');
 	$tgpost_permission=get_option('xyz_smap_tgpost_permission');
 	$post_threads_permission=get_option('xyz_smap_thpost_permission');
+$post_tb_permission=get_option('xyz_smap_tbpost_permission');
 
 	if(isset($_POST['xyz_smap_post_permission']))
 	{
@@ -115,7 +116,7 @@ function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 	}
 	if(!(isset($_POST['xyz_smap_post_permission']) || isset($_POST['xyz_smap_twpost_permission']) || isset($_POST['xyz_smap_thpost_permission']) || isset($_POST['xyz_smap_lnpost_permission']) || isset($_POST['xyz_smap_igpost_permission']) || isset($_POST['xyz_smap_tbpost_permission']) || isset($_POST['xyz_smap_tgpost_permission'])))
 	{
-	    if($post_permissin == 1 || $post_twitter_permission == 1 || $post_threads_permission == 1|| $lnpost_permission == 1 || $igpost_permission ==1 || $$post_tb_permission==1 || $tgpost_permission ==1) {
+	    if($post_permissin == 1 || $post_twitter_permission == 1 || $post_threads_permission == 1|| $lnpost_permission == 1 || $igpost_permission ==1 || $post_tb_permission==1 || $tgpost_permission ==1) {
 
 			if($new_status == 'publish')
 			{
@@ -1025,7 +1026,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			}
 			///Twitter upload image end/////
 			$messagetopost=str_replace("&nbsp;","",$messagetopost);
-			$xyz_smap_xyzscripts_userid=0;$xyz_smap_smapsoln_userid_tw=$xyz_smap_smapsoln_sec_key='';
+			$xyz_smap_xyzscripts_userid=0;$xyz_smap_smapsoln_sec_key='';
 			$substring="";$islink=0;$issubstr=0;
 
 			$substring=xyz_smap_split_replace('{POST_TITLE}', $name, $messagetopost);
@@ -1317,46 +1318,8 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			}
 			if($xyz_smap_tw_app_sel_mode==1)
 			{
-			    $xyz_smap_xyzscripts_userid=get_option('xyz_smap_xyzscripts_user_id');
-			    $xyz_smap_smapsoln_userid_tw=get_option('xyz_smap_smapsoln_userid_tw');
-			    $xyz_smap_smapsoln_sec_key=get_option('xyz_smap_secret_key_tw');
 
-			    $video=$tweet_id_string="";
-			    $xyz_smap_publish_video_tw=$supported_urls_count=$xyz_smap_multiphoto_tweet=$count_tw=$xyz_smap_use_tw_img_desc=0;
-			    $multiphoto_urls_tw=$desc_array=array();
-			    $post_details=array('xyz_smap_userid'=>$xyz_smap_smapsoln_userid_tw,
-			        'xyz_use_tw_img_desc'=>$xyz_smap_use_tw_img_desc,
-			        'alt_text'=>$desc_array,
-			        'tw_username'=>$twid,
-			        'video_length_total_bytes'=>$count_tw,
-			        'xyz_smap_posting_method'=>$post_twitter_image_permission,
-			        'xyz_smap_multiphoto_enable'=>$xyz_smap_multiphoto_tweet,
-			        'multiphoto_count'=>$supported_urls_count,
-			        'xyz_smap_multiphoto_urls'=>$multiphoto_urls_tw,
-			        'xyz_smap_video_url'=>$video,
-			        'xyz_smap_xyzscripts_userid'=>$xyz_smap_xyzscripts_userid,
-			        'xyz_smap_premium_publish_video'=>$xyz_smap_publish_video_tw,
-			        'message'=>$substring,
-			        'tw_image_url'=>$attachmenturl
-			    );
-			    $url=XYZ_SMAP_SOLUTION_TW_PUBLISH_URL.'api/publish.php';
-			    $result=xyz_smap_post_to_smap_api($post_details,$url,$xyz_smap_smapsoln_sec_key);
-			    $result=json_decode($result);
-			    if(!empty($result))
-			    {
-			        $tw_api_count=$result->tw_api_count;
-			        if ($result->status==1)
-			            $tw_publish_status_insert=serialize("<span style=\"color:green\"> ".$result->msg."</span>");
-		            elseif ($result->status==0)
-		            {
-		                if(isset($result->msg) && !empty($result->msg))
-		                    $tw_publish_status_insert=serialize("<span style=\"color:red\"> ".$result->msg."</span>");
-	                    else
-	                        $tw_publish_status_insert= serialize("<span style=\"color:red\"> Response Not Available.</span>");//1;
-		            }
-			    }
-			    else
-			        $tw_publish_status_insert= serialize("<span style=\"color:red\"> Response Not Available.</span>");//1;
+			        $tw_publish_status_insert= serialize("<span style=\"color:red\"> SMAPSolutions has discontinued its Twitter service</span>");//1;
 			}
 			$time=time();
 			$post_tw_options=array(

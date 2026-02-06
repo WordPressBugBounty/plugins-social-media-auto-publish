@@ -3,8 +3,8 @@ Contributors: f1logic
 Donate link: https://xyzscripts.com/donate/
 Tags:  social media auto publish, social media publishing, post to facebook, post to twitter, post to linkedin, post to tumblr, post to threads,  post to instagram, social network auto publish, social media, social network, add link to facebook, add link to twitter, add link to linkedin, publish to facebook, publish to twitter, publish to linkedin, publish to tumblr, publish to instagram, post to linkedIn company pages,linkedin companies, publish to telegram
 Requires at least: 3.0
-Tested up to: 6.8.2
-Stable tag: 3.6.4
+Tested up to: 6.9
+Stable tag: 3.6.6
 License: GPLv2 or later
 
 Publish posts automatically to social media networks like Facebook, Twitter, Instagram, Tumblr, LinkedIn, Threads and Telegram.
@@ -152,6 +152,15 @@ SSL peer verification may not be functioning in your server. Please turn off SSL
 10. Auto publish logs.
 
 == Changelog ==
+
+= Social Media Auto Publish 3.6.6 =
+* Added vulnerability fix reported by WP Plugin Review Team.
+
+= Social Media Auto Publish 3.6.5 =
+* SMAPSolutions package expiry alert added
+* LinkedIn API updated to latest version
+* Minor bug fixes and code tweaks
+* CSS & JS files now versioned to fix caching
 
 = Social Media Auto Publish 3.6.4 =
 * Updated redirects to use wp_safe_redirect() for improved security
