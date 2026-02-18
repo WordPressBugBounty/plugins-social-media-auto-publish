@@ -158,9 +158,40 @@ function xyz_smap_format_smapsolutions_service_name($service) {
     }
     return ucfirst($name);
 }
+function xyz_smap_reauth_notice_error() {
+    $dismiss_url = wp_nonce_url(
+    add_query_arg(
+        [
+            'xyz_smap_tb_error_dismiss' => 1,
+            'xyz_smap_dismiss_error' => 'tumblr_reauth'
+        ],
+        admin_url('admin.php?page=social-media-auto-publish-settings')
+    ),
+    'xyz_smap_dismiss_notice'
+);
+    $xyz_smap_tb_reauth_error=get_option('xyz_smap_tb_reauth_error');
+    if (($xyz_smap_tb_reauth_error!='') && get_option( 'xyz_smap_tb_reauth_error_notice_dismissed' ) != 1 ){
+        echo '<div class="notice notice-warning is-dismissible">';
+        echo '<p  style="color: #2271b1;padding: 0px !important;margin: 2px 0px !important;"><strong>Tumblr Reauth notice:</strong></p>';
+        echo '<span style="color:indianred;"><strong>' . esc_html($xyz_smap_tb_reauth_error) . '</strong></span><br/>';
+        echo '<p style="text-align:right;padding: 0px !important;margin: 2px 0px !important;font-weight:bold;">
+	     <a href="' . esc_url($dismiss_url) . '">Don\'t show this again</a></p>';
+        echo '</div>';
+    }   
+}
+add_action('admin_notices', 'xyz_smap_reauth_notice_error');
 add_action('admin_notices', 'xyz_wp_smap_smapsolutions_admin_notice');
 // --- Handle dismissal only for displayed services ---
 add_action('admin_init', function() {
+    if(isset($_GET['xyz_smap_tb_error_dismiss']) && isset($_GET['xyz_smap_dismiss_error']) && $_GET['xyz_smap_dismiss_error']=='tumblr_reauth')
+     {
+        if (check_admin_referer('xyz_smap_dismiss_notice'))
+         {
+            update_option('xyz_smap_tb_reauth_error_notice_dismissed',1);
+             wp_safe_redirect(remove_query_arg(['xyz_smap_tb_error_dismiss', 'xyz_smap_dismiss_error']));
+        exit;
+        }
+    }
     if (isset($_GET['xyz_smap_dismiss']) && check_admin_referer('xyz_smap_dismiss_notice')) {
         $services = explode(',', sanitize_text_field(wp_unslash($_GET['services'])));
         $expiry_data = get_option('xyz_smap_smapsolutions_pack_expiry', []);

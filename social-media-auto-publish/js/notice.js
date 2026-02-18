@@ -24,6 +24,21 @@
 	    	jQuery("#"+buttonId+"_no").removeClass( "xyz_smap_toggle_off" ).addClass( "xyz_smap_toggle_on" );
 	    }
 	}
+	function XyzSmapRadioToggleHandler(account,value)
+	{
+		 // Now get the localized array from JS object
+		const accountTypes = XYZ_SMAP_CONST.ACCOUNT_TYPES;
+		// Compare using the localized value
+		if (account === accountTypes['tumblr']) {
+
+			if (value == 1) {
+				jQuery('.xyz_smap_tumblr_traditional_settings').hide();
+			} else {
+				jQuery('.xyz_smap_tumblr_traditional_settings').show();
+			}
+
+    	}
+	}
 	function xyz_smap_open_tab(evt, xyz_smap_form_div_id) {
 	    var i, xyz_smap_tabcontent, xyz_smap_tablinks;
 	    tabcontent = document.getElementsByClassName("xyz_smap_tabcontent");

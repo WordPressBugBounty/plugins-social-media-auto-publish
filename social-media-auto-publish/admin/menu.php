@@ -7,6 +7,10 @@ function xyz_smap_add_admin_scripts()
 	wp_enqueue_script('jquery');
 	wp_register_script( 'xyz_notice_script_smap', plugins_url('social-media-auto-publish/js/notice.js') );
 	wp_enqueue_script( 'xyz_notice_script_smap' );
+    // Localize notice.js with account types and other strings
+    wp_localize_script('xyz_notice_script_smap', 'XYZ_SMAP_CONST', array(
+        'ACCOUNT_TYPES' => XYZ_SMAP_ACCOUNT_TYPE_ARR
+    ));
 	$smap_smapsolution_var="SMAPSolutions";
 	$smap_xyzscripts_var="xyzscripts";
 	wp_localize_script('xyz_notice_script_smap','xyz_script_smap_var',array(

@@ -507,3 +507,67 @@ if (!isset($_GET['code']) ) {
 			}
 		}
 	}
+	/////TUMBLER//////
+	$tb_consumer_key = get_option('xyz_smap_tbconsumer_id');
+	$tb_consumer_secret = get_option('xyz_smap_tbconsumer_secret');
+	$redirectUri = admin_url('admin.php?page=social-media-auto-publish-settings');
+	// $redirectUri  = 'https://wp-premium.smap-labs.xyzscripts.com/callback.php';
+	if (is_ssl() === false)
+		$redirectUri = preg_replace("/^http:/i", "https:", $redirectUri);
+	if (isset($_POST['tb_auth'])&&!isset($_GET['code'])) {
+		if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce($_REQUEST['_wpnonce'], 'xyz_smap_tb_auth_form_nonce')) {
+			wp_nonce_ays('xyz_smap_tb_auth_form_nonce');
+			exit();
+		}
+		$scope = 'basic write offline_access';
+		$state=md5(uniqid(rand(), TRUE));
+		setcookie("xyz_smap_tb_session_state",$state,"0","/");
+		$auth_url = "https://www.tumblr.com/oauth2/authorize?" . http_build_query([
+			'client_id'     => $tb_consumer_key,
+			'response_type' => 'code',
+			'scope'         => $scope,
+			'state'         => $state,
+			'redirect_uri'  => $redirectUri
+		]);
+		// Redirect the user
+		header("Location: $auth_url");
+		exit;
+	}
+	if(isset($_REQUEST['code']))
+	{
+		 if(isset($_COOKIE['xyz_smap_tb_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_tb_session_state'] === $_REQUEST['state'])) 
+		{	
+		 $code = $_REQUEST["code"];
+		$response = wp_remote_post("https://api.tumblr.com/v2/oauth2/token", [
+            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+			'body' => [
+				'client_id'     => $tb_consumer_key,
+				'client_secret' => $tb_consumer_secret,
+				'grant_type'    => 'authorization_code',
+				'code'          => $code,
+				'redirect_uri'  => $redirectUri
+			]
+			]);
+		if (isset($response['body'])) {
+					$params = json_decode($response['body']);
+		if (isset($params->access_token)) {
+			$access_token = $params->access_token;
+			$refresh_token = $params->refresh_token;
+			$current_time=time();
+		update_option('xyz_smap_current_tbappln_token', $access_token);
+		update_option('xyz_smap_tb_refresh_token', $refresh_token);
+		update_option('xyz_smap_tb_last_auth_time', $current_time);
+		update_option('xyz_smap_tb_af',0);
+		wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&msg=11'));
+		exit;
+		} else {
+		$error='Error:';
+		if (isset($params->error)) {
+			$error.= $params->error;
+		}
+		wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&tb_auth_err='.urlencode($error)));
+		exit();
+		}
+		}
+	}
+}

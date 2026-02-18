@@ -34,10 +34,10 @@ class SMAPOAuth2{
         $params=array();
         $params['url'] = $this->access_token_url;
         $params['method']='post';
-        $params['args']=array(  'code'=>$code, 
-                                'client_id'=>$client_id, 
-                                'redirect_uri'=>$redirect_url, 
-                                'client_secret'=>$secret, 
+        $params['args']=array(  'code'=>$code,
+                                'client_id'=>$client_id,
+                                'redirect_uri'=>$redirect_url,
+                                'client_secret'=>$secret,
                                 'grant_type'=>'authorization_code');
         $result = $this->makeRequest($params);
         return $result;
@@ -56,14 +56,14 @@ class SMAPOAuth2{
         }*/
 
         if($method=='get'){
-            $url.='&'.$this->preparePostFields($args); 
+            $url.='&'.$this->preparePostFields($args);
         }
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url); 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         if($method=='post'){
-            curl_setopt($ch, CURLOPT_POST, TRUE); 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $this->preparePostFields($args)); 
+            curl_setopt($ch, CURLOPT_POST, TRUE);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $this->preparePostFields($args));
         }elseif($method=='delete'){
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }elseif($method=='put'){
@@ -184,7 +184,7 @@ class SMAPOAuth2{
 }
 
 class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
-	
+
 	public function __construct($access_token=''){
 		$this->access_token_url = "https://www.linkedin.com/oauth2/accessToken";
 		$this->authorize_url = "https://www.linkedin.com/oauth2/authorization";
@@ -208,7 +208,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 
 	public function getAccessToken($client_id="", $secret="", $redirect_url="", $code = ""){
 		$result = parent::getAccessToken($client_id, $secret, $redirect_url, $code);
-		$result = json_decode($result,true); 
+		$result = json_decode($result,true);
 		if(isset($result['error'])){
 			$this->error = $result['error'].' '.$result['error_description'];
 			return false;
@@ -222,11 +222,11 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params=array();
 		$params['headers']['Authorization']='Bearer '.$this->access_token;
 		$params['headers']['Connection']='Keep-Alive';
-		
+
 		$params['headers']['X-RestLi-Protocol-Version']='2.0.0';
 		$result =  $this->makeRequest($params);
-		
-		
+
+
 		$this->error = '';
 		$method=isset($params['method'])?$params['method']:'get';
 		$headers = isset($params['headers'])?$params['headers']:array();
@@ -240,7 +240,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 			$url .'oauth2_access_token='.$this->access_token;
 		}
 		$result =  $this->makeRequest($params);
-		return json_decode($result,true); 
+		return json_decode($result,true);
 	}
 
 	public function getUserProfile($user_id){
@@ -250,7 +250,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 			'id',
 			'picture-url',
 			'first-name',
-			'last-name',      
+			'last-name',
 			'public-profile-url',
 			'num-connections',
 		);
@@ -259,7 +259,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params['method']='get';
 		$params['args']['format']='json';
 		$result =  $this->makeRequest($params);
-		return json_decode($result,true); 
+		return json_decode($result,true);
 	}
 
 	public function getConnections(){
@@ -268,7 +268,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params['method']='get';
 		$params['args']['format']='json';
 		$result =  $this->makeRequest($params);
-		return json_decode($result,true); 
+		return json_decode($result,true);
 	}
 
 	public function getGroups(){
@@ -277,7 +277,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 			'membership-state',
 			'show-group-logo-in-profile',
 			'allow-messages-from-members',
-			'email-digest-frequency',      
+			'email-digest-frequency',
 			'email-announcements-from-managers',
 			'email-for-every-new-post'
 		);
@@ -350,7 +350,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
             'name'
 		);
 		$request = implode(',',$fields);*/
-		
+
 		$params['url'] = "https://api.linkedin.com/v2/organizationalEntityAcls?q=roleAssignee&role=ADMINISTRATOR&projection=(elements*(*,roleAssignee~(localizedFirstName,%20localizedLastName),%20organizationalTarget~(localizedName)))";
 		$params['method']='get';
 		$params['headers']['Authorization']='Bearer '.$this->access_token;
@@ -409,7 +409,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$result =  $this->makeRequest($params);
 		return json_decode($result,true);
 	}
-	
+
 	public function getGroupPosts($group_id, $start=0,$count = 20, $order="", $category="",$role=""){
 		$fields = array(
 			'id',
@@ -460,7 +460,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params['method']='post';
 		$params['headers']['Authorization']='Bearer '.$this->access_token;
 		$params['headers']['Content-Type']='application/json';//application/binary
-    $params['headers']['Linkedin-Version']='202509';
+		$params['headers']['Linkedin-Version']=XYZ_SMAP_LINKEDIN_VERSION;
 		$params['headers']['X-Restli-Protocol-Version']='2.0.0';
 		$params['headers']['Connection']='Keep-Alive';
 		$params['args']=json_encode($args,JSON_UNESCAPED_SLASHES);
@@ -513,7 +513,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params['headers']['Content-Type']='application/json';
 		$params['headers']['x-li-format']='json';
 		$params['headers']['Connection']='Keep-Alive';
-    $params['headers']['Linkedin-Version']='202509';
+		$params['headers']['Linkedin-Version']=XYZ_SMAP_LINKEDIN_VERSION;
 		$params['headers']['X-RestLi-Protocol-Version']='2.0.0';
 		$this->error = '';
 		$method=isset($params['method'])?$params['method']:'get';
@@ -549,7 +549,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 			'id',
 			'site-group-post-url',
 			'creation-timestamp'
-		);    
+		);
 		$request = implode(',',$fields);
 		$params['url'] = "https://api.linkedin.com/v2/posts/".$post_id.":({$request})";
 		$params['method']='get';
@@ -602,29 +602,16 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		$params['headers']['Authorization']='Bearer '.$this->access_token;
 		$params['headers']['Content-Type']='application/json';
 		$params['headers']['x-li-format']='json';
-    $params['headers']['Linkedin-Version']='202509';
+		$params['headers']['Linkedin-Version']=XYZ_SMAP_LINKEDIN_VERSION;
 		$params['headers']['X-Restli-Protocol-Version']='2.0.0';
 		$params['headers']['Connection']='Keep-Alive';
 		$params['args']=json_encode($args);
 		$result =  $this->makeRequest_ln_header($params);
-    return $result;
-		// return json_decode($result,true);
-			}
-      // public function shareStatus1($args=array()){
-    	// 	$params['url'] = 'https://api.linkedin.com/v2/ugcPosts';
-    	// 	$params['method']='post';
-    	// 	$params['headers']['Authorization']='Bearer '.$this->access_token;
-    	// 	$params['headers']['Content-Type']='application/json';
-    	// 	$params['headers']['x-li-format']='json';
-    	// 	$params['headers']['X-Restli-Protocol-Version']='2.0.0';
-    	// 	$params['headers']['Connection']='Keep-Alive';
-    	// 	$params['args']=json_encode($args);
-    	// 	$result =  $this->makeRequest($params);
-    	// 	return json_decode($result,true);
-    	// 		}
+   		return $result;
+		}
+		
     public function xyz_smap_fetch_user_data($user_data_endpoint_url){
-  		//$params['url'] = 'https://api.linkedin.com/v2/me';
-    $params['url'] = $user_data_endpoint_url;
+	    $params['url'] = $user_data_endpoint_url;
 		$params['method']='get';
 		$params['headers']['Authorization']='Bearer '.$this->access_token;
 		$params['headers']['Content-Type']='application/json';
@@ -641,7 +628,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		if($this->access_token){
 			$url .'oauth2_access_token='.$this->access_token;
 			}
-		
+
 		if($method=='get'){
 			$url.='&'.$this->preparePostFields($args);
 			}
@@ -678,7 +665,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 
 		if(is_array($content) AND count($content)>0) {
 			// If the content of the post is specified (e.g., a link to a website), add it here
-			$json['content'] = array(); 
+			$json['content'] = array();
 			if(isset($content['content']['title'])){
 				$json['content']['title'] = $content['content']['title'];
 			}
@@ -697,7 +684,7 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
 		return json_decode($result,true);
 	}
 
-	
+
 	public function postToCompany($company_id,$content=array()){
 		$params['url'] = 'https://api.linkedin.com/v2/ugcPosts';
 		$params['method']='post';
@@ -959,5 +946,5 @@ public function __construct($api_key,$api_secret,$api_callback='')
 }
 
 
- 
+
 ?>

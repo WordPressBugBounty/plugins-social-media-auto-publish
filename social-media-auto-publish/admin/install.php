@@ -74,6 +74,7 @@ function smap_install_free()
 	add_option('xyz_smap_twmessage', '{POST_TITLE} - {PERMALINK}');
 	add_option('xyz_smap_twtr_char_limit',280);
 	
+	add_option('xyz_smap_tb_app_sel_mode','0');
 	add_option('xyz_smap_tbconsumer_secret', '');
 	add_option('xyz_smap_tbconsumer_id','');
 	add_option('xyz_smap_tb_id', '');
@@ -85,6 +86,10 @@ function smap_install_free()
 	add_option('xyz_smap_tb_future_to_publish', '1');
 	add_option('xyz_smap_tbap_post_logs', '');
 	add_option('xyz_smap_tb_af', '1');
+	add_option('xyz_smap_tb_refresh_token', '');
+	add_option('xyz_smap_tb_last_auth_time', '');
+	add_option('xyz_smap_tb_reauth_error', '');
+	add_option('xyz_smap_tb_reauth_error_notice_dismissed', 0);
 	add_option('xyz_smap_application_lnarray', '');
 	add_option('xyz_smap_ln_shareprivate', '0');
 // 	add_option('xyz_smap_ln_sharingmethod', '0');

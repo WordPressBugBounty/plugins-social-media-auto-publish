@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: multilang\n"
-"POT-Creation-Date: 2025-10-24 16:52+0530\n"
-"PO-Revision-Date: 2025-10-24 16:53+0530\n"
+"POT-Creation-Date: 2025-12-05 12:28+0530\n"
+"PO-Revision-Date: 2025-12-05 12:33+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -13,23 +13,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e\n"
-"X-Poedit-SearchPath-0: social-media-auto-publish.php\n"
-"X-Poedit-SearchPath-1: admin/suggest_feature.php\n"
-"X-Poedit-SearchPath-2: admin/settings.php\n"
-"X-Poedit-SearchPath-3: admin/publish.php\n"
-"X-Poedit-SearchPath-4: admin/metabox.php\n"
-"X-Poedit-SearchPath-5: admin/menu.php\n"
-"X-Poedit-SearchPath-6: admin/manage-auth.php\n"
-"X-Poedit-SearchPath-7: admin/logs.php\n"
-"X-Poedit-SearchPath-8: admin/install.php\n"
-"X-Poedit-SearchPath-9: admin/header.php\n"
-"X-Poedit-SearchPath-10: admin/footer.php\n"
-"X-Poedit-SearchPath-11: admin/destruction.php\n"
-"X-Poedit-SearchPath-12: admin/authorization.php\n"
-"X-Poedit-SearchPath-13: admin/ajax-backlink.php\n"
-"X-Poedit-SearchPath-14: admin/admin-notices.php\n"
-"X-Poedit-SearchPath-15: admin/about.php\n"
-"X-Poedit-SearchPath-16: xyz-functions.php\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: admin/about.php:9
 #, php-format
@@ -79,25 +63,25 @@ msgstr "%s prime"
 msgid "Supported Media"
 msgstr "Supports pris en charge"
 
-#: admin/about.php:37 admin/admin-notices.php:55 admin/metabox.php:666
-#: admin/settings.php:875
+#: admin/about.php:37 admin/admin-notices.php:55 admin/metabox.php:668
+#: admin/settings.php:892
 msgid "Facebook"
 msgstr "Facebook"
 
-#: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:855
+#: admin/about.php:47 admin/admin-notices.php:56 admin/metabox.php:857
 msgid "Twitter"
 msgstr "Twitter"
 
-#: admin/about.php:56 admin/admin-notices.php:57 admin/metabox.php:1027
-#: admin/settings.php:877
+#: admin/about.php:56 admin/admin-notices.php:57 admin/metabox.php:1030
+#: admin/settings.php:894
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: admin/about.php:65 admin/metabox.php:770
+#: admin/about.php:65 admin/metabox.php:772
 msgid "Instagram"
 msgstr "Instagram"
 
-#: admin/about.php:74 admin/metabox.php:940 admin/settings.php:879
+#: admin/about.php:74 admin/metabox.php:943 admin/settings.php:896
 msgid "Tumblr"
 msgstr "Tumblr"
 
@@ -105,11 +89,11 @@ msgstr "Tumblr"
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: admin/about.php:92 admin/metabox.php:1134 admin/settings.php:880
+#: admin/about.php:92 admin/metabox.php:1137 admin/settings.php:897
 msgid "Telegram"
 msgstr "Telegram"
 
-#: admin/about.php:101 admin/metabox.php:1228 admin/settings.php:881
+#: admin/about.php:101 admin/metabox.php:1231 admin/settings.php:898
 msgid "Threads"
 msgstr "Fils de discussion de l'application"
 
@@ -574,7 +558,7 @@ msgstr "Nos plugins"
 msgid "Powered by"
 msgstr "Alimenté par"
 
-#: admin/header.php:19 admin/settings.php:749
+#: admin/header.php:19 admin/settings.php:766
 msgid "Settings updated successfully."
 msgstr "Paramètres mis à jour avec succès."
 
@@ -583,12 +567,12 @@ msgstr "Paramètres mis à jour avec succès."
 #: admin/manage-auth.php:364 admin/manage-auth.php:441
 #: admin/manage-auth.php:487 admin/manage-auth.php:535 admin/settings.php:37
 #: admin/settings.php:54 admin/settings.php:71 admin/settings.php:88
-#: admin/settings.php:750 admin/settings.php:758 admin/settings.php:767
-#: admin/settings.php:778 admin/settings.php:787 admin/settings.php:798
-#: admin/settings.php:807 admin/settings.php:846 admin/settings.php:3388
-#: admin/settings.php:3413 admin/settings.php:3441 admin/settings.php:3466
-#: admin/settings.php:3501 admin/suggest_feature.php:11
-#: admin/suggest_feature.php:19 admin/suggest_feature.php:27
+#: admin/settings.php:767 admin/settings.php:775 admin/settings.php:784
+#: admin/settings.php:795 admin/settings.php:804 admin/settings.php:815
+#: admin/settings.php:824 admin/settings.php:863 admin/settings.php:3482
+#: admin/settings.php:3507 admin/settings.php:3535 admin/settings.php:3560
+#: admin/suggest_feature.php:11 admin/suggest_feature.php:19
+#: admin/suggest_feature.php:27
 msgid "Dismiss"
 msgstr "Rejeter"
 
@@ -876,219 +860,219 @@ msgstr "Journaux"
 msgid "Suggest a Feature"
 msgstr "Suggérer une fonctionnalité"
 
-#: admin/metabox.php:673 admin/settings.php:993
+#: admin/metabox.php:675 admin/settings.php:1010
 msgid "Enable auto publish post to my facebook account"
 msgstr ""
 "Activer la publication automatique des publications sur mon compte Facebook"
 
-#: admin/metabox.php:676 admin/metabox.php:780 admin/metabox.php:865
-#: admin/metabox.php:878 admin/metabox.php:948 admin/metabox.php:1037
-#: admin/metabox.php:1144 admin/metabox.php:1238 admin/settings.php:996
-#: admin/settings.php:1129 admin/settings.php:1360 admin/settings.php:1713
-#: admin/settings.php:1862 admin/settings.php:1997 admin/settings.php:2113
-#: admin/settings.php:2118 admin/settings.php:2131 admin/settings.php:2293
-#: admin/settings.php:2511 admin/settings.php:2643 admin/settings.php:2794
-#: admin/settings.php:2802 admin/settings.php:2851 admin/settings.php:2861
-#: admin/settings.php:2941 admin/settings.php:2992 admin/settings.php:3002
+#: admin/metabox.php:678 admin/metabox.php:782 admin/metabox.php:867
+#: admin/metabox.php:880 admin/metabox.php:951 admin/metabox.php:1040
+#: admin/metabox.php:1147 admin/metabox.php:1241 admin/settings.php:1013
+#: admin/settings.php:1146 admin/settings.php:1377 admin/settings.php:1730
+#: admin/settings.php:1879 admin/settings.php:2014 admin/settings.php:2130
+#: admin/settings.php:2135 admin/settings.php:2148 admin/settings.php:2310
+#: admin/settings.php:2558 admin/settings.php:2702 admin/settings.php:2853
+#: admin/settings.php:2861 admin/settings.php:2910 admin/settings.php:2920
+#: admin/settings.php:3000 admin/settings.php:3051 admin/settings.php:3061
 msgid "Yes"
 msgstr "Oui"
 
-#: admin/metabox.php:677 admin/metabox.php:781 admin/metabox.php:866
-#: admin/metabox.php:876 admin/metabox.php:949 admin/metabox.php:956
-#: admin/metabox.php:1038 admin/metabox.php:1145 admin/metabox.php:1239
-#: admin/settings.php:997 admin/settings.php:1130 admin/settings.php:1361
-#: admin/settings.php:1714 admin/settings.php:1863 admin/settings.php:1998
-#: admin/settings.php:2114 admin/settings.php:2119 admin/settings.php:2132
-#: admin/settings.php:2294 admin/settings.php:2512 admin/settings.php:2565
-#: admin/settings.php:2644 admin/settings.php:2795 admin/settings.php:2803
-#: admin/settings.php:2852 admin/settings.php:2862 admin/settings.php:2942
-#: admin/settings.php:2993 admin/settings.php:3003
+#: admin/metabox.php:679 admin/metabox.php:783 admin/metabox.php:868
+#: admin/metabox.php:878 admin/metabox.php:952 admin/metabox.php:959
+#: admin/metabox.php:1041 admin/metabox.php:1148 admin/metabox.php:1242
+#: admin/settings.php:1014 admin/settings.php:1147 admin/settings.php:1378
+#: admin/settings.php:1731 admin/settings.php:1880 admin/settings.php:2015
+#: admin/settings.php:2131 admin/settings.php:2136 admin/settings.php:2149
+#: admin/settings.php:2311 admin/settings.php:2559 admin/settings.php:2624
+#: admin/settings.php:2703 admin/settings.php:2854 admin/settings.php:2862
+#: admin/settings.php:2911 admin/settings.php:2921 admin/settings.php:3001
+#: admin/settings.php:3052 admin/settings.php:3062
 msgid "No"
 msgstr "Non"
 
-#: admin/metabox.php:681 admin/metabox.php:785 admin/metabox.php:1086
-#: admin/metabox.php:1150 admin/metabox.php:1244 admin/settings.php:1068
-#: admin/settings.php:1432 admin/settings.php:2093 admin/settings.php:2354
-#: admin/settings.php:2730
+#: admin/metabox.php:683 admin/metabox.php:787 admin/metabox.php:1089
+#: admin/metabox.php:1153 admin/metabox.php:1247 admin/settings.php:1085
+#: admin/settings.php:1449 admin/settings.php:2110 admin/settings.php:2371
+#: admin/settings.php:2789
 msgid "Posting method"
 msgstr "Méthode de publication"
 
-#: admin/metabox.php:685 admin/metabox.php:1090 admin/metabox.php:1154
-#: admin/metabox.php:1247 admin/settings.php:1074 admin/settings.php:2098
-#: admin/settings.php:2359 admin/settings.php:2735
+#: admin/metabox.php:687 admin/metabox.php:1093 admin/metabox.php:1157
+#: admin/metabox.php:1250 admin/settings.php:1091 admin/settings.php:2115
+#: admin/settings.php:2376 admin/settings.php:2794
 msgid "Simple text message"
 msgstr "Message texte simple"
 
-#: admin/metabox.php:687 admin/metabox.php:788 admin/metabox.php:1094
-#: admin/metabox.php:1156 admin/metabox.php:1249 admin/settings.php:2102
-#: admin/settings.php:2363
+#: admin/metabox.php:689 admin/metabox.php:790 admin/metabox.php:1097
+#: admin/metabox.php:1159 admin/metabox.php:1252 admin/settings.php:2119
+#: admin/settings.php:2380
 msgid "Text message with image"
 msgstr "Message texte avec image"
 
-#: admin/metabox.php:689 admin/settings.php:1078
+#: admin/metabox.php:691 admin/settings.php:1095
 msgid "Upload image to app album"
 msgstr "Télécharger l'image dans l'album de l'application"
 
-#: admin/metabox.php:691 admin/settings.php:1080
+#: admin/metabox.php:693 admin/settings.php:1097
 msgid "Upload image to timeline album"
 msgstr "Télécharger l'image dans l'album de la chronologie"
 
-#: admin/metabox.php:694 admin/settings.php:1076 admin/settings.php:1083
+#: admin/metabox.php:696 admin/settings.php:1093 admin/settings.php:1100
 msgid "Text message with attached link"
 msgstr "Message texte avec lien en pièce jointe"
 
-#: admin/metabox.php:696 admin/metabox.php:1092 admin/metabox.php:1248
-#: admin/settings.php:1085 admin/settings.php:2100 admin/settings.php:2361
+#: admin/metabox.php:698 admin/metabox.php:1095 admin/metabox.php:1251
+#: admin/settings.php:1102 admin/settings.php:2117 admin/settings.php:2378
 msgid "Attach your blog post"
 msgstr "Joindre votre article de blog"
 
-#: admin/metabox.php:699 admin/settings.php:1088
+#: admin/metabox.php:701 admin/settings.php:1105
 msgid "Share a link to your blog post"
 msgstr "Partager un lien vers votre article de blog"
 
-#: admin/metabox.php:705 admin/metabox.php:793 admin/metabox.php:884
-#: admin/metabox.php:963 admin/metabox.php:1053 admin/metabox.php:1163
-#: admin/metabox.php:1255 admin/settings.php:1094 admin/settings.php:1438
-#: admin/settings.php:1828 admin/settings.php:2062 admin/settings.php:2323
-#: admin/settings.php:2572 admin/settings.php:2744
+#: admin/metabox.php:707 admin/metabox.php:795 admin/metabox.php:886
+#: admin/metabox.php:966 admin/metabox.php:1056 admin/metabox.php:1166
+#: admin/metabox.php:1258 admin/settings.php:1111 admin/settings.php:1455
+#: admin/settings.php:1845 admin/settings.php:2079 admin/settings.php:2340
+#: admin/settings.php:2631 admin/settings.php:2803
 msgid "Message format for posting"
 msgstr "Formato de mensaje para publicar"
 
-#: admin/metabox.php:708 admin/metabox.php:796 admin/metabox.php:887
-#: admin/metabox.php:967 admin/metabox.php:1057 admin/metabox.php:1166
-#: admin/metabox.php:1258 admin/settings.php:1097 admin/settings.php:1441
-#: admin/settings.php:1832 admin/settings.php:2066 admin/settings.php:2327
-#: admin/settings.php:2576 admin/settings.php:2747
+#: admin/metabox.php:710 admin/metabox.php:798 admin/metabox.php:889
+#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1169
+#: admin/metabox.php:1261 admin/settings.php:1114 admin/settings.php:1458
+#: admin/settings.php:1849 admin/settings.php:2083 admin/settings.php:2344
+#: admin/settings.php:2635 admin/settings.php:2806
 msgid "Insert the title of your post."
 msgstr "Insérez le titre de votre message."
 
-#: admin/metabox.php:709 admin/metabox.php:797 admin/metabox.php:888
-#: admin/metabox.php:968 admin/metabox.php:1058 admin/metabox.php:1167
-#: admin/metabox.php:1259 admin/settings.php:1098 admin/settings.php:1442
-#: admin/settings.php:1833 admin/settings.php:2067 admin/settings.php:2328
-#: admin/settings.php:2577 admin/settings.php:2748
+#: admin/metabox.php:711 admin/metabox.php:799 admin/metabox.php:890
+#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1170
+#: admin/metabox.php:1262 admin/settings.php:1115 admin/settings.php:1459
+#: admin/settings.php:1850 admin/settings.php:2084 admin/settings.php:2345
+#: admin/settings.php:2636 admin/settings.php:2807
 msgid "Insert the URL where your post is displayed."
 msgstr "Insérez l'URL où votre message est affiché."
 
-#: admin/metabox.php:710 admin/metabox.php:798 admin/metabox.php:889
-#: admin/metabox.php:969 admin/metabox.php:1059 admin/metabox.php:1168
-#: admin/metabox.php:1260 admin/settings.php:1099 admin/settings.php:1443
-#: admin/settings.php:1834 admin/settings.php:2068 admin/settings.php:2329
-#: admin/settings.php:2578 admin/settings.php:2749
+#: admin/metabox.php:712 admin/metabox.php:800 admin/metabox.php:891
+#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1171
+#: admin/metabox.php:1263 admin/settings.php:1116 admin/settings.php:1460
+#: admin/settings.php:1851 admin/settings.php:2085 admin/settings.php:2346
+#: admin/settings.php:2637 admin/settings.php:2808
 msgid "Insert the excerpt of your post."
 msgstr "Insérez l'extrait de votre message."
 
-#: admin/metabox.php:711 admin/metabox.php:799 admin/metabox.php:890
-#: admin/metabox.php:970 admin/metabox.php:1060 admin/metabox.php:1169
-#: admin/metabox.php:1261 admin/settings.php:1100 admin/settings.php:1444
-#: admin/settings.php:1835 admin/settings.php:2069 admin/settings.php:2330
-#: admin/settings.php:2579 admin/settings.php:2750
+#: admin/metabox.php:713 admin/metabox.php:801 admin/metabox.php:892
+#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1172
+#: admin/metabox.php:1264 admin/settings.php:1117 admin/settings.php:1461
+#: admin/settings.php:1852 admin/settings.php:2086 admin/settings.php:2347
+#: admin/settings.php:2638 admin/settings.php:2809
 msgid "Insert the description of your post."
 msgstr "Insérez la description de votre message."
 
-#: admin/metabox.php:712 admin/metabox.php:800 admin/metabox.php:891
-#: admin/metabox.php:971 admin/metabox.php:1061 admin/metabox.php:1170
-#: admin/metabox.php:1262 admin/settings.php:1101 admin/settings.php:1445
-#: admin/settings.php:1836 admin/settings.php:2070 admin/settings.php:2331
-#: admin/settings.php:2580 admin/settings.php:2751
+#: admin/metabox.php:714 admin/metabox.php:802 admin/metabox.php:893
+#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1173
+#: admin/metabox.php:1265 admin/settings.php:1118 admin/settings.php:1462
+#: admin/settings.php:1853 admin/settings.php:2087 admin/settings.php:2348
+#: admin/settings.php:2639 admin/settings.php:2810
 msgid "Insert the name of your blog."
 msgstr "Insérez le nom de votre blog."
 
-#: admin/metabox.php:713 admin/metabox.php:801 admin/metabox.php:892
-#: admin/metabox.php:972 admin/metabox.php:1062 admin/metabox.php:1171
-#: admin/metabox.php:1263 admin/settings.php:1102 admin/settings.php:1446
-#: admin/settings.php:1837 admin/settings.php:2071 admin/settings.php:2332
-#: admin/settings.php:2581 admin/settings.php:2752
+#: admin/metabox.php:715 admin/metabox.php:803 admin/metabox.php:894
+#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1174
+#: admin/metabox.php:1266 admin/settings.php:1119 admin/settings.php:1463
+#: admin/settings.php:1854 admin/settings.php:2088 admin/settings.php:2349
+#: admin/settings.php:2640 admin/settings.php:2811
 msgid "Insert the nicename of the author."
 msgstr "Insérez le joli nom de l'auteur."
 
-#: admin/metabox.php:714 admin/metabox.php:802 admin/metabox.php:893
-#: admin/metabox.php:973 admin/metabox.php:1063 admin/metabox.php:1172
-#: admin/metabox.php:1264 admin/settings.php:1103 admin/settings.php:1447
-#: admin/settings.php:1838 admin/settings.php:2072 admin/settings.php:2333
-#: admin/settings.php:2582 admin/settings.php:2753
+#: admin/metabox.php:716 admin/metabox.php:804 admin/metabox.php:895
+#: admin/metabox.php:976 admin/metabox.php:1066 admin/metabox.php:1175
+#: admin/metabox.php:1267 admin/settings.php:1120 admin/settings.php:1464
+#: admin/settings.php:1855 admin/settings.php:2089 admin/settings.php:2350
+#: admin/settings.php:2641 admin/settings.php:2812
 msgid "Insert the ID of your post."
 msgstr "Insérez l'identifiant de votre message."
 
-#: admin/metabox.php:715 admin/metabox.php:803 admin/metabox.php:894
-#: admin/metabox.php:974 admin/metabox.php:1064 admin/metabox.php:1173
-#: admin/metabox.php:1265 admin/settings.php:1104 admin/settings.php:1448
-#: admin/settings.php:1839 admin/settings.php:2073 admin/settings.php:2334
-#: admin/settings.php:2583 admin/settings.php:2754
+#: admin/metabox.php:717 admin/metabox.php:805 admin/metabox.php:896
+#: admin/metabox.php:977 admin/metabox.php:1067 admin/metabox.php:1176
+#: admin/metabox.php:1268 admin/settings.php:1121 admin/settings.php:1465
+#: admin/settings.php:1856 admin/settings.php:2090 admin/settings.php:2351
+#: admin/settings.php:2642 admin/settings.php:2813
 msgid "Insert the publish date of your post."
 msgstr "Insérez la date de publication de votre article."
 
-#: admin/metabox.php:716 admin/metabox.php:804 admin/metabox.php:895
-#: admin/metabox.php:975 admin/metabox.php:1065 admin/metabox.php:1174
-#: admin/metabox.php:1266 admin/settings.php:1105 admin/settings.php:1449
-#: admin/settings.php:1840 admin/settings.php:2074 admin/settings.php:2335
-#: admin/settings.php:2584 admin/settings.php:2755
+#: admin/metabox.php:718 admin/metabox.php:806 admin/metabox.php:897
+#: admin/metabox.php:978 admin/metabox.php:1068 admin/metabox.php:1177
+#: admin/metabox.php:1269 admin/settings.php:1122 admin/settings.php:1466
+#: admin/settings.php:1857 admin/settings.php:2091 admin/settings.php:2352
+#: admin/settings.php:2643 admin/settings.php:2814
 msgid "Insert the display name of the author."
 msgstr "Insérez le nom d'affichage de l'auteur."
 
-#: admin/metabox.php:721 admin/metabox.php:809 admin/metabox.php:900
-#: admin/metabox.php:979 admin/metabox.php:1070 admin/metabox.php:1179
-#: admin/metabox.php:1273 admin/settings.php:1109 admin/settings.php:1453
-#: admin/settings.php:1844 admin/settings.php:2078 admin/settings.php:2339
-#: admin/settings.php:2589 admin/settings.php:2759
+#: admin/metabox.php:723 admin/metabox.php:811 admin/metabox.php:902
+#: admin/metabox.php:982 admin/metabox.php:1073 admin/metabox.php:1182
+#: admin/metabox.php:1276 admin/settings.php:1126 admin/settings.php:1470
+#: admin/settings.php:1861 admin/settings.php:2095 admin/settings.php:2356
+#: admin/settings.php:2648 admin/settings.php:2818
 msgid "Select"
 msgstr "Sélectionner"
 
-#: admin/metabox.php:777 admin/settings.php:1357
+#: admin/metabox.php:779 admin/settings.php:1374
 msgid "Enable auto publish post to my instagram account"
 msgstr "Activer la publication automatique sur mon compte instagram"
 
-#: admin/metabox.php:862 admin/settings.php:1711
+#: admin/metabox.php:864 admin/settings.php:1728
 msgid "Enable auto publish posts to my twitter account"
 msgstr ""
 "Activer la publication automatique des publications sur mon compte Twitter"
 
-#: admin/metabox.php:871 admin/settings.php:1859
+#: admin/metabox.php:873 admin/settings.php:1876
 msgid "Attach image to twitter post"
 msgstr "Joindre l'image au message Twitter"
 
-#: admin/metabox.php:945 admin/settings.php:2508
+#: admin/metabox.php:948 admin/settings.php:2555
 msgid "Enable auto publish posts to my tumblr account"
 msgstr "Activer la publication automatique des messages sur mon compte tumblr"
 
-#: admin/metabox.php:953 admin/settings.php:2561
+#: admin/metabox.php:956 admin/settings.php:2620
 msgid "Attachment to be posted to Tumblr"
 msgstr "Pièce jointe à publier sur Tumblr"
 
-#: admin/metabox.php:957 admin/settings.php:2566
+#: admin/metabox.php:960 admin/settings.php:2625
 msgid "Image"
 msgstr "Image"
 
-#: admin/metabox.php:958 admin/settings.php:2567
+#: admin/metabox.php:961 admin/settings.php:2626
 msgid "Link"
 msgstr "Lien"
 
-#: admin/metabox.php:1034 admin/settings.php:1995
+#: admin/metabox.php:1037 admin/settings.php:2012
 msgid "Enable auto publish posts to my linkedin account"
 msgstr ""
 "Activer la publication automatique des publications sur mon compte LinkedIn"
 
-#: admin/metabox.php:1044 admin/settings.php:2139
+#: admin/metabox.php:1047 admin/settings.php:2156
 msgid "Share post content with"
 msgstr "Partager le contenu de la publication avec"
 
-#: admin/metabox.php:1048 admin/settings.php:2142
+#: admin/metabox.php:1051 admin/settings.php:2159
 msgid "Public"
 msgstr "Publique"
 
-#: admin/metabox.php:1048
+#: admin/metabox.php:1051
 msgid "Connections only"
 msgstr "Connexions uniquement"
 
-#: admin/metabox.php:1141
+#: admin/metabox.php:1144
 msgid "Enable auto publish posts to my telegram account"
 msgstr "Activer la publication automatique sur mon compte telegram"
 
-#: admin/metabox.php:1158
+#: admin/metabox.php:1161
 msgid "Share a Link"
 msgstr "Partager un lien"
 
-#: admin/metabox.php:1235
+#: admin/metabox.php:1238
 msgid "Enable auto publish posts to my threads account"
 msgstr ""
 "Activer la publication automatique des messages sur mon compte de discussion"
@@ -1141,11 +1125,11 @@ msgstr "Veuillez remplir l'ID client."
 msgid "Please fill Client Secret."
 msgstr "Veuillez remplir le secret client."
 
-#: admin/settings.php:329 admin/settings.php:501
+#: admin/settings.php:329 admin/settings.php:514
 msgid "Please fill api key."
 msgstr "Veuillez remplir la clé API."
 
-#: admin/settings.php:334 admin/settings.php:505
+#: admin/settings.php:334 admin/settings.php:518
 msgid "Please fill api secret."
 msgstr "Veuillez remplir le secret de l'API."
 
@@ -1161,8 +1145,8 @@ msgstr "Veuillez remplir le secret du jeton d'accès à Twitter."
 msgid "Please fill twitter username."
 msgstr "Veuillez remplir le nom d'utilisateur Twitter."
 
-#: admin/settings.php:355 admin/settings.php:456 admin/settings.php:525
-#: admin/settings.php:716
+#: admin/settings.php:355 admin/settings.php:456 admin/settings.php:538
+#: admin/settings.php:733
 msgid "Please fill message format for posting."
 msgstr "Veuillez remplir le format de message pour la publication."
 
@@ -1180,56 +1164,56 @@ msgstr ""
 "Veuillez sélectionner Partager la publication sur le profil ou la page de "
 "l'entreprise"
 
-#: admin/settings.php:510
+#: admin/settings.php:523
 msgid "Please fill tumblr username."
 msgstr "Veuillez remplir le nom d'utilisateur tumblr."
 
-#: admin/settings.php:515
+#: admin/settings.php:528
 msgid "Please fill tumblr access token."
 msgstr "Veuillez remplir le jeton d'accès tumblr."
 
-#: admin/settings.php:520
+#: admin/settings.php:533
 msgid "Please fill tumblr access token secret."
 msgstr "Veuillez remplir le secret du jeton d'accès tumblr."
 
-#: admin/settings.php:568
+#: admin/settings.php:585
 msgid "Please fill telegram application name."
 msgstr "Veuillez remplir le nom de l'application de télégramme."
 
-#: admin/settings.php:573
+#: admin/settings.php:590
 msgid "Please fill Telegram Bot token."
 msgstr "Veuillez remplir le jeton Telegram Bot."
 
-#: admin/settings.php:593
+#: admin/settings.php:610
 msgid "Please fill Channel ID or Group ID"
 msgstr "Veuillez remplir l'ID de chaîne ou l'ID de groupe"
 
-#: admin/settings.php:642
+#: admin/settings.php:659
 msgid "There must be atleast one valid channel ID or Group ID."
 msgstr "Il doit y avoir au moins un ID de canal ou un ID de groupe valide."
 
-#: admin/settings.php:702
+#: admin/settings.php:719
 msgid "Please fill application ID."
 msgstr "Veuillez remplir l'ID de candidature."
 
-#: admin/settings.php:706
+#: admin/settings.php:723
 msgid "Please fill application secret."
 msgstr "Veuillez remplir le formulaire de demande secret."
 
-#: admin/settings.php:711
+#: admin/settings.php:728
 msgid "Please authorize your account."
 msgstr "Veuillez autoriser votre compte."
 
-#: admin/settings.php:757
+#: admin/settings.php:774
 msgid "Unable to authorize the linkedin application. Please check the details."
 msgstr ""
 "Impossible d'autoriser l'application LinkedIn. Veuillez vérifier les détails."
 
-#: admin/settings.php:766
+#: admin/settings.php:783
 msgid "The state does not match. You may be a victim of CSRF."
 msgstr "L'état ne correspond pas. Vous pouvez être victime de CSRF."
 
-#: admin/settings.php:777
+#: admin/settings.php:794
 msgid ""
 "Unable to authorize the facebook application. Please check your curl/fopen "
 "and firewall settings."
@@ -1237,59 +1221,62 @@ msgstr ""
 "Impossible d'autoriser l'application facebook. Veuillez vérifier vos "
 "paramètres curl/fopen et pare-feu."
 
-#: admin/settings.php:786
+#: admin/settings.php:803
 msgid "Account has been authenticated successfully."
 msgstr "Le compte a été authentifié avec succès."
 
-#: admin/settings.php:796
+#: admin/settings.php:813
 #, php-format
 msgid "Successfully connected to %s member area"
 msgstr "Connexion réussie à l'espace membre %s"
 
-#: admin/settings.php:806
+#: admin/settings.php:823
 msgid "Selected pages saved successfully."
 msgstr "Les pages sélectionnées ont été enregistrées avec succès."
 
-#: admin/settings.php:876
+#: admin/settings.php:893
 msgid "Twitter / X"
 msgstr "Twitter/X"
 
-#: admin/settings.php:878
+#: admin/settings.php:895
 msgid "instagram"
 msgstr "instagram"
 
-#: admin/settings.php:882
+#: admin/settings.php:899
 msgid "General Settings"
 msgstr "Réglages généraux"
 
-#: admin/settings.php:897 admin/settings.php:931 admin/settings.php:1272
-#: admin/settings.php:1304 admin/settings.php:1602 admin/settings.php:1687
-#: admin/settings.php:1912 admin/settings.php:1945 admin/settings.php:2247
+#: admin/settings.php:914 admin/settings.php:948 admin/settings.php:1289
+#: admin/settings.php:1321 admin/settings.php:1619 admin/settings.php:1704
+#: admin/settings.php:1929 admin/settings.php:1962 admin/settings.php:2264
+#: admin/settings.php:2531
 msgid "Application needs authorisation"
 msgstr "L'application nécessite une autorisation"
 
-#: admin/settings.php:902 admin/settings.php:936 admin/settings.php:1276
-#: admin/settings.php:1309 admin/settings.php:1607 admin/settings.php:1692
-#: admin/settings.php:1915 admin/settings.php:1950 admin/settings.php:2250
+#: admin/settings.php:919 admin/settings.php:953 admin/settings.php:1293
+#: admin/settings.php:1326 admin/settings.php:1624 admin/settings.php:1709
+#: admin/settings.php:1932 admin/settings.php:1967 admin/settings.php:2267
+#: admin/settings.php:2536
 msgid "Authorize"
 msgstr "Autoriser"
 
-#: admin/settings.php:912 admin/settings.php:947 admin/settings.php:1285
-#: admin/settings.php:1320 admin/settings.php:1618 admin/settings.php:1701
-#: admin/settings.php:1925 admin/settings.php:1961 admin/settings.php:2258
+#: admin/settings.php:929 admin/settings.php:964 admin/settings.php:1302
+#: admin/settings.php:1337 admin/settings.php:1635 admin/settings.php:1718
+#: admin/settings.php:1942 admin/settings.php:1978 admin/settings.php:2275
+#: admin/settings.php:2545
 msgid "Reauthorize"
 msgstr "Réautoriser"
 
-#: admin/settings.php:957 admin/settings.php:1327
+#: admin/settings.php:974 admin/settings.php:1344
 msgid "Application is authorized, go posting."
 msgstr "L'application est autorisée, allez poster."
 
-#: admin/settings.php:970 admin/settings.php:1336 admin/settings.php:1971
-#: admin/settings.php:2268 admin/settings.php:2487
+#: admin/settings.php:987 admin/settings.php:1353 admin/settings.php:1988
+#: admin/settings.php:2285 admin/settings.php:2509
 msgid "Note"
 msgstr "Note"
 
-#: admin/settings.php:970
+#: admin/settings.php:987
 msgid ""
 "You have to create a Facebook application before filling the following "
 "details."
@@ -1297,126 +1284,127 @@ msgstr ""
 "Vous devez créer une application Facebook avant de remplir les détails "
 "suivants."
 
-#: admin/settings.php:971 admin/settings.php:2269
+#: admin/settings.php:988 admin/settings.php:2286
 msgid "Click here </a></b>to create new Facebook application."
 msgstr "Cliquez ici </a></b>pour créer une nouvelle application Facebook."
 
-#: admin/settings.php:972
+#: admin/settings.php:989
 #, php-format
 msgid "In the application page in facebook, navigate to <b>%s</b>."
 msgstr "Dans la page de l'application sur Facebook, accédez à <b>%s</b>."
 
-#: admin/settings.php:972
+#: admin/settings.php:989
 msgid "Set the site url as"
 msgstr "Définissez l'URL du site comme"
 
-#: admin/settings.php:974 admin/settings.php:1340
+#: admin/settings.php:991 admin/settings.php:1357
 #, php-format
 msgid "And then navigate to <b>%s</b>. Set the Valid OAuth redirect URIs as"
 msgstr ""
 "Et puis naviguez jusqu'à <b>%s</b>. Définissez les URI de redirection OAuth "
 "valides sur"
 
-#: admin/settings.php:977 admin/settings.php:1343 admin/settings.php:1978
-#: admin/settings.php:2274 admin/settings.php:2494 admin/settings.php:2626
+#: admin/settings.php:994 admin/settings.php:1360 admin/settings.php:1995
+#: admin/settings.php:2291 admin/settings.php:2516 admin/settings.php:2685
 #, php-format
 msgid "For detailed step-by-step instructions, %sClick here%s"
 msgstr "Pour des instructions détaillées étape par étape, %sCliquez ici%s"
 
-#: admin/settings.php:990 admin/settings.php:1354 admin/settings.php:1708
-#: admin/settings.php:1991 admin/settings.php:2287 admin/settings.php:2505
-#: admin/settings.php:2637
+#: admin/settings.php:1007 admin/settings.php:1371 admin/settings.php:1725
+#: admin/settings.php:2008 admin/settings.php:2304 admin/settings.php:2552
+#: admin/settings.php:2696
 msgid "All fields given below are mandatory"
 msgstr "Tous les champs indiqués ci-dessous sont obligatoires"
 
-#: admin/settings.php:1001 admin/settings.php:1365 admin/settings.php:2648
+#: admin/settings.php:1018 admin/settings.php:1382 admin/settings.php:2707
 msgid "Application name"
 msgstr "Nom de l'application"
 
-#: admin/settings.php:1002 admin/settings.php:1366 admin/settings.php:2649
+#: admin/settings.php:1019 admin/settings.php:1383 admin/settings.php:2708
 msgid "This is for tracking purpose"
 msgstr "Ceci est à des fins de suivi"
 
-#: admin/settings.php:1010 admin/settings.php:1374 admin/settings.php:1718
+#: admin/settings.php:1027 admin/settings.php:1391 admin/settings.php:1735
+#: admin/settings.php:2563
 msgid "Application Selection"
 msgstr "Sélection d'applications"
 
-#: admin/settings.php:1014 admin/settings.php:1378
+#: admin/settings.php:1031 admin/settings.php:1395
 msgid "Own App"
 msgstr "Propre application"
 
-#: admin/settings.php:1014
+#: admin/settings.php:1031
 msgid "requires app submission and Facebook review"
 msgstr "nécessite la soumission de l'application et l'examen de Facebook"
 
-#: admin/settings.php:1014 admin/settings.php:1378
+#: admin/settings.php:1031 admin/settings.php:1395
 msgid "Help"
 msgstr "Aider"
 
-#: admin/settings.php:1016 admin/settings.php:1380 admin/settings.php:1727
+#: admin/settings.php:1033 admin/settings.php:1397 admin/settings.php:1744
 msgid "App approval service available for 50 USD"
 msgstr "Service d'approbation d'application disponible pour 50 USD"
 
-#: admin/settings.php:1019 admin/settings.php:1383 admin/settings.php:1730
+#: admin/settings.php:1036 admin/settings.php:1400 admin/settings.php:1747
 msgid "Expected time frame"
 msgstr "Délai prévu"
 
-#: admin/settings.php:1019 admin/settings.php:1383 admin/settings.php:1730
+#: admin/settings.php:1036 admin/settings.php:1400 admin/settings.php:1747
 msgid "30 days"
 msgstr "30 jours"
 
-#: admin/settings.php:1020 admin/settings.php:1384 admin/settings.php:1731
+#: admin/settings.php:1037 admin/settings.php:1401 admin/settings.php:1748
 msgid "Required details"
 msgstr "Détails requis"
 
-#: admin/settings.php:1020
+#: admin/settings.php:1037
 msgid "1.WordPress login"
 msgstr "1.Connexion WordPress"
 
-#: admin/settings.php:1021
+#: admin/settings.php:1038
 msgid ""
 "2. Admin access to Facebook developer app for review submission (temporary)."
 msgstr ""
 "2. Accès administrateur à l'application de développement Facebook pour la "
 "soumission d'examen (temporaire)."
 
-#: admin/settings.php:1022 admin/settings.php:1386 admin/settings.php:1733
+#: admin/settings.php:1039 admin/settings.php:1403 admin/settings.php:1750
 msgid "For more details contact"
 msgstr "Pour plus de détails contactez"
 
-#: admin/settings.php:1022 admin/settings.php:1386 admin/settings.php:1733
+#: admin/settings.php:1039 admin/settings.php:1403 admin/settings.php:1750
 msgid "Support Desk"
 msgstr "Bureau d'assistance"
 
-#: admin/settings.php:1026
+#: admin/settings.php:1043
 #, php-format
 msgid "%s App ( ready to publish )"
 msgstr "Application %s (prête à publier)"
 
-#: admin/settings.php:1026 admin/settings.php:1390 admin/settings.php:1738
-#: admin/settings.php:2010
+#: admin/settings.php:1043 admin/settings.php:1407 admin/settings.php:1755
+#: admin/settings.php:2027
 msgid "Starts from 10 USD per year"
 msgstr "À partir de 10 USD par an"
 
-#: admin/settings.php:1029 admin/settings.php:1393 admin/settings.php:1743
-#: admin/settings.php:2014
+#: admin/settings.php:1046 admin/settings.php:1410 admin/settings.php:1760
+#: admin/settings.php:2031
 msgid "30 DAYS FREE TRIAL AVAILABLE"
 msgstr "ESSAI GRATUIT DE 30 JOURS DISPONIBLE"
 
-#: admin/settings.php:1032
+#: admin/settings.php:1049
 #, php-format
 msgid "How to use %s application"
 msgstr "Comment utiliser l'application %s"
 
-#: admin/settings.php:1050 admin/settings.php:1414
+#: admin/settings.php:1067 admin/settings.php:1431
 msgid "Application id"
 msgstr "ID d'application"
 
-#: admin/settings.php:1059 admin/settings.php:1423
+#: admin/settings.php:1076 admin/settings.php:1440
 msgid "Application secret"
 msgstr "Secret d'application"
 
-#: admin/settings.php:1069
+#: admin/settings.php:1086
 msgid ""
 "Create app album(with <b> Application name </b>) in the Facebook pages,<br/> "
 "if you are using the posting method <b> Upload image to app album"
@@ -1425,40 +1413,40 @@ msgstr ""
 "pages Facebook,<br/> si vous utilisez la méthode de publication <b> "
 "Téléchargez l'image dans l'album d'application"
 
-#: admin/settings.php:1126
+#: admin/settings.php:1143
 msgid "Clear facebook cache before publishing to facebook"
 msgstr "Effacer le cache facebook avant de publier sur facebook"
 
-#: admin/settings.php:1189
+#: admin/settings.php:1206
 msgid "Select facebook pages for auto publish"
 msgstr "Sélectionnez les pages Facebook pour la publication automatique"
 
-#: admin/settings.php:1198 admin/settings.php:1507
+#: admin/settings.php:1215 admin/settings.php:1524
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: admin/settings.php:1223
+#: admin/settings.php:1240
 msgid "Selected facebook pages for auto publish"
 msgstr "Pages Facebook sélectionnées pour la publication automatique"
 
-#: admin/settings.php:1247 admin/settings.php:1571 admin/settings.php:1882
-#: admin/settings.php:2219 admin/settings.php:2373 admin/settings.php:2777
+#: admin/settings.php:1264 admin/settings.php:1588 admin/settings.php:1899
+#: admin/settings.php:2236 admin/settings.php:2390 admin/settings.php:2836
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: admin/settings.php:1251 admin/settings.php:1575 admin/settings.php:1886
-#: admin/settings.php:2223
+#: admin/settings.php:1268 admin/settings.php:1592 admin/settings.php:1903
+#: admin/settings.php:2240
 msgid "Free trial is available only for first time users"
 msgstr ""
 "L'essai gratuit est disponible uniquement pour les nouveaux utilisateurs"
 
-#: admin/settings.php:1254 admin/settings.php:1578 admin/settings.php:1889
-#: admin/settings.php:2226
+#: admin/settings.php:1271 admin/settings.php:1595 admin/settings.php:1906
+#: admin/settings.php:2243
 msgid "Use reauthorize button to change selected values"
 msgstr ""
 "Utilisez le bouton de réautorisation pour modifier les valeurs sélectionnées"
 
-#: admin/settings.php:1336
+#: admin/settings.php:1353
 msgid ""
 "You have to create a Instagram application before filling the following "
 "details."
@@ -1466,11 +1454,11 @@ msgstr ""
 "Vous devez créer une application Instagram avant de remplir les détails "
 "suivants."
 
-#: admin/settings.php:1337
+#: admin/settings.php:1354
 msgid "Click here </a></b>to create new Instagram application."
 msgstr "Cliquez ici </a></b>pour créer une nouvelle application Instagram."
 
-#: admin/settings.php:1338
+#: admin/settings.php:1355
 #, php-format
 msgid ""
 "In the application page in instagram, navigate to <b>%s</b>. Set the site "
@@ -1479,76 +1467,76 @@ msgstr ""
 "Dans la page de l'application sur instagram, accédez à <b>%s</b>. Définissez "
 "l'URL du site comme"
 
-#: admin/settings.php:1378
+#: admin/settings.php:1395
 msgid "requires app submission and Instagram review"
 msgstr "nécessite la soumission de l'application et l'examen d'Instagram"
 
-#: admin/settings.php:1384 admin/settings.php:1731
+#: admin/settings.php:1401 admin/settings.php:1748
 msgid "1. WordPress login"
 msgstr "1. Connexion WordPress"
 
-#: admin/settings.php:1385
+#: admin/settings.php:1402
 msgid ""
 "2. Admin access to Instagram developer app for review submission (temporary)."
 msgstr ""
 "2. Accès administrateur à l'application de développement Instagram pour la "
 "soumission d'examen (temporaire)."
 
-#: admin/settings.php:1434
+#: admin/settings.php:1451
 msgid "Text message with Image"
 msgstr "Message texte avec image"
 
-#: admin/settings.php:1450
+#: admin/settings.php:1467
 msgid "Optional in the case of <b>Text message with image </b>posting methods"
 msgstr ""
 "Facultatif dans le cas des méthodes de publication de <b>SMS avec image</b>"
 
-#: admin/settings.php:1502
+#: admin/settings.php:1519
 msgid "Select instagram pages for auto publish"
 msgstr "Sélectionnez les pages Instagram pour la publication automatique"
 
-#: admin/settings.php:1547
+#: admin/settings.php:1564
 msgid "Selected instagram pages for auto publish"
 msgstr "Pages Instagram sélectionnées pour la publication automatique"
 
-#: admin/settings.php:1628 admin/settings.php:1651 admin/settings.php:2623
+#: admin/settings.php:1645 admin/settings.php:1668 admin/settings.php:2682
 msgid "Note:"
 msgstr "Note:"
 
-#: admin/settings.php:1628 admin/settings.php:1651
+#: admin/settings.php:1645 admin/settings.php:1668
 msgid ""
 "You have to create a Twitter application before filling in following fields."
 msgstr ""
 "Vous devez créer une application Twitter avant de remplir les champs "
 "suivants."
 
-#: admin/settings.php:1630 admin/settings.php:1654
+#: admin/settings.php:1647 admin/settings.php:1671
 #, php-format
 msgid "%sClick here%s to create a new application."
 msgstr "%sCliquez ici%s pour créer une nouvelle application."
 
-#: admin/settings.php:1635 admin/settings.php:1659
+#: admin/settings.php:1652 admin/settings.php:1676
 #, php-format
 msgid "In the twitter application, navigate to <b>%s</b>."
 msgstr "Dans l'application Twitter, accédez à <b>%s</b>."
 
-#: admin/settings.php:1638
+#: admin/settings.php:1655
 #, php-format
 msgid "Set <b>App permissions</b> to <b>%s</b>."
 msgstr "Définissez les <b>autorisations de l'application</b> sur <b>%s</b>."
 
-#: admin/settings.php:1641 admin/settings.php:1668
+#: admin/settings.php:1658 admin/settings.php:1685
 #, php-format
 msgid "Specify <b>Website URL</b> as %s"
 msgstr "Spécifiez l'<b>URL du site Web</b> comme %s"
 
-#: admin/settings.php:1646
+#: admin/settings.php:1663
 #, php-format
 msgid "After updation , navigate to <b>%s</b> where you will get <b>%s</b>."
 msgstr ""
 "Après la mise à jour, accédez à <b>%s</b> où vous obtiendrez <b>%s</b>."
 
-#: admin/settings.php:1647 admin/settings.php:1674
+#: admin/settings.php:1664 admin/settings.php:1691
 #, php-format
 msgid ""
 "For detailed step by step instructions <b><a href=\"%s\" target=\"_blank\"> "
@@ -1557,7 +1545,7 @@ msgstr ""
 "Pour des instructions détaillées étape par étape <b><a href=\"%s\" "
 "target=\"_blank\"> Cliquez ici"
 
-#: admin/settings.php:1663
+#: admin/settings.php:1680
 #, php-format
 msgid ""
 "Set <b>App permissions</b> to <b>%s</b>, and <b>Type of App</b> to <b>%s</"
@@ -1567,7 +1555,7 @@ msgstr ""
 "<b>type d'application</b> sur <b>%s</b>.<br>Dans la section <b>informations "
 "sur l'application</b>, définissez l'<b>URI de redirection</b> sur : %s"
 
-#: admin/settings.php:1673
+#: admin/settings.php:1690
 #, php-format
 msgid ""
 "After updation , navigate to <b>%s</b> where you will get <b>%s</b><br>under "
@@ -1576,59 +1564,59 @@ msgstr ""
 "Après la mise à jour, accédez à <b>%s</b> où vous obtiendrez <b>%s</"
 "b><br>sous <b>%s</b>."
 
-#: admin/settings.php:1722
-msgid "Own App- Traditional (Deprecating soon. Use OAuth 2.0)"
+#: admin/settings.php:1739
+msgid "Own App - Traditional (Deprecating soon. Use OAuth 2.0)"
 msgstr ""
 "Application propre - Traditionnelle (bientôt obsolète. Utiliser OAuth 2.0)"
 
-#: admin/settings.php:1725
+#: admin/settings.php:1742 admin/settings.php:2570
 msgid "Own App (OAuth2.0 :Recommended)"
-msgstr "Propre application (OAuth2.0 : recommandé)"
+msgstr "Application personnelle (OAuth2.0 : recommandé)"
 
-#: admin/settings.php:1732
+#: admin/settings.php:1749
 msgid ""
 "2. Admin access to Twitter developer app for review submission (temporary)"
 msgstr ""
 "2. Accès administrateur à l'application de développement Twitter pour la "
 "soumission d'examen (temporaire)"
 
-#: admin/settings.php:1765 admin/settings.php:2516
+#: admin/settings.php:1782 admin/settings.php:2575
 msgid "API key"
 msgstr "Clé API"
 
-#: admin/settings.php:1774 admin/settings.php:2525
+#: admin/settings.php:1791 admin/settings.php:2584
 msgid "API secret"
 msgstr "Clé secrète de l'API"
 
-#: admin/settings.php:1784 admin/settings.php:2046
+#: admin/settings.php:1801 admin/settings.php:2063
 msgid "Client ID"
 msgstr "Identité du client"
 
-#: admin/settings.php:1792
+#: admin/settings.php:1809
 msgid "Client Secret "
 msgstr "Secret client "
 
-#: admin/settings.php:1801
+#: admin/settings.php:1818
 msgid "Twitter username"
 msgstr "Nom d'utilisateur Twitter"
 
-#: admin/settings.php:1810 admin/settings.php:2542
+#: admin/settings.php:1827 admin/settings.php:2601
 msgid "Access token"
 msgstr "Jeton d'accès"
 
-#: admin/settings.php:1819 admin/settings.php:2551
+#: admin/settings.php:1836 admin/settings.php:2610
 msgid "Access token secret"
 msgstr "Secret du jeton d'accès"
 
-#: admin/settings.php:1867
+#: admin/settings.php:1884
 msgid "Twitter character limit"
 msgstr "Limite de caractères Twitter"
 
-#: admin/settings.php:1870
+#: admin/settings.php:1887
 msgid "The character limit of tweets  is 280."
 msgstr "La limite de caractères des tweets est de 280."
 
-#: admin/settings.php:1871
+#: admin/settings.php:1888
 msgid ""
 "Use 140 for languages like Chinese, Japanese and Korean <br/> which won't "
 "get the 280 character length limit."
@@ -1636,7 +1624,7 @@ msgstr ""
 "Utilisez 140 pour les langues telles que le chinois, le japonais et le "
 "coréen <br/> qui n'obtiendront pas la limite de 280 caractères."
 
-#: admin/settings.php:1971
+#: admin/settings.php:1988
 msgid ""
 "You have to create a Linkedin application before filling the following "
 "details."
@@ -1644,44 +1632,45 @@ msgstr ""
 "Vous devez créer une application Linkedin avant de remplir les détails "
 "suivants."
 
-#: admin/settings.php:1972
+#: admin/settings.php:1989
 msgid "Click here </a></b> to create new Linkedin application."
 msgstr "Cliquez ici </a></b> pour créer une nouvelle application Linkedin."
 
-#: admin/settings.php:1973
+#: admin/settings.php:1990
 msgid "Specify the website url for the application as"
 msgstr "Spécifiez l'URL du site Web de l'application comme suit"
 
-#: admin/settings.php:1975
+#: admin/settings.php:1992
 msgid "Specify the authorized redirect url as"
 msgstr "Spécifiez l'url de redirection autorisée comme"
 
-#: admin/settings.php:2001
+#: admin/settings.php:2018
 #, php-format
 msgid "%s usage"
 msgstr "%s utilisation"
 
-#: admin/settings.php:2005
-msgid "Own app-Basic profile fields only"
-msgstr "Champs de profil de base de l'application propre uniquement"
+#: admin/settings.php:2022
+msgid "Own app - Basic profile fields only"
+msgstr "Application personnelle - Champs de profil de base uniquement"
 
-#: admin/settings.php:2007
-msgid "Own app-Basic profile fields + company pages"
-msgstr "Champs de profil App-Basic propres + pages d'entreprise"
+#: admin/settings.php:2024
+msgid "Own app - Basic profile fields + company pages"
+msgstr ""
+"Application personnelle - Champs de profil de base + pages d'entreprise"
 
-#: admin/settings.php:2007
+#: admin/settings.php:2024
 msgid "requires app submission and LinkedIn review"
 msgstr "nécessite la soumission de l'application et l'examen de LinkedIn"
 
-#: admin/settings.php:2008 admin/settings.php:2051
+#: admin/settings.php:2025 admin/settings.php:2068
 msgid "How can I create a Linkedin Application"
 msgstr "Comment puis-je créer une application Linkedin"
 
-#: admin/settings.php:2033
+#: admin/settings.php:2050
 msgid "LinkedIn Sign-In Method"
 msgstr "Méthode de connexion LinkedIn"
 
-#: admin/settings.php:2035
+#: admin/settings.php:2052
 msgid ""
 "Starting from August 1, 2023, \"<b>Sign In with LinkedIn</b>\" (SIWL) has "
 "been deprecated. For all new apps, we strongly recommend using \"<b>Sign In "
@@ -1702,47 +1691,47 @@ msgstr ""
 "d’ajouter cette option dans la section produit de votre application de "
 "développement LinkedIn."
 
-#: admin/settings.php:2040
+#: admin/settings.php:2057
 msgid "Sign In with LinkedIn"
 msgstr "Connectez-vous avec LinkedIn"
 
-#: admin/settings.php:2042
+#: admin/settings.php:2059
 msgid "Sign In with LinkedIn using OpenID Connect"
 msgstr "Connectez-vous avec LinkedIn en utilisant OpenID Connect"
 
-#: admin/settings.php:2055
+#: admin/settings.php:2072
 msgid "Client Secret"
 msgstr "Clé secrète du client"
 
-#: admin/settings.php:2075 admin/settings.php:2336
+#: admin/settings.php:2092 admin/settings.php:2353
 msgid "Optional"
 msgstr "Optionnelle"
 
-#: admin/settings.php:2110 admin/settings.php:2129
+#: admin/settings.php:2127 admin/settings.php:2146
 msgid "Share post to profile"
 msgstr "Partager la publication sur le profil"
 
-#: admin/settings.php:2141
+#: admin/settings.php:2158
 msgid "Connections"
 msgstr "Connections"
 
-#: admin/settings.php:2146
+#: admin/settings.php:2163
 msgid "Select pages for auto publish"
 msgstr "Sélectionner les pages pour la publication automatique"
 
-#: admin/settings.php:2164
+#: admin/settings.php:2181
 msgid "Failed to fetch company details."
 msgstr "Échec de la récupération des détails de l'entreprise."
 
-#: admin/settings.php:2181 admin/settings.php:2185
+#: admin/settings.php:2198 admin/settings.php:2202
 msgid "No companies found."
 msgstr "Aucune entreprise trouvée."
 
-#: admin/settings.php:2194
+#: admin/settings.php:2211
 msgid "Share post to company page"
 msgstr "Partager la publication sur la page de l'entreprise"
 
-#: admin/settings.php:2268
+#: admin/settings.php:2285
 msgid ""
 "You have to create a Facebook application with Access the Threads API as Use "
 "case before filling the following details."
@@ -1750,7 +1739,7 @@ msgstr ""
 "Vous devez créer une application Facebook avec **\"Access the Threads "
 "API\"** comme cas d'utilisation avant de remplir les détails suivants."
 
-#: admin/settings.php:2271
+#: admin/settings.php:2288
 msgid ""
 "In the application page in facebook, navigate to Use cases > Access the "
 "Threads API > Customize > Settings. Set Redirect Callback URLs as "
@@ -1759,29 +1748,29 @@ msgstr ""
 "Accéder à l'API Threads > Personnaliser > Paramètres. Définissez les URL de "
 "rappel de redirection comme "
 
-#: admin/settings.php:2291
+#: admin/settings.php:2308
 msgid "Enable auto publish posts to my Threads account"
 msgstr "Activer la publication automatique des messages sur mon compte Threads"
 
-#: admin/settings.php:2300
+#: admin/settings.php:2317
 msgid "Threads app ID"
 msgstr "ID de l'application Discussions"
 
-#: admin/settings.php:2308
+#: admin/settings.php:2325
 msgid "Threads app secret"
 msgstr "Secret de l'application Discussions"
 
-#: admin/settings.php:2317
+#: admin/settings.php:2334
 msgid "Threads username"
 msgstr "Nom d'utilisateur des discussions"
 
-#: admin/settings.php:2487
+#: admin/settings.php:2509
 msgid ""
 "You have to create a Tumblr application before filling in following fields."
 msgstr ""
 "Vous devez créer une application Tumblr avant de remplir les champs suivants."
 
-#: admin/settings.php:2488
+#: admin/settings.php:2510
 msgid ""
 "Click here </a></b> to create new application.<br> Specify the application "
 "website for the application as"
@@ -1789,29 +1778,33 @@ msgstr ""
 "Cliquez ici </a></b> pour créer une nouvelle application.<br> Spécifiez le "
 "site Web de l'application pour l'application comme"
 
-#: admin/settings.php:2490
+#: admin/settings.php:2512
 msgid "Specify the default callback URL as"
 msgstr "Spécifiez l'URL de rappel par défaut comme"
 
-#: admin/settings.php:2521
+#: admin/settings.php:2567
+msgid "Own App - Traditional"
+msgstr "Propre application - Traditionnelle"
+
+#: admin/settings.php:2580
 msgid "How can I create a Tumblr Application"
 msgstr "Comment puis-je créer une application Tumblr"
 
-#: admin/settings.php:2533
+#: admin/settings.php:2592
 msgid "Tumblr username"
 msgstr "Nom d'utilisateur Tumblr"
 
-#: admin/settings.php:2585
+#: admin/settings.php:2644
 msgid "Note : </b>Message can not be posted to tumblr while attaching image."
 msgstr ""
 "Remarque : </b> Le message ne peut pas être publié sur tumblr lors de la "
 "pièce jointe."
 
-#: admin/settings.php:2608
+#: admin/settings.php:2667
 msgid "save"
 msgstr "sauver"
 
-#: admin/settings.php:2624
+#: admin/settings.php:2683
 msgid ""
 "You have to generate Telegram Bot token, group id, channel id before filling "
 "the following details."
@@ -1819,20 +1812,20 @@ msgstr ""
 "Vous devez générer le jeton Telegram Bot, l'identifiant de groupe, "
 "l'identifiant de canal avant de remplir les détails suivants."
 
-#: admin/settings.php:2640
+#: admin/settings.php:2699
 msgid "Enable auto publish post to my telegram account"
 msgstr ""
 "Activer la publication automatique de la publication sur mon compte Telegram"
 
-#: admin/settings.php:2657
+#: admin/settings.php:2716
 msgid "Bot token"
 msgstr "Bot token"
 
-#: admin/settings.php:2667
+#: admin/settings.php:2726
 msgid "Bot Username"
 msgstr "Nom d'utilisateur du robot"
 
-#: admin/settings.php:2669
+#: admin/settings.php:2728
 msgid ""
 "[Auto-filled after you submit the form with a valid Bot Token. No need to "
 "enter it.]"
@@ -1840,11 +1833,11 @@ msgstr ""
 "[Rempli automatiquement après avoir soumis le formulaire avec un jeton de "
 "robot valide. Pas besoin de le saisir.]"
 
-#: admin/settings.php:2699
+#: admin/settings.php:2758
 msgid "Channel IDs(Chat ID) for auto publish"
 msgstr "Sélectionner les pages pour la publication automatique"
 
-#: admin/settings.php:2701 admin/settings.php:2715
+#: admin/settings.php:2760 admin/settings.php:2774
 msgid ""
 "[Prefix each ID with a \"-\" symbol and separate them with commas e.g., "
 "-123456789, -987654321]"
@@ -1852,45 +1845,45 @@ msgstr ""
 "[Préfixez chaque ID par un symbole \"-\" et séparez-les par des virgules, "
 "par exemple -123456789, -987654321]"
 
-#: admin/settings.php:2713
+#: admin/settings.php:2772
 msgid "Group IDs(Chat ID) for auto publish"
 msgstr "ID de groupe (ID de chat) pour la publication automatique"
 
-#: admin/settings.php:2737
+#: admin/settings.php:2796
 msgid "Text message with Image "
 msgstr "Message texte avec image "
 
-#: admin/settings.php:2739
+#: admin/settings.php:2798
 msgid "Share a Link "
 msgstr "Partager un lien "
 
-#: admin/settings.php:2788
+#: admin/settings.php:2847
 msgid "Basic Settings"
 msgstr "Paramètres de base"
 
-#: admin/settings.php:2791
+#: admin/settings.php:2850
 msgid "Publish wordpress `posts` to social media"
 msgstr "Publier des \"messages\" wordpress sur les réseaux sociaux"
 
-#: admin/settings.php:2800
+#: admin/settings.php:2859
 msgid "Publish wordpress `pages` to social media"
 msgstr "Publier des \"pages\" wordpress sur les réseaux sociaux"
 
-#: admin/settings.php:2824
+#: admin/settings.php:2883
 msgid "Select wordpress custom post types for auto publish"
 msgstr ""
 "Sélectionnez les types de publication personnalisés wordpress pour la "
 "publication automatique"
 
-#: admin/settings.php:2841
+#: admin/settings.php:2900
 msgid "Advanced Settings"
 msgstr "Réglages avancés"
 
-#: admin/settings.php:2843
+#: admin/settings.php:2902
 msgid "Enforce og tags for Facebook, LinkedIn and Telegram"
 msgstr "Appliquer les balises og pour Facebook, LinkedIn et Telegram"
 
-#: admin/settings.php:2845
+#: admin/settings.php:2904
 msgid ""
 "If you enable, Open Graph tags will be generated while posting to Facebook "
 "and LinkedIn. <br/>\n"
@@ -1908,7 +1901,7 @@ msgstr ""
 "Partagez un lien vers votre article de blog </b> ou <b> Joignez votre "
 "article de blog </b> sur Facebook et également lors du partage sur LinkedIn."
 
-#: admin/settings.php:2847
+#: admin/settings.php:2906
 msgid ""
 "If Open Graph tags are present, most major content sharing platform's "
 "crawler will not have to rely on it's own analysis to determine what content "
@@ -1921,11 +1914,11 @@ msgstr ""
 "ce qui améliore la probabilité que les informations partagées correspondent "
 "exactement à ce que vous vouliez."
 
-#: admin/settings.php:2856
+#: admin/settings.php:2915
 msgid "Add twitter cards while posting to twitter"
 msgstr "Ajouter des cartes Twitter lors de la publication sur Twitter"
 
-#: admin/settings.php:2858
+#: admin/settings.php:2917
 msgid ""
 "By crawling twitter card specific meta tags, twitter can generate a "
 "summarised preview of the tweeted link.<br/> * To generete tweet preview of "
@@ -1936,68 +1929,68 @@ msgstr ""
 "tweet de la publication, définissez <b>Joindre le média à la publication "
 "Twitter</b> sur <b>Non< /b>."
 
-#: admin/settings.php:2868
+#: admin/settings.php:2927
 msgid "Select post categories for auto publish"
 msgstr ""
 "Sélectionnez les catégories de publication pour la publication automatique"
 
-#: admin/settings.php:2874
+#: admin/settings.php:2933
 msgid "All"
 msgstr "Toute"
 
-#: admin/settings.php:2876
+#: admin/settings.php:2935
 msgid "Specific"
 msgstr "Spécifique"
 
-#: admin/settings.php:2912
+#: admin/settings.php:2971
 msgid "NIL"
 msgstr "NÉANT"
 
-#: admin/settings.php:2919
+#: admin/settings.php:2978
 msgid "Auto publish on creating posts/pages/custom post types"
 msgstr ""
 "Publication automatique lors de la création de publications/pages/types de "
 "publication personnalisés"
 
-#: admin/settings.php:2922 admin/settings.php:2932
+#: admin/settings.php:2981 admin/settings.php:2991
 msgid "Enabled"
 msgstr "Activée"
 
-#: admin/settings.php:2923 admin/settings.php:2933
+#: admin/settings.php:2982 admin/settings.php:2992
 msgid "Disabled"
 msgstr "Désactivée"
 
-#: admin/settings.php:2924 admin/settings.php:2934
+#: admin/settings.php:2983 admin/settings.php:2993
 msgid "Use metabox settings"
 msgstr "Utiliser les paramètres de la métabox"
 
-#: admin/settings.php:2929
+#: admin/settings.php:2988
 msgid "Auto publish on editing posts/pages/custom post types"
 msgstr ""
 "Publication automatique lors de la modification des publications/pages/types "
 "de publication personnalisés"
 
-#: admin/settings.php:2939
+#: admin/settings.php:2998
 msgid "Enable SSL peer verification in remote requests"
 msgstr "Activer la vérification SSL peer dans les requêtes distantes"
 
-#: admin/settings.php:2947
+#: admin/settings.php:3006
 msgid "Apply filters during publishing"
 msgstr "Appliquer des filtres lors de la publication"
 
-#: admin/settings.php:2986
+#: admin/settings.php:3045
 msgid "Other Settings"
 msgstr "Autres réglages"
 
-#: admin/settings.php:2989
+#: admin/settings.php:3048
 msgid "Enable credit link to author"
 msgstr "Activer le lien de crédit à l'auteur"
 
-#: admin/settings.php:2999
+#: admin/settings.php:3058
 msgid "Enable premium version ads"
 msgstr "Activer les annonces de la version premium"
 
-#: admin/settings.php:3010
+#: admin/settings.php:3069
 msgid "Update Settings"
 msgstr "Modifier"
 

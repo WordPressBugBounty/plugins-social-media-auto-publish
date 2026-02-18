@@ -90,6 +90,22 @@ if(!$_POST && isset($_GET['tw_auth_err']) && $_GET['tw_auth_err'] != '')
 
 <?php
 }
+if(!$_POST && isset($_GET['tb_auth_err']) && $_GET['tb_auth_err'] != '')
+{
+	?>
+<style type='text/css'>
+#smap_notice_td
+{
+	display:none !important;
+}
+</style>
+<div class="xyz_smap_system_notice_area_style0" id="xyz_smap_system_notice_area">
+<?php echo esc_html($_GET['tb_auth_err']);?>
+ &nbsp;&nbsp;&nbsp;<span
+		id="xyz_smap_system_notice_area_dismiss" class="xyz_smap_hide_ln_authErr"> <?php esc_html_e('Dismiss','social-media-auto-publish');?> </span>
+</div>
+<?php
+}
 
 $erf=0;
 if(isset($_POST['fb']))
@@ -487,60 +503,73 @@ if(isset($_POST['tmblr']))
         exit();
     }
     $tmbappid=$tmbappsecret=$tbid=$tbaccess_token=$tbaccess_token_secret='';
+	$tmbappid_old=get_option('xyz_smap_tbconsumer_id');
+	$tmbappsecret_old=get_option('xyz_smap_tbconsumer_secret');
+	$xyz_smap_tb_app_sel_mode_old=get_option('xyz_smap_tb_app_sel_mode');
     $tmbappid=sanitize_text_field($_POST['xyz_smap_tbconsumer_id']);
     $tmbappsecret=sanitize_text_field($_POST['xyz_smap_tbconsumer_secret']);
     $tbid=sanitize_text_field($_POST['xyz_smap_tb_id']);
     $tbaccess_token=sanitize_text_field($_POST['xyz_smap_current_tbappln_token']);
+	$xyz_smap_tb_app_sel_mode=intval($_POST['xyz_smap_tb_app_sel_mode']);
+	if($xyz_smap_tb_app_sel_mode==0)
     $tbaccess_token_secret=sanitize_text_field($_POST['xyz_smap_tbaccestok_secret']);
+	else{
+		$tb_af = get_option('xyz_smap_tb_af');
+		$tb_refresh_token=get_option('xyz_smap_tb_refresh_token');
+	}
     $tbposting_permission=intval($_POST['xyz_smap_tbpost_permission']);
     $xyz_smap_tbmedia_permission=intval($_POST['xyz_smap_tbmedia_permission']);
     $tbmessagetopost=sanitize_textarea_field($_POST['xyz_smap_tbmessage']);
-    if($tmbappid=="" && $tbposting_permission==1)
+	if($tbposting_permission==1){
+		if($tmbappid=="")
     {
         $tberf=1;
         $tbms1= __('Please fill api key.','social-media-auto-publish');
     }
-    elseif($tmbappsecret=="" && $tbposting_permission==1)
+		elseif($tmbappsecret=="")
     {
         $tbms2= __('Please fill api secret.','social-media-auto-publish');
         $tberf=1;
     }
-    elseif($tbid=="" && $tbposting_permission==1)
+		elseif($tbid=="")
     {
         $tbms3= __('Please fill tumblr username.','social-media-auto-publish');
         $tberf=1;
     }
-    elseif($tbaccess_token=="" && $tbposting_permission==1)
+		elseif($tbaccess_token=="" && $xyz_smap_tb_app_sel_mode==0)
     {
         $tbms4= __('Please fill tumblr access token.','social-media-auto-publish');
         $tberf=1;
     }
-    elseif($tbaccess_token_secret=="" && $tbposting_permission==1)
+		elseif($tbaccess_token_secret=="" &&$xyz_smap_tb_app_sel_mode==0)
     {
         $tbms5= __('Please fill tumblr access token secret.','social-media-auto-publish');
         $tberf=1;
     }
-    elseif($tbmessagetopost=="" && $tbposting_permission==1)
+		elseif($tbmessagetopost=="")
     {
         $tbms6= __('Please fill message format for posting.','social-media-auto-publish');
         $tberf=1;
     }
-    else
+		else{
+			if($xyz_smap_tb_app_sel_mode==1 && ($tmbappid!=$tmbappid_old || $tmbappsecret!=$tmbappsecret_old || $xyz_smap_tb_app_sel_mode_old != $xyz_smap_tb_app_sel_mode))
     {
-        $tberf=0;
-        if($tbmessagetopost=="")
-        {
-            $tbmessagetopost="{POST_TITLE}-{PERMALINK}";
+				update_option('xyz_smap_tb_af',1);
+				update_option('xyz_smap_tb_refresh_token','');	
         }
         update_option('xyz_smap_tbconsumer_id',$tmbappid);
         update_option('xyz_smap_tbconsumer_secret',$tmbappsecret);
         update_option('xyz_smap_tb_id',$tbid);
+			if($xyz_smap_tb_app_sel_mode==0){
         update_option('xyz_smap_current_tbappln_token',$tbaccess_token);
         update_option('xyz_smap_tbaccestok_secret',$tbaccess_token_secret);
+			}
         update_option('xyz_smap_tbmessage',$tbmessagetopost);
         update_option('xyz_smap_tbpost_permission',$tbposting_permission);
         update_option('xyz_smap_tbpost_media_permission',$xyz_smap_tbmedia_permission);
+			update_option('xyz_smap_tb_app_sel_mode',$xyz_smap_tb_app_sel_mode);
     }
+}
 }
 
 
@@ -779,7 +808,7 @@ if(isset($_GET['msg']) && $_GET['msg']==3) //response['body'] not set
 </div>
 <?php
 }
-if((isset($_GET['msg']) && $_GET['msg'] == 4 ) || (isset($_GET['msg']) && $_GET['msg'] == 8 )|| (isset($_GET['msg']) && $_GET['msg'] == 10 ))
+if((isset($_GET['msg']) && $_GET['msg'] == 4 ) || (isset($_GET['msg']) && $_GET['msg'] == 8 )|| (isset($_GET['msg']) && $_GET['msg'] == 10 ) || (isset($_GET['msg']) && $_GET['msg'] ==11 ))
 {
 ?>
 <div class="xyz_smap_system_notice_area_style1" id="xyz_smap_system_notice_area">
@@ -2406,6 +2435,11 @@ $thaf=get_option('xyz_smap_thaf');
 // 	$xyz_smap_utf_decode_enable=get_option('xyz_smap_utf_decode_enable');
 	?>
 <div id="xyz_smap_tumblr_settings" class="xyz_smap_tabcontent">
+	<?php	$xyz_smap_tb_app_sel_mode=get_option('xyz_smap_tb_app_sel_mode');	
+	$tbappid=get_option('xyz_smap_tbconsumer_id');	$tbappsecret=get_option('xyz_smap_tbconsumer_secret');
+	$tbaccess_token=get_option('xyz_smap_current_tbappln_token');	$tbaccess_token_secret=get_option('xyz_smap_tbaccestok_secret');
+	$tb_af=get_option('xyz_smap_tb_af');
+?>
 <table class="widefat" style="width: 99%;background-color: #FFFBCC">
 <tr>
 <td id="bottomBorderNone" style="border: 1px solid #FCC328;">
@@ -2414,7 +2448,7 @@ $thaf=get_option('xyz_smap_thaf');
 		<b><a href="https://www.tumblr.com/oauth/apps" target="_blank"> <?php _e('Click here </a></b> to create new application.<br> Specify the application website for the application as','social-media-auto-publish'); ?> :
 		<span style="color: red;"><?php echo  (is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST']; ?></span>
 		<br> <?php _e('Specify the default callback URL as','social-media-auto-publish'); ?> :
-		<span style="color: red;"><?php echo  admin_url().'admin.php'; ?></span>
+		<span style="color: red;"><?php echo admin_url('admin.php?page=social-media-auto-publish-settings'); ?></span>
 		<br> 
 		<?php printf(
     __('For detailed step-by-step instructions, %sClick here%s', 'social-media-auto-publish'),
@@ -2426,6 +2460,30 @@ $thaf=get_option('xyz_smap_thaf');
 </td>
 </tr>
 </table>
+<?php
+if($xyz_smap_tb_app_sel_mode==1)
+{
+	if($tb_af==1 && $tbappid!="" && $tbappsecret!="")
+	{
+		?>
+			<span style="color: red;" id="auth_message" > <?php _e('Application needs authorisation','social-media-auto-publish'); ?> </span> <br>
+	<form method="post">
+	<?php wp_nonce_field( 'xyz_smap_tb_auth_form_nonce' );?>
+		<input type="submit" class="xyz_smap_submit_smap_new" name="tb_auth"
+			value="<?php _e('Authorize','social-media-auto-publish'); ?>" /><br><br>
+	</form>
+	<?php }
+	else if($tb_af==0 && $tbappid!="" && $tbappsecret!="")
+	{
+		?>
+	<form method="post">
+	<?php wp_nonce_field( 'xyz_smap_tb_auth_form_nonce' );?>
+	<input type="submit" class="xyz_smap_submit_smap_new" name="tb_auth"
+	value="<?php _e('Reauthorize','social-media-auto-publish'); ?>" title="Reauthorize the account" /><br><br>
+	</form>
+	<?php }
+}
+?>
 <form method="post">
 	<?php wp_nonce_field( 'xyz_smap_tb_settings_form_nonce' );?>
 			<div style="font-weight: bold;padding: 3px;"> <?php _e('All fields given below are mandatory','social-media-auto-publish'); ?> </div>
@@ -2436,6 +2494,18 @@ $thaf=get_option('xyz_smap_thaf');
 					<td  class="xyz_smap_switch_field">
 					<label id="xyz_smap_tbpost_permission_yes" class="xyz_smap_toggle_on"><input type="radio" name="xyz_smap_tbpost_permission" value="1" <?php  if(get_option('xyz_smap_tbpost_permission')==1) echo 'checked';?>/> <?php _e('Yes','social-media-auto-publish'); ?> </label>
 					<label id="xyz_smap_tbpost_permission_no" class="xyz_smap_toggle_off"><input type="radio" name="xyz_smap_tbpost_permission" value="0" <?php  if(get_option('xyz_smap_tbpost_permission')==0) echo 'checked';?>/> <?php _e('No','social-media-auto-publish'); ?> </label>
+					</td>
+				</tr>
+				<tr valign="top">
+				<td width="50%"> <?php _e('Application Selection','social-media-auto-publish'); ?>
+				</td>
+				<td>
+					<input type="radio" name="xyz_smap_tb_app_sel_mode" id="xyz_smap_tb_app_sel_mode_reviewd" value="0" <?php if(get_option('xyz_smap_tb_app_sel_mode')==0)echo 'checked';?>>
+					<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App - Traditional','social-media-auto-publish');?></span>
+					<br>
+					<input type="radio" name="xyz_smap_tb_app_sel_mode" id="xyz_smap_tb_app_sel_mode" value="1" <?php if($xyz_smap_tb_app_sel_mode==1) echo 'checked';?>>
+					<span style="color: #a7a7a7;font-weight: bold;"> <?php _e('Own App (OAuth2.0 :Recommended)','tumblr-auto-publish'); ?></span>
+					<br/>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -2464,7 +2534,7 @@ $thaf=get_option('xyz_smap_thaf');
 						value="<?php if($tbms3=="") {echo esc_html(get_option('xyz_smap_tb_id'));}?>" />
 					</td>
 				</tr>
-				<tr valign="top">
+			<tr valign="top" class="xyz_smap_tumblr_traditional_settings">
 					<td> <?php _e('Access token','social-media-auto-publish'); ?>
 					<span class="xyz_smap_mandatory">*</span>
 					</td>
@@ -2473,7 +2543,7 @@ $thaf=get_option('xyz_smap_thaf');
 						value="<?php if($tbms4=="") {echo esc_html(get_option('xyz_smap_current_tbappln_token'));}?>" />
 					</td>
 				</tr>
-				<tr valign="top">
+				<tr valign="top" class="xyz_smap_tumblr_traditional_settings">
 					<td> <?php _e('Access token secret','social-media-auto-publish'); ?>
 					<span class="xyz_smap_mandatory">*</span>
 					</td>
@@ -2965,7 +3035,7 @@ jQuery(document).ready(function() {
 			document.getElementById("xyz_smap_default_twtab_settings").click();
 
 			<?php }
-			else if(isset($_POST['tmblr'])){?>
+			else if(isset($_POST['tmblr']) || (isset($_GET['msg']) && $_GET['msg']==11)){?>
 			document.getElementById("xyz_smap_default_tmtab_settings").click();
 			<?php }
 			else if(isset($_POST['linkdn']) ||  isset($_GET['err'])){?>
@@ -3032,7 +3102,7 @@ jQuery(document).ready(function() {
 	   xyz_smap_cat_all=1;
    XyzSmapToggleRadio(xyz_smap_cat_all,'xyz_smap_include_categories');
 
-
+const accountTypes = XYZ_SMAP_CONST.ACCOUNT_TYPES;
    var smap_toggle_element_ids=['xyz_smap_post_permission','xyz_smap_include_categories','xyz_smap_default_selection_edit','xyz_smap_default_selection_create','xyz_smap_peer_verification',
 		'xyz_smap_twpost_image_permission','xyz_smap_twpost_permission','xyz_smap_ln_shareprivate', 'xyz_smap_tbpost_permission',
 		 'xyz_smap_lnpost_permission','xyz_smap_igpost_permission','xyz_smap_tgpost_permission','xyz_smap_include_pages','xyz_smap_include_posts','xyz_credit_link','xyz_smap_premium_version_ads','xyz_smap_lnshare_to_profile','xyz_smap_free_enforce_og_tags','xyz_smap_free_enforce_twitter_cards','xyz_smap_clear_fb_cache','xyz_smap_thpost_permission'];
@@ -3131,6 +3201,12 @@ var xyz_smap_lnshare_to_profile='<?php echo get_option('xyz_smap_lnshare_to_prof
 		   	jQuery('#xyz_smap_conn_to_xyzscripts').hide();
 		   	}
 	   });
+	   jQuery("input[name='xyz_smap_tb_app_sel_mode']").click(function(){
+	   var xyz_smap_tb_app_sel_mode=jQuery("input[name='xyz_smap_tb_app_sel_mode']:checked").val();
+	   		XyzSmapRadioToggleHandler(accountTypes['tumblr'],xyz_smap_tb_app_sel_mode);
+	   });
+  		var xyz_smap_tb_app_sel_mode=jQuery("input[name='xyz_smap_tb_app_sel_mode']:checked").val();
+	   		XyzSmapRadioToggleHandler(accountTypes['tumblr'],xyz_smap_tb_app_sel_mode);
    var xyz_smap_app_sel_mode=jQuery("input[name='xyz_smap_ln_api_permission']:checked").val();
    if(xyz_smap_app_sel_mode ==2){
 		jQuery('.xyz_smap_linkedin_settings').hide();

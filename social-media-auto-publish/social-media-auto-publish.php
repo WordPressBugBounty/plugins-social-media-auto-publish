@@ -3,7 +3,7 @@
  Plugin Name: Social Media Auto Publish
 Plugin URI: https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/
 Description:   Publish posts automatically from your blog to social media networks like Facebook, Twitter,  Instagram, LinkedIn, Tumblr, Threads and Telegram. The plugin supports filtering posts by post-types and categories.
-Version: 3.6.6
+Version: 3.6.7
 Requires PHP: 7.4
 Author: xyzscripts.com
 Author URI: https://xyzscripts.com/
@@ -45,6 +45,8 @@ if (!defined('XYZ_SMAP_IG_API_VERSION'))
   define('XYZ_SMAP_IG_API_VERSION','v24.0');
   if (!defined('XYZ_SMAP_TH_API_VERSION'))
   define('XYZ_SMAP_TH_API_VERSION','v1.0');
+if ( ! defined( 'XYZ_SMAP_LINKEDIN_VERSION' ) ) 
+  define( 'XYZ_SMAP_LINKEDIN_VERSION', '202601' );
 if (!defined('XYZ_SMAP_SOLUTION_AUTH_URL'))
 define('XYZ_SMAP_SOLUTION_AUTH_URL','https://authorize.smapsolutions.com/');
 if (!defined('XYZ_SMAP_SOLUTION_PUBLISH_URL'))
@@ -54,6 +56,8 @@ if (!defined('XYZ_SMAP_SOLUTION_LN_PUBLISH_URL'))
 if (!defined('XYZ_SMAP_SOLUTION_IG_PUBLISH_URL'))
     define('XYZ_SMAP_SOLUTION_IG_PUBLISH_URL','https://ig-publish.smapsolutions.com/');
 define('XYZ_SMAP_TW_API_OAUTH2_URL','https://api.x.com/2/');
+define('XYZ_SMAP_TB_API_OAUTH2_URL','https://api.tumblr.com/v2/blog/');
+define('XYZ_SMAP_ACCOUNT_TYPE_ARR', array('facebook' => 1,'twitter' => 2,'linkedin' => 3,'pinterest' => 4,'threads' => 5,'tumblr' => 6,'instagram' => 7, 'telegram' => 8));
 global $wpdb;
 if(isset($_POST) && isset($_POST['fb_auth'] ) ||isset($_GET['page']) && ($_GET['page']=='social-media-auto-publish-suggest-features')|| (isset($_GET['page']) && ($_GET['page']=='social-media-auto-publish-settings')) || isset($_GET['page']) && ($_GET['page']=='social-media-auto-publish-manage-authorizations'))
 {

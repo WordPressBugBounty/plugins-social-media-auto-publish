@@ -52,16 +52,21 @@ function smap_free_destroy()
 	delete_option('xyz_smap_twmessage');
 	delete_option('xyz_smap_twtr_char_limit');
 	
-	delete_option('xyz_smap_tbconsumer_secret', '');
-	delete_option('xyz_smap_tbconsumer_id','');
-	delete_option('xyz_smap_tb_id', '');
-	delete_option('xyz_smap_current_tbappln_token', '');
-	delete_option('xyz_smap_tbpost_permission', '1');
-	delete_option('xyz_smap_tbpost_media_permission', '1');///
-	delete_option('xyz_smap_tbaccestok_secret', '');
-	delete_option('xyz_smap_tbmessage', '{POST_TITLE} - {PERMALINK}');
-	delete_option('xyz_smap_tb_future_to_publish', '1');
-	delete_option('xyz_smap_tbap_post_logs', '');
+	delete_option('xyz_smap_tbconsumer_secret');
+	delete_option('xyz_smap_tbconsumer_id');
+	delete_option('xyz_smap_tb_id');
+	delete_option('xyz_smap_current_tbappln_token');
+	delete_option('xyz_smap_tbpost_permission');
+	delete_option('xyz_smap_tbpost_media_permission');
+	delete_option('xyz_smap_tbaccestok_secret');
+	delete_option('xyz_smap_tbmessage');
+	delete_option('xyz_smap_tb_future_to_publish');
+	delete_option('xyz_smap_tbap_post_logs');
+	delete_option('xyz_smap_tb_app_sel_mode');
+	delete_option('xyz_smap_tb_refresh_token');
+	delete_option('xyz_smap_tb_last_auth_time');
+	delete_option('xyz_smap_tb_reauth_error');
+	delete_option('xyz_smap_tb_reauth_error_notice_dismissed');
 	delete_option('xyz_smap_application_lnarray');
 	delete_option('xyz_smap_ln_shareprivate');
 	delete_option('xyz_smap_ln_sharingmethod');//removed in 2.2.2

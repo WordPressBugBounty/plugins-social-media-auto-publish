@@ -1,22 +1,74 @@
 <?php
 if( !defined('ABSPATH') ){ exit();}
-/*add_action('publish_post', 'xyz_link_publish');
-add_action('publish_page', 'xyz_link_publish');
+add_action('save_post', 'xyz_smap_save_metabox_meta');
+function xyz_smap_save_metabox_meta($post_id) {
 
-$xyz_smap_future_to_publish=get_option('xyz_smap_std_future_to_publish');
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
 
-if($xyz_smap_future_to_publish==1)
-	add_action('future_to_publish', 'xyz_link_smap_future_to_publish');
+		if ( (isset($_POST['xyz_smap_post_permission']) && isset($_POST['xyz_smap_po_method'])) )
+		{
+			$futToPubDataFbArray=array( 'post_fb_permission'	=>	$_POST['xyz_smap_post_permission'],
+										'xyz_fb_po_method'	=>	$_POST['xyz_smap_po_method'],
+										'xyz_fb_message'	=>	$_POST['xyz_smap_message']);
+			update_post_meta($postid, "xyz_smap_fb_future_to_publish", $futToPubDataFbArray);
+		}
 
-function xyz_link_smap_future_to_publish($post){
-	$postid =$post->ID;
-	xyz_link_publish($postid);
-}*/
+		if ( (isset($_POST['xyz_smap_twpost_permission']) && isset($_POST['xyz_smap_twpost_image_permission'])) )
+		{
+			$futToPubDataTwArray=array('post_tw_permission'	=>	$_POST['xyz_smap_twpost_permission'],
+					'xyz_tw_img_permissn'	=>	$_POST['xyz_smap_twpost_image_permission'],
+					'xyz_tw_message'	=>	$_POST['xyz_smap_twmessage']);
+			update_post_meta($postid, "xyz_smap_tw_future_to_publish", $futToPubDataTwArray);
+		}
+	
+		if ( (isset($_POST['xyz_smap_thpost_permission']) && isset($_POST['xyz_smap_thpost_method'])) )
+		{
+			$futToPubDataThArray=array('post_th_permission'	=>	$_POST['xyz_smap_thpost_permission'],
+					'xyz_smap_thpost_method'	=>	$_POST['xyz_smap_thpost_method'],
+					'xyz_th_message'	=>	$_POST['xyz_smap_thmessage']);
+			update_post_meta($postid, "xyz_smap_th_future_to_publish", $futToPubDataThArray);
+		}
+
+		if((isset($_POST['xyz_smap_tbpost_permission']) && isset($_POST['xyz_smap_tbpost_media_permission'])))
+		{
+			$futToPubDataTbArray=array( 'post_tb_permission'	=>	$_POST['xyz_smap_tbpost_permission'],
+				'xyz_smap_tbpost_media_permission'	=>	$_POST['xyz_smap_tbpost_media_permission'],
+				'xyz_smap_tbmessage'	=>	$_POST['xyz_smap_tbmessage']);
+			update_post_meta($postid, "xyz_smap_tb_future_to_publish", $futToPubDataTbArray);
+		}
+	
+		if ( (isset($_POST['xyz_smap_lnpost_permission']) && isset($_POST['xyz_smap_lnpost_method'])) )
+		{
+			$futToPubDataLnArray=array(
+					'post_ln_permission'	=>	$_POST['xyz_smap_lnpost_permission'],
+					'xyz_smap_ln_shareprivate'	=>	$_POST['xyz_smap_ln_shareprivate'],
+					'xyz_smap_lnpost_method'	=>	$_POST['xyz_smap_lnpost_method'],
+					'xyz_smap_lnmessage'	=>	$_POST['xyz_smap_lnmessage']);
+			update_post_meta($postid, "xyz_smap_ln_future_to_publish", $futToPubDataLnArray);
+		}
+		
+		if ( (isset($_POST['xyz_smap_igpost_permission']) && isset($_POST['xyz_smap_igmessage'])) )
+		{
+			$futToPubDataIgArray=array('post_ig_permission'	=>	$_POST['xyz_smap_igpost_permission'],
+				'xyz_ig_message'	=>	$_POST['xyz_smap_igmessage']);
+			update_post_meta($postid, "xyz_smap_ig_future_to_publish", $futToPubDataIgArray);
+		}
+
+		if ( (isset($_POST['xyz_smap_tgpost_permission']) && isset($_POST['xyz_smap_tgpost_method'])) )
+		{
+			$futToPubDataTgArray=array('post_tg_permission'	=>	$_POST['xyz_smap_tgpost_permission'],
+				'xyz_smap_tgpost_method'	=>	$_POST['xyz_smap_tgpost_method'],
+				'xyz_tg_message'	=>	$_POST['xyz_smap_tgmessage']);
+			update_post_meta($postid, "xyz_smap_tg_future_to_publish", $futToPubDataTgArray);
+		}
+}
+
 add_action(  'transition_post_status',  'xyz_link_smap_future_to_publish', 10, 3 );
 
 function xyz_link_smap_future_to_publish($new_status, $old_status, $post){
 
-	if (isset($_GET['_locale']) && empty($_POST))
+	if (isset($_GET['_locale']) && (empty($_POST) || empty($post)))
 		return ;
 
 	if(!isset($GLOBALS['smap_dup_publish']))
@@ -82,7 +134,7 @@ $post_tb_permission=get_option('xyz_smap_tbpost_permission');
 	if(isset($_POST['xyz_smap_lnpost_permission']))
 	{
 		$lnpost_permission=intval($_POST['xyz_smap_lnpost_permission']);
-		if ( (isset($_POST['xyz_smap_lnpost_permission']) && isset($_POST['xyz_smap_ln_shareprivate'])) )
+		if ( (isset($_POST['xyz_smap_lnpost_permission']) && isset($_POST['xyz_smap_lnpost_method'])) )
 		{
 			$futToPubDataLnArray=array(
 					'post_ln_permission'	=>	$_POST['xyz_smap_lnpost_permission'],
@@ -95,10 +147,9 @@ $post_tb_permission=get_option('xyz_smap_tbpost_permission');
 	if(isset($_POST['xyz_smap_igpost_permission']))
 	{
 	    $igpost_permission=intval($_POST['xyz_smap_igpost_permission']);
-	    if ( (isset($_POST['xyz_smap_igpost_permission']) && isset($_POST['xyz_smap_igpost_image_permission'])) )
+	    if ( (isset($_POST['xyz_smap_igpost_permission']) && isset($_POST['xyz_smap_igmessage'])) )
 	    {
 	        $futToPubDataIgArray=array('post_ig_permission'	=>	$_POST['xyz_smap_igpost_permission'],
-	            'xyz_ig_img_permissn'	=>	$_POST['xyz_smap_igpost_image_permission'],
 	            'xyz_ig_message'	=>	$_POST['xyz_smap_igmessage']);
 	        update_post_meta($postid, "xyz_smap_ig_future_to_publish", $futToPubDataIgArray);
 	    }
@@ -285,12 +336,18 @@ elseif($xyz_smap_tw_app_sel_mode==2){
 		////////////////////////
 
 	////////////tb////////////
-	//$tbaf=get_option('xyz_smap_tb_af');
+	$tb_af=1;	$xyz_smap_tb_app_sel_mode=get_option('xyz_smap_tb_app_sel_mode');
 	$tmbappid=get_option('xyz_smap_tbconsumer_id');
 	$tmbappsecret=get_option('xyz_smap_tbconsumer_secret');
 	$tbid=get_option('xyz_smap_tb_id');
 	$tbaccess_token=get_option('xyz_smap_current_tbappln_token');
+	if($xyz_smap_tb_app_sel_mode==0){
 	$tbaccess_token_secret=get_option('xyz_smap_tbaccestok_secret');
+	}
+	else{
+		$tb_af = get_option('xyz_smap_tb_af');
+		$tb_refresh_token=get_option('xyz_smap_tb_refresh_token');
+	}
 	if ($tbmessagetopost=='')
 	   $tbmessagetopost=get_option('xyz_smap_tbmessage');
 	if(isset($_POST['xyz_smap_tbmessage']))
@@ -372,6 +429,8 @@ if(isset($_POST['xyz_smap_tgmessage']))
 	$th_user_id=get_option('xyz_smap_th_user_id');
 	$thuseracces_token=get_option('xyz_smap_th_access_token');
 	$auth_data = json_decode($thuseracces_token, true);
+	$thaccess_token='';
+	if(isset($auth_data['access_token']))
 		$thaccess_token=$auth_data['access_token'];  
 	$user_profile_name=get_option('xyz_smap_th_username');
 
@@ -384,7 +443,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 	$xyz_smap_thpost_method=get_option('xyz_smap_thpost_method');
 	if(isset($_POST['xyz_smap_thpost_method']))
 		$xyz_smap_thpost_method=intval($_POST['xyz_smap_thpost_method']);
-
 
 	$postpp= get_post($post_ID);global $wpdb;
 	$reg_exUrl = "/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -456,7 +514,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			}
 		}
 		$get_post_meta=get_post_meta($post_ID,"xyz_smap",true);
-		if($get_post_meta!=1)
+		if (get_post_status($post_ID) === 'publish' && ! $get_post_meta)
 			add_post_meta($post_ID, "xyz_smap", "1");
 		include_once ABSPATH.'wp-admin/includes/plugin.php';
 		$pluginName = 'bitly/bitly.php';
@@ -1318,7 +1376,6 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			}
 			if($xyz_smap_tw_app_sel_mode==1)
 			{
-
 			        $tw_publish_status_insert= serialize("<span style=\"color:red\"> SMAPSolutions has discontinued its Twitter service</span>");//1;
 			}
 			$time=time();
@@ -1344,7 +1401,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 			array_push($smap_tw_update_opt_array,$post_tw_options);
 			update_option('xyz_smap_twap_post_logs', $smap_tw_update_opt_array);
 		}
-		if($tbaccess_token!="" && $tbaccess_token_secret!="" && $tmbappid!="" && $tmbappsecret!="" && $post_tb_permission==1)
+		if((($xyz_smap_tb_app_sel_mode==0 && $tbaccess_token!="" && $tbaccess_token_secret!="" && $tmbappid!="" && $tmbappsecret!="")||($xyz_smap_tb_app_sel_mode==1 && $tmbappid!="" &&  $tmbappsecret!="" && $tbaccess_token!="" && $tb_af!=1))&& $post_tb_permission==1)
 		{
 		    $data=array();
 		    $img_status="";
@@ -1382,8 +1439,44 @@ if(isset($_POST['xyz_smap_tgmessage']))
 		    $publish_time=get_the_time(get_option('date_format'),$post_ID );
 		    $substring=str_replace('{POST_PUBLISH_DATE}', $publish_time, $substring);
 		    $substring=str_replace('{POST_ID}', $post_ID, $substring);
+			if($xyz_smap_tb_app_sel_mode==0){
 		    $client = new Tumblr\API\Client($tmbappid, $tmbappsecret);
 		    $client->setToken($tbaccess_token, $tbaccess_token_secret);
+			}
+			else
+			{
+				require_once (dirname(__FILE__) . '/../api/tumblr.php');
+				// Re-authenticate if 40 min have passed since the last authorization(tumblr token expiry time is 42 min)
+					$reauth_err='';
+					$current_time=time();
+					$tumblr_expiry = 2520; // 42 minutes
+					$auth_timer = $tumblr_expiry - (2 * 60); // subtract 2 minutes
+					// Check if it's time to reauthorize
+					$tblast_auth_time = get_option('xyz_smap_tb_last_auth_time'); 
+					if ( ( time() - $tblast_auth_time ) >= $auth_timer ) 
+					{					
+						$response=xyz_smap_tumblr_auth2_reauth($tmbappid,$tmbappsecret,$tb_refresh_token);
+						if(isset($response['status']) && $response['status']=='error'){
+							$reauth_err=$response['message'].'. Please try reauthorizing from tumblr settings page.';
+							update_option('xyz_smap_tb_reauth_error',$reauth_err);
+							update_option('xyz_smap_tb_reauth_error_notice_dismissed',0);
+							$tb_publish_status_insert=serialize("<span style=\"color:red\">".$response['code'].':'.$response['message'].".</span>");
+						}
+						else{
+							if(isset($response['data']['access_token']) && $response['data']['access_token']!=''){
+							$tb_auth_token=$response['data']['access_token'];
+							$tb_refresh_token=$response['data']['refresh_token'];
+							}
+							$current_time=time();;
+							
+							update_option('xyz_smap_current_tbappln_token', $tb_auth_token);
+							update_option('xyz_smap_tb_refresh_token', $tb_refresh_token);
+							update_option('xyz_smap_tb_last_auth_time', $current_time);
+							$tbaccess_token = get_option('xyz_smap_current_tbappln_token');
+						}
+					}
+			}
+
 		    $tb_publish_status=array();$tb_publish_status['status_msg']='';
 		    if($post_tumblr_media_permission==1)//&& $image_found==1)
 		        $data = array('type' => 'photo', 'caption' => $substring, 'source' => $attachmenturl);//image
@@ -1396,22 +1489,36 @@ if(isset($_POST['xyz_smap_tgmessage']))
 		        }
 		        else
 		            $data = array('type' => 'text', 'title' => $name, 'body' => $substring);    //simple text
-		            if(!empty($data))
+			$blog_name = $tbid.'.tumblr.com';
+			try{
+				if(!empty($data) && $xyz_smap_tb_app_sel_mode==0)
 		            {
-		                try{
+							
 		                    $post_id_string='';
-		                    $blog_name = $tbid.'.tumblr.com';
 		                    $createPost = $client->createPost($blog_name, $data);
 		                    if (isset($createPost->id)){
 		                        $posturl = 'https://'.$tbid.'.tumblr.com/post/'.$createPost->id.'/';
 		                        $post_id_string="<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\"  href=".$posturl.">View Post</a></span>";
 		                    }
 		                    $tb_publish_status['status_msg'].="<span style=\"color:green\">Success.</span>".$post_id_string;
+				}
+				elseif(!empty($data) && $xyz_smap_tb_app_sel_mode==1){
+					$post_id_string='';
+					$createPost=xyz_smap_tb_create_post($blog_name,$tbaccess_token,$data);
+					if($createPost['status'] === 'success' && !empty($createPost['post_url']))//Auth2.0
+					{
+						$post_id_string = "<br/><span style=\"color:#21759B;text-decoration:underline;\"><a target=\"_blank\" href=\"".$createPost['post_url']."\">View Post</a></span>";
+						$tb_publish_status['status_msg'].="<span style=\"color:green\">Success.</span>".$post_id_string;  
+					} 
+					else {
+						$error_msg = $createPost['message'] ?? 'Unknown error while posting to Tumblr.';
+						$tb_publish_status['status_msg'] .= "<br/><span style=\"color:red\">Error:</span> " . esc_html($error_msg);
+					}
+				}
 		                }
 		                catch (Exception $e)
 		                {
 		                    $tb_publish_status['status_msg'].="<span style=\"color:red\">".$e->getMessage().".</span>";
-		                }
 		            }
 		            $tb_publish_status_insert=serialize($tb_publish_status['status_msg']);
 		            $time=time();
@@ -2014,7 +2121,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 					'text' => $message5, 
 				),
 			);                 
-		}  
+		}
 		if($tg_posting_method==3)//Share link
 		{ $media_type='text';      
 			if($message5=='')

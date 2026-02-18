@@ -22,7 +22,8 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 			
 		global $wpdb;
 		$table='posts';
-		$accountCount = $wpdb->query($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.$table.' WHERE id=%d and post_status NOT IN (%s, %s) LIMIT %d,%d',array($postid,'draft','future',0,1) )) ;
+		$accountCount = $wpdb->query($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.$table.' WHERE id=%d AND post_status = "publish" LIMIT %d,%d',array($postid,0,1) )) ;
+		// $accountCount = $wpdb->query($wpdb->prepare( 'SELECT * FROM '.$wpdb->prefix.$table.' WHERE id=%d and post_status NOT IN (%s, %s) LIMIT %d,%d',array($postid,'draft','future',0,1) )) ;
 		if($accountCount>0){
 			$GLOBALS['edit_flag']=1;
 			}
@@ -58,7 +59,8 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 		||(get_option('xyz_smap_tw_app_sel_mode')==2 && get_option('xyz_smap_tw_client_id')!="" && get_option('xyz_smap_tw_client_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_twpost_permission')==1)	
 	    || (get_option('xyz_smap_lnaf')==0 && get_option('xyz_smap_lnpost_permission')==1 && ( get_option('xyz_smap_ln_company_ids')!=''|| get_option('xyz_smap_lnshare_to_profile')==1)) || (get_option('xyz_smap_app_sel_mode')==1 && get_option('xyz_smap_page_names')!="" && get_option('xyz_smap_post_permission')==1)
 			|| (get_option('xyz_smap_ig_token')!="" && get_option('xyz_smap_igpost_permission')==1 && get_option('xyz_smap_ig_app_sel_mode')==0) ||(get_option('xyz_smap_smapsoln_userid_ig')!=0 && get_option('xyz_smap_ig_page_names')!='' && get_option('xyz_smap_ig_app_sel_mode')==1 && get_option('xyz_smap_igpost_permission')==1)
-	     || (get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!="" && get_option('xyz_smap_tbpost_permission')==1)				
+	    (get_option('xyz_smap_tb_app_sel_mode')==0 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!="" && get_option('xyz_smap_tbpost_permission')==1)||
+		(get_option('xyz_smap_tb_app_sel_mode')==1 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbpost_permission')==1)
 		||(get_option('xyz_smap_bot_token')!="" && get_option('xyz_smap_bot_username')!="" && get_option('xyz_smap_tgpost_permission')==1)
 		||(get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_th_user_id')!="" && get_option('xyz_smap_thpost_permission')==1))
 	    add_meta_box( 'xyz_smap', '<strong>Social Media Auto Publish </strong>', 'xyz_smap_addpostmetatags',
@@ -748,7 +750,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	        $postid=intval($_GET['post']);
 	        $post_permission=get_option('xyz_smap_igpost_permission');
 	        $get_post_meta_future_data='';
-	        if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+			if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 	            $get_post_meta_future_data=get_post_meta($postid,"xyz_smap_ig_future_to_publish",true);
 	            if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_ig_permission']))
 	            {
@@ -833,7 +835,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 			$postid=intval($_GET['post']);
 		$post_permission=get_option('xyz_smap_twpost_permission');
 		$get_post_meta_future_data='';
-		if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+		if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 			$get_post_meta_future_data=get_post_meta($postid,"xyz_smap_tw_future_to_publish",true);
 		if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_tw_permission']))
 		{
@@ -916,11 +918,12 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	<?php }?>
 	</td></tr>
 	<?php }
-	if((get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_tb_id')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!=""))
+	if((get_option('xyz_smap_tb_app_sel_mode')==0 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_tb_id')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!="")||
+	(get_option('xyz_smap_tb_app_sel_mode')==1 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_tb_id')!="" && get_option('xyz_smap_current_tbappln_token')!=""))
 	{
 	$post_permission=1;
-	if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
-	    $get_post_meta_future_data=get_post_meta($postid,"xyz_smap_tbap_future_to_publish",true);
+	if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
+	    $get_post_meta_future_data=get_post_meta($postid,"xyz_smap_tb_future_to_publish",true);
 	    if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['xyz_smap_tbpost_media_permission']))
 	    {
 	        $post_permission=$get_post_meta_future_data['post_tb_permission'];
@@ -1004,7 +1007,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 		$postid=intval($_GET['post']);
 		$post_permission=get_option('xyz_smap_lnpost_permission');
 		$get_post_meta_future_data='';
-	if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+	if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 		$get_post_meta_future_data=get_post_meta($postid,"xyz_smap_ln_future_to_publish",true);
 	if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_ln_permission']))
 	{
@@ -1110,7 +1113,7 @@ if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_o
 	        $postid=intval($_GET['post']);
 	        $post_permission=get_option('xyz_smap_tgpost_permission');
 	        $get_post_meta_future_data='';
-	        if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+			if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 	            $get_post_meta_future_data=get_post_meta($postid,"xyz_smap_tg_future_to_publish",true);
 	            if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_tg_permission']))
 	            {
@@ -1204,7 +1207,7 @@ if( get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_thaf')!=1
 		$postid=intval($_GET['post']);
 	$post_permission=get_option('xyz_smap_thpost_permission');
 	$get_post_meta_future_data='';
-	if (get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1 && !empty($postid))
+	if (((get_option('xyz_smap_default_selection_edit')==2 && isset($GLOBALS['edit_flag']) && $GLOBALS['edit_flag']==1) || ((get_option('xyz_smap_default_selection_create')==2) && $get_post_meta!=1 && $GLOBALS['edit_flag']!=1))  && !empty($postid))
 		$get_post_meta_future_data=get_post_meta($postid,"xyz_smap_th_future_to_publish",true);
 	if (!empty($get_post_meta_future_data)&& isset($get_post_meta_future_data['post_th_permission']))
 	{
