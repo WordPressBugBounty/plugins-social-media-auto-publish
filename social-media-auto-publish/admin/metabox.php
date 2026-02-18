@@ -54,21 +54,29 @@ if(isset($_GET['action']) && $_GET['action']=="edit" && !empty($_GET['post']))  
 			return;
 
 	}
-	if((get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_option('xyz_smap_pages_ids')!="" && get_option('xyz_smap_post_permission')==1 && (get_option('xyz_smap_app_sel_mode')==0)) ||
-(get_option('xyz_smap_tw_app_sel_mode')==0 && get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_twpost_permission')==1)
-		||(get_option('xyz_smap_tw_app_sel_mode')==2 && get_option('xyz_smap_tw_client_id')!="" && get_option('xyz_smap_tw_client_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_twpost_permission')==1)	
-	    || (get_option('xyz_smap_lnaf')==0 && get_option('xyz_smap_lnpost_permission')==1 && ( get_option('xyz_smap_ln_company_ids')!=''|| get_option('xyz_smap_lnshare_to_profile')==1)) || (get_option('xyz_smap_app_sel_mode')==1 && get_option('xyz_smap_page_names')!="" && get_option('xyz_smap_post_permission')==1)
-			|| (get_option('xyz_smap_ig_token')!="" && get_option('xyz_smap_igpost_permission')==1 && get_option('xyz_smap_ig_app_sel_mode')==0) ||(get_option('xyz_smap_smapsoln_userid_ig')!=0 && get_option('xyz_smap_ig_page_names')!='' && get_option('xyz_smap_ig_app_sel_mode')==1 && get_option('xyz_smap_igpost_permission')==1)
+	if (
+		(get_option('xyz_smap_af')==0 && get_option('xyz_smap_fb_token')!="" && get_option('xyz_smap_pages_ids')!="" && get_option('xyz_smap_post_permission')==1 && (get_option('xyz_smap_app_sel_mode')==0)) ||
+		(get_option('xyz_smap_tw_app_sel_mode')==0 && get_option('xyz_smap_twconsumer_id')!="" && get_option('xyz_smap_twconsumer_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_current_twappln_token')!="" && get_option('xyz_smap_twaccestok_secret')!="" && get_option('xyz_smap_twpost_permission')==1) ||
+		(get_option('xyz_smap_tw_app_sel_mode')==2 && get_option('xyz_smap_tw_client_id')!="" && get_option('xyz_smap_tw_client_secret')!="" && get_option('xyz_smap_tw_id')!="" && get_option('xyz_smap_twpost_permission')==1) ||
+		(get_option('xyz_smap_lnaf')==0 && get_option('xyz_smap_lnpost_permission')==1 && ( get_option('xyz_smap_ln_company_ids')!=''|| get_option('xyz_smap_lnshare_to_profile')==1)) ||
+		(get_option('xyz_smap_app_sel_mode')==1 && get_option('xyz_smap_page_names')!="" && get_option('xyz_smap_post_permission')==1) ||
+		(get_option('xyz_smap_ig_token')!="" && get_option('xyz_smap_igpost_permission')==1 && get_option('xyz_smap_ig_app_sel_mode')==0) ||
+		(get_option('xyz_smap_smapsoln_userid_ig')!=0 && get_option('xyz_smap_ig_page_names')!='' && get_option('xyz_smap_ig_app_sel_mode')==1 && get_option('xyz_smap_igpost_permission')==1) ||
 	    (get_option('xyz_smap_tb_app_sel_mode')==0 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbaccestok_secret')!="" && get_option('xyz_smap_tbpost_permission')==1)||
-		(get_option('xyz_smap_tb_app_sel_mode')==1 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbpost_permission')==1)
-		||(get_option('xyz_smap_bot_token')!="" && get_option('xyz_smap_bot_username')!="" && get_option('xyz_smap_tgpost_permission')==1)
-		||(get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_th_user_id')!="" && get_option('xyz_smap_thpost_permission')==1))
-	    add_meta_box( 'xyz_smap', '<strong>Social Media Auto Publish </strong>', 'xyz_smap_addpostmetatags',
-	        null, 'normal', 'high',
-	        array(
-	            '__block_editor_compatible_meta_box' => true,
-	        )
+		(get_option('xyz_smap_tb_app_sel_mode')==1 && get_option('xyz_smap_tbconsumer_id')!="" && get_option('xyz_smap_tbconsumer_secret')!="" && get_option('xyz_smap_current_tbappln_token')!="" && get_option('xyz_smap_tbpost_permission')==1) ||
+		(get_option('xyz_smap_bot_token')!="" && get_option('xyz_smap_bot_username')!="" && get_option('xyz_smap_tgpost_permission')==1) ||
+		(get_option('xyz_smap_th_access_token')!="" && get_option('xyz_smap_th_user_id')!="" && get_option('xyz_smap_thpost_permission')==1)
+	) {
+		add_meta_box(
+			'xyz_smap',
+			'<strong>Social Media Auto Publish </strong>',
+			'xyz_smap_addpostmetatags',
+			null,
+			'normal',
+			'high',
+			array('__block_editor_compatible_meta_box' => true)
 	        );
+	}
 	    
 }
 
