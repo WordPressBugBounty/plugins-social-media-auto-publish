@@ -82,6 +82,7 @@ function xyz_smap_exchange_for_long_lived_token($app_secret, $short_lived_token)
 
 function xyz_smap_post_to_threads_single_threaded($threadUserId, $accessToken, $postFields) 
 {
+$smap_sslverify= (get_option('xyz_smap_peer_verification') == '1');
     try {
         // Step 1: Create Threads Media Container
         $url = "https://graph.threads.net/".XYZ_SMAP_TH_API_VERSION."/{$threadUserId}/threads";
@@ -117,7 +118,7 @@ function xyz_smap_post_to_threads_single_threaded($threadUserId, $accessToken, $
 
         for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
             $statusResponse = wp_remote_get($statusUrl, [
-                'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+                'sslverify' => $smap_sslverify,
                 'timeout' => 10,
             ]);
             if (is_wp_error($statusResponse)) {
@@ -152,7 +153,7 @@ function xyz_smap_post_to_threads_single_threaded($threadUserId, $accessToken, $
         $publishResponse = wp_remote_post($publishUrl, [
             'body' => $publishFields,
             'timeout' => 10,
-            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+            'sslverify' => $smap_sslverify,
         ]);
 
         if (is_wp_error($publishResponse)) {
@@ -174,7 +175,7 @@ function xyz_smap_post_to_threads_single_threaded($threadUserId, $accessToken, $
         $tokenUrl = add_query_arg($tokenParams, $tokenUrl);
 
         $tokenResponse = wp_remote_get($tokenUrl, [
-            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+            'sslverify' => $smap_sslverify,
             'timeout' => 10,
         ]);
 

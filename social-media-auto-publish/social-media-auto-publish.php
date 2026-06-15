@@ -3,7 +3,7 @@
  Plugin Name: Social Media Auto Publish
 Plugin URI: https://xyzscripts.com/wordpress-plugins/social-media-auto-publish/
 Description:   Publish posts automatically from your blog to social media networks like Facebook, Twitter,  Instagram, LinkedIn, Tumblr, Threads and Telegram. The plugin supports filtering posts by post-types and categories.
-Version: 3.6.8
+Version: 3.6.9
 Requires PHP: 7.4
 Author: xyzscripts.com
 Author URI: https://xyzscripts.com/
@@ -40,13 +40,13 @@ add_action( 'init', 'plugin_load_smaptextdomain' );
 define('XYZ_SMAP_PLUGIN_FILE',__FILE__);
 
 if (!defined('XYZ_SMAP_FB_API_VERSION'))
-	define('XYZ_SMAP_FB_API_VERSION','v24.0');
+	define('XYZ_SMAP_FB_API_VERSION','v25.0');
 if (!defined('XYZ_SMAP_IG_API_VERSION'))
-  define('XYZ_SMAP_IG_API_VERSION','v24.0');
+  define('XYZ_SMAP_IG_API_VERSION','v25.0');
   if (!defined('XYZ_SMAP_TH_API_VERSION'))
   define('XYZ_SMAP_TH_API_VERSION','v1.0');
 if ( ! defined( 'XYZ_SMAP_LINKEDIN_VERSION' ) ) 
-  define( 'XYZ_SMAP_LINKEDIN_VERSION', '202601' );
+  define( 'XYZ_SMAP_LINKEDIN_VERSION', '202605' );
 if (!defined('XYZ_SMAP_SOLUTION_AUTH_URL'))
 define('XYZ_SMAP_SOLUTION_AUTH_URL','https://authorize.smapsolutions.com/');
 if (!defined('XYZ_SMAP_SOLUTION_PUBLISH_URL'))
@@ -72,7 +72,7 @@ require_once( dirname( __FILE__ ) . '/xyz-functions.php' );
 require_once( dirname( __FILE__ ) . '/admin/menu.php' );
 require_once( dirname( __FILE__ ) . '/admin/destruction.php' );
 
-if (version_compare(PHP_VERSION, '5.4.0', '>'))
+if (version_compare(PHP_VERSION, '7.4.0', '>='))
 { 
 require_once( dirname( __FILE__ ) . '/vendor/autoload.php');
 require_once( dirname( __FILE__ ) . '/admin/publish.php' );

@@ -1164,6 +1164,7 @@ function dethide_smap(id)
 				<?php
 
 				$xyz_acces_token=get_option('xyz_smap_fb_token');
+				$smap_sslverify = (get_option('xyz_smap_peer_verification') == '1');
 				if($xyz_acces_token!="" && $xyz_smap_app_sel_mode==0 ){
 
 					$offset=0;$limit=100;$data=array();
@@ -1171,7 +1172,7 @@ function dethide_smap(id)
 					do
 					{
 						$result1="";$pagearray1="";
-						$pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/me/accounts?access_token=$xyz_acces_token&limit=$limit&offset=$offset",array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+						$pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/me/accounts?access_token=$xyz_acces_token&limit=$limit&offset=$offset",array('sslverify'=> $smap_sslverify));
 						if(is_array($pp))
 						{
 							$result1=$pp['body'];
@@ -1511,7 +1512,7 @@ function dethide_smap(id)
 				        do
 				        {
 				            $result1="";$pagearray1="";
-				            $pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/me/accounts?access_token=$xyz_ig_acces_token&limit=$limit&offset=$offset",array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+				            $pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/me/accounts?access_token=$xyz_ig_acces_token&limit=$limit&offset=$offset",array('sslverify'=> ($smap_sslverify)));
 				            if(is_array($pp))
 				            {
 				                $result1=$pp['body'];
@@ -1540,7 +1541,7 @@ function dethide_smap(id)
                 for($i=0;$i<$count;$i++)
                 {
                     $business_acc_id=0;$business_acc_name='';
-                    $result=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/".($data[$i]->id)."?fields=instagram_business_account{id,username}&access_token=".$xyz_ig_acces_token,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+                    $result=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/".($data[$i]->id)."?fields=instagram_business_account{id,username}&access_token=".$xyz_ig_acces_token,array('sslverify'=> ($smap_sslverify)));
 
                     if($result['body']!=NULL)
                     {

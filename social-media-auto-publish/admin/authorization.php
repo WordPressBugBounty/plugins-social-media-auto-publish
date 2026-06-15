@@ -6,6 +6,7 @@ $redirecturl=admin_url('admin.php?page=social-media-auto-publish-settings&auth=1
  	if(is_ssl()===false)
 		$redirecturl=preg_replace("/^http:/i", "https:", $redirecturl);
 $my_url=urlencode($redirecturl);
+$smap_sslverify = (get_option('xyz_smap_peer_verification') == '1');
 if(isset($_POST) && (isset($_POST['fb_auth']) || isset($_POST['lnauth'])) )
 {
 	ob_clean();
@@ -22,27 +23,27 @@ if(isset($_POST['fb_auth']))
 		wp_nonce_ays( 'xyz_smap_fb_auth_form_nonce' );
 		exit();
 	}
-	
+
 		$xyz_smap_session_state = md5(uniqid(rand(), TRUE));
 		setcookie("xyz_smap_session_state",$xyz_smap_session_state,"0","/");
-		
+
 		$dialog_url = "https://www.facebook.com/".XYZ_SMAP_FB_API_VERSION."/dialog/oauth?client_id="
 		. $app_id . "&redirect_uri=" . $my_url . "&state="
 		. $xyz_smap_session_state . "&scope=email,public_profile,pages_read_engagement,pages_show_list,pages_manage_posts,business_management";
-		
+
 		header("Location: " . $dialog_url);
 }
 
 
 if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_session_state'] === $_REQUEST['state'])) {
-	
+
 	$token_url = "https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/oauth/access_token?"
 	. "client_id=" . $app_id . "&redirect_uri=" . $my_url
 	. "&client_secret=" . $app_secret . "&code=" . $code;
-	
+
 	$params = null;$access_token="";
-	$response = wp_remote_get($token_url,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
-	
+	$response = wp_remote_get($token_url,array('sslverify'=> $smap_sslverify));
+
 	if(is_array($response))
 	{
 		if(isset($response['body']))
@@ -56,19 +57,19 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
 			//$access_token = $params['access_token'];
 		}
 	}
-	
+
 	if($access_token!="")
 	{
 		update_option('xyz_smap_fb_token',$access_token);
 		update_option('xyz_smap_af',0);
-		
-		
+
+
 		$offset=0;$limit=100;$data=array();
 		//$fbid=get_option('xyz_smap_fb_id');
 		do
 		{
 			$result1="";$pagearray1="";
-			$pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/me/accounts?access_token=$access_token&limit=$limit&offset=$offset",array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+			$pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/me/accounts?access_token=$access_token&limit=$limit&offset=$offset",array('sslverify'=> $smap_sslverify));
 			if(is_array($pp))
 			{
 				$result1=$pp['body'];
@@ -83,17 +84,17 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
 // 				break;
 // 		}while(array_key_exists("next", $pagearray1->paging));
 		}while(isset($pagearray1->paging->next));
-		
-		
+
+
 		$count=0;
 		if (!empty($data))
 		$count=count($data);
-			
+
 		$smap_pages_ids1=get_option('xyz_smap_pages_ids');
 		$smap_pages_ids0=array();$newpgs="";
 		if($smap_pages_ids1!="")
 			$smap_pages_ids0=explode(",",$smap_pages_ids1);
-		
+
 		$smap_pages_ids=array();$profile_flg=0;
 		if (!empty($smap_pages_ids0)){
 		for($i=0;$i<count($smap_pages_ids0);$i++)
@@ -104,7 +105,7 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
 			$smap_pages_ids[$i]=$smap_pages_ids0[$i];$profile_flg=1;
 			}
 		}}
-		
+
 		for($i=0;$i<$count;$i++)
 		{
 		if(in_array($data[$i]->id, $smap_pages_ids))
@@ -119,9 +120,9 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
            				$newpgs=-1;
 					}
 		update_option('xyz_smap_pages_ids',$newpgs);
-		
+
 		$url = 'https://graph.facebook.com/'.XYZ_SMAP_FB_API_VERSION.'/me?access_token='.$access_token;
-		$contentget=wp_remote_get($url,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));$page_id='';
+		$contentget=wp_remote_get($url,array('sslverify'=> $smap_sslverify));$page_id='';
 		if(is_array($contentget))
 		{
 			$result1=$contentget['body'];
@@ -129,14 +130,13 @@ if(isset($_COOKIE['xyz_smap_session_state']) && isset($_REQUEST['state']) && ($_
 			$page_id=$pagearray->id;
 		}
 		update_option('xyz_smap_fb_numericid',$page_id);
-		
 		wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1' ) );
 exit;
 	}
 	else {
-		
+
 		$xyz_smap_af=get_option('xyz_smap_af');
-		
+
 		if($xyz_smap_af==1){
 			wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&msg=3' ) );
 			exit();
@@ -144,7 +144,7 @@ exit;
 	}
 }
 else {
-	
+
 	//header("Location:".admin_url('admin.php?page=social-media-auto-publish-settings&msg=2'));
 	//exit();
 }
@@ -170,15 +170,15 @@ if(isset($_POST['ig_auth']))
             . $xyz_smap_ig_session_state . "&scope=instagram_basic,pages_read_engagement,instagram_content_publish,business_management";
             header("Location: " . $dialog_url);
 }
-if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_ig_session_state'] === $_REQUEST['state'])) 
+if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && ($_COOKIE['xyz_smap_ig_session_state'] === $_REQUEST['state']))
 {
     $token_url = "https://graph.facebook.com/".XYZ_SMAP_FB_API_VERSION."/oauth/access_token?"
         . "client_id=" . $ig_app_id . "&redirect_uri=" . $my_url
         . "&client_secret=" . $ig_app_secret . "&code=" . $code;
-        
+
     $params = null;$access_token="";
-    $response = wp_remote_get($token_url,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
-    
+    $response = wp_remote_get($token_url,array('sslverify'=> $smap_sslverify));
+
     if(is_array($response))
     {
         if(isset($response['body']))
@@ -196,13 +196,13 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
         do
         {
             $result1="";$pagearray1="";
-            $pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/me/accounts?access_token=$access_token&limit=$limit&offset=$offset",array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+            $pp=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/me/accounts?access_token=$access_token&limit=$limit&offset=$offset",array('sslverify'=> $smap_sslverify));
             if(is_array($pp))
             {
-                $result1=$pp['body'];
-                $pagearray1 = json_decode($result1);
+              $result1=$pp['body'];
+              $pagearray1 = json_decode($result1);
               if(isset($pagearray1->data) && is_array($pagearray1->data))
-                    $data = array_merge($data, $pagearray1->data);
+                  $data = array_merge($data, $pagearray1->data);
             }
             else
                 break;
@@ -230,7 +230,7 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
                 for($i=0;$i<$count;$i++)
                 {
                     $business_acc_id='';
-                    $result=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/".($data[$i]->id)."?fields=instagram_business_account&access_token=".$access_token,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));
+                    $result=wp_remote_get("https://graph.facebook.com/".XYZ_SMAP_IG_API_VERSION."/".($data[$i]->id)."?fields=instagram_business_account&access_token=".$access_token,array('sslverify'=> $smap_sslverify));
                     if($result['body']!=NULL)
                     {
                         $business_acc='';
@@ -240,7 +240,7 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
                             $business_acc_details=$business_acc->instagram_business_account;
                             $business_acc_id=$business_acc_details->id;
                         }
-                        
+
                         if($business_acc_id!='' && in_array($business_acc_id, $smap_pages_ids))
                             $business_acc_id_list.=$data[$i]->id."-".$data[$i]->access_token."-".$business_acc_id.",";
                     }
@@ -250,9 +250,10 @@ if(isset($_COOKIE['xyz_smap_ig_session_state']) && isset($_REQUEST['state']) && 
                     update_option('xyz_smap_ig_pages_ids',$business_acc_id_list);
 					wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1' ) );
 exit;
+
                 }
                 $url = 'https://graph.facebook.com/'.XYZ_SMAP_IG_API_VERSION.'/me?access_token='.$access_token;
-                $contentget=wp_remote_get($url,array('sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));$page_id='';
+                $contentget=wp_remote_get($url,array('sslverify'=> $smap_sslverify));$page_id='';
                 if(is_array($contentget))
                 {
                     $result1=$contentget['body'];
@@ -262,6 +263,7 @@ exit;
                 update_option('xyz_smap_ig_numericid',$page_id);
 				wp_safe_redirect( admin_url( 'admin.php?page=social-media-auto-publish-settings&auth=1&msg=9' ) );
 				exit;
+
         }
         else {
             $xyz_smap_ig_af=get_option('xyz_smap_ig_af');
@@ -307,13 +309,14 @@ $redirecturl=urlencode(admin_url('admin.php?page=social-media-auto-publish-setti
 			wp_redirect($linkedin_auth_url);
 			echo '<script>document.location.href="'.$linkedin_auth_url.'"</script>';
 			die;
-		
+
 		}
 	}
 	if( isset($_GET['error']) && isset($_GET['error_description']) )//if any error
 	{
 		$ln_error       = isset($_GET['error']) ? sanitize_text_field($_GET['error']) : '';
 		$ln_error_desc  = isset($_GET['error_description']) ? sanitize_text_field($_GET['error_description']) : '';
+
 		$redirect_url = add_query_arg(
 			array(
 				'page'        => 'social-media-auto-publish-settings',
@@ -321,6 +324,7 @@ $redirecturl=urlencode(admin_url('admin.php?page=social-media-auto-publish-setti
 			),
 		admin_url('admin.php')
 );
+
 wp_safe_redirect( $redirect_url );
 exit;
 	}
@@ -328,7 +332,7 @@ exit;
 	{
 		$url = 'https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&redirect_uri='.$redirecturl.'&client_id='.$lnappikey.'&client_secret='.$lnapisecret.'&code='.$_GET['code'];
 		$response = wp_remote_post( $url, array('method' => 'POST',
-							'sslverify'=> (get_option('xyz_smap_peer_verification')=='1') ? true : false));	// Access Token request
+							'sslverify'=> $smap_sslverify));	// Access Token request
 		$ln_acc_tok_json=$response['body'];
 		$ln_acc_tok_arr=json_decode($ln_acc_tok_json);
 		if(isset($ln_acc_tok_arr->access_token))
@@ -347,6 +351,7 @@ exit;
 		{
 			$ln_error       = isset($ln_acc_tok_arr->error) ? sanitize_text_field($ln_acc_tok_arr->error) : '';
 			$ln_error_desc  = isset($ln_acc_tok_arr->error_description) ? sanitize_text_field($ln_acc_tok_arr->error_description) : '';
+
 			$redirect_url = add_query_arg(
 				array(
 					'page'         => 'social-media-auto-publish-settings',
@@ -354,8 +359,10 @@ exit;
 				),
 				admin_url('admin.php')
 			);
+
 			wp_safe_redirect( $redirect_url );
 			exit;
+
 		}
 	}
 	//////////////THREADS
@@ -406,8 +413,7 @@ if (!isset($_GET['code']) ) {
 				$long_lived_token_response['expires_in'] = time() + $long_lived_token_response['expires_in'];
 				$access_token = json_encode($long_lived_token_response);
 				$user_info_url = "https://graph.threads.net/me?fields=username&access_token=" . urlencode($long_lived_token_response['access_token']);
-				$verify_ssl = get_option('xyz_smap_peer_verification') == '1';
-				$response = wp_remote_get($user_info_url, ['sslverify' => $verify_ssl]);
+				$response = wp_remote_get($user_info_url, ['sslverify' => $smap_sslverify]);
 				if (!is_array($response) || is_wp_error($response)) {
 
 					wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&th_auth_err=Error fetching user information.'));
@@ -419,6 +425,7 @@ if (!isset($_GET['code']) ) {
 				exit();
 			}
 					$xyz_smap_th_username = sanitize_text_field($result['username']);
+	
 		update_option('xyz_smap_th_access_token', $access_token);
 		update_option('xyz_smap_thaf', 0);
 		update_option('xyz_smap_th_user_id', $user_id);
@@ -426,6 +433,7 @@ if (!isset($_GET['code']) ) {
 		wp_safe_redirect(admin_url('admin.php?page=social-media-auto-publish-settings&msg=10'));
 		exit();
 	}
+
 	////////////TWITTER/////////
 	$clientId = get_option('xyz_smap_tw_client_id');
 	$clientSecret = get_option('xyz_smap_tw_client_secret');
@@ -443,12 +451,16 @@ if (!isset($_GET['code']) ) {
 		}
 		$smap_tw_session_state = md5(uniqid(rand(), TRUE));
 		setcookie("xyz_smap_tw_session_state", $smap_tw_session_state, "0", "/");
+	
 		// Generate code verifier (32-byte random string)
 		$code_verifier = bin2hex(random_bytes(32));
+	
 		// Generate code challenge (base64url-encoded SHA-256 hash of code_verifier)
 		$code_challenge = rtrim(strtr(base64_encode(hash('sha256', $code_verifier, true)), '+/', '-_'), '=');
+	
 		// Save code_verifier in session or cookie for later use
 		setcookie("xyz_smap_code_verifier", $code_verifier, time() + 3600, "/");
+	  
 		// Generate the authorization URL with sha256 challenge
 		$authUrl = "https://x.com/i/oauth2/authorize?";
 		$authUrl .= http_build_query([
@@ -459,7 +471,9 @@ if (!isset($_GET['code']) ) {
 			'state' => $smap_tw_session_state,
 			'code_challenge' => $code_challenge,
 			'code_challenge_method' => 'S256'
+	
 		]);
+		
 		// Redirect the user to the authorization URL
 		wp_redirect($authUrl);
 		exit;
@@ -469,13 +483,16 @@ if (!isset($_GET['code']) ) {
 		$current_time=time();
 		// Retrieve code_verifier from the cookie
 		$code_verifier = $_COOKIE['xyz_smap_code_verifier'] ?? '';
+	
 		$data = [
 			"code" => $code,
 			"grant_type" => "authorization_code",
 			"code_verifier" => $code_verifier,
 			"redirect_uri" => $redirectUri,
 		];
+	
 		$client_credentials = base64_encode("$clientId:$clientSecret");
+	
 		// Make the POST request
 		$response = wp_remote_post($token_url, [
 			'body' => http_build_query($data),
@@ -483,7 +500,7 @@ if (!isset($_GET['code']) ) {
 				'Content-Type' => 'application/x-www-form-urlencoded',
 				'Authorization' => 'Basic ' . $client_credentials,
 			],
-			'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+			'sslverify' => $smap_sslverify,
 		]);
 		// Handle the response
 		if (isset($response['body'])) {
@@ -539,7 +556,7 @@ if (!isset($_GET['code']) ) {
 		{	
 		 $code = $_REQUEST["code"];
 		$response = wp_remote_post("https://api.tumblr.com/v2/oauth2/token", [
-            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+            'sslverify' => $smap_sslverify,
 			'body' => [
 				'client_id'     => $tb_consumer_key,
 				'client_secret' => $tb_consumer_secret,
@@ -571,3 +588,5 @@ if (!isset($_GET['code']) ) {
 		}
 	}
 }
+
+	

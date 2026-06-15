@@ -28,7 +28,7 @@ class Request implements RequestInterface
     /**
      * @param string                               $method  HTTP method
      * @param string|UriInterface                  $uri     URI
-     * @param array<string, string|string[]>       $headers Request headers
+     * @param (string|string[])[]                  $headers Request headers
      * @param string|resource|StreamInterface|null $body    Request body
      * @param string                               $version Protocol version
      */
@@ -40,10 +40,11 @@ class Request implements RequestInterface
         string $version = '1.1'
     ) {
         $this->assertMethod($method);
-        if (!($uri instanceof UriInterface)) {
+        if (!$uri instanceof UriInterface) {
             $uri = new Uri($uri);
         }
 
+        self::warnOnMethodCasingChange($method);
         $this->method = strtoupper($method);
         $this->uri = $uri;
         $this->setHeaders($headers);
@@ -69,7 +70,7 @@ class Request implements RequestInterface
             $target = '/';
         }
         if ($this->uri->getQuery() != '') {
-            $target .= '?' . $this->uri->getQuery();
+            $target .= '?'.$this->uri->getQuery();
         }
 
         return $target;
@@ -85,6 +86,7 @@ class Request implements RequestInterface
 
         $new = clone $this;
         $new->requestTarget = $requestTarget;
+
         return $new;
     }
 
@@ -96,8 +98,10 @@ class Request implements RequestInterface
     public function withMethod($method): RequestInterface
     {
         $this->assertMethod($method);
+        self::warnOnMethodCasingChange($method);
         $new = clone $this;
         $new->method = strtoupper($method);
+
         return $new;
     }
 
@@ -108,6 +112,15 @@ class Request implements RequestInterface
 
     public function withUri(UriInterface $uri, $preserveHost = false): RequestInterface
     {
+        if (!\is_bool($preserveHost)) {
+            \trigger_deprecation(
+                'guzzlehttp/psr7',
+                '2.11',
+                'Passing %s to RequestInterface::withUri() is deprecated; guzzlehttp/psr7 3.0 requires bool for $preserveHost.',
+                \get_debug_type($preserveHost)
+            );
+        }
+
         if ($uri === $this->uri) {
             return $this;
         }
@@ -130,9 +143,13 @@ class Request implements RequestInterface
             return;
         }
 
+        Uri::assertValidHost($host);
+
         if (($port = $this->uri->getPort()) !== null) {
-            $host .= ':' . $port;
+            $host .= ':'.$port;
         }
+
+        $this->assertValue($host);
 
         if (isset($this->headerNames['host'])) {
             $header = $this->headerNames['host'];
@@ -141,7 +158,7 @@ class Request implements RequestInterface
             $this->headerNames['host'] = 'Host';
         }
         // Ensure Host is the first header.
-        // See: http://tools.ietf.org/html/rfc7230#section-5.4
+        // See: https://datatracker.ietf.org/doc/html/rfc7230#section-5.4
         $this->headers = [$header => [$host]] + $this->headers;
     }
 
@@ -152,6 +169,17 @@ class Request implements RequestInterface
     {
         if (!is_string($method) || $method === '') {
             throw new InvalidArgumentException('Method must be a non-empty string.');
+        }
+    }
+
+    private static function warnOnMethodCasingChange(string $method): void
+    {
+        if ($method !== strtoupper($method)) {
+            \trigger_deprecation(
+                'guzzlehttp/psr7',
+                '2.11',
+                'Passing a non-uppercase HTTP method is deprecated; guzzlehttp/psr7 3.0 preserves method casing and will no longer uppercase it. Normalize the method before constructing or modifying requests if uppercase is required.'
+            );
         }
     }
 }

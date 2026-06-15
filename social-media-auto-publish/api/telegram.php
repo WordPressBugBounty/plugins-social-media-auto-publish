@@ -1,99 +1,155 @@
 <?php
-////////////////////////Bot verification///////////////////////
+
+//////////////////////// COMMON HTTP REQUEST ///////////////////////
+
+if (!function_exists('xyz_smap_wp_remote_request')) {
+    function xyz_smap_wp_remote_request($url, $args = array(), $method = 'POST')
+    {
+        if (!isset($args['sslverify'])) {
+            $args['sslverify'] = (get_option('xyz_smap_peer_verification') == '1');
+        }
+
+        if (!isset($args['timeout'])) {
+            $args['timeout'] = 50;
+        }
+
+        $args['method'] = strtoupper($method);
+
+        return wp_remote_request($url, $args);
+    }
+}
+
+//////////////////////// BOT VERIFICATION ///////////////////////
+
 if (!function_exists("xyz_smap_tg_verify_bot_token")) {
     function xyz_smap_tg_verify_bot_token($botApiToken)
     {
-        $responseDataReturn=array();
         $apiUrl = "https://api.telegram.org/bot{$botApiToken}/getMe";
-        $response = wp_remote_get( $apiUrl, array(
-            'sslverify' => get_option('xyz_smap_peer_verification') == '1',
-        ));
+
+        $response = xyz_smap_wp_remote_request($apiUrl, array(), 'GET');
+        
         if ( is_wp_error( $response ) ) {
-            // Handle error
-            $responseDataReturn['error']=$response->get_error_message();
+            return array(
+                'error' => $response->get_error_message()
+            );
         }
-        else{
-        $response_body = wp_remote_retrieve_body( $response );
-        $responseData = json_decode( $response_body, true );  // Convert 
-        if ( isset( $responseData['ok'] ) && $responseData['ok'] == 1 ) {
+
+        $responseData = json_decode(wp_remote_retrieve_body($response), true);
+
+        if (!empty($responseData['ok'])) {
             return $responseData['result']['first_name'];
-        } else {
-            if(isset($responseData['error_code'])){
-                $responseDataReturn['error']= $responseData['error_code'];
-                if($responseData['description']!='')
-                 $responseDataReturn['error'].= ": ".$responseData['description'];
             }
+
+        if (!empty($responseData['error_code'])) {
+            $error = $responseData['error_code'];
+
+            if (!empty($responseData['description'])) {
+                $error .= ': ' . $responseData['description'];
         }
+
+            return array(
+                'error' => $error
+            );
      }
-     return $responseDataReturn;
+
+        return array(
+            'error' => 'Unknown error'
+        );
     }
 }
-//Verify channel,group 
+
+//////////////////////// VERIFY CHANNEL / GROUP ///////////////////////
+
 if (!function_exists("xyz_smap_tg_get_channel_group_name")) {
-    function xyz_smap_tg_get_channel_group_name($botApiToken,$channel_Ids,$type){
+    function xyz_smap_tg_get_channel_group_name($botApiToken, $channel_Ids, $type)
+    {
         $apiUrl = "https://api.telegram.org/bot{$botApiToken}/getChat";
-        $channels_groups_details=$channels_groups=array();
+
+        $channels_groups = array();
         $channelids_with_error='';
+
         foreach($channel_Ids as $channel_Id) {
-            $channel_details = array(
+
+            $args = array(
                 'body' => array(
                     'chat_id' => $channel_Id
-                ),
-                'sslverify' => get_option('xyz_smap_peer_verification') == '1',
+                )
             );
-            // Make the request using wp_remote_post
-            $response = wp_remote_post($apiUrl, $channel_details);
-            // Check for errors in the response
+
+            $response = xyz_smap_wp_remote_request($apiUrl, $args, 'POST');
+
             if (is_wp_error($response)) {
                 $channelids_with_error.=$channel_Id.',';  
-            } else {
-            // Get the body of the response
-                $result = wp_remote_retrieve_body($response);//print_r($result);
-                $chatInfo = json_decode($result, true);
-                if ($chatInfo['ok']) {
-                    if($chatInfo['result']['type']==$type){
-                    $channelGroupName = $chatInfo['result']['title'];
-                    $channels_groups[$channel_Id] = $channelGroupName;
-                    }
-                }
-                else               
+                continue;
+            }
+
+            $chatInfo = json_decode(
+                wp_remote_retrieve_body($response),
+                true
+            );
+
+            if (
+                !empty($chatInfo['ok']) &&
+                isset($chatInfo['result']['type']) &&
+                $chatInfo['result']['type'] == $type
+            ) {
+                $channels_groups[$channel_Id] =
+                    $chatInfo['result']['title'];
+            } else {         
                     $channelids_with_error.=$channel_Id.',';                
             }
         }
-        if(!empty($channelids_with_error))
-         $channels_groups_details['error']=$channelids_with_error;
-         $channels_groups_details['success']=$channels_groups;
-    return $channels_groups_details;
+
+        return array(
+            'success' => $channels_groups,
+            'error'   => $channelids_with_error
+        );
     }
 }
+
+//////////////////////// TELEGRAM POST ///////////////////////
 
 if (!function_exists("xyz_smap_make_tg_post")) {
-    function xyz_smap_make_tg_post($botApiToken,$media_type,$xyz_media_param_enc){
+    function xyz_smap_make_tg_post($botApiToken, $media_type, $xyz_media_param_enc)
+    {
         $baseUrl = "https://api.telegram.org/bot{$botApiToken}/";
-        $mediaEndpoints = [
+
+        $mediaEndpoints = array(
             'text' => 'sendMessage',
-            'photo' => 'sendPhoto',
-        ]; 
-        // Check if media type is valid
-        if (array_key_exists($media_type, $mediaEndpoints)) {
-            $url = $baseUrl . $mediaEndpoints[$media_type];
-        $xyz_media_param_enc['sslverify'] = get_option('xyz_smap_peer_verification') == '1';
-        // Make the request using wp_remote_post
-        $response = wp_remote_post($url, $xyz_media_param_enc);
-        if (is_wp_error($response)) {
-            // Handle error if wp_remote_post fails
-            return ['error' => $response->get_error_message()];
+            'photo' => 'sendPhoto'
+        );
+
+        if (empty($mediaEndpoints[$media_type])) {
+            return array(
+                'error' => 'Invalid media type.'
+            );
         }
 
-            $body = wp_remote_retrieve_body($response);
-        return [
+            $url = $baseUrl . $mediaEndpoints[$media_type];
+
+        if (isset($xyz_media_param_enc['body'])) {
+            $args = $xyz_media_param_enc;
+        } else {
+            $args = array(
+                'body' => $xyz_media_param_enc
+            );
+        }
+
+        $response = xyz_smap_wp_remote_request(
+            $url,
+            $args,
+            'POST'
+        );
+
+        if (is_wp_error($response)) {
+            return array(
+                'error' => $response->get_error_message()
+            );
+        }
+
+        return array(
                 'media_type' => $media_type,
-            'body' => $body,
-        ];
-    } else {
-        // Handle invalid media type
-        return ['error' => 'Invalid media type.'];
+            'body'       => wp_remote_retrieve_body($response)
+        );
         }
     }
-}
-

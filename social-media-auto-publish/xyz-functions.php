@@ -357,6 +357,7 @@ if (!function_exists("xyz_smap_split_replace"))
 
 if(!function_exists('xyz_smap_post_to_smap_api'))
 {	function xyz_smap_post_to_smap_api($post_details,$url,$xyzscripts_hash_val='') {
+	$smap_sslverify = (get_option('xyz_smap_peer_verification') == '1');
 	if (function_exists('curl_init'))
 	{
 		$post_parameters['post_params'] = serialize($post_details);
@@ -366,7 +367,7 @@ if(!function_exists('xyz_smap_post_to_smap_api'))
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER,(get_option('xyz_smap_peer_verification')=='1') ? true : false);
+		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER,($smap_sslverify));
 		$content = curl_exec($ch);
 		curl_close($ch);
 		if (empty($content))
@@ -387,7 +388,7 @@ if(!function_exists('xyz_smap_post_to_smap_api'))
 }
 if (!function_exists("xyz_smap_clear_open_graph_cache")) {
 	function xyz_smap_clear_open_graph_cache($url,$access_tocken,$appid,$appsecret) {
-		$smap_sslverify= (get_option('xyz_smap_peer_verification')=='1') ? true : false;
+		$smap_sslverify = (get_option('xyz_smap_peer_verification') == '1');
 		try {
 			$params = array(
 					'id' => $url,
