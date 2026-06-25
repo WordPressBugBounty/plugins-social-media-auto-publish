@@ -27,8 +27,8 @@ function smap_install_free()
 	if (is_plugin_active($pluginName)) {
 		wp_die( "The plugin Social Media Auto Publish cannot be activated unless the premium version of this plugin is deactivated. Back to <a href='".admin_url()."plugins.php'>Plugin Installation</a>." );
 	}
-	if (version_compare(PHP_VERSION, '5.4.0', '<')) {	
-		wp_die( "The plugin Social Media Auto Publish requires PHP version 5.4 or higher. Back to <a href='".admin_url()."plugins.php'>Plugin Installation</a>." );
+	if (version_compare(PHP_VERSION, '8.2.0', '<')) {	
+		wp_die( "The plugin Social Media Auto Publish requires PHP version 8.2 or higher. Back to <a href='".admin_url()."plugins.php'>Plugin Installation</a>." );
 	}
 	$pluginName = 'xyz-wp-smap-plus/xyz-wp-smap-plus.php';
 	if (is_plugin_active($pluginName)) {

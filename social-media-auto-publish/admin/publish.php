@@ -1680,6 +1680,10 @@ if(isset($_POST['xyz_smap_tgmessage']))
 						$arrResponse = $ObjLinkedin->getUploadUrlResponses($uploadUrl,$attachmenturl,array());
 						$ln_api_count++;
 					}
+					if (is_wp_error($arrResponse)) 
+					{
+						$image_upload_err.='<br/><span style="color:red">'.$arrResponse->get_error_message().'</span>';
+					}
 					$contentln['content']=array('article'=>array('source'=>$link,'thumbnail'=>$image_parameter,'title'=>$name_li,'description'=>$description_li));
 					$status_check=$ObjLinkedin->check_status_linkedin_asset('https://api.linkedin.com/rest/assets/'.$image_param);
 					$ln_api_count++;
@@ -1730,6 +1734,11 @@ if(isset($_POST['xyz_smap_tgmessage']))
 						{
 							$arrResponse = $ObjLinkedin->getUploadUrlResponses($uploadUrl,$attachmenturl,array());
 							$ln_api_count++;
+							if (is_wp_error($arrResponse)) 
+							{
+								$image_upload_err.='<br/><span style="color:red">'.$arrResponse->get_error_message().'</span>';
+							}
+							else{
 						$cont=array('media'=>array('title'=>$name_li,'id'=>$image_parameter));
 						$contentln['commentary']=$message5;
 						$contentln['content']=$cont;
@@ -1746,6 +1755,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 								if (isset($upload_status_arr['status']))
 									$ln_image_status="-upload status:".$upload_status_arr['status'];
 									$image_upload_err.='<br/><span style="color:red">Image upload failed '.$ln_image_status.'</span>';
+							}
 							}
 						}
 						else {
@@ -1869,6 +1879,10 @@ if(isset($_POST['xyz_smap_tgmessage']))
 								{
 									$arrResponse = $ObjLinkedin->getUploadUrlResponses($uploadUrl,$attachmenturl,array());
 									$ln_api_count++;
+									if (is_wp_error($arrResponse)) 
+									{
+										$image_upload_err.='<br/><span style="color:red">'.$arrResponse->get_error_message().'</span>';
+								}
 								}
 								$contentln['content']=array('article'=>array('source'=>$link,'thumbnail'=>$image_parameter,'title'=>$name_li,'description'=>$description_li));
 								$status_check=$ObjLinkedin->check_status_linkedin_asset('https://api.linkedin.com/rest/assets/'.$image_param);
@@ -1915,6 +1929,11 @@ if(isset($_POST['xyz_smap_tgmessage']))
 								{
 									$arrResponse = $ObjLinkedin->getUploadUrlResponses($uploadUrl,$attachmenturl,array());
 									$ln_api_count++;
+									if (is_wp_error($arrResponse)) 
+									{
+										$image_upload_err.='<br/><span style="color:red">'.$arrResponse->get_error_message().'</span>';
+									}
+									else{
 										// $distribution=array('feedDistribution'=>'MAIN_FEED','targetEntities'=>[],'thirdPartyDistributionChannels'=>[]);
 										$cont=array('media'=>array('title'=>$name_li,'id'=>$image_parameter));
 										$contentln['commentary']=$message5;
@@ -1934,6 +1953,7 @@ if(isset($_POST['xyz_smap_tgmessage']))
 											$ln_image_status="-upload status:".$upload_status_arr['status'];
 											$image_upload_err.='<br/><span style="color:red">Image upload failed '.$ln_image_status.'</span>';
 									}
+								}
 								}
 								else {
 									$image_upload_err.='<br/><span style="color:red">Image Upload Failed</span>';

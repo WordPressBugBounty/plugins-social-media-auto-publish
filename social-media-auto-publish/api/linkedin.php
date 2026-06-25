@@ -231,6 +231,21 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
   public function getUploadUrlResponses($uploadUrl,$image,$args=array())
 	{
 		$headers = array();
+		$sslverify=(get_option('xyz_smap_peer_verification')=='1') ? TRUE : FALSE;
+		$response = wp_remote_get(
+		$image,
+		array(
+			'sslverify' => $sslverify,
+			'timeout'   => 60,
+		)
+		);
+		if (is_wp_error($response)) {
+			return $response;
+		}
+		$image_data = wp_remote_retrieve_body($response);
+		if (empty($image_data)) {
+			return 'Image download returned empty content.';
+		}
 		$headers[] = 'Authorization: Bearer '.$this->access_token;// token generated above code
 		$headers[] = 'LinkedIn-Version:'.XYZ_SMAP_LINKEDIN_VERSION;
 		$headers[] = 'X-Restli-Protocol-Version: 2.0.0';
@@ -243,10 +258,9 @@ class SMAPLinkedInOAuth2 extends SMAPOAuth2 {
  	    curl_setopt($ch, CURLOPT_HEADER,true);
 	    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$sslverify=(get_option('xyz_smap_peer_verification')=='1') ? TRUE : FALSE;
 		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,$sslverify);
 		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents($image));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $image_data);
 		$response = curl_exec($ch);
  	    $header_data= curl_getinfo($ch);
 		curl_close($ch);
